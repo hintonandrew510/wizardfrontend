@@ -1,7 +1,9 @@
 package web.google.slide;
 
-import java.io.File;
+
 import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -21,12 +23,17 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
+import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
+import com.google.api.services.drive.Drive;
 import com.google.api.services.slides.v1.Slides;
 import com.google.api.services.slides.v1.SlidesScopes;
 import com.google.api.services.slides.v1.model.Page;
@@ -61,7 +68,7 @@ public class GoogleSlideController {
 		// remove value from session
 
 		try {
-			File file = ResourceUtils.getFile("classpath:google.json");
+			java.io.File file = ResourceUtils.getFile("classpath:google.json");
 			InputStream inputStream = new FileInputStream(file);
 			byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 			// Build a new authorized API client service.
@@ -69,8 +76,9 @@ public class GoogleSlideController {
 	        Slides service = new Slides.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
 	                .setApplicationName(APPLICATION_NAME)
 	                .build();
-	        //https://docs.google.com/presentation/d/1b4cxJuF4KQJTwQHq41RynOO5EeKhTpCxkRU1MIPXmJ4/edit#slide=id.p1
-	        String presentationId = "1b4cxJuF4KQJTwQHq41RynOO5EeKhTpCxkRU1MIPXmJ4";
+	        //https://docs.google.com/presentation/d/1MIJx-AseaerrkR94Ft89hPGoTTDmcIzbf0qPn160nP8/edit#slide=id.ga8b5bb1d1e_0_0
+	        //https://docs.google.com/presentation/d/14dc1IXjJ1XEAHhUFgi_4ixOWlIdZPy1eMlOohuiZ2Zg/edit#slide=id.p1
+	        String presentationId = "1MIJx-AseaerrkR94Ft89hPGoTTDmcIzbf0qPn160nP8";
 	        Presentation response = service.presentations().get(presentationId).execute();
 	        List<Page> slides = response.getSlides();
 
@@ -91,6 +99,51 @@ public class GoogleSlideController {
 	}
 	
 	
+	private void ggoool() throws IOException {
+		String authCode = "";
+		String CLIENT_SECRET_FILE = "/path/to/client_secret.json";
+
+		// Exchange auth code for access token
+		GoogleClientSecrets clientSecrets =
+		    GoogleClientSecrets.load(
+		        JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+		GoogleTokenResponse tokenResponse =
+		          new GoogleAuthorizationCodeTokenRequest(
+		              new NetHttpTransport(),
+		              JacksonFactory.getDefaultInstance(),
+		              "https://oauth2.googleapis.com/token",
+		              clientSecrets.getDetails().getClientId(),
+		              clientSecrets.getDetails().getClientSecret(),
+		              authCode,
+		              "")  // Specify the same redirect URI that you use with your web
+		                             // app. If you don't have a web version of your app, you can
+		                             // specify an empty string.
+		              .execute();
+
+		String accessToken = tokenResponse.getAccessToken();
+
+		// Use access token to call API
+		GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
+		Drive drive =
+		    new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+		        .setApplicationName("Auth Code Exchange Demo")
+		        .build();
+		//File file = null;
+		drive.files().get("appfolder").execute();
+
+		// Get profile info from ID token
+		GoogleIdToken idToken = tokenResponse.parseIdToken();
+		GoogleIdToken.Payload payload = idToken.getPayload();
+		String userId = payload.getSubject();  // Use this value as a key to identify a user.
+		String email = payload.getEmail();
+		boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+		String name = (String) payload.get("name");
+		String pictureUrl = (String) payload.get("picture");
+		String locale = (String) payload.get("locale");
+		String familyName = (String) payload.get("family_name");
+		String givenName = (String) payload.get("given_name");
+	}
+	
 	
     /**
      * Creates an authorized Credential object.
@@ -100,19 +153,20 @@ public class GoogleSlideController {
      */
     private  Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws Exception {
         // Load client secrets.
-    	File file = ResourceUtils.getFile("classpath:google.json");
+    	mLog.info("starting getCredentials");
+    	java.io.File file = ResourceUtils.getFile("classpath:credentials.json");
 		InputStream inputStream = new FileInputStream(file);
-        InputStream in = new FileInputStream(file);
+      
        
-        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(inputStream));
+        mLog.info("clientSecrets " + clientSecrets);
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build();
-        
+        mLog.info("Build flow and trigger user authorization request. ");
         
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
