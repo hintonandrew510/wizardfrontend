@@ -1,0 +1,5 @@
+The ability to create google slide from wizard data
+After the wizard data merge with Google slide , add the  ability to modify google slide 
+Beside the xxx wizard pages, the wizard data will be tranferred to google slides
+The Google slides will be based on the published cloud wizard 
+The consultants will be responsible for customizing the Google published slide and removing any generate slide.
