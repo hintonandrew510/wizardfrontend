@@ -1,9 +1,15 @@
 
 function start() {
 	console.group("Start Google Slide");
+	//https://www.googleapis.com/auth/drive
+	var scopes = 'https://www.googleapis.com/auth/drive.metadata https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/presentations https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive https://spreadsheets.google.com/feeds';
+
+	//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com
 		gapi.load('auth2', function() {
+		//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com	
 		auth2 = gapi.auth2.init({
-			client_id : '925858081612-lfg0lmjn0c3kjbgcl1l8jme6dhdiubjo.apps.googleusercontent.com',
+			client_id : '521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com',
+			scope: scopes,
 		// Scopes to request in addition to 'profile' and 'email'
 		// scope: 'additional_scope'
 		});
@@ -18,6 +24,9 @@ function signInCallback(authResult) {
 	console.group("Start actual signInCallback");
 	if (authResult['code']) {
 		 console.log("authResult[code] " + authResult['code']);
+		 //call backend server
+		 document.getElementById("authCodeId").value =  authResult['code'];
+		 document.getElementById("shareForm").submit();
 	} else {
 		console.log("Error calling google");
 	}

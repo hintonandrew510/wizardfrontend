@@ -69,10 +69,12 @@
 			'packages' : [ 'corechart' ]
 		});
 	</script>
-	<form id="shareForm" method="get" action="PublishLink"
+	<form id="shareForm" method="post" action="GenerateGoogleSlide"
 		autocomplete="off">
 		<input type="hidden" id="encryptId" th:value="${encryptId}"
 			name="encryptId" />
+			<input type="hidden" id="authCodeId" 
+			name="authCodeId" />
 	</form>
 	<div class="content">
 
