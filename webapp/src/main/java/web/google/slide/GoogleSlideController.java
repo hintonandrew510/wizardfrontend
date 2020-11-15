@@ -110,6 +110,9 @@ public class GoogleSlideController {
 		    	mLog.info("name " + fileA.getName());
 		    	mLog.info("web link " + fileA.getWebViewLink());
 		    }
+		    
+		    File newFile = copyFile(drive,presentationId,"new");
+		   mLog.info("new File Id" + newFile.getId());
 		//for ()
 			//File driveFile = drive.files().get(presentationId).execute();
 			//mLog.info("driveFile " + driveFile);
@@ -147,6 +150,31 @@ public class GoogleSlideController {
 		return nextPage;
 
 	}
+	
+	/**
+	   * Copy an existing file.
+	   *
+	   * @param service Drive API service instance.
+	   * @param originFileId ID of the origin file to copy.
+	   * @param copyTitle Title of the copy.
+	   * @return The copied file if successful, {@code null} otherwise.
+	   */
+	  private File copyFile(Drive service, String originFileId,
+	      String copyName) {
+	    File copiedFile = new File();
+	    copiedFile.setName(copyName);
+	   
+	    try {
+	      return service.files().copy(originFileId, copiedFile).execute();
+	    } catch (IOException e) {
+	      System.out.println("An error occurred: " + e);
+	    }
+	    return null;
+	  }
+
+	   
+
+	
 
 	private void ggoool() throws IOException {
 		String authCode = "";
