@@ -128,6 +128,13 @@
 			<version>v3-rev197-1.25.0</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-slides -->
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-slides</artifactId>
+			<version>v1-rev399-1.25.0</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
