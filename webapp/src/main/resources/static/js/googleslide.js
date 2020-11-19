@@ -2,7 +2,20 @@
 function start() {
 	console.group("Start Google Slide");
 	//https://www.googleapis.com/auth/drive
-	var scopes = 'https://www.googleapis.com/auth/drive.metadata https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/presentations https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive https://spreadsheets.google.com/feeds';
+	var scopes = 'https://www.googleapis.com/auth/drive.metadata ' +
+		'https://www.googleapis.com/auth/drive.appdata ' +
+		'https://www.googleapis.com/auth/presentations ' +
+		'https://www.googleapis.com/auth/presentations.readonly' +
+		'https://www.googleapis.com/auth/drive.file  ' +
+		'https://www.googleapis.com/auth/drive ' + 
+		'https://www.googleapis.com/auth/drive.readonly' +
+		'https://spreadsheets.google.com/feeds';
+	
+
+		
+
+		
+
 
 	//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com
 		gapi.load('auth2', function() {
