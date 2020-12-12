@@ -6,13 +6,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
@@ -40,12 +44,21 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.slides.v1.Slides;
 import com.google.api.services.slides.v1.SlidesScopes;
+import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
+import com.google.api.services.slides.v1.model.BatchUpdatePresentationResponse;
 import com.google.api.services.slides.v1.model.Page;
+import com.google.api.services.slides.v1.model.PageElement;
 import com.google.api.services.slides.v1.model.Presentation;
+import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
+import com.google.api.services.slides.v1.model.Request;
+import com.google.api.services.slides.v1.model.Response;
+import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
 
 @Controller // This means that this class is a Controller
 
 public class GoogleSlideController {
+	@Autowired
+	private Environment mEnvironment;
 	private static final Logger mLog = Logger.getLogger(GoogleSlideController.class.getName());
 
 	private static final String APPLICATION_NAME = "Google Slides API Java Quickstart";
@@ -71,6 +84,8 @@ public class GoogleSlideController {
 	public String generate(HttpSession session, @RequestParam(required = true) String authCodeId,
 			@RequestParam(required = true) String encryptId) {
 		// remove value from session
+		
+		String domain = mEnvironment.getProperty("google.domain");
 		mLog.info("authCodeId [" + authCodeId + "]");
 		try {
 			java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
@@ -84,7 +99,7 @@ public class GoogleSlideController {
 			GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
 					JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
 					clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), authCodeId,
-					"http://localhost:8080") // Specify the same redirect URI that you use with your web
+					domain) // Specify the same redirect URI that you use with your web
 						// app. If you don't have a web version of your app, you can
 						// specify an empty string.
 							.execute();
@@ -97,6 +112,18 @@ public class GoogleSlideController {
 			mLog.info("credential " + credential);
 			//1IWyyvihcALCHYEM6pDBP5HJ4-2UxMcmmYBQtp3jxlE0
 			String presentationId = "1IWyyvihcALCHYEM6pDBP5HJ4-2UxMcmmYBQtp3jxlE0";
+			presentationId = "1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y";
+			//temp
+			presentationId = "19vhAFr5DHSoeGPo7GgK9zQ3zZMShx-Nl9BOuAEKLsPU";
+			
+			presentationId = "1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y";
+			
+			presentationId = "1bo_kj7KR97kGU1oNUT31HpOS_dywpfFEMRmpRnSUeO4";
+			//https://docs.google.com/presentation/d/1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y/edit#slide=id.gac76981968_0_5
+			
+			
+			
+			
 			Drive drive = new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
 					.setApplicationName(APPLICATION_NAME).build();
 			mLog.info("drive " + drive);
@@ -106,39 +133,89 @@ public class GoogleSlideController {
 		    result.addAll(files.getFiles());
 		    for (File fileA : result) {
 		    	mLog.info("id " + fileA.getId());
-		    	mLog.info("desc " + fileA.getDescription());
+		    	//mLog.info("desc " + fileA.getDescription());
 		    	mLog.info("name " + fileA.getName());
-		    	mLog.info("web link " + fileA.getWebViewLink());
+		    	//mLog.info("web link " + fileA.getWebViewLink());
 		    }
-		    
-		    File newFile = copyFile(drive,presentationId,"new");
+		    String newFileName = "new_" + getDateTime();
+		    mLog.info("new file " + newFileName);
+		    File newFile = copyFile(drive,presentationId,newFileName);
+		    String newFileId = newFile.getId();
 		   mLog.info("new File Id" + newFile.getId());
 		//for ()
 			//File driveFile = drive.files().get(presentationId).execute();
 			//mLog.info("driveFile " + driveFile);
 			
 			// Get profile info from ID token
-			GoogleIdToken idToken = tokenResponse.parseIdToken();
-			GoogleIdToken.Payload payload = idToken.getPayload();
-			String userId = payload.getSubject();  // Use this value as a key to identify a user.
-			mLog.info("userId " + userId);
-			String email = payload.getEmail();
-			mLog.info("email " + email);
+			//GoogleIdToken idToken = tokenResponse.parseIdToken();
+			//GoogleIdToken.Payload payload = idToken.getPayload();
+			//String userId = payload.getSubject();  // Use this value as a key to identify a user.
+			//mLog.info("userId " + userId);
+			//String email = payload.getEmail();
+			mLog.info("setup up slides ");
 			
-			Slides service = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+			Slides slides = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
 					.setApplicationName(APPLICATION_NAME).build();
-
+			mLog.info("slides have been setup " + slides);
 			// https://docs.google.com/presentation/d/1MIJx-AseaerrkR94Ft89hPGoTTDmcIzbf0qPn160nP8/edit#slide=id.ga8b5bb1d1e_0_0
 			// https://docs.google.com/presentation/d/14dc1IXjJ1XEAHhUFgi_4ixOWlIdZPy1eMlOohuiZ2Zg/edit#slide=id.p1
 			//https://docs.google.com/presentation/d/1IWyyvihcALCHYEM6pDBP5HJ4-2UxMcmmYBQtp3jxlE0/edit#slide=id.p1
 			
-			Presentation response = service.presentations().get(presentationId).execute();
-			List<Page> slides = response.getSlides();
-
-			System.out.printf("The presentation contains %s slides:\n", slides.size());
-			for (int i = 0; i < slides.size(); ++i) {
-				System.out.printf("- Slide #%s contains %s elements.\n", i + 1, slides.get(i).getPageElements().size());
-			}
+			/*Presentation response = slides.presentations().get(newFileId ).execute();
+			List<Page> pages = response.getSlides();
+            for (Page page : pages) {
+            	//page.
+            	List<PageElement> pageElements = page.getPageElements();
+            	for (PageElement pageElement : pageElements) {
+            		pageElement.getTitle();
+            	}
+            }*/
+			
+			
+			// Create the text merge (replaceAllText) requests for this presentation.
+		    List<Request> requests = new ArrayList<>();
+		    Request requestText = new Request();
+		    ReplaceAllTextRequest replaceAllTextRequest = new ReplaceAllTextRequest();
+		    SubstringMatchCriteria substringMatchCriteria = new SubstringMatchCriteria();
+		    substringMatchCriteria.setText("{{customer-name}}").setMatchCase(true).setText("ddfdfd");
+		    replaceAllTextRequest.setContainsText(substringMatchCriteria);
+		    requestText.setReplaceAllText(replaceAllTextRequest);
+		    //requests.add(requestText);
+		    
+		    requests.add(new Request()
+		            .setReplaceAllText(new ReplaceAllTextRequest()
+		                    .setContainsText(new SubstringMatchCriteria()
+		                            .setText("{{customer-name}}")
+		                            .setMatchCase(true))
+		                    .setReplaceText("yes")));
+		    
+		    
+		    
+		    
+		    mLog.info("requests made");
+		 // Execute the requests for this presentation.
+		    BatchUpdatePresentationRequest body =
+		            new BatchUpdatePresentationRequest().setRequests(requests);
+		    mLog.info("requests  body " + body);
+		    BatchUpdatePresentationResponse responseA =
+		            slides.presentations().batchUpdate(newFileId, body).execute();
+		    
+		    mLog.info("requests  responseA " + responseA);
+		 // Count total number of replacements made.
+		    int numReplacements = 0;
+		   
+		    for (Response resp : responseA.getReplies()) {
+		    	try {
+		        numReplacements += resp.getReplaceAllText().getOccurrencesChanged();
+		    	} catch (Exception ex) {
+		    		mLog.severe("replace text error " + ex.getMessage());
+		    	}
+		        
+		    }
+		    mLog.info("Created merged presentation for  with ID: " + newFileId);
+		    mLog.info("numReplacements " + numReplacements);
+		   
+		    
 			// Credential Credential =
 			// String data = new String(bdata, StandardCharsets.UTF_8);
 			// mLog.info(data);
@@ -173,7 +250,11 @@ public class GoogleSlideController {
 	  }
 
 	   
-
+private String getDateTime() {
+	SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+	Date date = new Date(System.currentTimeMillis());
+	return formatter.format(date);
+}
 	
 
 	private void ggoool() throws IOException {
