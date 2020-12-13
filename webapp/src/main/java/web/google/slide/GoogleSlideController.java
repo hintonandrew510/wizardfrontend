@@ -58,6 +58,8 @@ import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.CellData;
+import com.google.api.services.sheets.v4.model.ClearValuesRequest;
+import com.google.api.services.sheets.v4.model.ClearValuesResponse;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import com.google.api.services.sheets.v4.model.GridCoordinate;
 import com.google.api.services.sheets.v4.model.RowData;
@@ -312,22 +314,35 @@ public class GoogleSlideController {
 	      
 	      
 	      String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
-	      String writeRange = "mediasheet!A3:E"; //range and sheet name
-
+	      String writeRange = "mediasheet!A1:E"; //range and sheet name
+      
 	        List<List<Object>> writeData = new ArrayList<>();
+	        //three rows
+	        //five columns
 	        for (int x = 0; x < 3; x++) {
 	            List<Object> dataRow = new ArrayList<>();
-	            dataRow.add(1);
-	            dataRow.add(2);
-	            dataRow.add(3);
-	            dataRow.add(4);
-	            dataRow.add(5);
+	            dataRow.add(11);
+	            dataRow.add(22);
+	            dataRow.add(33);
+	            dataRow.add(44);
+	            dataRow.add(55);
 	            writeData.add(dataRow);
 	        }
 	       
 	        ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
 	       // ValueRange body = new ValueRange().setValues(values);
 	        try {
+	        	
+	        	//cleare values
+	        	 // TODO: Assign values to desired fields of `requestBody`:
+	            ClearValuesRequest requestBody = new ClearValuesRequest();
+
+	           
+	            Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId, writeRange, requestBody);
+
+	           ClearValuesResponse response = request.execute();
+	           mLog.info("response [" + response + "]");
+	        	
 				UpdateValuesResponse result =
 				        service.spreadsheets().values().update(spreadsheetId, writeRange, body)
 				                .setValueInputOption("RAW")
