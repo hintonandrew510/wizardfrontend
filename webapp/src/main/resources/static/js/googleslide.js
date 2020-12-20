@@ -1,4 +1,4 @@
-
+ var client_id;
 function start() {
 	console.group("Start Google Slide");
 	//https://www.googleapis.com/auth/drive
@@ -8,12 +8,6 @@ function start() {
 		'https://www.googleapis.com/auth/drive.file  ' +
 		'https://www.googleapis.com/auth/drive ';
 	
-
-		
-
-		
-
-
 	//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com
 		gapi.load('auth2', function() {
 		//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com	
@@ -42,8 +36,5 @@ function signInCallback(authResult) {
 	}
 	console.groupEnd();
 }
-console.group("Starting signInCallback");
 
-// signInCallback defined in step 6.
-//auth2.grantOfflineAccess().then(signInCallback);
-console.groupEnd();
+

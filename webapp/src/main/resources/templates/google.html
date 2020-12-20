@@ -7,9 +7,7 @@
 <title>Wizard</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="css/publish.css">
-<link rel="stylesheet" href="css/extra.css">
+
 <script src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- BEGIN Pre-requisites -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
@@ -24,29 +22,63 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
 
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+div {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+</style>
 
 </head>
 <body>
-<!-- Add where you want your sign-in button to render -->
-<!-- Use an image that follows the branding guidelines in a real app -->
-<button id="signinButton">Sign in with Google</button>
-<script>
-  $('#signinButton').click(function() {
-    // signInCallback defined in step 6.
-    auth2.grantOfflineAccess().then(signInCallback);
-  });
-</script>
-	<div>
-	wwizard241@gmail.com wizardXX123
-	</div>
+	<!-- Add where you want your sign-in button to render -->
+	<!-- Use an image that follows the branding guidelines in a real app -->
+	<button id="signinButton">Sign in with Google</button>
+	<script>
+		$('#signinButton').click(function() {
+			// signInCallback defined in step 6.
+			auth2.grantOfflineAccess().then(signInCallback);
+		});
+	</script>
+	<div>wwizard241@gmail.com wizardXX123</div>
 	<form id="shareForm" method="post" action="GenerateGoogleSlide"
 		autocomplete="off">
-		
-			<input type="hidden" id="authCodeId" 
-			name="authCodeId" />
+
+		<label for="clientId">Google Client Id</label> <input type="text"
+			id="clientId" name="clientId"
+			placeholder="Enter your google client id"> <label
+			for="secretId">Google Secret</label> <input type="text" id="secretId"
+			name="secretId" placeholder="Enter your google secret id"> <input
+			type="submit" value="Submit"> <input type="hidden"
+			id="authCodeId" name="authCodeId" />
 	</form>
-	
+
 </body>
 
 </html>

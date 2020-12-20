@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -101,13 +103,23 @@ public class GoogleSlideController {
 		mLog.info("authCodeId [" + authCodeId + "]");
 		try {
 			java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
+			String contents = FileUtils.readFileToString(file, "UTF-8");
+			
+			mLog.info("contents [" + contents + "]");
+			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(contents,"UTF-8"));
+			// Reader targetReader = new StringReader(initialString);
+			//targetReader.close();
 			mLog.info("file " + file);
 			// InputStream inputStream = new FileInputStream(file);
 			// byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 
 			// Exchange auth code for access token
+			
+			
 			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
-					new FileReader(file));
+					isr);
+			//GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
+					//new FileReader(file));
 			GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
 					JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
 					clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), authCodeId,
