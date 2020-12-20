@@ -9,6 +9,8 @@ create table IF NOT EXISTS  agent (
     );
 
 
+--ALTER TABLE agent
+--ADD COLUMN  googleprofile  varchar(2000);
 
 create table IF NOT EXISTS contact (
         contact_id integer NOT NULL AUTO_INCREMENT,

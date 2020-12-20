@@ -22,6 +22,15 @@ public class Agent {
 	private Integer contactId;
 	private String address;
 	private String password;
+	private String googleprofile;
+
+	public String getGoogleprofile() {
+		return googleprofile;
+	}
+
+	public void setGoogleprofile(String googleprofile) {
+		this.googleprofile = googleprofile;
+	}
 
 	public Integer getAgentid() {
 		return agentid;

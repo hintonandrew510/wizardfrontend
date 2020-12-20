@@ -13,3 +13,14 @@ sshpass -p Superman123# ssh wizard@97.74.232.85 "cp /home/backups/23May2020/lice
 
 wwizard241@gmail.com
 wizardXX123
+
+
+
+wizardtestscr@gmail.com
+wizardtest123
+secret id
+xzXnbkC1NJSXyJLrF8NBdF-X 
+client id
+1027836272074-jv3cim35ehnppom9892hke2s90tftp45.apps.googleusercontent.com
+project id
+wizard-299217

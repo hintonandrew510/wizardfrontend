@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Google Profile</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous" />
+
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+
+<!-- Font Awesome CSS-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/scr.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/tools_wizard.png">
+
+</head>
+<body>
+
+
+	<!-- Begin page content -->
+	<!--- start header container -->
+
+	<div id="headerId"></div>
+
+	<div class="container" style="padding-top: 1%;">
+	<div class="row" style="padding-bottom: 2%;">
+	The Google Slides integration lets  use to dynamically create SCR Google Slides. 
+	In order to use Google Slides we must setup the turn on the Google account Slides account.  Use 
+	the below steps to create a Google Profile
+	</div>
+	<div class="row">
+	<ol>
+	  <li>Turn on the Google Slides API</li>
+	  <li> Create a Google Account</li>
+	  <li>Logon to your Google Account</li>
+	  <li>Select a project option <img
+				src="./img/selectproject.png" alt="" class="img-fluid">
+	  </li>
+	  	  <li>Select a project creation option <img
+				src="./img/createproject.png" alt="" class="img-fluid">
+	  </li>
+	  <li>
+	  When you create your application, you register it using the <a href="https://console.developers.google.com/" target="_blank">Google API Console.</a> 
+	  Google then provides information you'll need later, such as a client ID and a client secret.
+	  </li>
+	  <li>
+	  Activate the Google Slides API in the Google API Console.
+	  </li>
+	</ol>
+
+`
+	</div>
+
+		<div>
+			<form method="post" action="saveGoogleProfile" autocomplete="off">
+				<fieldset>
+					<legend>
+						Google Profile</span>
+					</legend>
+					<div class="form-group">
+						<label for="projectId">Google Project Id</label> <input
+							th:value="${dataPageModel?.projectId}" type="text"
+							class="form-control" id="projectId" required name="projectId"
+							maxlength="50" aria-describedby="projectId" />
+					</div>
+					<div class="form-group">
+						<label for="clientId">Client Id</label> <input type="text"
+							required th:value="${dataPageModel?.clientId}"
+							class="form-control" id="clientId" maxlength="50" name="clientId" />
+					</div>
+					<div class="form-group">
+						<label for="sheetsId">sheetsId</label> <input type="text" required
+							maxlength="50" th:value="${dataPageModel?.sheetsId}"
+							class="form-control" id="sheetsId" name="sheetsId" />
+					</div>
+					<div class="form-group">
+						<label for=slidesId>slidesId</label> <input type="text"
+							th:value="${dataPageModel?.slidesId}" required
+							class="form-control" name="slidesId" />
+					</div>
+
+				</fieldset>
+				
+				<input
+						name="submit" value="Update Profile" type="submit" class="btn btn-primary"
+						style="background-color: #C0B879;" />
+			</form>
+
+
+			<div id="wizardCopyRightId"></div>
+
+
+
+		</div>
+
+	</div>
+
+
+
+
+	<!-- JavaScript files-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+
+			$("#headerId").load("header.html");
+			$("#wizardCopyRightId").load("wizardcopyright.html");
+
+		});
+		/*]]>*/
+	</script>
+
+</body>
+</html>
