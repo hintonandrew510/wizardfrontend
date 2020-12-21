@@ -39,33 +39,32 @@
 	<div id="headerId"></div>
 
 	<div class="container" style="padding-top: 1%;">
-	<div class="row" style="padding-bottom: 2%;">
-	The Google Slides integration lets  use to dynamically create SCR Google Slides. 
-	In order to use Google Slides we must setup the turn on the Google account Slides account.  Use 
-	the below steps to create a Google Profile
-	</div>
-	<div class="row">
-	<ol>
-	  <li>Turn on the Google Slides API</li>
-	  <li> Create a Google Account</li>
-	  <li>Logon to your Google Account</li>
-	  <li>Select a project option <img
-				src="./img/selectproject.png" alt="" class="img-fluid">
-	  </li>
-	  	  <li>Select a project creation option <img
-				src="./img/createproject.png" alt="" class="img-fluid">
-	  </li>
-	  <li>
-	  When you create your application, you register it using the <a href="https://console.developers.google.com/" target="_blank">Google API Console.</a> 
-	  Google then provides information you'll need later, such as a client ID and a client secret.
-	  </li>
-	  <li>
-	  Activate the Google Slides API in the Google API Console.
-	  </li>
-	</ol>
+		<div class="row" style="padding-bottom: 2%;">The Google Slides
+			integration lets use to dynamically create SCR Google Slides. In
+			order to use Google Slides we must setup the turn on the Google
+			account Slides account. Use the below steps to create a Google
+			Profile</div>
+		<div class="row">
+			<ol>
+				<li>Turn on the Google Slides API</li>
+				<li>Create a Google Account</li>
+				<li>Logon to your Google Account</li>
+				<li>Select a project option <img src="./img/selectproject.png"
+					alt="" class="img-fluid">
+				</li>
+				<li>Select a project creation option <img
+					src="./img/createproject.png" alt="" class="img-fluid">
+				</li>
+				<li>When you create your application, you register it using the
+					<a href="https://console.developers.google.com/" target="_blank">Google
+						API Console.</a> Google then provides information you'll need later,
+					such as a client ID and a client secret.
+				</li>
+				<li>Activate the Google Slides API in the Google API Console.</li>
+			</ol>
 
-`
-	</div>
+			`
+		</div>
 
 		<div>
 			<form method="post" action="saveGoogleProfile" autocomplete="off">
@@ -82,29 +81,35 @@
 					<div class="form-group">
 						<label for="clientId">Client Id</label> <input type="text"
 							required th:value="${dataPageModel?.clientId}"
-							class="form-control" id="clientId" maxlength="100" name="clientId" />
+							class="form-control" id="clientId" maxlength="100"
+							name="clientId" />
 					</div>
 					<div class="form-group">
 						<label for="clientsecret">Client secret</label> <input type="text"
 							required th:value="${dataPageModel?.clientsecret}"
-							class="form-control" id="clientsecret" maxlength="100" name="clientsecret" />
+							class="form-control" id="clientsecret" maxlength="100"
+							name="clientsecret" />
 					</div>
 					<div class="form-group">
-						<label for="sheetsId">sheets Id</label> <input type="text" required
-							maxlength="100" th:value="${dataPageModel?.sheetsId}"
+						<label for="sheetsId">Google sheets Id</label> <input type="text"
+							required maxlength="100" th:value="${dataPageModel?.sheetsId}"
 							class="form-control" id="sheetsId" name="sheetsId" />
 					</div>
 					<div class="form-group">
-						<label for=slidesId>slides Id</label> <input type="text" maxlength="100"
-							th:value="${dataPageModel?.slidesId}" required
+						<label for=slidesId> Google slides Id</label> <input type="text"
+							maxlength="100" th:value="${dataPageModel?.slidesId}" required
 							class="form-control" name="slidesId" />
 					</div>
-
+					<div class="form-group">
+						<label for=generatedFolderId>Google Slide Generated Folder
+							Id</label> <input type="text" maxlength="100"
+							th:value="${dataPageModel?.generatedFolderId}" required
+							class="form-control" name="generatedFolderId" />
+					</div>
 				</fieldset>
-				
-				<input
-						name="submit" value="Update Profile" type="submit" class="btn btn-primary"
-						style="background-color: #C0B879;" />
+
+				<input name="submit" value="Update Profile" type="submit"
+					class="btn btn-primary" style="background-color: #C0B879;" />
 			</form>
 
 

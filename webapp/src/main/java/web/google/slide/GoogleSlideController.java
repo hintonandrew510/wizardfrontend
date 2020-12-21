@@ -219,7 +219,7 @@ public class GoogleSlideController {
 
 			mLog.info("sheets [" + sheets + "]");
 			writeSheetExample(sheets);
-
+           /*
 			List<File> result = new ArrayList<File>();
 			Files.List request = drive.files().list();
 			FileList files = request.execute();
@@ -229,7 +229,7 @@ public class GoogleSlideController {
 				// mLog.info("desc " + fileA.getDescription());
 				mLog.info("name " + fileA.getName());
 				// mLog.info("web link " + fileA.getWebViewLink());
-			}
+			}*/
 			String newFileName = "new_" + getDateTime();
 			mLog.info("new file " + newFileName);
 			File newFile = copyFile(drive, presentationId, newFileName);
@@ -320,11 +320,13 @@ public class GoogleSlideController {
 	private File copyFile(Drive service, String originFileId, String copyName) {
 		File copiedFile = new File();
 		copiedFile.setName(copyName);
+		//destinate folder
+		copiedFile.setParents(Collections.singletonList(this.mGoogleProfile.getGeneratedFolderId()));
 
 		try {
 			return service.files().copy(originFileId, copiedFile).execute();
 		} catch (IOException e) {
-			System.out.println("An error occurred: " + e);
+			mLog.severe("ERROR " + e.getMessage());
 		}
 		return null;
 	}
@@ -384,6 +386,7 @@ public class GoogleSlideController {
 
 		String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
 		spreadsheetId = this.mGoogleProfile.getSheetsId();
+		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
 		String writeRange = "mediasheet!A1:E"; // range and sheet name
 
 		List<List<Object>> writeData = new ArrayList<>();
@@ -418,6 +421,7 @@ public class GoogleSlideController {
 			mLog.info("result [" + result + "]");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			mLog.severe(spreadsheetId + " not found");
 			mLog.severe(e.getMessage());
 		}
 		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new

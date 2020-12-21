@@ -48,6 +48,17 @@ div {
 	background-color: #f2f2f2;
 	padding: 20px;
 }
+
+#myProgress {
+	width: 100%;
+	background-color: #ddd;
+}
+
+#myBar {
+	width: 1%;
+	height: 30px;
+	background-color: #4CAF50;
+}
 </style>
 
 </head>
@@ -75,6 +86,9 @@ div {
 
 
 	</form>
+	<div id="myProgress">
+		<div id="myBar"></div>
+	</div>
 
 
 	<script th:inline="javascript">
