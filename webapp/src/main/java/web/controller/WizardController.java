@@ -379,17 +379,6 @@ public class WizardController {
 
 	}
 	
-	@GetMapping(path = "/google")
-	public String google(Model model, Authentication authentication) {
-		mLog.info("starting about");
-
-		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
-
-		model.addAttribute("agent", userDetails.getAgent());
-		model.addAttribute("contact", userDetails.getContact());
-
-		return "google";
-
-	}
+	
 
 }

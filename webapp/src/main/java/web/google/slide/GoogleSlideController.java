@@ -150,13 +150,20 @@ public class GoogleSlideController {
 		try {
 			java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
 			String contents = FileUtils.readFileToString(file, "UTF-8");
-
-			MessageFormat messageFormat = new MessageFormat(contents);
+			mLog.info("contents [" + contents + "]");
+			
 			Object[] args = { mGoogleProfile.getClientId(), mGoogleProfile.getProjectId(),
 					mGoogleProfile.getClientsecret() };
-			String resultContents = messageFormat.format(args);
+			mLog.info("args [" + args + "]");
+			String resultContents = null;
+			resultContents = contents.replace("{0}", mGoogleProfile.getClientId());
+			resultContents = resultContents.replace("{1}", mGoogleProfile.getProjectId());
+			resultContents = resultContents.replace("{2}", mGoogleProfile.getClientsecret());
 
-			mLog.info("contents [" + contents + "]");
+			//
+			//String resultContents = MessageFormat.format(contents,args);
+
+			
 			mLog.info("resultContents [" + resultContents + "]");
 			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(resultContents, "UTF-8"));
 			// Reader targetReader = new StringReader(initialString);

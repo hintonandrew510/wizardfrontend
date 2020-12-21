@@ -12,9 +12,11 @@ function start() {
 		gapi.load('auth2', function() {
 		//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com	
 		auth2 = gapi.auth2.init({
-			client_id : '521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com',
+			client_id : client_id,
 			scope: scopes,
-		// Scopes to request in addition to 'profile' and 'email'
+			//client_id : '521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com',
+		//521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps
+			// Scopes to request in addition to 'profile' and 'email'
 		// scope: 'additional_scope'
 		});
 		
