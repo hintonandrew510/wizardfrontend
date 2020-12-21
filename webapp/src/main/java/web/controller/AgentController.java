@@ -59,6 +59,7 @@ public class AgentController {
 			@RequestParam(required = true) String clientId, 
 			@RequestParam(required = true) String sheetsId,
 			@RequestParam(required = true) String slidesId,
+			@RequestParam(required = true) String clientsecret,
 			Authentication authentication)
 			throws SQLException {
 		// @ResponseBody means the returned String is the response, not a view name
@@ -66,7 +67,7 @@ public class AgentController {
 		mLog.info("starting saveGoogleProfile");
 		mLog.info("name " + projectId);
 		
-		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId, clientId, projectId) ;
+		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId, clientId, projectId, clientsecret) ;
 		String dataGoogleProfileJSon = JSONManager.convertToJson(googleProfile);
 	
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();

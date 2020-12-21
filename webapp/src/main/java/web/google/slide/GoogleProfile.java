@@ -29,12 +29,20 @@ public class GoogleProfile {
 	private String sheetsId;
 	private String clientId;
 	private String projectId;
-	public GoogleProfile(String slidesId, String sheetsId, String clientId, String projectId) {
+	private String clientsecret;
+	public String getClientsecret() {
+		return clientsecret;
+	}
+	public void setClientsecret(String clientsecret) {
+		this.clientsecret = clientsecret;
+	}
+	public GoogleProfile(String slidesId, String sheetsId, String clientId, String projectId, String clientsecret) {
 		super();
 		this.slidesId = slidesId;
 		this.sheetsId = sheetsId;
 		this.clientId = clientId;
 		this.projectId = projectId;
+		this.clientsecret = clientsecret;
 	}
 
 }

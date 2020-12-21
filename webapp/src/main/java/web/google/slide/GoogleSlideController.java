@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,9 +21,12 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,6 +61,11 @@ import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
 import com.google.api.services.slides.v1.model.Request;
 import com.google.api.services.slides.v1.model.Response;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
+
+import web.data.MyUserPrincipal;
+import web.model.Agent;
+import web.page.JSONManager;
+
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.CellData;
@@ -86,6 +95,31 @@ public class GoogleSlideController {
 	 */
 	private static final List<String> SCOPES = Collections.singletonList(SlidesScopes.PRESENTATIONS_READONLY);
 	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+	private GoogleProfile mGoogleProfile;
+
+	@GetMapping(path = "/google")
+	public String googleAuthenticate(Model model, Authentication authentication) {
+		mLog.info("starting google");
+
+		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+
+		GoogleProfile dataPageModel = null;
+		if (userDetails.getAgent().getGoogleprofile() != null) {
+			dataPageModel = (GoogleProfile) JSONManager.convertFromJson(userDetails.getAgent().getGoogleprofile(),
+					GoogleProfile.class);
+
+		} else {
+			return "redirect:googleprofile";
+		}
+		
+		
+		
+		model.addAttribute("dataPageModel", dataPageModel);
+		model.addAttribute("contact", userDetails.getContact());
+
+		return "google";
+
+	}
 
 	/**
 	 * Creates an authorized Credential object.
@@ -96,30 +130,47 @@ public class GoogleSlideController {
 	 */
 
 	@RequestMapping(value = "/GenerateGoogleSlide", method = RequestMethod.POST)
-	public String generate(HttpSession session, @RequestParam(required = true) String authCodeId) {
+	public String generate(Authentication authentication, HttpSession session,
+			@RequestParam(required = true) String authCodeId) {
 		// remove value from session
 
+		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+		// agent.setContactId(contact.getContactId());
+		Agent agent = userDetails.getAgent();
+		String json = agent.getGoogleprofile();
+
+		// check if profile filled out
+		if (json == null) {
+			return "redirect:/googleprofile";
+		}
+		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
+		;
 		String domain = mEnvironment.getProperty("google.domain");
 		mLog.info("authCodeId [" + authCodeId + "]");
 		try {
 			java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
 			String contents = FileUtils.readFileToString(file, "UTF-8");
-			
+
+			MessageFormat messageFormat = new MessageFormat(contents);
+			Object[] args = { mGoogleProfile.getClientId(), mGoogleProfile.getProjectId(),
+					mGoogleProfile.getClientsecret() };
+			String resultContents = messageFormat.format(args);
+
 			mLog.info("contents [" + contents + "]");
-			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(contents,"UTF-8"));
+			mLog.info("resultContents [" + resultContents + "]");
+			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(resultContents, "UTF-8"));
 			// Reader targetReader = new StringReader(initialString);
-			//targetReader.close();
+			// targetReader.close();
 			mLog.info("file " + file);
 			// InputStream inputStream = new FileInputStream(file);
 			// byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 
 			// Exchange auth code for access token
-			
-			
-			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
-					isr);
-			//GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
-					//new FileReader(file));
+
+			GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), isr);
+			// GoogleClientSecrets clientSecrets =
+			// GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
+			// new FileReader(file));
 			GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
 					JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
 					clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), authCodeId,
@@ -145,6 +196,8 @@ public class GoogleSlideController {
 			presentationId = "1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y";
 
 			presentationId = "1bo_kj7KR97kGU1oNUT31HpOS_dywpfFEMRmpRnSUeO4";
+			presentationId = mGoogleProfile.getSlidesId();
+
 			// https://docs.google.com/presentation/d/1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y/edit#slide=id.gac76981968_0_5
 
 			// get the drive service
@@ -158,7 +211,7 @@ public class GoogleSlideController {
 					.setApplicationName(APPLICATION_NAME).build();
 
 			mLog.info("sheets [" + sheets + "]");
-			writeSheetExample( sheets);
+			writeSheetExample(sheets);
 
 			List<File> result = new ArrayList<File>();
 			Files.List request = drive.files().list();
@@ -278,7 +331,7 @@ public class GoogleSlideController {
 	private void ggoool() throws IOException {
 		String authCode = "";
 		String CLIENT_SECRET_FILE = "/path/to/client_secret.json";
-
+//AIzaSyAuldUTbtnvN6Aa6lJyhoat8MVkZ9_-MLA
 		// Exchange auth code for access token
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
 				new FileReader(CLIENT_SECRET_FILE));
@@ -309,68 +362,64 @@ public class GoogleSlideController {
 		String givenName = (String) payload.get("given_name");
 	}
 
-	private void writeSheetExample(Sheets service)  {
-		
+	private void writeSheetExample(Sheets service) {
+
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
-	  
-	    List<Request> requests = new ArrayList<>();
 
-	    List<CellData> values = new ArrayList<>();
+		List<Request> requests = new ArrayList<>();
 
+		List<CellData> values = new ArrayList<>();
 
-	     // values.add(new CellData()
-	              //  .setUserEnteredValue(new ExtendedValue()
-	                    //    .setStringValue("Hello World!")));
-	      
-	      
-	      
-	      String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
-	      String writeRange = "mediasheet!A1:E"; //range and sheet name
-      
-	        List<List<Object>> writeData = new ArrayList<>();
-	        //three rows
-	        //five columns
-	        for (int x = 0; x < 3; x++) {
-	            List<Object> dataRow = new ArrayList<>();
-	            dataRow.add(11);
-	            dataRow.add(22);
-	            dataRow.add(33);
-	            dataRow.add(44);
-	            dataRow.add(55);
-	            writeData.add(dataRow);
-	        }
-	       
-	        ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
-	       // ValueRange body = new ValueRange().setValues(values);
-	        try {
-	        	
-	        	//cleare values
-	        	 // TODO: Assign values to desired fields of `requestBody`:
-	            ClearValuesRequest requestBody = new ClearValuesRequest();
+		// values.add(new CellData()
+		// .setUserEnteredValue(new ExtendedValue()
+		// .setStringValue("Hello World!")));
 
-	           
-	            Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId, writeRange, requestBody);
+		String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
+		spreadsheetId = this.mGoogleProfile.getSheetsId();
+		String writeRange = "mediasheet!A1:E"; // range and sheet name
 
-	           ClearValuesResponse response = request.execute();
-	           mLog.info("response [" + response + "]");
-	        	
-				UpdateValuesResponse result =
-				        service.spreadsheets().values().update(spreadsheetId, writeRange, body)
-				                .setValueInputOption("RAW")
-				                .execute();
-				mLog.info("result [" + result + "]");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				mLog.severe(e.getMessage());
-			}
-	       // BatchUpdateSpreadsheetRequest batchUpdateRequest = new BatchUpdateSpreadsheetRequest()
-	         //       .setRequests(requests);
-	       // service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
-	           //     .execute();
-	    }
-	
-	
+		List<List<Object>> writeData = new ArrayList<>();
+		// three rows
+		// five columns
+		for (int x = 0; x < 3; x++) {
+			List<Object> dataRow = new ArrayList<>();
+			dataRow.add(11);
+			dataRow.add(22);
+			dataRow.add(33);
+			dataRow.add(44);
+			dataRow.add(55);
+			writeData.add(dataRow);
+		}
+
+		ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
+		// ValueRange body = new ValueRange().setValues(values);
+		try {
+
+			// cleare values
+			// TODO: Assign values to desired fields of `requestBody`:
+			ClearValuesRequest requestBody = new ClearValuesRequest();
+
+			Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId, writeRange,
+					requestBody);
+
+			ClearValuesResponse response = request.execute();
+			mLog.info("response [" + response + "]");
+
+			UpdateValuesResponse result = service.spreadsheets().values().update(spreadsheetId, writeRange, body)
+					.setValueInputOption("RAW").execute();
+			mLog.info("result [" + result + "]");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			mLog.severe(e.getMessage());
+		}
+		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
+		// BatchUpdateSpreadsheetRequest()
+		// .setRequests(requests);
+		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
+		// .execute();
+	}
+
 	/**
 	 * Creates an authorized Credential object.
 	 * 
