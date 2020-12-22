@@ -38,6 +38,16 @@ input[type=submit] {
 	border-radius: 4px;
 	cursor: pointer;
 }
+button {
+	width: auto;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
 
 input[type=submit]:hover {
 	background-color: #45a049;
@@ -50,7 +60,7 @@ div {
 }
 
 #myProgress {
-	width: 100%;
+	width: auto;
 	background-color: #ddd;
 }
 
@@ -65,14 +75,14 @@ div {
 <body>
 	<!-- Add where you want your sign-in button to render -->
 	<!-- Use an image that follows the branding guidelines in a real app -->
-	<button id="signinButton">Sign in with Google</button>
+	<button id="signinButton">Generate Google Slides</button>
 	<script>
 		$('#signinButton').click(function() {
 			// signInCallback defined in step 6.
 			auth2.grantOfflineAccess().then(signInCallback);
 		});
 	</script>
-	<div>wwizard241@gmail.com wizardXX123</div>
+	
 	<form id="shareForm" method="post" action="GenerateGoogleSlide"
 		autocomplete="off">
 
@@ -80,26 +90,21 @@ div {
 			id="clientId" name="clientId"
 			placeholder="Enter your google client id"> <label
 			for="secretId">Google Secret</label> <input type="text" id="secretId"
-			name="secretId" placeholder="Enter your google secret id"> <input
-			type="submit" value="Submit"> <input type="hidden"
+			name="secretId" placeholder="Enter your google secret id">
+			
+			 <input type="hidden"
 			id="authCodeId" name="authCodeId" />
 
 
 	</form>
+					
+		
 	<div id="myProgress">
 		<div id="myBar"></div>
 	</div>
 
 
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-			console.group("set client id from backend");
-			client_id = /*[[${dataPageModel.clientId}]]*/;
-			console.log("client_id ]" + client_id + "]");
-			console.groupEnd();
-		
-		/*]]>*/
-	</script>
+	
 
 	<script
 		src="https://apis.google.com/js/client:platform.js?onload=start" async

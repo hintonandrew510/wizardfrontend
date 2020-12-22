@@ -49,18 +49,7 @@
 				<li>Turn on the Google Slides API</li>
 				<li>Create a Google Account</li>
 				<li>Logon to your Google Account</li>
-				<li>Select a project option <img src="./img/selectproject.png"
-					alt="" class="img-fluid">
-				</li>
-				<li>Select a project creation option <img
-					src="./img/createproject.png" alt="" class="img-fluid">
-				</li>
-				<li>When you create your application, you register it using the
-					<a href="https://console.developers.google.com/" target="_blank">Google
-						API Console.</a> Google then provides information you'll need later,
-					such as a client ID and a client secret.
-				</li>
-				<li>Activate the Google Slides API in the Google API Console.</li>
+				
 			</ol>
 
 			`
@@ -72,24 +61,8 @@
 					<legend>
 						Google Profile</span>
 					</legend>
-					<div class="form-group">
-						<label for="projectId">Google Project Id</label> <input
-							th:value="${dataPageModel?.projectId}" type="text"
-							class="form-control" id="projectId" required name="projectId"
-							maxlength="100" aria-describedby="projectId" />
-					</div>
-					<div class="form-group">
-						<label for="clientId">Client Id</label> <input type="text"
-							required th:value="${dataPageModel?.clientId}"
-							class="form-control" id="clientId" maxlength="100"
-							name="clientId" />
-					</div>
-					<div class="form-group">
-						<label for="clientsecret">Client secret</label> <input type="text"
-							required th:value="${dataPageModel?.clientsecret}"
-							class="form-control" id="clientsecret" maxlength="100"
-							name="clientsecret" />
-					</div>
+					
+				
 					<div class="form-group">
 						<label for="sheetsId">Google sheets Id</label> <input type="text"
 							required maxlength="100" th:value="${dataPageModel?.sheetsId}"

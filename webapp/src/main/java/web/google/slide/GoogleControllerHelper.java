@@ -1,6 +1,8 @@
 package web.google.slide;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -8,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.ui.Model;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.model.File;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
@@ -63,7 +69,49 @@ public class GoogleControllerHelper {
 	private WizardRepository wizardRepository;
 	
 	private List<Request> mRequests = new ArrayList<Request>();
+	/*
+	 * Get logon email address
+	 */
+	public static String emailAddress(GoogleTokenResponse tokenResponse) {
+		String email = null;
+		try {
+			GoogleIdToken idToken = tokenResponse.parseIdToken();
+			GoogleIdToken.Payload payload = idToken.getPayload();
+			email = payload.getEmail();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			mLog.severe(e.getMessage());
+		}
+					// 
+					// String userId = payload.getSubject(); // Use this value as a key to identify
+					// a user.
+					// mLog.info("userId " + userId);
+					// String email = payload.getEmail();
+		return email;
+	}
+	/**
+	 * Copy an existing file.
+	 *
+	 * @param service      Drive API service instance.
+	 * @param originFileId ID of the origin file to copy.
+	 * @param copyTitle    Title of the copy.
+	 * @return The copied file if successful, {@code null} otherwise.
+	 */
+	public static File copyFile(Drive service, String originFileId, String copyName, String generatedFolderId) throws Exception{
+		File copiedFile = new File();
+		copiedFile.setName(copyName);
+		//destinate folder
+		copiedFile.setParents(Collections.singletonList(generatedFolderId));
 
+		try {
+			return service.files().copy(originFileId, copiedFile).execute();
+		} catch (IOException e) {
+			mLog.severe("ERROR cannot find file " + e.getMessage());
+			throw new Exception(e);
+		}
+		
+	}
+	
 	public List<Request> updateSlides( String ID) {
 		Integer idInt = Integer.parseInt(ID);
 		String encryptId = EncryptionDecryptionManager.encrypt(ID);

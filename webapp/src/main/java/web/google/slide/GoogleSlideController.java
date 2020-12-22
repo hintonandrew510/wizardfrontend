@@ -130,10 +130,10 @@ public class GoogleSlideController {
 	 */
 
 	@RequestMapping(value = "/GenerateGoogleSlide", method = RequestMethod.POST)
-	public String generate(Authentication authentication, HttpSession session,
+	public String generate(Model model,Authentication authentication, HttpSession session,
 			@RequestParam(required = true) String authCodeId) {
 		// remove value from session
-
+		GeneratedSlide generatedSlide = new GeneratedSlide();
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 		// agent.setContactId(contact.getContactId());
 		Agent agent = userDetails.getAgent();
@@ -144,7 +144,7 @@ public class GoogleSlideController {
 			return "redirect:/googleprofile";
 		}
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
-		;
+	
 		String domain = mEnvironment.getProperty("google.domain");
 		mLog.info("authCodeId [" + authCodeId + "]");
 		try {
@@ -152,20 +152,8 @@ public class GoogleSlideController {
 			String contents = FileUtils.readFileToString(file, "UTF-8");
 			mLog.info("contents [" + contents + "]");
 			
-			Object[] args = { mGoogleProfile.getClientId(), mGoogleProfile.getProjectId(),
-					mGoogleProfile.getClientsecret() };
-			mLog.info("args [" + args + "]");
-			String resultContents = null;
-			resultContents = contents.replace("{0}", mGoogleProfile.getClientId());
-			resultContents = resultContents.replace("{1}", mGoogleProfile.getProjectId());
-			resultContents = resultContents.replace("{2}", mGoogleProfile.getClientsecret());
-
-			//
-			//String resultContents = MessageFormat.format(contents,args);
-
-			
-			mLog.info("resultContents [" + resultContents + "]");
-			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(resultContents, "UTF-8"));
+			//mLog.info("resultContents [" + resultContents + "]");
+			InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(contents, "UTF-8"));
 			// Reader targetReader = new StringReader(initialString);
 			// targetReader.close();
 			mLog.info("file " + file);
@@ -189,21 +177,15 @@ public class GoogleSlideController {
 			String accessToken = tokenResponse.getAccessToken();
 
 			mLog.info("access Token " + accessToken);
-
+			String emailAddress = GoogleControllerHelper.emailAddress( tokenResponse);
+			generatedSlide.setEmailAddress(emailAddress);
+			
 			// Use access token to call API
 			GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
 			mLog.info("credential " + credential);
 
-			// 1IWyyvihcALCHYEM6pDBP5HJ4-2UxMcmmYBQtp3jxlE0
-			String presentationId = "1IWyyvihcALCHYEM6pDBP5HJ4-2UxMcmmYBQtp3jxlE0";
-			presentationId = "1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y";
-			// temp
-			presentationId = "19vhAFr5DHSoeGPo7GgK9zQ3zZMShx-Nl9BOuAEKLsPU";
-
-			presentationId = "1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y";
-
-			presentationId = "1bo_kj7KR97kGU1oNUT31HpOS_dywpfFEMRmpRnSUeO4";
-			presentationId = mGoogleProfile.getSlidesId();
+			
+			String presentationId = mGoogleProfile.getSlidesId();
 
 			// https://docs.google.com/presentation/d/1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y/edit#slide=id.gac76981968_0_5
 
@@ -232,20 +214,15 @@ public class GoogleSlideController {
 			}*/
 			String newFileName = "new_" + getDateTime();
 			mLog.info("new file " + newFileName);
-			File newFile = copyFile(drive, presentationId, newFileName);
+			File newFile = GoogleControllerHelper.copyFile(drive, presentationId, newFileName, this.mGoogleProfile.getGeneratedFolderId());
+			
+			
 			String newFileId = newFile.getId();
+			generatedSlide.setFileName(newFileName);
+			generatedSlide.setFileNameId(newFileId);
+			
 			mLog.info("new File Id" + newFile.getId());
-			// for ()
-			// File driveFile = drive.files().get(presentationId).execute();
-			// mLog.info("driveFile " + driveFile);
-
-			// Get profile info from ID token
-			// GoogleIdToken idToken = tokenResponse.parseIdToken();
-			// GoogleIdToken.Payload payload = idToken.getPayload();
-			// String userId = payload.getSubject(); // Use this value as a key to identify
-			// a user.
-			// mLog.info("userId " + userId);
-			// String email = payload.getEmail();
+			
 			mLog.info("setup up slides ");
 
 			Slides slides = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
@@ -304,32 +281,15 @@ public class GoogleSlideController {
 			mLog.severe("ERROR " + e.getMessage());
 		}
 		// ignore id
-		String nextPage = "googleslidepage";
+		model.addAttribute("agent", agent);
+		model.addAttribute("generatedSlide", generatedSlide);
+		model.addAttribute("googleProfile", mGoogleProfile);
+		String nextPage = "googleslidegeneratedpage";
 		return nextPage;
 
 	}
 
-	/**
-	 * Copy an existing file.
-	 *
-	 * @param service      Drive API service instance.
-	 * @param originFileId ID of the origin file to copy.
-	 * @param copyTitle    Title of the copy.
-	 * @return The copied file if successful, {@code null} otherwise.
-	 */
-	private File copyFile(Drive service, String originFileId, String copyName) {
-		File copiedFile = new File();
-		copiedFile.setName(copyName);
-		//destinate folder
-		copiedFile.setParents(Collections.singletonList(this.mGoogleProfile.getGeneratedFolderId()));
-
-		try {
-			return service.files().copy(originFileId, copiedFile).execute();
-		} catch (IOException e) {
-			mLog.severe("ERROR " + e.getMessage());
-		}
-		return null;
-	}
+	
 
 	private String getDateTime() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");

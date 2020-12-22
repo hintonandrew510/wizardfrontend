@@ -1,4 +1,4 @@
- var client_id;
+ var client_id = '521128643660-41ra210r6jhbvdm56mspq9bn5v806r6s.apps.googleusercontent.com';
 function start() {
 	console.group("Start Google Slide");
 	//https://www.googleapis.com/auth/drive

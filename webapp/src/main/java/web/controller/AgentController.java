@@ -55,20 +55,18 @@ public class AgentController {
 	}
 	
 	@RequestMapping(value = "/saveGoogleProfile", method = RequestMethod.POST)
-	public String update(@RequestParam(required = true) String projectId,
-			@RequestParam(required = true) String clientId, 
+	public String update(
 			@RequestParam(required = true) String sheetsId,
 			@RequestParam(required = true) String slidesId,
-			@RequestParam(required = true) String clientsecret,
 			@RequestParam(required = true) String generatedFolderId,
 			Authentication authentication)
 			throws SQLException {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
 		mLog.info("starting saveGoogleProfile");
-		mLog.info("name " + projectId);
 		
-		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId, clientId, projectId, clientsecret, generatedFolderId) ;
+		
+		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId,  generatedFolderId) ;
 		String dataGoogleProfileJSon = JSONManager.convertToJson(googleProfile);
 	
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
