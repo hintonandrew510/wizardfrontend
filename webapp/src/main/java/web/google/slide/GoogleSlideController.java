@@ -221,7 +221,7 @@ public class GoogleSlideController {
 			generatedSlide.setFileName(newFileName);
 			generatedSlide.setFileNameId(newFileId);
 			
-			mLog.info("new File Id" + newFile.getId());
+			mLog.info("new File Id [" + newFile.getId() + "]");
 			
 			mLog.info("setup up slides ");
 

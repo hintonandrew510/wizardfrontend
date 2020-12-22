@@ -68,7 +68,7 @@
 							class="nav-link link-scroll">Home</a></li>
 						<li class="nav-item"><a href="wizards"
 							class="nav-link link-scroll">Wizard/SCR</a></li>
-							<li class="nav-item"><a href="about"
+						<li class="nav-item"><a href="about"
 							class="nav-link link-scroll">About</a></li>
 						<li class="nav-item"><a href="logout"
 							class="nav-link link-scroll">Logout</a></li>
@@ -78,58 +78,39 @@
 			</div>
 		</nav>
 	</header>
+    <script>
+    
+  
+    </script>
+	<div class="container-fluid"
+		style="background-color: white; color: black;">
 
+		<p class="displayMedium">
 
+			Your Google slide has been successfully created. The google slide was
+			written to account <span th:text="${generatedSlide?.emailAddress}"></span>. 
+			The name of the new file is <mark><span th:text="${generatedSlide?.fileName}"></span>. </mark>
+            Click here to open slide<a href="javascript:showSlide()"><span th:text="${generatedSlide?.fileName}"></a>
+             
+		</p>
 
-	<section class="page-section clearfix">
-
-		
-
-
-		<div class="container-fluid"
-			style="background-color: white; color: black;">
-
-			<p class="displayMedium">
-
-				
-				Click the <strong>New</strong> button to create a new Wizard/SCR. 
-				Click the <strong>Open</strong> button to view or make changes to an existing Wizard/SCR.
-				 Click the <strong>Detail</strong> button to Update, Copy or Delete an existing 
-				 Wizard file. When naming or renaming an existing Wizard/SCR, remember 
-				 to assign it a unique and meaningful name. 
-				This will distinguish it from other Wizard/SCR files that you create.
-				
-
-			</p>
-
-			<div class="page-header">
-				<h2>Summary, Conclusions and Recommendations</h2>
-			</div>
-
+	</div>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		function showSlide() {
+			// Store
+            console.group("server side");
+            var fileId = /*[[${generatedSlide?.fileNameId}]]*/;
+            var link = "https://docs.google.com/presentation/d/" + fileId;
+        	console.log("link " + link);
+        	window.location.href = link;
+            console.log("fileId [" + fileId + "]");
+            console.groupEnd();
 			
-
-		</div>
-	</section>
-	<footer style="background-color: #111;">
-		<div class="container">
-			<div class="row copyright">
-				
-					<p class="mb-md-0 text-center text-md-left">Copyright ©
-						1984-2020 Executive Decision Systems, Inc. and The Guld Resource
-						Group, LLC. The data, formulas, and all other content in these
-						materials are the property of Executive Decision Systems, Inc. and
-						The Guld Resource Group, LLC and are protected by copyright and
-						other intellectual property laws. No part of these materials may
-						be reproduced, distributed, or used in any way without a license
-						agreement or other written consent of The Guld Resource Group, LLC
-						permitting such use. All rights reserved. To report violations,
-						please call (804) 356-7006.</p>
-				
-				
-			</div>
-		</div>
-	</footer>
+		}
+		/*]]>*/
+	</script>
 	<!-- JavaScript files-->
-	
+
 </body>
 </html>
