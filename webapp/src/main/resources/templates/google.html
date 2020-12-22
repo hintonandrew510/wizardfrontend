@@ -70,49 +70,62 @@ div {
 	height: 30px;
 	background-color: #4CAF50;
 }
+
+#myProgress1 {
+	width: auto;
+	background-color: white;
+}
+
+#myBar1 {
+	width: 1%;
+	height: 30px;
+	background-color: black;
+}
 </style>
 
 </head>
 <body>
 	<!-- Add where you want your sign-in button to render -->
 	<!-- Use an image that follows the branding guidelines in a real app -->
-	<button id="signinButton">Generate Google Slides</button>
-	<script>
-		$('#signinButton').click(function() {
-			// signInCallback defined in step 6.
-			auth2.grantOfflineAccess().then(signInCallback);
-		});
-	</script>
-	<div class="row">
-		<h2>Step 1: Select the Generate Google Slides option</h2>
+	<div class="container">
+		<img src="./img/system21.png" alt="" class="img-fluid" width="160"
+			height="40">
+	</div>
+
+	<div class="container">
+		<button id="signinButton">Generate Google Slides</button>
+
+		<script>
+			$('#signinButton').click(function() {
+				// signInCallback defined in step 6.
+				auth2.grantOfflineAccess().then(signInCallback);
+			});
+		</script>
+		<div class="row">
+			<ol>
+				<li>Select the Generate Google Slides option</li>
+				<li>Choose an account to continue to System 21. This is your
+					google account</li>
+				<li>The app is requesting access to sensitive info in your
+					Google Account.Until the developer (wwizard241@gmail.com) verifies
+					this app with Google, you shouldn't use it. Select the <mark>advance
+						option</mark>
+				</li>
+				<li>Continue only if you understand the risks and trust the
+					developer. Go to System 21 (unsafe)</li>
+				<li>Make sure you trust System 21. Select the allow option</li>
+			</ol>
+
+		</div>
+		<div class="row"></div>
 
 	</div>
-	<div class="row">
-		<h2>Step 2: Choose an account to continue to System 21</h2>
-		This is your google account
-	</div>
-	<div class="row">
-		<h2>Step 3: The app is requesting access to sensitive info in
-			your Google Account.</h2>
-		Until the developer (wwizard241@gmail.com) verifies this app with
-		Google, you shouldn't use it. Select the
-		<mark>advance option</mark>
 
+	<div id="myProgress" class="container">
+		<div id="myBar"></div>
 	</div>
-	<div class="row">
-		<h2>Step 4: Continue only if you understand the risks and trust
-			the developer</h2>
 
-		<mark>Go to System 21 (unsafe)</mark>
 
-	</div>
-	</div>
-	<div class="row">
-		<h2>Step 5: Make sure you trust System 21</h2>
-
-		<mark>Select the Allow option</mark>
-
-	</div>
 	<form id="shareForm" method="post" action="GenerateGoogleSlide"
 		autocomplete="off">
 
@@ -123,9 +136,7 @@ div {
 	</form>
 
 
-	<div id="myProgress">
-		<div id="myBar"></div>
-	</div>
+
 
 
 
@@ -136,8 +147,13 @@ div {
 		
 	</script>
 	<script src="js/googleslide.js"></script>
-
-
+    
+	<div id="footerId" class="container"></div>
+	<script>
+		$(function() {
+			$("#footerId").load("footer.html");
+		});
+	</script>
 
 </body>
 
