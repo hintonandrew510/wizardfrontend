@@ -90,24 +90,25 @@
 			Your Google slide has been successfully created. The google slide was
 			written to account <span th:text="${generatedSlide?.emailAddress}"></span>. 
 			The name of the new file is <mark><span th:text="${generatedSlide?.fileName}"></span>. </mark>
-            Click here to open slide<a href="javascript:showSlide()"><span th:text="${generatedSlide?.fileName}"></a>
+            
              
 		</p>
 
 	</div>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
-		function showSlide() {
+		
 			// Store
             console.group("server side");
             var fileId = /*[[${generatedSlide?.fileNameId}]]*/;
             var link = "https://docs.google.com/presentation/d/" + fileId;
         	console.log("link " + link);
-        	window.location.href = link;
+        	window.open(link, '_blank');
+        	//window.location.href = link;
             console.log("fileId [" + fileId + "]");
             console.groupEnd();
 			
-		}
+		
 		/*]]>*/
 	</script>
 	<!-- JavaScript files-->
