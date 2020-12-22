@@ -5,18 +5,18 @@
 
 <head>
 <title>Wizard</title>
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- BEGIN Pre-requisites -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
-	
-</script>
-
-
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 input[type=text], select {
 	width: 100%;
@@ -38,6 +38,7 @@ input[type=submit] {
 	border-radius: 4px;
 	cursor: pointer;
 }
+
 button {
 	width: auto;
 	background-color: #4CAF50;
@@ -82,35 +83,58 @@ div {
 			auth2.grantOfflineAccess().then(signInCallback);
 		});
 	</script>
-	
+	<div class="row">
+		<h2>Step 1: Select the Generate Google Slides option</h2>
+
+	</div>
+	<div class="row">
+		<h2>Step 2: Choose an account to continue to System 21</h2>
+		This is your google account
+	</div>
+	<div class="row">
+		<h2>Step 3: The app is requesting access to sensitive info in
+			your Google Account.</h2>
+		Until the developer (wwizard241@gmail.com) verifies this app with
+		Google, you shouldn't use it. Select the
+		<mark>advance option</mark>
+
+	</div>
+	<div class="row">
+		<h2>Step 4: Continue only if you understand the risks and trust
+			the developer</h2>
+
+		<mark>Go to System 21 (unsafe)</mark>
+
+	</div>
+	</div>
+	<div class="row">
+		<h2>Step 5: Make sure you trust System 21</h2>
+
+		<mark>Select the Allow option</mark>
+
+	</div>
 	<form id="shareForm" method="post" action="GenerateGoogleSlide"
 		autocomplete="off">
 
-		<label for="clientId">Google Client Id</label> <input type="text"
-			id="clientId" name="clientId"
-			placeholder="Enter your google client id"> <label
-			for="secretId">Google Secret</label> <input type="text" id="secretId"
-			name="secretId" placeholder="Enter your google secret id">
-			
-			 <input type="hidden"
-			id="authCodeId" name="authCodeId" />
+
+		<input type="hidden" id="authCodeId" name="authCodeId" />
 
 
 	</form>
-					
-		
+
+
 	<div id="myProgress">
 		<div id="myBar"></div>
 	</div>
 
 
-	
+
 
 	<script
 		src="https://apis.google.com/js/client:platform.js?onload=start" async
 		defer>
-	
-</script>
+		
+	</script>
 	<script src="js/googleslide.js"></script>
 
 
