@@ -59,6 +59,7 @@ import com.google.api.services.slides.v1.model.PageElement;
 import com.google.api.services.slides.v1.model.Presentation;
 import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
 import com.google.api.services.slides.v1.model.Request;
+import com.google.api.services.slides.v1.model.DeleteObjectRequest;
 import com.google.api.services.slides.v1.model.Response;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
 
@@ -184,9 +185,12 @@ public class GoogleSlideController {
 			GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
 			mLog.info("credential " + credential);
 
+			//https://docs.google.com/presentation/d/1T-FYqBE2mJ9nsnvF2JzyPbT3W0Uzr07VLyvK4sjnDco/edit#slide=id.p
 			
+			
+			//get slide id from agent
 			String presentationId = mGoogleProfile.getSlidesId();
-
+			mLog.info("presentationId [" + presentationId + "]");
 			// https://docs.google.com/presentation/d/1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y/edit#slide=id.gac76981968_0_5
 
 			// get the drive service
@@ -242,6 +246,16 @@ public class GoogleSlideController {
 			// Create the text merge (replaceAllText) requests for this presentation.
 			List<Request> requests = new ArrayList<>();
 			Request requestText = new Request();
+		   
+			//delete slide
+			DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest();
+			deleteObjectRequest.setObjectId("gb1f3d784ca_0_16");
+			//gb1f3d784ca_0_16
+			Request delRequest = new Request().setDeleteObject(deleteObjectRequest);
+			Request deleteRequest = new Request();
+			deleteRequest.setDeleteObject(deleteObjectRequest);
+			//requests.add(deleteRequest);
+			
 			ReplaceAllTextRequest replaceAllTextRequest = new ReplaceAllTextRequest();
 			SubstringMatchCriteria substringMatchCriteria = new SubstringMatchCriteria();
 			substringMatchCriteria.setText("{{customer-name}}").setMatchCase(true).setText("ddfdfd");
@@ -252,6 +266,8 @@ public class GoogleSlideController {
 			requests.add(new Request().setReplaceAllText(new ReplaceAllTextRequest()
 					.setContainsText(new SubstringMatchCriteria().setText("{{customer-name}}").setMatchCase(true))
 					.setReplaceText("yes")));
+			
+			requests.add(new Request().setDeleteObject(deleteObjectRequest));
 
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
@@ -271,6 +287,26 @@ public class GoogleSlideController {
 				}
 
 			}
+			
+			Presentation response = slides.presentations().get(newFileId ).execute();
+			List<Page> pages = response.getSlides();
+			
+			  
+			  //change i to any other index if desired
+			for (Page page : pages) {
+				String pageId = page.getObjectId();
+				mLog.info("pageId " + pageId);
+			}
+			
+			/*
+			 * Presentation response = slides.presentations().get(newFileId ).execute();
+			 * List<Page> pages = response.getSlides(); for (Page page : pages) { //page.
+			 * List<PageElement> pageElements = page.getPageElements(); for (PageElement
+			 * pageElement : pageElements) { pageElement.getTitle(); } }
+			 */
+			
+			
+			
 			mLog.info("Created merged presentation for  with ID: " + newFileId);
 			mLog.info("numReplacements " + numReplacements);
 
