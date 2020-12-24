@@ -48,6 +48,7 @@ import com.google.api.client.util.Data;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.Drive.Files;
+import com.google.api.services.drive.model.Comment;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.slides.v1.Slides;
@@ -178,7 +179,7 @@ public class GoogleSlideController {
 			String accessToken = tokenResponse.getAccessToken();
 
 			mLog.info("access Token " + accessToken);
-			String emailAddress = GoogleControllerHelper.emailAddress( tokenResponse);
+			String emailAddress = GoogleHelper.emailAddress( tokenResponse);
 			generatedSlide.setEmailAddress(emailAddress);
 			
 			// Use access token to call API
@@ -218,10 +219,17 @@ public class GoogleSlideController {
 			}*/
 			String newFileName = "new_" + getDateTime();
 			mLog.info("new file " + newFileName);
-			File newFile = GoogleControllerHelper.copyFile(drive, presentationId, newFileName, this.mGoogleProfile.getGeneratedFolderId());
+			File newFile = GoogleHelper.copyFile(drive, presentationId, newFileName, this.mGoogleProfile.getGeneratedFolderId());
+			
+			
 			
 			
 			String newFileId = newFile.getId();
+			
+			List<Comment> comments = GoogleHelper.retrieveComments(drive, presentationId);
+			
+			
+			
 			generatedSlide.setFileName(newFileName);
 			generatedSlide.setFileNameId(newFileId);
 			
