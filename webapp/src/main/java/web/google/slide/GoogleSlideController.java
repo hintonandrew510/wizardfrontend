@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
@@ -225,8 +226,8 @@ public class GoogleSlideController {
 			
 			
 			String newFileId = newFile.getId();
-			
-			List<Comment> comments = GoogleHelper.retrieveComments(drive, presentationId);
+			//get the slide names and ids from the comments 
+			Map<String, String> slidesFromGeneratedFromComments = GoogleHelper.retrieveComments(drive, presentationId);
 			
 			
 			
