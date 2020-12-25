@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		//http.ignoring().antMatchers("/api/v1/signup");
 		//http.failureHandler(customAuthenticationFailureHandler());
-		http.csrf().disable().authorizeRequests().antMatchers("/", "/copyright.html","/index.html", "/header.html", "/footer.html")
+		http.csrf().disable().authorizeRequests().antMatchers("/", "/copyright.html","/index.html", "/header.html","/privacypolicy.html", "/footer.html")
 				.permitAll().antMatchers("/css/**", "/fonts/**","/vendor/**", "/js/**", "/img/**","copyright.html").permitAll().anyRequest()
 				.permitAll().anyRequest().authenticated()
 			        .and()

@@ -24,3 +24,10 @@ client id
 1027836272074-jv3cim35ehnppom9892hke2s90tftp45.apps.googleusercontent.com
 project id
 wizard-299217
+
+auth secret id
+W_v_EUFAVIAshdyVBIqOlDUF
+
+auth client id
+791216731496-ml987j26aqj55vgrdb6gnrtpgsnpp2ap.apps.googleusercontent.com
+
