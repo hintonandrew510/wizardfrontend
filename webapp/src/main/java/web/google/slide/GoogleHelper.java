@@ -103,7 +103,9 @@ public class GoogleHelper {
 	 * @return List of comments.
 	 */
 	public static Map<String, String> retrieveComments(Drive service, String fileId) {
+		mLog.entering(GoogleSlideController.class.getName(), "retrieveComments");
 		CommentList comments;
+		
 		Map<String, String> slides = new HashMap<String, String>();
 
 		// fileId = "gb1e46e2962_1_0";
@@ -129,11 +131,13 @@ public class GoogleHelper {
 				}
 				
 			}
+			mLog.exiting(GoogleSlideController.class.getName(), "retrieveComments");
 			return slides;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			mLog.severe("error " + e.getMessage());
 		}
+		mLog.exiting(GoogleSlideController.class.getName(), "retrieveComments");
 		return null;
 	}
 
@@ -147,17 +151,21 @@ public class GoogleHelper {
 	 */
 	public static File copyFile(Drive service, String originFileId, String copyName, String generatedFolderId)
 			throws Exception {
+		mLog.entering(GoogleSlideController.class.getName(), "copyFile");
 		File copiedFile = new File();
 		copiedFile.setName(copyName);
 		// destinate folder
 		copiedFile.setParents(Collections.singletonList(generatedFolderId));
 
 		try {
+			mLog.exiting(GoogleSlideController.class.getName(), "copyFile");
 			return service.files().copy(originFileId, copiedFile).execute();
 		} catch (IOException e) {
 			mLog.severe("ERROR cannot find file " + e.getMessage());
+			mLog.exiting(GoogleSlideController.class.getName(), "copyFile");
 			throw new Exception(e);
 		}
+		
 
 	}
 
