@@ -15,6 +15,13 @@ wwizard241@gmail.com
 wizardXX123
 
 
+Quickly browse the history of files in any git repo:
+
+Go to a file in GitHub (or GitLab, or Bitbucket)
+Replace github.com with github.githistory.xyz
+There's no step three
+
+
 
 wizardtestscr@gmail.com
 wizardtest123

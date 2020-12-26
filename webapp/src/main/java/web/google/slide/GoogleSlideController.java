@@ -109,13 +109,15 @@ public class GoogleSlideController {
 
 	@GetMapping(path = "/google")
 	public String googleAuthenticate(Model model, Authentication authentication) {
-		mLog.setLevel(Level.INFO);
+		/*mLog.setLevel(Level.ALL);
 		for (Handler h : mLog.getHandlers()) {
 		    h.setLevel(Level.ALL);
-		}
+		}*/
+		
+		mLog.warning("entering googleAuthenticate");
+		
 		//mLog.info(msg);(GoogleSlideController.class.getName(), "googleAuthenticate");
-		mLog.info(GoogleSlideController.class.getName() +  "[googleAuthenticate]");
-	
+
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 
 		GoogleProfile dataPageModel = null;
@@ -129,8 +131,7 @@ public class GoogleSlideController {
 
 		model.addAttribute("dataPageModel", dataPageModel);
 		model.addAttribute("contact", userDetails.getContact());
-		mLog.exiting(GoogleSlideController.class.getName(), "googleAuthenticate");
-		
+		mLog.warning("exiting googleAuthenticate");
 		return "google";
 
 	}
@@ -141,13 +142,15 @@ public class GoogleSlideController {
 	private Drive mDrive;
 	private Sheets mSheets;
 	private Slides mSlides;
+	private String mNewFileId;
+	private String mNewFileName;
 	/*
 	 * Initialize class variables
 	 */
 	private void initialize(Authentication authentication, HttpSession session, String authCodeId) throws IOException, ProfileException  {
 		// remove value from session
 		mLog.entering(GoogleSlideController.class.getName(), "initialize");
-		
+		mLog.warning("entering initialize");
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 		// agent.setContactId(contact.getContactId());
 		mAgent = userDetails.getAgent();
@@ -196,6 +199,20 @@ public class GoogleSlideController {
 		Drive mDrive = new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 				.setApplicationName(APPLICATION_NAME).build();
 		mLog.info("drive [" + mDrive + "]");
+		String newFileName = "new_" + getDateTime();
+		try {
+			File newFile = GoogleHelper.copyFile(mDrive, mGoogleProfile.getSlidesId(), newFileName,
+					this.mGoogleProfile.getGeneratedFolderId());
+			mNewFileId = newFile.getId();
+			this.mNewFileName = newFileName;
+			mGeneratedSlide.setFileName(this.mNewFileName);
+			mGeneratedSlide.setFileNameId(this.mNewFileId);
+			mLog.info("newFile id [" + newFile.getId() + "]");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			mLog.severe(e.getLocalizedMessage());
+		}
+
 		
 		mSheets = new Sheets.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 				.setApplicationName(APPLICATION_NAME).build();
@@ -207,6 +224,14 @@ public class GoogleSlideController {
 		mSlides = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 				.setApplicationName(APPLICATION_NAME).build();
 		mLog.info("slides have been setup " + mSlides);
+		
+		
+	//	File newFile = GoogleHelper.copyFile(mDrive, mGeneratedSlide.getFileNameId(), newFileName,
+		//		this.mGoogleProfile.getGeneratedFolderId());
+
+		
+		
+		mLog.warning("exiting initialize");
 		mLog.exiting(GoogleSlideController.class.getName(), "initialize");
 
 	}
@@ -222,7 +247,7 @@ public class GoogleSlideController {
 	@RequestMapping(value = "/GenerateGoogleSlide", method = RequestMethod.POST)
 	public String generate(Model model, Authentication authentication, HttpSession session,
 			@RequestParam(required = true) String authCodeId) {
-		
+		mLog.warning("entering generate");
 		mLog.entering(GoogleSlideController.class.getName(), "generate");
 		
 		try {
@@ -258,19 +283,17 @@ public class GoogleSlideController {
 			 * mLog.info("name " + fileA.getName()); // mLog.info("web link " +
 			 * fileA.getWebViewLink()); }
 			 */
-			String newFileName = "new_" + getDateTime();
-			mLog.info("new file " + newFileName);
-			File newFile = GoogleHelper.copyFile(mDrive, presentationId, newFileName,
-					this.mGoogleProfile.getGeneratedFolderId());
-
-			String newFileId = newFile.getId();
+			
 			// get the slide names and ids from the comments
+			mLog.info("get page from comments  ");
+			try {
 			Map<String, String> slidesFromGeneratedFromComments = GoogleHelper.retrieveComments(mDrive, presentationId);
+			} catch (Exception e) {
+				mLog.warning("could not read comment   + " + e.getMessage());
+			}
+			
 
-			mGeneratedSlide.setFileName(newFileName);
-			mGeneratedSlide.setFileNameId(newFileId);
-
-			mLog.info("new File Id [" + newFile.getId() + "]");
+			 
 
 			
 			// https://docs.google.com/presentation/d/1MIJx-AseaerrkR94Ft89hPGoTTDmcIzbf0qPn160nP8/edit#slide=id.ga8b5bb1d1e_0_0
@@ -314,7 +337,7 @@ public class GoogleSlideController {
 			// Execute the requests for this presentation.
 			BatchUpdatePresentationRequest body = new BatchUpdatePresentationRequest().setRequests(requests);
 			mLog.info("requests  body " + body);
-			BatchUpdatePresentationResponse responseA = mSlides.presentations().batchUpdate(newFileId, body).execute();
+			BatchUpdatePresentationResponse responseA = mSlides.presentations().batchUpdate(this.mNewFileId, body).execute();
 
 			mLog.info("requests  responseA " + responseA);
 			// Count total number of replacements made.
@@ -329,7 +352,7 @@ public class GoogleSlideController {
 
 			}
 
-			Presentation response = mSlides.presentations().get(newFileId).execute();
+			Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 			List<Page> pages = response.getSlides();
 
 			// change i to any other index if desired
@@ -345,7 +368,7 @@ public class GoogleSlideController {
 			 * pageElement : pageElements) { pageElement.getTitle(); } }
 			 */
 
-			mLog.info("Created merged presentation for  with ID: " + newFileId);
+			mLog.info("Created merged presentation for  with ID: " + this.mNewFileId);
 			mLog.info("numReplacements " + numReplacements);
 
 			// Credential Credential =
@@ -359,6 +382,7 @@ public class GoogleSlideController {
 		model.addAttribute("generatedSlide", mGeneratedSlide);
 		model.addAttribute("googleProfile", mGoogleProfile);
 		String nextPage = "googleslidegeneratedpage";
+		mLog.warning("exiting generate");
 		mLog.entering(GoogleSlideController.class.getName(), "generate");
 		return nextPage;
 
@@ -370,42 +394,9 @@ public class GoogleSlideController {
 		return formatter.format(date);
 	}
 
-	private void ggoool() throws IOException {
-		String authCode = "";
-		String CLIENT_SECRET_FILE = "/path/to/client_secret.json";
-//AIzaSyAuldUTbtnvN6Aa6lJyhoat8MVkZ9_-MLA
-		// Exchange auth code for access token
-		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
-				new FileReader(CLIENT_SECRET_FILE));
-		GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
-				JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
-				clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), authCode, "") // Specify
-						.execute();
-
-		String accessToken = tokenResponse.getAccessToken();
-
-		// Use access token to call API
-		GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
-		Drive drive = new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
-				.setApplicationName("Auth Code Exchange Demo").build();
-		// File file = null;
-		drive.files().get("appfolder").execute();
-
-		// Get profile info from ID token
-		GoogleIdToken idToken = tokenResponse.parseIdToken();
-		GoogleIdToken.Payload payload = idToken.getPayload();
-		String userId = payload.getSubject(); // Use this value as a key to identify a user.
-		String email = payload.getEmail();
-		boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-		String name = (String) payload.get("name");
-		String pictureUrl = (String) payload.get("picture");
-		String locale = (String) payload.get("locale");
-		String familyName = (String) payload.get("family_name");
-		String givenName = (String) payload.get("given_name");
-	}
-
+	
 	private void writeSheetExample(Sheets service) {
-
+		mLog.warning("entering WriteSheetExample");
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
 
@@ -452,10 +443,12 @@ public class GoogleSlideController {
 			UpdateValuesResponse result = service.spreadsheets().values().update(spreadsheetId, writeRange, body)
 					.setValueInputOption("RAW").execute();
 			mLog.info("result [" + result + "]");
+			mLog.warning("exting WriteSheetExample");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			mLog.severe(spreadsheetId + " not found");
 			mLog.severe(e.getMessage());
+			mLog.warning("exiting WriteSheetExample");
 		}
 		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
 		// BatchUpdateSpreadsheetRequest()

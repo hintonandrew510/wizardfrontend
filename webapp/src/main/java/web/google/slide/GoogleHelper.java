@@ -101,9 +101,11 @@ public class GoogleHelper {
 	 * @param service Drive API service instance.
 	 * @param fileId  ID of the file to retrieve comments for.
 	 * @return List of comments.
+	 * @throws RetrieveCommentsException 
 	 */
-	public static Map<String, String> retrieveComments(Drive service, String fileId) {
+	public static Map<String, String> retrieveComments(Drive service, String fileId) throws RetrieveCommentsException {
 		mLog.entering(GoogleSlideController.class.getName(), "retrieveComments");
+		mLog.warning("entering retrieveComments");
 		CommentList comments;
 		
 		Map<String, String> slides = new HashMap<String, String>();
@@ -132,14 +134,18 @@ public class GoogleHelper {
 				
 			}
 			mLog.exiting(GoogleSlideController.class.getName(), "retrieveComments");
+			mLog.warning("exiting retrieveComments");
 			return slides;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			mLog.severe("error " + e.getMessage());
+			mLog.warning("exiting retrieveComments");
+			throw new RetrieveCommentsException(e.getMessage());
 		}
-		mLog.exiting(GoogleSlideController.class.getName(), "retrieveComments");
-		return null;
 	}
+		
+		
+		
 
 	/**
 	 * Copy an existing file.
@@ -151,18 +157,28 @@ public class GoogleHelper {
 	 */
 	public static File copyFile(Drive service, String originFileId, String copyName, String generatedFolderId)
 			throws Exception {
-		mLog.entering(GoogleSlideController.class.getName(), "copyFile");
-		File copiedFile = new File();
-		copiedFile.setName(copyName);
-		// destinate folder
-		copiedFile.setParents(Collections.singletonList(generatedFolderId));
-
+		mLog.warning("entering copyFile");
+		
 		try {
-			mLog.exiting(GoogleSlideController.class.getName(), "copyFile");
-			return service.files().copy(originFileId, copiedFile).execute();
+			File copiedFile = new File();
+			mLog.info("copiedFile instance");
+			copiedFile.setName(copyName);
+			mLog.info("setname");
+			// destinate folder
+			copiedFile.setParents(Collections.singletonList(generatedFolderId));
+			mLog.info("copiedFile.setParents");
+			mLog.info("originFileId [" + originFileId + "]");
+			File newFile = service.files().copy(originFileId, copiedFile).execute();
+			if (newFile == null) {
+				mLog.severe("file is null");
+				throw new Exception("file is null");
+			}
+			mLog.info("newFile id [" + newFile.getId() + "]");
+			mLog.warning("exiting copyFile");
+			return newFile;
 		} catch (IOException e) {
 			mLog.severe("ERROR cannot find file " + e.getMessage());
-			mLog.exiting(GoogleSlideController.class.getName(), "copyFile");
+			mLog.warning(" exiting copyFile");
 			throw new Exception(e);
 		}
 		
