@@ -199,14 +199,15 @@ public class GoogleHelper {
 	}
 	
 
-	public List<SlideInterface> updateSlides(String ID) {
-		 List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
+	public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages) {
+		mLog.warning("entering getSlidesData");
+		List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
 		 SlidesData slidesData = new SlidesData();
-		Integer idInt = Integer.parseInt(ID);
+
 		PageModels pageModels= new PageModels();
 		Publish publish = new Publish();
 		// get all pages
-		Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(idInt);
+	
 		for (WizardData data : dataPages) {
 			// pull of data model
 			PageNameEnum pageName = null;
@@ -726,6 +727,7 @@ public class GoogleHelper {
 		// update.setRequests(mRequests);
 		// googleSlides.presentations().batchUpdate(prez.getPresentationId(),
 		// update).execute();
+		mLog.warning("leaving getSlidesData");
 		return slidesList;
 	}
 

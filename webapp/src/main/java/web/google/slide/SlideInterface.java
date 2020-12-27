@@ -1,9 +1,10 @@
 package web.google.slide;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SlideInterface {
 	
-	    public Map<String, String> composeGoogleSlideData();
+	    public List<SlideReplacementData> composeGoogleSlideData();
        
 }
