@@ -24,7 +24,8 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
-import web.google.slide.pages.PresentedToSlide;
+import web.google.slide.pages.SlideOnePresentedToSlide;
+import web.google.slide.pages.SlideTwoTeamCommitmentSlide;
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.ChartBuilder;
@@ -597,7 +598,7 @@ public class GoogleHelper {
 					// model.addAttribute("PresentedToPage", presentedToPageModel);
 					slidesData.getPublish().setPresentedToPage(true);
 					slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
-					PresentedToSlide presentedToSlide = new PresentedToSlide(slidesData);
+					SlideOnePresentedToSlide presentedToSlide = new SlideOnePresentedToSlide(slidesData);
 					slidesList.add(presentedToSlide);
 					mLog.info("found page PresentedToPage");
 					break;
@@ -711,7 +712,13 @@ public class GoogleHelper {
 							TeamCommitmentPageModel.class);
 					// model.addAttribute("TeamCommitmentPage", teamCommitmentPageModel);
 
-					publish.setTeamCommitmentPage(true);
+				
+					
+					
+					slidesData.getPublish().setTeamCommitmentPage(true);
+					slidesData.getPageModels().setTeamCommitmentPageModel(teamCommitmentPageModel);
+					SlideTwoTeamCommitmentSlide slide = new SlideTwoTeamCommitmentSlide(slidesData);
+					slidesList.add(slide);
 					mLog.info("found page TeamCommitmentPage");
 
 					break;
