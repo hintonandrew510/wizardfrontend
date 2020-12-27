@@ -9,8 +9,8 @@ import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.presentedtopage.PresentedToPageModel;
 
-public class PresentedToSlide extends AbstractSlide {
-	public PresentedToSlide(SlidesData sildeData) {
+public class SlideOnePresentedToSlide extends AbstractSlide {
+	public SlideOnePresentedToSlide(SlidesData sildeData) {
 		super(sildeData);
 	}
 	@Override
