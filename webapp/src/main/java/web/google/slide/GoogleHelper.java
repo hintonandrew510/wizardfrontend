@@ -81,8 +81,10 @@ public class GoogleHelper {
 
 	private List<Request> mRequests = new ArrayList<Request>();
 
-	/*
-	 * Get logon email address
+	/**
+	 * 
+	 * @param tokenResponse
+	 * @return Get logon email address
 	 */
 	public static String emailAddress(GoogleTokenResponse tokenResponse) {
 		String email = null;
@@ -150,7 +152,10 @@ public class GoogleHelper {
 			throw new RetrieveCommentsException(e.getMessage());
 		}
 	}
-		
+	/**
+	 * 	
+	 * @return today date
+	 */
 	public static String getDateTime() {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
 		Date date = new Date(System.currentTimeMillis());
@@ -198,8 +203,43 @@ public class GoogleHelper {
 		
 
 	}
+	/**
+	 * 
+	 * @param dataPages
+	 * @return pages that are execluded
+	 */
+	public static List<String> getSlidesExcluded(Iterable<WizardData> dataPages) {
+		mLog.warning("entering getSlidesExcluded");
+		List<String> slidesList = new ArrayList<String>();
+		// get all pages
 	
+		for (WizardData data : dataPages) {
+			// pull of data model
+			PageNameEnum pageName = null;
+			try {
+				pageName = PageNameEnum.valueOf(data.getPagename());
+			} catch (Exception ex) {
+				mLog.severe("error " + ex.getMessage());
+				continue;
+			}
 
+			// exculded
+			if (data.isExcluded()) {
+				mLog.info("PAGE Excluded id = " + pageName);
+				mLog.info("PAGE Excluded name = [" + data.getPagename() + "]");
+				slidesList.add(data.getPagename());
+				continue;
+			}
+		}//end  of for loop
+		mLog.warning("leaving getSlidesExcluded");
+		return slidesList;
+	}
+	
+  /**
+   * 
+   * @param dataPages
+   * @return collection of pages
+   */
 	public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages) {
 		mLog.warning("entering getSlidesData");
 		List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
