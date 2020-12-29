@@ -74,6 +74,7 @@ import web.model.Agent;
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.JSONManager;
+import web.page.PieChart;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
 
@@ -460,12 +461,13 @@ public class GoogleSlideController {
 		String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
 		spreadsheetId = this.mGoogleProfile.getSheetsId();
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
-		String writeRange = "mediasheet!A1:E"; // range and sheet name
+		//String writeRange = "mediasheet!A1:E"; // range and sheet name
+		String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
 
 		List<List<Object>> writeData = new ArrayList<>();
 		// three rows
 		// five columns
-		for (int x = 0; x < 3; x++) {
+		/*for (int x = 0; x < 3; x++) {
 			List<Object> dataRow = new ArrayList<>();
 			dataRow.add(11);
 			dataRow.add(22);
@@ -473,8 +475,21 @@ public class GoogleSlideController {
 			dataRow.add(44);
 			dataRow.add(55);
 			writeData.add(dataRow);
-		}
-
+		}*/
+		
+		PieChart PieChartOne = new PieChart("weight", 190); 
+		List<Object> dataRowOne = new ArrayList<>();
+		dataRowOne.add(PieChartOne.getLabel());
+		dataRowOne.add(PieChartOne.getLabelValue());
+		writeData.add(dataRowOne);
+		
+		PieChart PieChartTwo = new PieChart("height", 90); 
+		List<Object> dataRowOneTwo = new ArrayList<>();
+		dataRowOneTwo.add(PieChartTwo.getLabel());
+		dataRowOneTwo.add(PieChartTwo.getLabelValue());
+		writeData.add(dataRowOneTwo);
+       
+       
 		ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
 		// ValueRange body = new ValueRange().setValues(values);
 		try {

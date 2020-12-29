@@ -297,7 +297,7 @@ public class GoogleHelper {
 							.convertFromJson(data.getPagedata(), ConfidentialClientEvaluationOnePageModel.class);
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
-
+                    //slide 8
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
 					// model.addAttribute("ConfidentialClientEvaluationOnePageModel", pieChart);
