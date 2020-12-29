@@ -7,17 +7,30 @@ import web.page.planamedipage.MediaChart;
 
 public abstract class AbstractSlide implements SlideInterface {
 	private SlidesData mSlidesData;
-	
-    private List<PieChart> pieChartList;
+	private String writeRange;
+    public List<PieChart> getPieChartList() {
+		return pieChartList;
+	}
+	public void setPieChartList(List<PieChart> pieChartList) {
+		this.pieChartList = pieChartList;
+	}
+	public MediaChart getMediaChart() {
+		return mediaChart;
+	}
+	public void setMediaChart(MediaChart mediaChart) {
+		this.mediaChart = mediaChart;
+	}
+	private List<PieChart> pieChartList;
     private MediaChart mediaChart;
     
 	public AbstractSlide(MediaChart mediaChart) {
 		super();
 		this.mediaChart = mediaChart;
 	}
-	public AbstractSlide(List<PieChart> pieChartList) {
+	public AbstractSlide(List<PieChart> pieChartList, String writeRange) {
 		super();
 		this.pieChartList = pieChartList;
+		this.writeRange = writeRange;
 	}
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
@@ -28,5 +41,41 @@ public abstract class AbstractSlide implements SlideInterface {
 	public AbstractSlide(SlidesData slidesData) {
 		mSlidesData = slidesData;
 	}
+	@Override
+	public List<PieChart> getPieChartData() {
+		// TODO Auto-generated method stub
+		return this.getPieChartList();
+	}
+	
+	@Override
+	public List<SlideReplacementData> composeGoogleSlideData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public boolean isBarChart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean hasReplacementData() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean isPieChart() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public String getWriteRange() {
+		// TODO Auto-generated method stub
+		return writeRange;
+	}
+
 
 }

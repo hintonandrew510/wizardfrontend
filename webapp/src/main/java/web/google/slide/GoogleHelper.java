@@ -24,6 +24,7 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
+import web.google.slide.pages.SlideEightConfidentialClientEvaluationOneSlide;
 import web.google.slide.pages.SlideOnePresentedToSlide;
 import web.google.slide.pages.SlideTwoTeamCommitmentSlide;
 import web.model.Wizard;
@@ -298,6 +299,13 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
                     //slide 8
+					slidesData.getPublish().setPresentedToPage(true);
+					SlideEightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new SlideEightConfidentialClientEvaluationOneSlide(pieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B");
+					
+					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
+					
+					
+					
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
 					// model.addAttribute("ConfidentialClientEvaluationOnePageModel", pieChart);

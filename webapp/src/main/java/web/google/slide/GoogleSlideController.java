@@ -228,9 +228,8 @@ public class GoogleSlideController {
 			mGeneratedSlide.setFileName(newFileName);
 			mGeneratedSlide.setFileNameId(this.mNewFileId);
 			mLog.info("newFile id [" + newFile.getId() + "]");
-			
-			this.mComments = GoogleHelper.retrieveComments(mDrive,
-					 mGoogleProfile.getSlidesId());
+
+			this.mComments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			mLog.severe(e.getLocalizedMessage());
@@ -307,7 +306,7 @@ public class GoogleSlideController {
 
 			// get the drive service
 
-			writeSheetExample(mSheets);
+			writeSheetData(mSheets);
 			/*
 			 * List<File> result = new ArrayList<File>(); Files.List request =
 			 * drive.files().list(); FileList files = request.execute();
@@ -344,7 +343,7 @@ public class GoogleSlideController {
 						String pageToExclude = this.mComments.get(excludedPage);
 						DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest();
 						deleteObjectRequest.setObjectId(pageToExclude);
-						//Request delRequest = new Request().setDeleteObject(deleteObjectRequest);
+						// Request delRequest = new Request().setDeleteObject(deleteObjectRequest);
 						Request deleteRequest = new Request();
 						deleteRequest.setDeleteObject(deleteObjectRequest);
 						mLog.info("Removing page  [" + excludedPage + "]");
@@ -358,13 +357,15 @@ public class GoogleSlideController {
 				mLog.warning("could not read comment   + " + e.getMessage());
 			}
 
-			
 			// gb1f3d784ca_0_16
-			
 
 			// add data to slides
 			if (mSlidesModels != null) {
 				for (SlideInterface page : mSlidesModels) {
+					// only process replacement pages
+					if (!page.hasReplacementData()) {
+						continue; // skip over charts
+					}
 					List<SlideReplacementData> listSlideReplacementData = page.composeGoogleSlideData();
 					for (SlideReplacementData slideReplacementData : listSlideReplacementData) {
 
@@ -386,8 +387,6 @@ public class GoogleSlideController {
 			// .setContainsText(new
 			// SubstringMatchCriteria().setText("{{customer-name}}").setMatchCase(true))
 			// .setReplaceText("yes")));
-
-			
 
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
@@ -445,7 +444,7 @@ public class GoogleSlideController {
 
 	}
 
-	private void writeSheetExample(Sheets service) {
+	private void writeSheetData(Sheets service) {
 		mLog.warning("entering WriteSheetExample");
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
@@ -461,59 +460,100 @@ public class GoogleSlideController {
 		String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
 		spreadsheetId = this.mGoogleProfile.getSheetsId();
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
-		//String writeRange = "mediasheet!A1:E"; // range and sheet name
+		
 		String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
 
 		List<List<Object>> writeData = new ArrayList<>();
+		
 		// three rows
 		// five columns
-		/*for (int x = 0; x < 3; x++) {
-			List<Object> dataRow = new ArrayList<>();
-			dataRow.add(11);
-			dataRow.add(22);
-			dataRow.add(33);
-			dataRow.add(44);
-			dataRow.add(55);
-			writeData.add(dataRow);
-		}*/
+		// String writeRange = "mediasheet!A1:E"; // range and sheet name
+		/*
+		 * for (int x = 0; x < 3; x++) { List<Object> dataRow = new ArrayList<>();
+		 * dataRow.add(11); dataRow.add(22); dataRow.add(33); dataRow.add(44);
+		 * dataRow.add(55); writeData.add(dataRow); }
+		 */
 		
-		PieChart PieChartOne = new PieChart("weight", 190); 
-		List<Object> dataRowOne = new ArrayList<>();
-		dataRowOne.add(PieChartOne.getLabel());
-		dataRowOne.add(PieChartOne.getLabelValue());
-		writeData.add(dataRowOne);
 		
-		PieChart PieChartTwo = new PieChart("height", 90); 
-		List<Object> dataRowOneTwo = new ArrayList<>();
-		dataRowOneTwo.add(PieChartTwo.getLabel());
-		dataRowOneTwo.add(PieChartTwo.getLabelValue());
-		writeData.add(dataRowOneTwo);
-       
-       
-		ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
-		// ValueRange body = new ValueRange().setValues(values);
-		try {
+		/*
+		 * PieChart PieChartOne = new PieChart("weight", 190); List<Object> dataRowOne =
+		 * new ArrayList<>(); dataRowOne.add(PieChartOne.getLabel());
+		 * dataRowOne.add(PieChartOne.getLabelValue()); writeData.add(dataRowOne);
+		 * 
+		 * PieChart PieChartTwo = new PieChart("height", 90); List<Object> dataRowOneTwo
+		 * = new ArrayList<>(); dataRowOneTwo.add(PieChartTwo.getLabel());
+		 * dataRowOneTwo.add(PieChartTwo.getLabelValue()); writeData.add(dataRowOneTwo);
+		 */
 
-			// cleare values
-			// TODO: Assign values to desired fields of `requestBody`:
-			ClearValuesRequest requestBody = new ClearValuesRequest();
+		// add data to slides
+		if (mSlidesModels != null) {
+			for (SlideInterface page : mSlidesModels) {
+				if (!page.isPieChart()) {
+					// only process pie charts
+					continue;
+				}
+				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
+				List<PieChart> pieChartList = page.getPieChartData();
+				for (PieChart pieChart : pieChartList) {
+					List<Object> dataRow = new ArrayList<>();
+					dataRow.add(pieChart.getLabel());
+					dataRow.add(pieChart.getLabelValue());
+					writeData.add(dataRow);
 
-			Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId, writeRange,
-					requestBody);
+				}
 
-			ClearValuesResponse response = request.execute();
-			mLog.info("response [" + response + "]");
+				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
+				// ValueRange body = new ValueRange().setValues(values);
+				try {
 
-			UpdateValuesResponse result = service.spreadsheets().values().update(spreadsheetId, writeRange, body)
-					.setValueInputOption("RAW").execute();
-			mLog.info("result [" + result + "]");
-			mLog.warning("exting WriteSheetExample");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			mLog.severe(spreadsheetId + " not found");
-			mLog.severe(e.getMessage());
-			mLog.warning("exiting WriteSheetExample");
-		}
+					// cleare values
+					// TODO: Assign values to desired fields of `requestBody`:
+					ClearValuesRequest requestBody = new ClearValuesRequest();
+
+					Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
+							page.getWriteRange(), requestBody);
+
+					ClearValuesResponse response = request.execute();
+					mLog.info("response [" + response + "]");
+
+					UpdateValuesResponse result = service.spreadsheets().values()
+							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
+					mLog.info("result [" + result + "]");
+					mLog.warning("exting WriteSheetExample");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					mLog.severe(spreadsheetId + " not found");
+					mLog.severe(e.getMessage());
+					mLog.warning("exiting WriteSheetExample");
+				}
+
+			} // end of for
+		}//end of outter if
+
+		/*
+		 * 
+		 * ValueRange body = new
+		 * ValueRange().setValues(writeData).setMajorDimension("ROWS"); // ValueRange
+		 * body = new ValueRange().setValues(values); try {
+		 * 
+		 * // cleare values // TODO: Assign values to desired fields of `requestBody`:
+		 * ClearValuesRequest requestBody = new ClearValuesRequest();
+		 * 
+		 * Sheets.Spreadsheets.Values.Clear request =
+		 * service.spreadsheets().values().clear(spreadsheetId, writeRange,
+		 * requestBody);
+		 * 
+		 * ClearValuesResponse response = request.execute(); mLog.info("response [" +
+		 * response + "]");
+		 * 
+		 * UpdateValuesResponse result =
+		 * service.spreadsheets().values().update(spreadsheetId, writeRange, body)
+		 * .setValueInputOption("RAW").execute(); mLog.info("result [" + result + "]");
+		 * mLog.warning("exting WriteSheetExample"); } catch (IOException e) { // TODO
+		 * Auto-generated catch block mLog.severe(spreadsheetId + " not found");
+		 * mLog.severe(e.getMessage()); mLog.warning("exiting WriteSheetExample"); }
+		 */
+
 		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
 		// BatchUpdateSpreadsheetRequest()
 		// .setRequests(requests);

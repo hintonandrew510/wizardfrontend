@@ -44,29 +44,12 @@ public class SlideTwoTeamCommitmentSlide extends AbstractSlide {
 		listData.add(fourthLevelTitle);
 		return listData;
 
+	}
 
-		
 
-
-	}
 	@Override
-	public List<PieChart> getPieChartData() {
+	public boolean hasReplacementData() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public MediaChart getMediaChart() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean isPieChart() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean isBarChart() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
