@@ -38,3 +38,8 @@ W_v_EUFAVIAshdyVBIqOlDUF
 auth client id
 791216731496-ml987j26aqj55vgrdb6gnrtpgsnpp2ap.apps.googleusercontent.com
 
+// Refresh an existing linked Sheets chart embedded a presentation.
+requests.add(new Request()
+        .setRefreshSheetsChart(new RefreshSheetsChartRequest()
+                .setObjectId(presentationChartId)));
+
