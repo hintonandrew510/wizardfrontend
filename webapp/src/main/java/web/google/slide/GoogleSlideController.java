@@ -69,6 +69,7 @@ import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
 import com.google.api.services.slides.v1.model.Request;
 import com.google.api.services.slides.v1.model.DeleteObjectRequest;
 import com.google.api.services.slides.v1.model.Response;
+import com.google.api.services.slides.v1.model.SheetsChart;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
 import web.data.MyUserPrincipal;
 import web.model.Agent;
@@ -381,23 +382,59 @@ public class GoogleSlideController {
 														.setReplaceText(
 																slideReplacementData.getGoogleSlideVariableValue())));
 					}
-				}//end if for
-				//refresh data from sheets
-				for (SlideInterface page : mSlidesModels) {
-				   if (!page.needsDataRefresh()) {
-					  continue; 
-				   }
-				   //get slide id
-				  if (this.mComments.containsKey(page.getPageName())) {
-					  String slideId = this.mComments.get(page.getPageName());
-					  mLog.info("refresh silde  [" + slideId + "]");
-					  requests.add(new Request()
-						        .setRefreshSheetsChart(new RefreshSheetsChartRequest()
-						                .setObjectId(slideId)));
-				  }
-				}
+				} // end if for
+			// refresh data from sheets for LInk data
+
+				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
+				List<Page> pages = response.getSlides();
 				
-			}//end of if
+
+				// change i to any other index if desired
+				for (Page page : pages) {
+					String pageId = page.getObjectId();
+					mLog.info("SLIDEID " + pageId);
+					List<PageElement> pageElementList = page.getPageElements();
+					for (PageElement pageElement : pageElementList)	 {
+						//String desc = pageElement.getDescription();
+						//mLog.info("desc " + desc);
+						String elementid = pageElement.getObjectId();
+						mLog.info("elementid " + elementid);
+						SheetsChart chart = pageElement.getSheetsChart();
+						if (chart != null) {
+							Integer chartId = chart.getChartId();
+							mLog.info("chartId " + chartId);
+							requests.add(new Request()
+								.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(elementid)));
+						
+						}
+						//requests.add(new Request()
+							//	.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(elementid)));
+						
+					}
+					mLog.info(" " );
+					//page.getSheetsCharts();
+					
+				}
+				//requests.add(new Request()
+				//.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId("gaa1e0f9807_1_0")));
+
+				
+				
+				
+				for (SlideInterface page : mSlidesModels) {
+					if (!page.needsDataRefresh()) {
+						continue;
+					}
+					// get slide id
+					if (this.mComments.containsKey(page.getPageName())) {
+						String slideId = this.mComments.get(page.getPageName());
+						mLog.info("refresh silde  [" + slideId + "]");
+						requests.add(new Request()
+								.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(slideId)));
+					}
+				}
+
+			} // end of if
 
 			// requests.add(new Request().setReplaceAllText(new ReplaceAllTextRequest()
 			// .setContainsText(new
@@ -424,14 +461,6 @@ public class GoogleSlideController {
 
 			}
 
-			Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
-			List<Page> pages = response.getSlides();
-
-			// change i to any other index if desired
-			for (Page page : pages) {
-				String pageId = page.getObjectId();
-				mLog.info("pageId " + pageId);
-			}
 
 			/*
 			 * Presentation response = slides.presentations().get(newFileId ).execute();
@@ -473,15 +502,14 @@ public class GoogleSlideController {
 		// .setUserEnteredValue(new ExtendedValue()
 		// .setStringValue("Hello World!")));
 
-	//	String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
+		// String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
 		String spreadsheetId = this.mGoogleProfile.getSheetsId();
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
-		
-		//String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
+
+		// String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range
+		// and sheet name
 		String writeRange = null; // range and sheet name
 
-		
-		
 		// three rows
 		// five columns
 		// String writeRange = "mediasheet!A1:E"; // range and sheet name
@@ -490,8 +518,7 @@ public class GoogleSlideController {
 		 * dataRow.add(11); dataRow.add(22); dataRow.add(33); dataRow.add(44);
 		 * dataRow.add(55); writeData.add(dataRow); }
 		 */
-		
-		
+
 		/*
 		 * PieChart PieChartOne = new PieChart("weight", 190); List<Object> dataRowOne =
 		 * new ArrayList<>(); dataRowOne.add(PieChartOne.getLabel());
@@ -513,10 +540,14 @@ public class GoogleSlideController {
 				List<PieChart> pieChartList = page.getPieChartData();
 				List<List<Object>> writeData = new ArrayList<>();
 				for (PieChart pieChart : pieChartList) {
-					List<Object> dataRow = new ArrayList<>();
-					dataRow.add(pieChart.getLabel());
-					dataRow.add(pieChart.getLabelValue());
-					writeData.add(dataRow);
+					String label = pieChart.getLabel();
+					if (label != null && !label.equals("")) {
+						mLog.info("label   [" + label + "]");
+						List<Object> dataRow = new ArrayList<>();
+						dataRow.add(pieChart.getLabel());
+						dataRow.add(pieChart.getLabelValue());
+						writeData.add(dataRow);
+					}
 
 				}
 				writeRange = page.getWriteRange();
@@ -547,7 +578,7 @@ public class GoogleSlideController {
 				}
 
 			} // end of for
-		}//end of outter if
+		} // end of outter if
 
 		/*
 		 * 
@@ -578,7 +609,7 @@ public class GoogleSlideController {
 		// .setRequests(requests);
 		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
 		// .execute();
-		
+
 	}
 
 	/**
