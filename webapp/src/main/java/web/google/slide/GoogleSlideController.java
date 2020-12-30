@@ -461,7 +461,7 @@ public class GoogleSlideController {
 	}
 
 	private void writeSheetData(Sheets service) {
-		mLog.warning("entering WriteSheetExample");
+		mLog.warning("ENTERING WriteSheetExample");
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
 
@@ -473,11 +473,12 @@ public class GoogleSlideController {
 		// .setUserEnteredValue(new ExtendedValue()
 		// .setStringValue("Hello World!")));
 
-		String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
-		spreadsheetId = this.mGoogleProfile.getSheetsId();
+	//	String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
+		String spreadsheetId = this.mGoogleProfile.getSheetsId();
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
 		
-		String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
+		//String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
+		String writeRange = null; // range and sheet name
 
 		List<List<Object>> writeData = new ArrayList<>();
 		
@@ -517,7 +518,8 @@ public class GoogleSlideController {
 					writeData.add(dataRow);
 
 				}
-
+				writeRange = page.getWriteRange();
+				mLog.info("writeRange [" + writeRange + "]");
 				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
 				// ValueRange body = new ValueRange().setValues(values);
 				try {
@@ -575,6 +577,7 @@ public class GoogleSlideController {
 		// .setRequests(requests);
 		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
 		// .execute();
+		mLog.warning("LEAVING WriteSheetExample");
 	}
 
 	/**

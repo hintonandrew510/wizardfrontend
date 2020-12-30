@@ -326,7 +326,7 @@ public class GoogleHelper {
 					 //slide 9
 					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
 					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = 
-							new NineConfidentialClientEvaluationProposedSlide(pieChart,"ConfidentialClientEvaluationProposedPage_Data!A1:B","ConfidentialClientEvaluationProposed");
+							new NineConfidentialClientEvaluationProposedSlide(pieChartProposed,"ConfidentialClientEvaluationProposedPage_Data!A1:B","ConfidentialClientEvaluationProposed");
 					
 					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 					
