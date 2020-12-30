@@ -480,7 +480,7 @@ public class GoogleSlideController {
 		//String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range and sheet name
 		String writeRange = null; // range and sheet name
 
-		List<List<Object>> writeData = new ArrayList<>();
+		
 		
 		// three rows
 		// five columns
@@ -511,6 +511,7 @@ public class GoogleSlideController {
 				}
 				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
 				List<PieChart> pieChartList = page.getPieChartData();
+				List<List<Object>> writeData = new ArrayList<>();
 				for (PieChart pieChart : pieChartList) {
 					List<Object> dataRow = new ArrayList<>();
 					dataRow.add(pieChart.getLabel());
@@ -537,12 +538,12 @@ public class GoogleSlideController {
 					UpdateValuesResponse result = service.spreadsheets().values()
 							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
 					mLog.info("result [" + result + "]");
-					mLog.warning("exting WriteSheetExample");
+					mLog.warning("LEAVING WriteSheetExample");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					mLog.severe(spreadsheetId + " not found");
 					mLog.severe(e.getMessage());
-					mLog.warning("exiting WriteSheetExample");
+					mLog.severe("EXITING with ERROR WriteSheetExample");
 				}
 
 			} // end of for
@@ -577,7 +578,7 @@ public class GoogleSlideController {
 		// .setRequests(requests);
 		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
 		// .execute();
-		mLog.warning("LEAVING WriteSheetExample");
+		
 	}
 
 	/**
