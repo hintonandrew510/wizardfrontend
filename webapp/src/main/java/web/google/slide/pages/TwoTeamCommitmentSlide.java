@@ -11,8 +11,8 @@ import web.page.planamedipage.MediaChart;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
-public class SlideTwoTeamCommitmentSlide extends AbstractSlide {
-	public SlideTwoTeamCommitmentSlide(SlidesData sildeData) {
+public class TwoTeamCommitmentSlide extends AbstractSlide {
+	public TwoTeamCommitmentSlide(SlidesData sildeData) {
 		super(sildeData);
 	}
 	@Override

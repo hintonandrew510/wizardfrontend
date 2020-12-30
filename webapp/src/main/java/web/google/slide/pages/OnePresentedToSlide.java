@@ -11,8 +11,8 @@ import web.page.PieChart;
 import web.page.planamedipage.MediaChart;
 import web.page.presentedtopage.PresentedToPageModel;
 
-public class SlideOnePresentedToSlide extends AbstractSlide {
-	public SlideOnePresentedToSlide(SlidesData sildeData) {
+public class OnePresentedToSlide extends AbstractSlide {
+	public OnePresentedToSlide(SlidesData sildeData) {
 		super(sildeData);
 	}
 	@Override

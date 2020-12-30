@@ -64,6 +64,7 @@ import com.google.api.services.slides.v1.model.BatchUpdatePresentationResponse;
 import com.google.api.services.slides.v1.model.Page;
 import com.google.api.services.slides.v1.model.PageElement;
 import com.google.api.services.slides.v1.model.Presentation;
+import com.google.api.services.slides.v1.model.RefreshSheetsChartRequest;
 import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
 import com.google.api.services.slides.v1.model.Request;
 import com.google.api.services.slides.v1.model.DeleteObjectRequest;
@@ -380,8 +381,23 @@ public class GoogleSlideController {
 														.setReplaceText(
 																slideReplacementData.getGoogleSlideVariableValue())));
 					}
+				}//end if for
+				//refresh data from sheets
+				for (SlideInterface page : mSlidesModels) {
+				   if (!page.needsDataRefresh()) {
+					  continue; 
+				   }
+				   //get slide id
+				  if (this.mComments.containsKey(page.getPageName())) {
+					  String slideId = this.mComments.get(page.getPageName());
+					  mLog.info("refresh silde  [" + slideId + "]");
+					  requests.add(new Request()
+						        .setRefreshSheetsChart(new RefreshSheetsChartRequest()
+						                .setObjectId(slideId)));
+				  }
 				}
-			}
+				
+			}//end of if
 
 			// requests.add(new Request().setReplaceAllText(new ReplaceAllTextRequest()
 			// .setContainsText(new

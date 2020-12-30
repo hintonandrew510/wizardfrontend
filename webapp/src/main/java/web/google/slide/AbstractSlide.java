@@ -8,11 +8,13 @@ import web.page.planamedipage.MediaChart;
 public abstract class AbstractSlide implements SlideInterface {
 	private SlidesData mSlidesData;
 	private String writeRange;
+	private String pageName;
     public List<PieChart> getPieChartList() {
 		return pieChartList;
 	}
 	public void setPieChartList(List<PieChart> pieChartList) {
 		this.pieChartList = pieChartList;
+		
 	}
 	public MediaChart getMediaChart() {
 		return mediaChart;
@@ -27,10 +29,11 @@ public abstract class AbstractSlide implements SlideInterface {
 		super();
 		this.mediaChart = mediaChart;
 	}
-	public AbstractSlide(List<PieChart> pieChartList, String writeRange) {
+	public AbstractSlide(List<PieChart> pieChartList, String writeRange,  String pageName) {
 		super();
 		this.pieChartList = pieChartList;
 		this.writeRange = writeRange;
+		this.pageName = pageName;
 	}
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
@@ -75,6 +78,18 @@ public abstract class AbstractSlide implements SlideInterface {
 	public String getWriteRange() {
 		// TODO Auto-generated method stub
 		return writeRange;
+	}
+	@Override
+	public boolean needsDataRefresh() {
+		if (isPieChart() || isBarChart()) {
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public String getPageName() {
+		// TODO Auto-generated method stub
+		return this.pageName;
 	}
 
 

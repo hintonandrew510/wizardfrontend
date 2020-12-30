@@ -15,5 +15,7 @@ public interface SlideInterface {
 	    public boolean isBarChart();
 	    public boolean hasReplacementData();
 	    public String getWriteRange();
+	    public boolean needsDataRefresh();
+	    public String getPageName();
        
 }

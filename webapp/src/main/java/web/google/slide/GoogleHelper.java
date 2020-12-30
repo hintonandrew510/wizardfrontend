@@ -24,9 +24,10 @@ import com.google.api.services.drive.model.File;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
-import web.google.slide.pages.SlideEightConfidentialClientEvaluationOneSlide;
-import web.google.slide.pages.SlideOnePresentedToSlide;
-import web.google.slide.pages.SlideTwoTeamCommitmentSlide;
+import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
+import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
+import web.google.slide.pages.OnePresentedToSlide;
+import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.ChartBuilder;
@@ -299,8 +300,9 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
                     //slide 8
-					slidesData.getPublish().setPresentedToPage(true);
-					SlideEightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new SlideEightConfidentialClientEvaluationOneSlide(pieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B");
+					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
+					EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = 
+							new EightConfidentialClientEvaluationOneSlide(pieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B","ConfidentialClientEvaluationOnePage");
 					
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
 					
@@ -319,6 +321,16 @@ public class GoogleHelper {
 					// confidentialClientEvaluationProposedPage
 					List<PieChart> pieChartProposed = ChartBuilder
 							.buildNextYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
+					
+					
+					 //slide 9
+					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
+					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = 
+							new NineConfidentialClientEvaluationProposedSlide(pieChart,"ConfidentialClientEvaluationProposedPage_Data!A1:B","ConfidentialClientEvaluationProposed");
+					
+					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
+					
+					//NineConfidentialClientEvaluationProposedSlide
 
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartProposedModel",
 					// pieChartProposed);
@@ -646,7 +658,7 @@ public class GoogleHelper {
 					// model.addAttribute("PresentedToPage", presentedToPageModel);
 					slidesData.getPublish().setPresentedToPage(true);
 					slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
-					SlideOnePresentedToSlide presentedToSlide = new SlideOnePresentedToSlide(slidesData);
+					OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData);
 					slidesList.add(presentedToSlide);
 					mLog.info("found page PresentedToPage");
 					break;
@@ -765,7 +777,7 @@ public class GoogleHelper {
 					
 					slidesData.getPublish().setTeamCommitmentPage(true);
 					slidesData.getPageModels().setTeamCommitmentPageModel(teamCommitmentPageModel);
-					SlideTwoTeamCommitmentSlide slide = new SlideTwoTeamCommitmentSlide(slidesData);
+					TwoTeamCommitmentSlide slide = new TwoTeamCommitmentSlide(slidesData);
 					slidesList.add(slide);
 					mLog.info("found page TeamCommitmentPage");
 
