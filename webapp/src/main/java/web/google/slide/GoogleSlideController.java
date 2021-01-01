@@ -481,10 +481,7 @@ public class GoogleSlideController {
 		return nextPage;
 
 	}
-	
-	
-	
-	
+
 	/**
 	 * 
 	 * @param service
@@ -579,6 +576,8 @@ public class GoogleSlideController {
 				 * @param service
 				 */
 				if (page.isPieChart()) {
+					mLog.info("pie chart " + page.getPageName() + "]");
+					
 					List<PieChart> pieChartList = page.getPieChartData();
 
 					for (PieChart pieChart : pieChartList) {
@@ -594,9 +593,8 @@ public class GoogleSlideController {
 					}
 				}
 
-				
-				
 				if (page.isBarChart()) {
+					mLog.info("bar chart " + page.getPageName() + "]");
 					MediaChart mediaChart = page.getMediaChart();
 					List<Object> dataRowHeader = new ArrayList<>();
 
@@ -606,17 +604,42 @@ public class GoogleSlideController {
 					dataRowHeader.add("Slow");
 					dataRowHeader.add("Brand");
 					writeData.add(dataRowHeader);
-              /*     */
+					/*     */
 					List<Object> dataRowJan = GoogleHelper.writeJan(mediaChart);
 					writeData.add(dataRowJan);
-					
+
 					List<Object> dataRowFeb = GoogleHelper.writeFeb(mediaChart);
 					writeData.add(dataRowFeb);
-					
-					
-					
-					
-				
+
+					List<Object> dataRowMar = GoogleHelper.writeMar(mediaChart);
+					writeData.add(dataRowMar);
+
+					List<Object> dataRowApr = GoogleHelper.writeApr(mediaChart);
+					writeData.add(dataRowApr);
+
+					List<Object> dataRowMay = GoogleHelper.writeMay(mediaChart);
+					writeData.add(dataRowMay);
+
+					List<Object> dataRowJun = GoogleHelper.writeJun(mediaChart);
+					writeData.add(dataRowJun);
+
+					List<Object> dataRowJul = GoogleHelper.writeJul(mediaChart);
+					writeData.add(dataRowJul);
+
+					List<Object> dataRowAug = GoogleHelper.writeAug(mediaChart);
+					writeData.add(dataRowAug);
+
+					List<Object> dataRowSep = GoogleHelper.writeSep(mediaChart);
+					writeData.add(dataRowSep);
+
+					List<Object> dataRowOct = GoogleHelper.writeOct(mediaChart);
+					writeData.add(dataRowOct);
+
+					List<Object> dataRowNov = GoogleHelper.writeNov(mediaChart);
+					writeData.add(dataRowNov);
+
+					List<Object> dataRowDec = GoogleHelper.writeDec(mediaChart);
+					writeData.add(dataRowDec);
 
 				}
 
