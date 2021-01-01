@@ -71,24 +71,33 @@ import com.google.api.services.slides.v1.model.DeleteObjectRequest;
 import com.google.api.services.slides.v1.model.Response;
 import com.google.api.services.slides.v1.model.SheetsChart;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
+import com.google.api.services.sheets.v4.*;
 import web.data.MyUserPrincipal;
 import web.model.Agent;
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.JSONManager;
 import web.page.PieChart;
+import web.page.planamedipage.MediaChart;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
 
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.Sheets.Spreadsheets;
+//import com.google.api.services.sheets.v4.Sheets.Spreadsheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.CellData;
+import com.google.api.services.sheets.v4.model.ChartSpec;
 import com.google.api.services.sheets.v4.model.ClearValuesRequest;
 import com.google.api.services.sheets.v4.model.ClearValuesResponse;
+import com.google.api.services.sheets.v4.model.EmbeddedChart;
 import com.google.api.services.sheets.v4.model.ExtendedValue;
 import com.google.api.services.sheets.v4.model.GridCoordinate;
 import com.google.api.services.sheets.v4.model.RowData;
+import com.google.api.services.sheets.v4.model.Sheet;
+import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.google.api.services.sheets.v4.model.UpdateCellsRequest;
+import com.google.api.services.sheets.v4.model.UpdateChartSpecRequest;
 import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
@@ -383,20 +392,19 @@ public class GoogleSlideController {
 																slideReplacementData.getGoogleSlideVariableValue())));
 					}
 				} // end if for
-			// refresh data from sheets for LInk data
+					// refresh data from sheets for LInk data
 
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
-				
 
 				// change i to any other index if desired
 				for (Page page : pages) {
 					String pageId = page.getObjectId();
 					mLog.info("SLIDEID " + pageId);
 					List<PageElement> pageElementList = page.getPageElements();
-					for (PageElement pageElement : pageElementList)	 {
-						//String desc = pageElement.getDescription();
-						//mLog.info("desc " + desc);
+					for (PageElement pageElement : pageElementList) {
+						// String desc = pageElement.getDescription();
+						// mLog.info("desc " + desc);
 						String elementid = pageElement.getObjectId();
 						mLog.info("elementid " + elementid);
 						SheetsChart chart = pageElement.getSheetsChart();
@@ -404,35 +412,21 @@ public class GoogleSlideController {
 							Integer chartId = chart.getChartId();
 							mLog.info("chartId " + chartId);
 							requests.add(new Request()
-								.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(elementid)));
-						
-						}
-						//requests.add(new Request()
-							//	.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(elementid)));
-						
-					}
-					mLog.info(" " );
-					//page.getSheetsCharts();
-					
-				}
-				//requests.add(new Request()
-				//.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId("gaa1e0f9807_1_0")));
+									.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(elementid)));
 
-				
-				
-				
-				for (SlideInterface page : mSlidesModels) {
-					if (!page.needsDataRefresh()) {
-						continue;
+						}
+						// requests.add(new Request()
+						// .setRefreshSheetsChart(new
+						// RefreshSheetsChartRequest().setObjectId(elementid)));
+
 					}
-					// get slide id
-					if (this.mComments.containsKey(page.getPageName())) {
-						String slideId = this.mComments.get(page.getPageName());
-						mLog.info("refresh silde  [" + slideId + "]");
-						requests.add(new Request()
-								.setRefreshSheetsChart(new RefreshSheetsChartRequest().setObjectId(slideId)));
-					}
+					mLog.info(" ");
+					// page.getSheetsCharts();
+
 				}
+				// requests.add(new Request()
+				// .setRefreshSheetsChart(new
+				// RefreshSheetsChartRequest().setObjectId("gaa1e0f9807_1_0")));
 
 			} // end of if
 
@@ -461,7 +455,6 @@ public class GoogleSlideController {
 
 			}
 
-
 			/*
 			 * Presentation response = slides.presentations().get(newFileId ).execute();
 			 * List<Page> pages = response.getSlides(); for (Page page : pages) { //page.
@@ -488,7 +481,14 @@ public class GoogleSlideController {
 		return nextPage;
 
 	}
-
+	
+	
+	
+	
+	/**
+	 * 
+	 * @param service
+	 */
 	private void writeSheetData(Sheets service) {
 		mLog.warning("ENTERING WriteSheetExample");
 		mLog.info("starting WriteSheetExample");
@@ -504,6 +504,41 @@ public class GoogleSlideController {
 
 		// String spreadsheetId = "1NVWsixQHvBFbr9fpUmSCFKfb3BNrbYgspYSZzyItZL8";
 		String spreadsheetId = this.mGoogleProfile.getSheetsId();
+		// try {
+		// The ranges to retrieve from the spreadsheet.
+		// List<String> ranges = new ArrayList<>(); // TODO: Update placeholder value.
+
+		// True if grid data should be returned.
+		// This parameter is ignored if a field mask was set in the request.
+		/*
+		 * boolean includeGridData = false; // TODO: Update placeholder value.
+		 * 
+		 * Spreadsheets.Get spreadSheets = service.spreadsheets().get(spreadsheetId);
+		 * spreadSheets.setRanges(ranges);
+		 * spreadSheets.setIncludeGridData(includeGridData);
+		 * 
+		 * Spreadsheet response = spreadSheets.execute(); List<Sheet>
+		 * sheets=response.getSheets();
+		 * 
+		 * for (Sheet sheet : sheets) { mLog.info("sheet [" + sheet.toString() + "]");
+		 * List<EmbeddedChart> charts = sheet.getCharts(); for (EmbeddedChart chart :
+		 * charts) { Integer chartID = chart.getChartId(); mLog.info("chart id [" +
+		 * chartID + "]"); } }
+		 */
+
+		// updateChartSpecRequest.setSpec(spec)
+
+		// spreadSheets.
+		// spreadSheets.getClass().getName();
+		// mLog.info("package [" + spreadSheets.getClass().getPackage().getName() +
+		// "]");
+
+		// mLog.info("spreadSheets.getClass().getName(); [" +
+		// spreadSheets.getClass().getName() + "]");
+		// } catch (IOException e1) {
+		// TODO Auto-generated catch block
+		// mLog.severe(e1.getMessage());
+		// }
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
 
 		// String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range
@@ -532,24 +567,59 @@ public class GoogleSlideController {
 		// add data to slides
 		if (mSlidesModels != null) {
 			for (SlideInterface page : mSlidesModels) {
-				if (!page.isPieChart()) {
+				if (!page.isChart()) {
 					// only process pie charts
 					continue;
 				}
-				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
-				List<PieChart> pieChartList = page.getPieChartData();
 				List<List<Object>> writeData = new ArrayList<>();
-				for (PieChart pieChart : pieChartList) {
-					String label = pieChart.getLabel();
-					if (label != null && !label.equals("")) {
-						mLog.info("label   [" + label + "]");
-						List<Object> dataRow = new ArrayList<>();
-						dataRow.add(pieChart.getLabel());
-						dataRow.add(pieChart.getLabelValue());
-						writeData.add(dataRow);
+				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
+				// pie chart
+				/**
+				 * 
+				 * @param service
+				 */
+				if (page.isPieChart()) {
+					List<PieChart> pieChartList = page.getPieChartData();
+
+					for (PieChart pieChart : pieChartList) {
+						String label = pieChart.getLabel();
+						if (label != null && !label.equals("")) {
+							mLog.info("label   [" + label + "]");
+							List<Object> dataRow = new ArrayList<>();
+							dataRow.add(pieChart.getLabel());
+							dataRow.add(pieChart.getLabelValue());
+							writeData.add(dataRow);
+						}
+
 					}
+				}
+
+				
+				
+				if (page.isBarChart()) {
+					MediaChart mediaChart = page.getMediaChart();
+					List<Object> dataRowHeader = new ArrayList<>();
+
+					// spike = green slow = red base = blue
+					dataRowHeader.add("Month");
+					dataRowHeader.add("Spike");
+					dataRowHeader.add("Slow");
+					dataRowHeader.add("Brand");
+					writeData.add(dataRowHeader);
+              /*     */
+					List<Object> dataRowJan = GoogleHelper.writeJan(mediaChart);
+					writeData.add(dataRowJan);
+					
+					List<Object> dataRowFeb = GoogleHelper.writeFeb(mediaChart);
+					writeData.add(dataRowFeb);
+					
+					
+					
+					
+				
 
 				}
+
 				writeRange = page.getWriteRange();
 				mLog.info("writeRange [" + writeRange + "]");
 				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");

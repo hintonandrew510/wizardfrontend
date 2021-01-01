@@ -19,15 +19,20 @@ public abstract class AbstractSlide implements SlideInterface {
 	public MediaChart getMediaChart() {
 		return mediaChart;
 	}
-	public void setMediaChart(MediaChart mediaChart) {
+	public void setMediaChart(MediaChart mediaChart,String writeRange,  String pageName) {
 		this.mediaChart = mediaChart;
+		this.writeRange = writeRange;
+		this.pageName = pageName;
+		
 	}
 	private List<PieChart> pieChartList;
     private MediaChart mediaChart;
     
-	public AbstractSlide(MediaChart mediaChart) {
+	public AbstractSlide(MediaChart mediaChart,  String writeRange,  String pageName) {
 		super();
 		this.mediaChart = mediaChart;
+		this.writeRange = writeRange;
+		this.pageName = pageName;
 	}
 	public AbstractSlide(List<PieChart> pieChartList, String writeRange,  String pageName) {
 		super();
@@ -72,6 +77,16 @@ public abstract class AbstractSlide implements SlideInterface {
 	public boolean isPieChart() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	@Override
+	public boolean isChart() {
+		// TODO Auto-generated method stub
+		boolean thisIsAChart = false;
+		if (this.isBarChart() || this.isPieChart()) {
+			thisIsAChart = true;
+		}
+		return thisIsAChart;
 	}
 	
 	@Override

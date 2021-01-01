@@ -13,9 +13,12 @@ public interface SlideInterface {
 	    public MediaChart getMediaChart();
 	    public boolean isPieChart();
 	    public boolean isBarChart();
+	    public boolean isChart();
 	    public boolean hasReplacementData();
 	    public String getWriteRange();
 	    public boolean needsDataRefresh();
 	    public String getPageName();
-       
+   
+	    
+	    
 }
