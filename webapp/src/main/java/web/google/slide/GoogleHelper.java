@@ -28,6 +28,7 @@ import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
+import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
 import web.model.WizardData;
@@ -97,17 +98,17 @@ public class GoogleHelper {
 		switch (janColor) {
 		    case "green":
 		    	dataRowJan.add(mediaChart.getJan());
-		    	dataRowJan.add("0");
-		    	dataRowJan.add("0");
+		    	dataRowJan.add(0);
+		    	dataRowJan.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRowJan.add("0");
+		    	dataRowJan.add(0);
 		    	dataRowJan.add(mediaChart.getJan());
-		    	dataRowJan.add("0");
+		    	dataRowJan.add(0);
 		    	break;
 		    case "blue":
-		    	dataRowJan.add("0");
-		    	dataRowJan.add("0");
+		    	dataRowJan.add(0);
+		    	dataRowJan.add(0);
 		    	dataRowJan.add(mediaChart.getJan());
 		    	break;
 		}
@@ -126,17 +127,17 @@ public class GoogleHelper {
 		switch (color) {
 		    case "green":
 		    	dataRow.add(mediaChart.getFeb());
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(mediaChart.getFeb());
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(mediaChart.getFeb());
 		    	break;
 		}
@@ -151,17 +152,17 @@ public class GoogleHelper {
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -171,23 +172,24 @@ public class GoogleHelper {
 	
 	public static List<Object> writeApr(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Apr");
 		String color = mediaChart.getAprColor();
 		int value = mediaChart.getApr();
+		
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -197,23 +199,23 @@ public class GoogleHelper {
 	
 	public static List<Object> writeMay(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("May");
 		String color = mediaChart.getMayColor();
 		int value = mediaChart.getMay();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -223,23 +225,23 @@ public class GoogleHelper {
 	
 	public static List<Object> writeJun(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Jun");
 		String color = mediaChart.getJunColor();
 		int value = mediaChart.getJun();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -249,23 +251,23 @@ public class GoogleHelper {
 	
 	public static List<Object> writeJul(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Jul");
 		String color = mediaChart.getJulColor();
 		int value = mediaChart.getJul();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -274,23 +276,23 @@ public class GoogleHelper {
 	}
 	public static List<Object> writeAug(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Aug");
 		String color = mediaChart.getAugColor();
 		int value = mediaChart.getAug();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -299,23 +301,23 @@ public class GoogleHelper {
 	}
 	public static List<Object> writeSep(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Sep");
 		String color = mediaChart.getSepColor();
 		int value = mediaChart.getSep();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -325,23 +327,23 @@ public class GoogleHelper {
 	
 	public static List<Object> writeOct(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Oct");
 		String color = mediaChart.getOctColor();
 		int value = mediaChart.getOct();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -350,23 +352,23 @@ public class GoogleHelper {
 	}
 	public static List<Object> writeNov(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Nov");
 		String color = mediaChart.getNovColor();
 		int value = mediaChart.getNov();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -375,23 +377,23 @@ public class GoogleHelper {
 	}
 	public static List<Object> writeDec(MediaChart mediaChart) {
 		List<Object> dataRow = new ArrayList<>();
-		dataRow.add("Mar");
+		dataRow.add("Dec");
 		String color = mediaChart.getDecColor();
 		int value = mediaChart.getDec();
 		switch (color) {
 		    case "green":
 		    	dataRow.add(value);
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	break;
 		    case "red":		    	
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	dataRow.add(value);
-		    	dataRow.add("0");
+		    	dataRow.add(0);
 		    	break;
 		    case "blue":
-		    	dataRow.add("0");
-		    	dataRow.add("0");
+		    	dataRow.add(0);
+		    	dataRow.add(0);
 		    	dataRow.add(value);
 		    	break;
 		}
@@ -962,7 +964,14 @@ public class GoogleHelper {
 					if (mediaChart != null) {
 
 						publish.setPlanBMediaPage(true);
-						mLog.info("found page PlanBMediaPage");
+
+						
+						
+						slidesData.getPublish().setPlanBMediaPage(true);
+						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(mediaChart,"PlanBMediaPage_Data!A1:E","PlanBMediaPage");
+							slidesList.add(twentyThreePlanBMediaSlide);
+						mLog.info("found page TwentyThreePlanBMediaSlide");
+						mLog.info("found page TwentyThreePlanBMediaSlide");
 
 					}
 					break;
