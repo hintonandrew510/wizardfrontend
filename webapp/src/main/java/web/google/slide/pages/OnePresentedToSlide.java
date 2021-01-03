@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import web.google.slide.AbstractSlide;
+import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.PieChart;
@@ -12,8 +13,8 @@ import web.page.planamedipage.MediaChart;
 import web.page.presentedtopage.PresentedToPageModel;
 
 public class OnePresentedToSlide extends AbstractSlide {
-	public OnePresentedToSlide(SlidesData sildeData) {
-		super(sildeData);
+	public OnePresentedToSlide(SlidesData sildeData , SlideEnum slideEnum) {
+		super(sildeData, slideEnum);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {
@@ -37,11 +38,7 @@ public class OnePresentedToSlide extends AbstractSlide {
 	}
 
 	
-	@Override
-	public boolean hasReplacementData() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+
 
 
 }

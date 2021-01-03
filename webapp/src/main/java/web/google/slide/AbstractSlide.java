@@ -28,17 +28,18 @@ public abstract class AbstractSlide implements SlideInterface {
 	private List<PieChart> pieChartList;
     private MediaChart mediaChart;
     
-	public AbstractSlide(MediaChart mediaChart,  String writeRange,  String pageName) {
+	public AbstractSlide(MediaChart mediaChart,  String writeRange,  String pageName, SlideEnum slideEnum) {
 		super();
 		this.mediaChart = mediaChart;
 		this.writeRange = writeRange;
 		this.pageName = pageName;
 	}
-	public AbstractSlide(List<PieChart> pieChartList, String writeRange,  String pageName) {
+	public AbstractSlide(List<PieChart> pieChartList, String writeRange,  String pageName, SlideEnum slideEnum) {
 		super();
 		this.pieChartList = pieChartList;
 		this.writeRange = writeRange;
 		this.pageName = pageName;
+		this.slideEnum = slideEnum;
 	}
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
@@ -46,7 +47,8 @@ public abstract class AbstractSlide implements SlideInterface {
 	public void setmSlidesData(SlidesData mSlidesData) {
 		this.mSlidesData = mSlidesData;
 	}
-	public AbstractSlide(SlidesData slidesData) {
+	public AbstractSlide(SlidesData slidesData,SlideEnum slideEnum) {
+		this.slideEnum = slideEnum;
 		mSlidesData = slidesData;
 	}
 	@Override
@@ -61,50 +63,101 @@ public abstract class AbstractSlide implements SlideInterface {
 		return null;
 	}
 	
-	@Override
-	public boolean isBarChart() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean hasReplacementData() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isTextReplacement = false;
+		switch(this.slideEnum) {
+		case TextSlideReplacement:
+			isTextReplacement = true;
+			break;
+			default:
+				isTextReplacement = false;
+		}
+		return isTextReplacement;
+	}
+	
+	
+	@Override
+	public boolean isChart() {
+		boolean hasChartData = false;
+		switch(this.slideEnum) {
+		case BarChart:
+		case PieChart:
+			hasChartData = true;
+			break;
+			default:
+				hasChartData = false;
+		}
+		return hasChartData;
+
 	}
 	
 	@Override
 	public boolean isPieChart() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public boolean isChart() {
-		// TODO Auto-generated method stub
-		boolean thisIsAChart = false;
-		if (this.isBarChart() || this.isPieChart()) {
-			thisIsAChart = true;
+		boolean hasChartData = false;
+		switch(this.slideEnum) {
+		case PieChart:
+			hasChartData = true;
+			break;
+			default:
+				hasChartData = false;
 		}
-		return thisIsAChart;
+		return hasChartData;
 	}
 	
+	
 	@Override
-	public String getWriteRange() {
+	public boolean isBarChart() {
+		boolean hasChartData = false;
+		switch(this.slideEnum) {
+		case BarChart:
+
+			hasChartData = true;
+			break;
+			default:
+				hasChartData = false;
+		}
+		return hasChartData;
+	}
+	
+	
+	
+	private SlideEnum slideEnum;
+	
+	@Override
+ 	public String getWriteRange() {
 		// TODO Auto-generated method stub
 		return writeRange;
 	}
 	@Override
 	public boolean needsDataRefresh() {
-		if (isPieChart() || isBarChart()) {
-			return true;
+		boolean needsRefresh = false;
+		switch(this.slideEnum) {
+		case BarChart:
+		case PieChart:
+			needsRefresh = true;
+			break;
+		default:
+			needsRefresh = false;
+			break;
+			
 		}
-		return false;
+		
+		return needsRefresh;
 	}
 	@Override
 	public String getPageName() {
+
+		
 		// TODO Auto-generated method stub
 		return this.pageName;
+	}
+	
+	@Override
+	public SlideEnum getSlideType() {
+		// TODO Auto-generated method stub
+		return slideEnum;
 	}
 
 

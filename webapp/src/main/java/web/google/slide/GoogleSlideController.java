@@ -374,6 +374,12 @@ public class GoogleSlideController {
 			if (mSlidesModels != null) {
 				for (SlideInterface page : mSlidesModels) {
 					// only process replacement pages
+					
+					switch (page.getSlideType()) {
+					
+					}
+					
+					
 					if (!page.hasReplacementData()) {
 						continue; // skip over charts
 					}

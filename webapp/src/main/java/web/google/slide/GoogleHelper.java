@@ -621,7 +621,7 @@ public class GoogleHelper {
                     //slide 8
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
 					EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = 
-							new EightConfidentialClientEvaluationOneSlide(pieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B","ConfidentialClientEvaluationOnePage");
+							new EightConfidentialClientEvaluationOneSlide(pieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B","ConfidentialClientEvaluationOnePage", SlideEnum.PieChart);
 					
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
 					
@@ -645,7 +645,7 @@ public class GoogleHelper {
 					 //slide 9
 					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
 					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = 
-							new NineConfidentialClientEvaluationProposedSlide(pieChartProposed,"ConfidentialClientEvaluationProposedPage_Data!A1:B","ConfidentialClientEvaluationProposed");
+							new NineConfidentialClientEvaluationProposedSlide(pieChartProposed,"ConfidentialClientEvaluationProposedPage_Data!A1:B","ConfidentialClientEvaluationProposed", SlideEnum.PieChart);
 					
 					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 					
@@ -939,7 +939,7 @@ public class GoogleHelper {
 						publish.setPlanAMediaPage(true);
 						
 						slidesData.getPublish().setPlanAMediaPage(true);
-						SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(mediaChartA,"PlanAMediaPage_Data!A1:E","PlanAMediaPage");
+						SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(mediaChartA,"PlanAMediaPage_Data!A1:E","PlanAMediaPage", SlideEnum.BarChart);
 							slidesList.add(seventeenPlanAMediaSlide);
 						mLog.info("found page SeventeenPlanAMediaSlide");
 
@@ -968,7 +968,7 @@ public class GoogleHelper {
 						
 						
 						slidesData.getPublish().setPlanBMediaPage(true);
-						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(mediaChart,"PlanBMediaPage_Data!A1:E","PlanBMediaPage");
+						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(mediaChart,"PlanBMediaPage_Data!A1:E","PlanBMediaPage", SlideEnum.BarChart);
 							slidesList.add(twentyThreePlanBMediaSlide);
 						mLog.info("found page TwentyThreePlanBMediaSlide");
 						mLog.info("found page TwentyThreePlanBMediaSlide");
@@ -988,7 +988,7 @@ public class GoogleHelper {
 					// model.addAttribute("PresentedToPage", presentedToPageModel);
 					slidesData.getPublish().setPresentedToPage(true);
 					slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
-					OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData);
+					OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(presentedToSlide);
 					mLog.info("found page PresentedToPage");
 					break;
@@ -1107,7 +1107,7 @@ public class GoogleHelper {
 					
 					slidesData.getPublish().setTeamCommitmentPage(true);
 					slidesData.getPageModels().setTeamCommitmentPageModel(teamCommitmentPageModel);
-					TwoTeamCommitmentSlide slide = new TwoTeamCommitmentSlide(slidesData);
+					TwoTeamCommitmentSlide slide = new TwoTeamCommitmentSlide(slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(slide);
 					mLog.info("found page TeamCommitmentPage");
 
