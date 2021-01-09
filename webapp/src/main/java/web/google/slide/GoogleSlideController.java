@@ -413,8 +413,8 @@ public class GoogleSlideController {
 					for (PageElement pageElement : pageElementList) {
 						// String desc = pageElement.getDescription();
 						// mLog.info("desc " + desc);
-						String elementid = pageElement.getObjectId();
-						mLog.info("elementid " + elementid);
+						//String elementid = pageElement.getObjectId();
+						//mLog.info("elementid " + elementid);
 						SheetsChart chart = pageElement.getSheetsChart();
 						if (chart != null) {
 							Integer chartId = chart.getChartId();
