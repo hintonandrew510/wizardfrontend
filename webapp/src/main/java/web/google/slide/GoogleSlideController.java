@@ -316,8 +316,14 @@ public class GoogleSlideController {
 			// https://docs.google.com/presentation/d/1ZpzLy8P1Nvk2kVLqJ-Bdck4kQRSx3jEuEcf7VB4Mi_Y/edit#slide=id.gac76981968_0_5
 
 			// get the drive service
+			mLog.info("WRITING DATA  ");
 
-			writeSheetData(mSheets);
+			try {
+				writeSheetData(mSheets);
+			} catch (Exception ex) {
+                 mLog.severe("ERROR WRITTING DATA [" + ex + "]");
+			}
+			mLog.info("DONE WITH WRITING DATA  ");
 			/*
 			 * List<File> result = new ArrayList<File>(); Files.List request =
 			 * drive.files().list(); FileList files = request.execute();
@@ -340,7 +346,7 @@ public class GoogleSlideController {
 
 			// Create the text merge (replaceAllText) requests for this presentation.
 			List<Request> requests = new ArrayList<>();
-			Request requestText = new Request();
+			// Request requestText = new Request();
 
 			// delete slide
 			// get the slide names and ids from the comments and remove pages
@@ -365,21 +371,17 @@ public class GoogleSlideController {
 				}
 
 			} catch (Exception e) {
-				mLog.warning("could not read comment   + " + e.getMessage());
+				mLog.severe("could not read comment   + " + e.getMessage());
 			}
+			mLog.info("DELETED OF SLIDES DONE");
 
 			// gb1f3d784ca_0_16
-
+			mLog.info("REPLACE DATA IN SLIDES");
 			// add data to slides
 			if (mSlidesModels != null) {
 				for (SlideInterface page : mSlidesModels) {
 					// only process replacement pages
-					
-					switch (page.getSlideType()) {
-					
-					}
-					
-					
+
 					if (!page.hasReplacementData()) {
 						continue; // skip over charts
 					}
@@ -440,7 +442,7 @@ public class GoogleSlideController {
 			// .setContainsText(new
 			// SubstringMatchCriteria().setText("{{customer-name}}").setMatchCase(true))
 			// .setReplaceText("yes")));
-
+			mLog.info("REPLACE DATA IN SLIDES DONE");
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
 			BatchUpdatePresentationRequest body = new BatchUpdatePresentationRequest().setRequests(requests);
@@ -475,7 +477,7 @@ public class GoogleSlideController {
 			// String data = new String(bdata, StandardCharsets.UTF_8);
 			// mLog.info(data);
 		} catch (Exception e) {
-			mLog.severe("ERROR " + e.getMessage());
+			mLog.severe("ERROR [" + e.getMessage() + "]");
 		}
 		// ignore id
 		model.addAttribute("agent", mAgent);
@@ -493,7 +495,7 @@ public class GoogleSlideController {
 	 * @param service
 	 */
 	private void writeSheetData(Sheets service) {
-		mLog.warning("ENTERING WriteSheetExample");
+		mLog.warning("ENTERING writeSheetData");
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
 
@@ -568,12 +570,14 @@ public class GoogleSlideController {
 		 */
 
 		// add data to slides
+		
 		if (mSlidesModels != null) {
 			for (SlideInterface page : mSlidesModels) {
 				if (!page.isChart()) {
 					// only process pie charts
 					continue;
 				}
+				mLog.info("starting writing charts");
 				List<List<Object>> writeData = new ArrayList<>();
 				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
 				// pie chart
@@ -582,8 +586,8 @@ public class GoogleSlideController {
 				 * @param service
 				 */
 				if (page.isPieChart()) {
-					mLog.info("pie chart " + page.getPageName() + "]");
-					
+					mLog.info("pie chart start writting [" + page.getPageName() + "]");
+
 					List<PieChart> pieChartList = page.getPieChartData();
 
 					for (PieChart pieChart : pieChartList) {
@@ -597,10 +601,12 @@ public class GoogleSlideController {
 						}
 
 					}
+					mLog.info("finish pie chart start writting [" + page.getPageName() + "]");
+
 				}
 
 				if (page.isBarChart()) {
-					mLog.info("bar chart " + page.getPageName() + "]");
+					mLog.info("bar chart start write [" + page.getPageName() + "]");
 					MediaChart mediaChart = page.getMediaChart();
 					List<Object> dataRowHeader = new ArrayList<>();
 
@@ -646,6 +652,7 @@ public class GoogleSlideController {
 
 					List<Object> dataRowDec = GoogleHelper.writeDec(mediaChart);
 					writeData.add(dataRowDec);
+					mLog.info("bar end chart [" + page.getPageName() + "]");
 
 				}
 
@@ -668,12 +675,12 @@ public class GoogleSlideController {
 					UpdateValuesResponse result = service.spreadsheets().values()
 							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
 					mLog.info("result [" + result + "]");
-					mLog.warning("LEAVING WriteSheetExample");
+					mLog.warning("LEAVING writeSheetData");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					mLog.severe(spreadsheetId + " not found");
 					mLog.severe(e.getMessage());
-					mLog.severe("EXITING with ERROR WriteSheetExample");
+					mLog.severe("EXITING with ERROR writeSheetData");
 				}
 
 			} // end of for
@@ -708,6 +715,7 @@ public class GoogleSlideController {
 		// .setRequests(requests);
 		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
 		// .execute();
+		mLog.warning("LEAVING writeSheetData");
 
 	}
 

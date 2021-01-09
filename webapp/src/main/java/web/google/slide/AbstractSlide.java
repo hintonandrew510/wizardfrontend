@@ -1,11 +1,14 @@
 package web.google.slide;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import web.page.PieChart;
 import web.page.planamedipage.MediaChart;
 
 public abstract class AbstractSlide implements SlideInterface {
+	private static final Logger mLog = Logger.getLogger(AbstractSlide.class.getName());
+
 	private SlidesData mSlidesData;
 	private String writeRange;
 	private String pageName;
@@ -66,13 +69,18 @@ public abstract class AbstractSlide implements SlideInterface {
 
 	@Override
 	public boolean hasReplacementData() {
+		mLog.warning("hasReplacementData");
 		boolean isTextReplacement = false;
+		try {
 		switch(this.slideEnum) {
 		case TextSlideReplacement:
 			isTextReplacement = true;
 			break;
 			default:
 				isTextReplacement = false;
+		}
+		} catch(Exception ex) {
+			mLog.severe(ex.getMessage());
 		}
 		return isTextReplacement;
 	}
