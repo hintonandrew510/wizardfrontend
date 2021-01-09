@@ -91,7 +91,12 @@ public class GoogleHelper {
 	 * @param mediaChart
 	 * @return
 	 */
-	public static List<Object> writeJan(MediaChart mediaChart) {
+	public static List<Object> writeJan(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getJanColor() == null ) {
+			mLog.severe("null Jan data");
+			throw new Exception("null Jan data");	
+			
+		}
 		List<Object> dataRowJan = new ArrayList<>();
 		dataRowJan.add("Jan");
 		String janColor = mediaChart.getJanColor();
@@ -119,8 +124,14 @@ public class GoogleHelper {
 	 * 
 	 * @param mediaChart
 	 * @return
+	 * @throws Exception 
 	 */
-	public static List<Object> writeFeb(MediaChart mediaChart) {
+	public static List<Object> writeFeb(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getFebColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Feb");
 		String color = mediaChart.getFebColor();
@@ -144,7 +155,12 @@ public class GoogleHelper {
 		return dataRow;
 		
 	}
-	public static List<Object> writeMar(MediaChart mediaChart) {
+	public static List<Object> writeMar(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getMarColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Mar");
 		String color = mediaChart.getMarColor();
@@ -170,7 +186,12 @@ public class GoogleHelper {
 		
 	}
 	
-	public static List<Object> writeApr(MediaChart mediaChart) {
+	public static List<Object> writeApr(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getAprColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Apr");
 		String color = mediaChart.getAprColor();
@@ -197,7 +218,12 @@ public class GoogleHelper {
 		
 	}
 	
-	public static List<Object> writeMay(MediaChart mediaChart) {
+	public static List<Object> writeMay(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getMayColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("May");
 		String color = mediaChart.getMayColor();
@@ -223,7 +249,12 @@ public class GoogleHelper {
 		
 	}
 	
-	public static List<Object> writeJun(MediaChart mediaChart) {
+	public static List<Object> writeJun(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getJunColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Jun");
 		String color = mediaChart.getJunColor();
@@ -249,7 +280,13 @@ public class GoogleHelper {
 		
 	}
 	
-	public static List<Object> writeJul(MediaChart mediaChart) {
+	public static List<Object> writeJul(MediaChart mediaChart)
+		throws Exception {
+			if (mediaChart.getJulColor() == null ) {
+				mLog.severe("null data");
+				throw new Exception("null data");	
+				
+			}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Jul");
 		String color = mediaChart.getJulColor();
@@ -274,7 +311,12 @@ public class GoogleHelper {
 		return dataRow;
 		
 	}
-	public static List<Object> writeAug(MediaChart mediaChart) {
+	public static List<Object> writeAug(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getAugColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Aug");
 		String color = mediaChart.getAugColor();
@@ -299,7 +341,12 @@ public class GoogleHelper {
 		return dataRow;
 		
 	}
-	public static List<Object> writeSep(MediaChart mediaChart) {
+	public static List<Object> writeSep(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getSepColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Sep");
 		String color = mediaChart.getSepColor();
@@ -325,7 +372,12 @@ public class GoogleHelper {
 		
 	}
 	
-	public static List<Object> writeOct(MediaChart mediaChart) {
+	public static List<Object> writeOct(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getOctColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Oct");
 		String color = mediaChart.getOctColor();
@@ -350,7 +402,12 @@ public class GoogleHelper {
 		return dataRow;
 		
 	}
-	public static List<Object> writeNov(MediaChart mediaChart) {
+	public static List<Object> writeNov(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getNovColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Nov");
 		String color = mediaChart.getNovColor();
@@ -375,7 +432,12 @@ public class GoogleHelper {
 		return dataRow;
 		
 	}
-	public static List<Object> writeDec(MediaChart mediaChart) {
+	public static List<Object> writeDec(MediaChart mediaChart) throws Exception {
+		if (mediaChart.getDecColor() == null ) {
+			mLog.severe("null data");
+			throw new Exception("null data");	
+			
+		}
 		List<Object> dataRow = new ArrayList<>();
 		dataRow.add("Dec");
 		String color = mediaChart.getDecColor();

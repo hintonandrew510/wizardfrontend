@@ -12,136 +12,151 @@ public abstract class AbstractSlide implements SlideInterface {
 	private SlidesData mSlidesData;
 	private String writeRange;
 	private String pageName;
-    public List<PieChart> getPieChartList() {
+
+	public List<PieChart> getPieChartList() {
 		return pieChartList;
 	}
+
 	public void setPieChartList(List<PieChart> pieChartList) {
 		this.pieChartList = pieChartList;
-		
+
 	}
+
 	public MediaChart getMediaChart() {
 		return mediaChart;
 	}
-	public void setMediaChart(MediaChart mediaChart,String writeRange,  String pageName) {
+
+	public void setMediaChart(MediaChart mediaChart, String writeRange, String pageName) {
 		this.mediaChart = mediaChart;
 		this.writeRange = writeRange;
 		this.pageName = pageName;
-		
+
 	}
+
 	private List<PieChart> pieChartList;
-    private MediaChart mediaChart;
-    
-	public AbstractSlide(MediaChart mediaChart,  String writeRange,  String pageName, SlideEnum slideEnum) {
+	private MediaChart mediaChart;
+
+	public AbstractSlide(MediaChart mediaChart, String writeRange, String pageName, SlideEnum slideEnum) {
 		super();
 		this.mediaChart = mediaChart;
 		this.writeRange = writeRange;
 		this.pageName = pageName;
+		this.slideEnum = slideEnum;
 	}
-	public AbstractSlide(List<PieChart> pieChartList, String writeRange,  String pageName, SlideEnum slideEnum) {
+
+	public AbstractSlide(List<PieChart> pieChartList, String writeRange, String pageName, SlideEnum slideEnum) {
 		super();
 		this.pieChartList = pieChartList;
 		this.writeRange = writeRange;
 		this.pageName = pageName;
 		this.slideEnum = slideEnum;
 	}
+
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
 	}
+
 	public void setmSlidesData(SlidesData mSlidesData) {
 		this.mSlidesData = mSlidesData;
 	}
-	public AbstractSlide(SlidesData slidesData,SlideEnum slideEnum) {
+
+	public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum) {
 		this.slideEnum = slideEnum;
 		mSlidesData = slidesData;
 	}
+
 	@Override
 	public List<PieChart> getPieChartData() {
 		// TODO Auto-generated method stub
 		return this.getPieChartList();
 	}
-	
+
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 
 	@Override
 	public boolean hasReplacementData() {
 		mLog.warning("hasReplacementData");
 		boolean isTextReplacement = false;
 		try {
-		switch(this.slideEnum) {
-		case TextSlideReplacement:
-			isTextReplacement = true;
-			break;
+			switch (this.slideEnum) {
+			case TextSlideReplacement:
+				isTextReplacement = true;
+				break;
 			default:
 				isTextReplacement = false;
-		}
-		} catch(Exception ex) {
+			}
+		} catch (Exception ex) {
 			mLog.severe(ex.getMessage());
 		}
 		return isTextReplacement;
 	}
-	
-	
+
 	@Override
 	public boolean isChart() {
 		boolean hasChartData = false;
-		switch(this.slideEnum) {
-		case BarChart:
-		case PieChart:
-			hasChartData = true;
-			break;
+		try {
+			switch (this.slideEnum) {
+			case BarChart:
+			case PieChart:
+				hasChartData = true;
+				break;
 			default:
 				hasChartData = false;
+			}
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
 		}
 		return hasChartData;
 
 	}
-	
+
 	@Override
 	public boolean isPieChart() {
 		boolean hasChartData = false;
-		switch(this.slideEnum) {
-		case PieChart:
-			hasChartData = true;
-			break;
+		try {
+			switch (this.slideEnum) {
+			case PieChart:
+				hasChartData = true;
+				break;
 			default:
 				hasChartData = false;
+			}
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
 		}
 		return hasChartData;
 	}
-	
-	
+
 	@Override
 	public boolean isBarChart() {
 		boolean hasChartData = false;
-		switch(this.slideEnum) {
+		switch (this.slideEnum) {
 		case BarChart:
 
 			hasChartData = true;
 			break;
-			default:
-				hasChartData = false;
+		default:
+			hasChartData = false;
 		}
 		return hasChartData;
 	}
-	
-	
-	
+
 	private SlideEnum slideEnum;
-	
+
 	@Override
- 	public String getWriteRange() {
+	public String getWriteRange() {
 		// TODO Auto-generated method stub
 		return writeRange;
 	}
+
 	@Override
 	public boolean needsDataRefresh() {
 		boolean needsRefresh = false;
-		switch(this.slideEnum) {
+		switch (this.slideEnum) {
 		case BarChart:
 		case PieChart:
 			needsRefresh = true;
@@ -149,24 +164,23 @@ public abstract class AbstractSlide implements SlideInterface {
 		default:
 			needsRefresh = false;
 			break;
-			
+
 		}
-		
+
 		return needsRefresh;
 	}
+
 	@Override
 	public String getPageName() {
 
-		
 		// TODO Auto-generated method stub
 		return this.pageName;
 	}
-	
+
 	@Override
 	public SlideEnum getSlideType() {
 		// TODO Auto-generated method stub
 		return slideEnum;
 	}
-
 
 }

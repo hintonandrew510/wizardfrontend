@@ -81,6 +81,7 @@ div {
 	background-color: black;
 }
 </style>
+  <script src="js/googleslide.js"></script>
 
 </head>
 <body>
@@ -95,6 +96,8 @@ div {
 		<button id="signinButton"><img src="./img/btn_google_signin_dark_normal_web@2x.png"></button>
 
 		<script>
+		
+		
 			$('#signinButton').click(function() {
 				// signInCallback defined in step 6.
 				auth2.grantOfflineAccess().then(signInCallback);
@@ -139,13 +142,13 @@ div {
 
 
 
-
+  
 	<script
 		src="https://apis.google.com/js/client:platform.js?onload=start" async
 		defer>
 		
 	</script>
-	<script src="js/googleslide.js"></script>
+	
     
 	<div id="footerId" class="container"></div>
 	<script>

@@ -413,7 +413,7 @@ public class GoogleSlideController {
 					for (PageElement pageElement : pageElementList) {
 						// String desc = pageElement.getDescription();
 						// mLog.info("desc " + desc);
-						//String elementid = pageElement.getObjectId();
+						String elementid = pageElement.getObjectId();
 						//mLog.info("elementid " + elementid);
 						SheetsChart chart = pageElement.getSheetsChart();
 						if (chart != null) {
@@ -574,21 +574,25 @@ public class GoogleSlideController {
 		if (mSlidesModels != null) {
 			for (SlideInterface page : mSlidesModels) {
 				if (!page.isChart()) {
-					// only process pie charts
+					mLog.info("not a chart skipping " + page.getPageName());
 					continue;
 				}
-				mLog.info("starting writing charts");
+				mLog.info("starting writing charts data");
 				List<List<Object>> writeData = new ArrayList<>();
-				mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
+				//mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
 				// pie chart
 				/**
 				 * 
 				 * @param service
 				 */
 				if (page.isPieChart()) {
-					mLog.info("pie chart start writting [" + page.getPageName() + "]");
+					mLog.warning("pie chart start writting [" + page.getPageName() + "]");
 
 					List<PieChart> pieChartList = page.getPieChartData();
+					if (pieChartList == null ) {
+						mLog.warning("null pie data skipping " + page.getPageName());
+						continue;
+					}
 
 					for (PieChart pieChart : pieChartList) {
 						String label = pieChart.getLabel();
@@ -601,13 +605,17 @@ public class GoogleSlideController {
 						}
 
 					}
-					mLog.info("finish pie chart start writting [" + page.getPageName() + "]");
+					mLog.warning("finish pie chart start writting [" + page.getPageName() + "]");
 
 				}
-
+				mLog.warning("BAR CHART WRITTING");
 				if (page.isBarChart()) {
 					mLog.info("bar chart start write [" + page.getPageName() + "]");
 					MediaChart mediaChart = page.getMediaChart();
+					if (mediaChart == null) {
+						mLog.warning("null mediachart data skipping " + page.getPageName());
+						continue;
+					}
 					List<Object> dataRowHeader = new ArrayList<>();
 
 					// spike = green slow = red base = blue
@@ -616,6 +624,8 @@ public class GoogleSlideController {
 					dataRowHeader.add("Slow");
 					dataRowHeader.add("Brand");
 					writeData.add(dataRowHeader);
+					
+					try {
 					/*     */
 					List<Object> dataRowJan = GoogleHelper.writeJan(mediaChart);
 					writeData.add(dataRowJan);
@@ -652,6 +662,10 @@ public class GoogleSlideController {
 
 					List<Object> dataRowDec = GoogleHelper.writeDec(mediaChart);
 					writeData.add(dataRowDec);
+					} catch (Exception ex) {
+						mLog.warning("null mediachart values data skipping " + page.getPageName());
+						continue;
+					}
 					mLog.info("bar end chart [" + page.getPageName() + "]");
 
 				}
