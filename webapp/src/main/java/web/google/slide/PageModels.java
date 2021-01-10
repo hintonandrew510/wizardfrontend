@@ -3,7 +3,10 @@ package web.google.slide;
 
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
+import web.page.extra.ExtraPageModel;
+import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
+import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 public class PageModels {
@@ -11,6 +14,27 @@ public class PageModels {
  private ConfidentialClientEvaluationOnePageModel confidentialClientEvaluationOnePageModel;
  private PresentedToPageModel presentedToPageModel;
  private TeamCommitmentPageModel teamCommitmentPageModel;
+ private ExtraPageModel marketingStrategiesPageModel;
+ private MarketPlaceCompetitionPageModel marketPlaceCompetitionPageModel;
+ private StrategicMarketingPageOneModel strategicMarketingPageOneModel;
+public StrategicMarketingPageOneModel getStrategicMarketingPageOneModel() {
+	return strategicMarketingPageOneModel;
+}
+public void setStrategicMarketingPageOneModel(StrategicMarketingPageOneModel strategicMarketingPageOneModel) {
+	this.strategicMarketingPageOneModel = strategicMarketingPageOneModel;
+}
+public MarketPlaceCompetitionPageModel getMarketPlaceCompetitionPageModel() {
+	return marketPlaceCompetitionPageModel;
+}
+public void setMarketPlaceCompetitionPageModel(MarketPlaceCompetitionPageModel marketPlaceCompetitionPageModel) {
+	this.marketPlaceCompetitionPageModel = marketPlaceCompetitionPageModel;
+}
+public ExtraPageModel getMarketingStrategiesPageModel() {
+	return marketingStrategiesPageModel;
+}
+public void setMarketingStrategiesPageModel(ExtraPageModel marketingStrategiesPageModel) {
+	this.marketingStrategiesPageModel = marketingStrategiesPageModel;
+}
 public TeamCommitmentPageModel getTeamCommitmentPageModel() {
 	return teamCommitmentPageModel;
 }

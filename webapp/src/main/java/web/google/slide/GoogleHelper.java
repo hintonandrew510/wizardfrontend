@@ -28,6 +28,7 @@ import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
+import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
@@ -786,7 +787,12 @@ public class GoogleHelper {
 							.convertFromJson(data.getPagedata(), MarketPlaceCompetitionPageModel.class);
 					// model.addAttribute("MarketPlaceCompetitionPageModel",
 					// marketPlaceCompetitionPageModel);
+					slidesData.getPageModels().setMarketPlaceCompetitionPageModel(marketPlaceCompetitionPageModel);
+					ThreeMarketPlaceCompetitionSlide slide = new ThreeMarketPlaceCompetitionSlide(slidesData, SlideEnum.TextSlideReplacement);
+					slidesList.add(slide);
+					mLog.info("found page marketingStrategiesPageModel");
 
+					publish.setMarketingStrategiesPage(true);
 					publish.setMarketPlaceCompetitionPage(true);
 					mLog.info("found page MarketPlaceCompetitionPageModel");
 
@@ -803,9 +809,9 @@ public class GoogleHelper {
 							ExtraPageModel.class);
 					// model.addAttribute("MarketingStrategiesPageModel",
 					// marketingStrategiesPageModel);
-					mLog.info("found page marketingStrategiesPageModel");
-
-					publish.setMarketingStrategiesPage(true);
+					
+					
+				
 
 					break;
 				} catch (Exception ex) {
@@ -1087,7 +1093,8 @@ public class GoogleHelper {
 					// strategicMarketingPageOneModel);
 
 					publish.setStrategicMarketingPageOne(true);
-
+					slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
+					
 					mLog.info("value found page StrategicMarketingPageOne "
 							+ strategicMarketingPageOneModel.getYearsInBusiness());
 					break;
