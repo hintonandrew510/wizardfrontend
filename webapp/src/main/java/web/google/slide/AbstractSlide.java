@@ -116,7 +116,11 @@ public abstract class AbstractSlide implements SlideInterface {
 		}
 		return isTextReplacement;
 	}
-
+	@Override
+	public SlideEnum getSlideEnum() {
+		// TODO Auto-generated method stub
+		return this.slideEnum;
+	}
 	@Override
 	public boolean isChart() {
 		boolean hasChartData = false;
@@ -124,6 +128,11 @@ public abstract class AbstractSlide implements SlideInterface {
 			switch (this.slideEnum) {
 			case BarChart:
 			case PieChart:
+			case ClientObjectiveBRAND:
+			case ClientObjectivePRODUCTSERVICE:
+			case ClientObjectivePROMOTION:
+			case ClientObjectiveCONSUMER:
+			case ClientObjectiveOtherText:
 				hasChartData = true;
 				break;
 			default:
@@ -135,7 +144,26 @@ public abstract class AbstractSlide implements SlideInterface {
 		return hasChartData;
 
 	}
-	
+	@Override
+	public boolean isClientObjectiveBrandOtherText() {
+		boolean hasClientData = false;
+		try {
+			switch (this.slideEnum) {
+			
+			case ClientObjectiveOtherText:
+				hasClientData = true;
+				break;
+			default:
+				hasClientData = false;
+				break;
+			}
+			
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
+		}
+		// TODO Auto-generated method stub
+		return hasClientData;
+	}
 	@Override
 	public boolean isClientObjectiveBrand() {
 		boolean hasClientData = false;

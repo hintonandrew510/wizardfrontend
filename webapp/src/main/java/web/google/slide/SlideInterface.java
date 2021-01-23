@@ -13,6 +13,7 @@ public interface SlideInterface {
 	    public MediaChart getMediaChart();
 	    public boolean isClientObjectiveConsumer();
 	    public boolean isClientObjectiveBrand();
+	    public boolean isClientObjectiveBrandOtherText();
 	    public boolean isClientObjectiveProductService();
 	    public boolean isClientObjectivePromotion();
 	    public SlideEnum getSlideType();
@@ -23,6 +24,7 @@ public interface SlideInterface {
 	    public boolean isChart();
 	    public boolean isPieChart();
 	    public boolean isBarChart();
+	    public SlideEnum getSlideEnum();
 	    public SlidesData getSlidesData();
    
 	    

@@ -322,7 +322,7 @@ public class GoogleSlideController {
 			try {
 				writeSheetData(mSheets);
 			} catch (Exception ex) {
-                 mLog.severe("ERROR WRITTING DATA [" + ex + "]");
+				mLog.severe("ERROR WRITTING DATA [" + ex + "]");
 			}
 			mLog.info("DONE WITH WRITING DATA  ");
 			/*
@@ -415,7 +415,7 @@ public class GoogleSlideController {
 						// String desc = pageElement.getDescription();
 						// mLog.info("desc " + desc);
 						String elementid = pageElement.getObjectId();
-						//mLog.info("elementid " + elementid);
+						// mLog.info("elementid " + elementid);
 						SheetsChart chart = pageElement.getSheetsChart();
 						if (chart != null) {
 							Integer chartId = chart.getChartId();
@@ -571,28 +571,140 @@ public class GoogleSlideController {
 		 */
 
 		// add data to slides
-		
+
 		if (mSlidesModels != null) {
 			for (SlideInterface page : mSlidesModels) {
+				mLog.info("PAGE Name [" + page.getPageName() + "]");
+				mLog.info("SlideEnum [" + page.getSlideEnum() + "]");
+
 				if (!page.isChart()) {
 					mLog.info("not a chart skipping " + page.getPageName());
 					continue;
 				}
 				mLog.info("starting writing charts data");
 				List<List<Object>> writeData = new ArrayList<>();
-				//mLog.info("processing  spreadsheet [" + page.getWriteRange() + "]");
+				// mLog.info("processing spreadsheet [" + page.getWriteRange() + "]");
 				// pie chart
 				/**
 				 * 
 				 * @param service
 				 */
-				
-				if (page.isClientObjectivePromotion()) {
-					mLog.warning("iClientObjectivePromotion start writting [" + page.getPageName() + "]");
 
-					ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels().getClientObjectivesOnePageModel();
-					if (clientObjectivesOnePageModel == null ) {
-						mLog.warning("null clientObjectivesOnePageModel skipping " + page.getPageName());
+				/*
+				 * 
+				 * 
+				 * turnOn = clientObjectivesOnePageModel.isCreatePentUpDemand() ? 0 : 1; turnOn
+				 * = clientObjectivesOnePageModel.isDevelopAQuarterlySpike() ? 0 : 1; turnOn =
+				 * clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage() ? 0 : 1;
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * turnOn =
+				 * clientObjectivesOnePageModel.isIncreaseDigitalMobileOnlineResponse()? 0 : 1;
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 * 
+				 */
+
+				if (page.isClientObjectiveBrand()) {
+					mLog.warning("ClientObjectiveBrand start writting [" + page.getPageName() + "]");
+
+					ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels()
+							.getClientObjectivesOnePageModel();
+					if (clientObjectivesOnePageModel == null) {
+						mLog.warning("null ClientObjectiveBrand skipping " + page.getPageName());
+						continue;
+					}
+
+					List<Object> dataRowOne = new ArrayList<>();
+					List<Object> dataRowTwo = new ArrayList<>();
+					List<Object> dataRowThree = new ArrayList<>();
+					List<Object> dataRowFour = new ArrayList<>();
+					List<Object> dataRowFive = new ArrayList<>();
+					// List<Object> dataRowSix = new ArrayList<>();
+
+					/*
+					 * 
+					 * 
+					 * Elevate Business Brand/Image Improve Reputation and Listing Management
+					 * Enhance Website (Mobile, Response, SEO, SEM)
+					 * 
+					 * 
+					 * 
+					 */
+					Integer turnOn = null;
+
+					turnOn = clientObjectivesOnePageModel.isMaintainMarketDominance() ? 0 : 1;
+					dataRowOne.add(turnOn);
+					writeData.add(dataRowOne);
+
+					turnOn = clientObjectivesOnePageModel.isImproveBusinessNameBrand() ? 0 : 1;
+					dataRowTwo.add(turnOn);
+					writeData.add(dataRowTwo);
+
+					turnOn = clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage() ? 0 : 1;
+					dataRowThree.add(turnOn);
+					writeData.add(dataRowThree);
+
+					turnOn = clientObjectivesOnePageModel.isCreatePentUpDemand() ? 0 : 1;
+					dataRowFour.add(turnOn);
+					writeData.add(dataRowFour);
+
+					turnOn = clientObjectivesOnePageModel.isIncreaseMarketShare() ? 0 : 1;
+					dataRowFive.add(turnOn);
+					writeData.add(dataRowFive);
+					// dataRow.add(pieChart.getLabelValue());
+
+					// turnOn = clientObjectivesOnePageModel.isOther()? 0 : 1;
+					// dataRowSix.add(turnOn);
+					// writeData.add(dataRowSix);
+
+					mLog.warning("finish ClientObjectiveBrand [" + page.getPageName() + "]");
+
+				}
+				/*
+				 * if (page.isClientObjectiveBrandOtherText()) {
+				 * mLog.warning("ClientObjectiveBrandOtherText start writting [" +
+				 * page.getPageName() + "]");
+				 * 
+				 * ClientObjectivesOnePageModel clientObjectivesOnePageModel =
+				 * page.getSlidesData().getPageModels().getClientObjectivesOnePageModel(); if
+				 * (clientObjectivesOnePageModel == null ) {
+				 * mLog.warning("null ClientObjectiveBrandOtherText skipping " +
+				 * page.getPageName()); continue; }
+				 * 
+				 * List<Object> dataRow = new ArrayList<>();
+				 * 
+				 * dataRow.add(clientObjectivesOnePageModel.getOtherText());
+				 * 
+				 * 
+				 * Integer turnOn = clientObjectivesOnePageModel.isOther()? 0 : 1;
+				 * dataRow.add(turnOn); writeData.add(dataRow);
+				 * mLog.warning("finish ClientObjectiveBrandOtherText [" + page.getPageName() +
+				 * "]");
+				 * 
+				 * }
+				 */
+
+				if (page.isClientObjectiveConsumer()) {
+					mLog.warning("ClientObjectiveConsumer start writting [" + page.getPageName() + "]");
+
+					ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels()
+							.getClientObjectivesOnePageModel();
+					if (clientObjectivesOnePageModel == null) {
+						mLog.warning("null ClientObjectiveConsumer skipping " + page.getPageName());
 						continue;
 					}
 					List<Object> dataRowOne = new ArrayList<>();
@@ -601,116 +713,182 @@ public class GoogleSlideController {
 					List<Object> dataRowFour = new ArrayList<>();
 					List<Object> dataRowFive = new ArrayList<>();
 					List<Object> dataRowSix = new ArrayList<>();
-					
-					/*
-					 * Make Promotional Events Stronger
-						Develop Digital/Mobile/Social Strategies
-						Establish a quarterly spike/seasonal campaign
-						Develop Database Marketing (Email and Text)
-						Initiate Cause Marketing Programs
-						Develop Specially Staged Events
-					 */
-					
-					
-					
+
 					Integer turnOn = null;
-					/*
-					turnOn = clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isChangeConsumerAttitudes() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isCreatePentUpDemand() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isDevelopAQuarterlySpike() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isDevelopDatabaseMarketing() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isDevelopSpeciallyStagedEvent() ? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage() ? 0 : 1;
-					
-					turnOn = clientObjectivesOnePageModel.isExpandTargetConsumers()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isFeatureSpecificProducts()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isImproveBusinessNameBrand()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isIncreaseCustomerVisits()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isIncreaseDigitalMobileOnlineResponse()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isIncreaseMarketShare()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isIncreaseTrafficLeadCalls()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isInitiateCauseMarketingProgram()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isIntroduceNewDepartment()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isMaintainMarketDominance()? 0 : 1;
-					
-					turnOn = clientObjectivesOnePageModel.isOther()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isPromoteOffPriceItemsServices()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isQuarterlySeasonalCampaign()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isRetainCurrentConsumers()? 0 : 1;
-					turnOn = clientObjectivesOnePageModel.isUtilizeCoopVendorDollars()? 0 : 1;
-					*/
-					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+
+					turnOn = clientObjectivesOnePageModel.isRetainCurrentConsumers() ? 0 : 1;
+					dataRowOne.add("Maintain Market Dominance");
 					dataRowOne.add(turnOn);
 					writeData.add(dataRowOne);
-					
-					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+
+					turnOn = clientObjectivesOnePageModel.isIncreaseCustomerVisits() ? 0 : 1;
+					dataRowTwo.add("Elevate Business Brand/Image");
 					dataRowTwo.add(turnOn);
 					writeData.add(dataRowTwo);
-					
-					
-					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
-					dataRowTwo.add(turnOn);
-					writeData.add(dataRowTwo);
-					
-					//dataRow.add(pieChart.getLabelValue());
-					
-					
+
+					turnOn = clientObjectivesOnePageModel.isIncreaseTrafficLeadCalls() ? 0 : 1;
+					dataRowThree.add("Improve Reputation and Listing Management");
+					dataRowThree.add(turnOn);
 					writeData.add(dataRowThree);
+
+					turnOn = clientObjectivesOnePageModel.isExpandTargetConsumers() ? 0 : 1;
+					dataRowFour.add("Enhance Website (Mobile, Response, SEO, SEM)");
+					dataRowFour.add(turnOn);
 					writeData.add(dataRowFour);
+
+					turnOn = clientObjectivesOnePageModel.isChangeConsumerAttitudes() ? 0 : 1;
+					dataRowFive.add("Increase Market Share");
+					dataRowFive.add(turnOn);
 					writeData.add(dataRowFive);
+					if (clientObjectivesOnePageModel.getOtherText() != null)
+						turnOn = clientObjectivesOnePageModel.isOther() ? 0 : 1;
+					dataRowSix.add(clientObjectivesOnePageModel.getOtherText());
+					dataRowSix.add(turnOn);
 					writeData.add(dataRowSix);
-				
-					mLog.warning("finish ClientObjectivePromotion [" + page.getPageName() + "]");
-
 				}
-				
-				
-				
-				
-				
-				
-				if (page.isPieChart()) {
-					mLog.warning("pie chart start writting [" + page.getPageName() + "]");
+				// dataRow.add(pieChart.getLabelValue());
 
-					List<PieChart> pieChartList = page.getPieChartData();
-					if (pieChartList == null ) {
-						mLog.warning("null pie data skipping " + page.getPageName());
-						continue;
+				mLog.warning("finish ClientObjectiveConsumer [" + page.getPageName() + "]");
+
+			}
+
+			if (page.isClientObjectiveProductService()) {
+				mLog.warning("ClientObjectiveProductService start writting [" + page.getPageName() + "]");
+
+				ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels()
+						.getClientObjectivesOnePageModel();
+				if (clientObjectivesOnePageModel == null) {
+					mLog.warning("null ClientObjectiveProductService skipping " + page.getPageName());
+					continue;
+				}
+				List<Object> dataRowOne = new ArrayList<>();
+				List<Object> dataRowTwo = new ArrayList<>();
+				List<Object> dataRowThree = new ArrayList<>();
+				List<Object> dataRowFour = new ArrayList<>();
+				List<Object> dataRowFive = new ArrayList<>();
+
+				Integer turnOn = null;
+
+				turnOn = clientObjectivesOnePageModel.isIntroduceNewDepartment() ? 0 : 1;
+				dataRowOne.add(turnOn);
+				writeData.add(dataRowOne);
+
+				turnOn = clientObjectivesOnePageModel.isFeatureSpecificProducts() ? 0 : 1;
+				dataRowTwo.add(turnOn);
+				writeData.add(dataRowTwo);
+
+				turnOn = clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried() ? 0 : 1;
+				dataRowThree.add(turnOn);
+				writeData.add(dataRowThree);
+
+				turnOn = clientObjectivesOnePageModel.isPromoteOffPriceItemsServices() ? 0 : 1;
+				dataRowFour.add(turnOn);
+				writeData.add(dataRowFour);
+
+				turnOn = clientObjectivesOnePageModel.isUtilizeCoopVendorDollars() ? 0 : 1;
+				dataRowFive.add(turnOn);
+				writeData.add(dataRowFive);
+				// dataRow.add(pieChart.getLabelValue());
+
+				mLog.warning("finish ClientObjectiveProductService [" + page.getPageName() + "]");
+
+			}
+
+			if (page.isClientObjectivePromotion()) {
+				mLog.warning("ClientObjectivePromotion start writting [" + page.getPageName() + "]");
+
+				ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels()
+						.getClientObjectivesOnePageModel();
+				if (clientObjectivesOnePageModel == null) {
+					mLog.warning("null clientObjectivesOnePageModel skipping " + page.getPageName());
+					continue;
+				}
+				List<Object> dataRowOne = new ArrayList<>();
+				List<Object> dataRowTwo = new ArrayList<>();
+				List<Object> dataRowThree = new ArrayList<>();
+				List<Object> dataRowFour = new ArrayList<>();
+				List<Object> dataRowFive = new ArrayList<>();
+				List<Object> dataRowSix = new ArrayList<>();
+
+				/*
+				 * 
+				 * Develop Digital/Mobile/Social Strategies
+				 * 
+				 */
+				Integer turnOn = null;
+
+				turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+				dataRowOne.add(turnOn);
+				writeData.add(dataRowOne);
+
+				turnOn = clientObjectivesOnePageModel.isIncreaseDigitalMobileOnlineResponse() ? 0 : 1;
+				dataRowTwo.add(turnOn);
+				writeData.add(dataRowTwo);
+
+				turnOn = clientObjectivesOnePageModel.isQuarterlySeasonalCampaign() ? 0 : 1;
+				dataRowThree.add(turnOn);
+				writeData.add(dataRowThree);
+
+				turnOn = clientObjectivesOnePageModel.isDevelopDatabaseMarketing() ? 0 : 1;
+				dataRowFour.add(turnOn);
+				writeData.add(dataRowFour);
+
+				turnOn = clientObjectivesOnePageModel.isInitiateCauseMarketingProgram() ? 0 : 1;
+				dataRowFive.add(turnOn);
+				writeData.add(dataRowFive);
+				// dataRow.add(pieChart.getLabelValue());
+
+				turnOn = clientObjectivesOnePageModel.isDevelopSpeciallyStagedEvent() ? 0 : 1;
+				dataRowSix.add(turnOn);
+				writeData.add(dataRowSix);
+
+				mLog.warning("finish ClientObjectivePromotion [" + page.getPageName() + "]");
+
+			}
+
+			if (page.isPieChart()) {
+				mLog.warning("PIE CHART WRITTING");
+				mLog.warning("pie chart start writting [" + page.getPageName() + "]");
+
+				List<PieChart> pieChartList = page.getPieChartData();
+				if (pieChartList == null) {
+					mLog.warning("null pie data skipping " + page.getPageName());
+					continue;
+				}
+
+				for (PieChart pieChart : pieChartList) {
+					String label = pieChart.getLabel();
+					if (label != null && !label.equals("")) {
+						mLog.info("label   [" + label + "]");
+						List<Object> dataRow = new ArrayList<>();
+						dataRow.add(pieChart.getLabel());
+						dataRow.add(pieChart.getLabelValue());
+						writeData.add(dataRow);
 					}
 
-					for (PieChart pieChart : pieChartList) {
-						String label = pieChart.getLabel();
-						if (label != null && !label.equals("")) {
-							mLog.info("label   [" + label + "]");
-							List<Object> dataRow = new ArrayList<>();
-							dataRow.add(pieChart.getLabel());
-							dataRow.add(pieChart.getLabelValue());
-							writeData.add(dataRow);
-						}
-
-					}
-					mLog.warning("finish pie chart start writting [" + page.getPageName() + "]");
-
 				}
+				mLog.warning("finish pie chart start writting [" + page.getPageName() + "]");
+
+			}
+
+			if (page.isBarChart()) {
 				mLog.warning("BAR CHART WRITTING");
-				if (page.isBarChart()) {
-					mLog.info("bar chart start write [" + page.getPageName() + "]");
-					MediaChart mediaChart = page.getMediaChart();
-					if (mediaChart == null) {
-						mLog.warning("null mediachart data skipping " + page.getPageName());
-						continue;
-					}
-					List<Object> dataRowHeader = new ArrayList<>();
+				mLog.info("bar chart start write [" + page.getPageName() + "]");
+				MediaChart mediaChart = page.getMediaChart();
+				if (mediaChart == null) {
+					mLog.warning("null mediachart data skipping " + page.getPageName());
+					continue;
+				}
+				List<Object> dataRowHeader = new ArrayList<>();
 
-					// spike = green slow = red base = blue
-					dataRowHeader.add("Month");
-					dataRowHeader.add("Spike");
-					dataRowHeader.add("Slow");
-					dataRowHeader.add("Brand");
-					writeData.add(dataRowHeader);
-					
-					try {
+				// spike = green slow = red base = blue
+				dataRowHeader.add("Month");
+				dataRowHeader.add("Spike");
+				dataRowHeader.add("Slow");
+				dataRowHeader.add("Brand");
+				writeData.add(dataRowHeader);
+
+				try {
 					/*     */
 					List<Object> dataRowJan = GoogleHelper.writeJan(mediaChart);
 					writeData.add(dataRowJan);
@@ -747,74 +925,74 @@ public class GoogleSlideController {
 
 					List<Object> dataRowDec = GoogleHelper.writeDec(mediaChart);
 					writeData.add(dataRowDec);
-					} catch (Exception ex) {
-						mLog.warning("null mediachart values data skipping " + page.getPageName());
-						continue;
-					}
-					mLog.info("bar end chart [" + page.getPageName() + "]");
-
+				} catch (Exception ex) {
+					mLog.warning("null mediachart values data skipping " + page.getPageName());
+					continue;
 				}
+				mLog.info("bar end chart [" + page.getPageName() + "]");
 
-				writeRange = page.getWriteRange();
-				mLog.info("writeRange [" + writeRange + "]");
-				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
-				// ValueRange body = new ValueRange().setValues(values);
-				try {
+			}
 
-					// cleare values
-					// TODO: Assign values to desired fields of `requestBody`:
-					ClearValuesRequest requestBody = new ClearValuesRequest();
+			writeRange = page.getWriteRange();
+			mLog.info("writeRange [" + writeRange + "]");
+			ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
+			// ValueRange body = new ValueRange().setValues(values);
+			try {
 
-					Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
-							page.getWriteRange(), requestBody);
+				// cleare values
+				// TODO: Assign values to desired fields of `requestBody`:
+				ClearValuesRequest requestBody = new ClearValuesRequest();
 
-					ClearValuesResponse response = request.execute();
-					mLog.info("response [" + response + "]");
+				Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
+						page.getWriteRange(), requestBody);
 
-					UpdateValuesResponse result = service.spreadsheets().values()
-							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
-					mLog.info("result [" + result + "]");
-					mLog.warning("LEAVING writeSheetData");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					mLog.severe(spreadsheetId + " not found");
-					mLog.severe(e.getMessage());
-					mLog.severe("EXITING with ERROR writeSheetData");
-				}
+				ClearValuesResponse response = request.execute();
+				mLog.info("response [" + response + "]");
 
-			} // end of for
-		} // end of outter if
+				UpdateValuesResponse result = service.spreadsheets().values().update(spreadsheetId, writeRange, body)
+						.setValueInputOption("RAW").execute();
+				mLog.info("result [" + result + "]");
+				mLog.warning("LEAVING writeSheetData");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				mLog.severe(spreadsheetId + " not found");
+				mLog.severe(e.getMessage());
+				mLog.severe("EXITING with ERROR writeSheetData");
+			}
 
-		/*
-		 * 
-		 * ValueRange body = new
-		 * ValueRange().setValues(writeData).setMajorDimension("ROWS"); // ValueRange
-		 * body = new ValueRange().setValues(values); try {
-		 * 
-		 * // cleare values // TODO: Assign values to desired fields of `requestBody`:
-		 * ClearValuesRequest requestBody = new ClearValuesRequest();
-		 * 
-		 * Sheets.Spreadsheets.Values.Clear request =
-		 * service.spreadsheets().values().clear(spreadsheetId, writeRange,
-		 * requestBody);
-		 * 
-		 * ClearValuesResponse response = request.execute(); mLog.info("response [" +
-		 * response + "]");
-		 * 
-		 * UpdateValuesResponse result =
-		 * service.spreadsheets().values().update(spreadsheetId, writeRange, body)
-		 * .setValueInputOption("RAW").execute(); mLog.info("result [" + result + "]");
-		 * mLog.warning("exting WriteSheetExample"); } catch (IOException e) { // TODO
-		 * Auto-generated catch block mLog.severe(spreadsheetId + " not found");
-		 * mLog.severe(e.getMessage()); mLog.warning("exiting WriteSheetExample"); }
-		 */
+		} // end of for
+	} // end of outter if
 
-		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
-		// BatchUpdateSpreadsheetRequest()
-		// .setRequests(requests);
-		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
-		// .execute();
-		mLog.warning("LEAVING writeSheetData");
+	/*
+	 * 
+	 * ValueRange body = new
+	 * ValueRange().setValues(writeData).setMajorDimension("ROWS"); // ValueRange
+	 * body = new ValueRange().setValues(values); try {
+	 * 
+	 * // cleare values // TODO: Assign values to desired fields of `requestBody`:
+	 * ClearValuesRequest requestBody = new ClearValuesRequest();
+	 * 
+	 * Sheets.Spreadsheets.Values.Clear request =
+	 * service.spreadsheets().values().clear(spreadsheetId, writeRange,
+	 * requestBody);
+	 * 
+	 * ClearValuesResponse response = request.execute(); mLog.info("response [" +
+	 * response + "]");
+	 * 
+	 * UpdateValuesResponse result =
+	 * service.spreadsheets().values().update(spreadsheetId, writeRange, body)
+	 * .setValueInputOption("RAW").execute(); mLog.info("result [" + result + "]");
+	 * mLog.warning("exting WriteSheetExample"); } catch (IOException e) { // TODO
+	 * Auto-generated catch block mLog.severe(spreadsheetId + " not found");
+	 * mLog.severe(e.getMessage()); mLog.warning("exiting WriteSheetExample"); }
+	 */
+
+	// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
+	// BatchUpdateSpreadsheetRequest()
+	// .setRequests(requests);
+	// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
+	// .execute();
+	mLog.warning("LEAVING writeSheetData");
 
 	}
 

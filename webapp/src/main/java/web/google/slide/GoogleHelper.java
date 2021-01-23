@@ -673,8 +673,17 @@ public class GoogleHelper {
 					slidesList.add(slideConsumer);
 					FourClientObjectiveSlide slidePromotion = new FourClientObjectiveSlide("StrategicMarketing_Data_Promotion!B1:E", "StrategicMarketing_Data_Promotion", SlideEnum.ClientObjectivePROMOTION, slidesData);
 					slidesList.add(slidePromotion);
-					FourClientObjectiveSlide slideBrand = new FourClientObjectiveSlide("StrategicMarketing_Data_Brand!B1:E", "StrategicMarketing_Data_Brand", SlideEnum.ClientObjectiveBRAND, slidesData);
+					FourClientObjectiveSlide slideBrand = new FourClientObjectiveSlide("StrategicMarketing_Data_Brand!A1:E", "StrategicMarketing_Data_Brand", SlideEnum.ClientObjectiveBRAND, slidesData);
 					slidesList.add(slideBrand);
+					
+					if (clientObjectivesOnePageModel.getOtherText() != null) {
+						FourClientObjectiveSlide slideBrandOtherText = new FourClientObjectiveSlide(
+								"StrategicMarketing_Data_Brand!A1:E", "StrategicMarketing_Data_BrandOtherText",
+								SlideEnum.ClientObjectiveBRAND, slidesData);
+					slidesList.add(slideBrandOtherText);
+					}
+					
+					
 					mLog.info("found page ClientObjectivesOnePageTwoModel");
 
 					break;
