@@ -25,6 +25,7 @@ import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
 import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
+import web.google.slide.pages.FourClientObjectiveSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
@@ -663,8 +664,17 @@ public class GoogleHelper {
 					List<Object> pageData = new ArrayList<Object>();
 					pageData.add(clientObjectivesOnePageModel);
 					pageData.add(orderList);
-
 					
+					
+					slidesData.getPageModels().setClientObjectivesOnePageModel(clientObjectivesOnePageModel);
+					FourClientObjectiveSlide slideProductService = new FourClientObjectiveSlide("SStrategicMarketing_Data_PRODUCT_SERVICE!B1:E", "StrategicMarketing_Data_PRODUCT_SERVICE", SlideEnum.ClientObjectivePRODUCTSERVICE, slidesData);
+					slidesList.add(slideProductService);
+					FourClientObjectiveSlide slideConsumer = new FourClientObjectiveSlide("StrategicMarketing_Data_CONSUMER!B1:E", "StrategicMarketing_Data_CONSUMER", SlideEnum.ClientObjectiveCONSUMER, slidesData);
+					slidesList.add(slideConsumer);
+					FourClientObjectiveSlide slidePromotion = new FourClientObjectiveSlide("StrategicMarketing_Data_Promotion!B1:E", "StrategicMarketing_Data_Promotion", SlideEnum.ClientObjectivePROMOTION, slidesData);
+					slidesList.add(slidePromotion);
+					FourClientObjectiveSlide slideBrand = new FourClientObjectiveSlide("StrategicMarketing_Data_Brand!B1:E", "StrategicMarketing_Data_Brand", SlideEnum.ClientObjectiveBRAND, slidesData);
+					slidesList.add(slideBrand);
 					mLog.info("found page ClientObjectivesOnePageTwoModel");
 
 					break;

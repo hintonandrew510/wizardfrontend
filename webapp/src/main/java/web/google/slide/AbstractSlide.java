@@ -52,6 +52,22 @@ public abstract class AbstractSlide implements SlideInterface {
 		this.slideEnum = slideEnum;
 	}
 
+	public AbstractSlide(String writeRange, String pageName, SlideEnum slideEnum) {
+		super();
+		this.writeRange = writeRange;
+		this.pageName = pageName;
+		this.slideEnum = slideEnum;
+	}
+	
+	
+	
+	public AbstractSlide(String writeRange, String pageName, SlideEnum slideEnum, SlidesData slidesData) {
+		super();
+		this.writeRange = writeRange;
+		this.pageName = pageName;
+		this.slideEnum = slideEnum;
+		mSlidesData = slidesData;
+	}
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
 	}
@@ -112,6 +128,88 @@ public abstract class AbstractSlide implements SlideInterface {
 		}
 		return hasChartData;
 
+	}
+	
+	@Override
+	public boolean isClientObjectiveBrand() {
+		boolean hasClientData = false;
+		try {
+			switch (this.slideEnum) {
+			
+			case ClientObjectiveBRAND:
+				hasClientData = true;
+				break;
+			default:
+				hasClientData = false;
+				break;
+			}
+			
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
+		}
+		// TODO Auto-generated method stub
+		return hasClientData;
+	}
+	@Override
+	public boolean isClientObjectiveProductService() {
+		boolean hasClientData = false;
+		try {
+			switch (this.slideEnum) {
+			
+			case ClientObjectivePRODUCTSERVICE:
+				hasClientData = true;
+				break;
+			default:
+				hasClientData = false;
+				break;
+			}
+			
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
+		}
+		// TODO Auto-generated method stub
+		return hasClientData;
+	}
+	@Override
+	public boolean isClientObjectivePromotion() {
+		boolean hasClientData = false;
+		try {
+			switch (this.slideEnum) {
+			
+			case ClientObjectivePROMOTION:
+				hasClientData = true;
+				break;
+			default:
+				hasClientData = false;
+				break;
+			}
+			
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
+		}
+		// TODO Auto-generated method stub
+		return hasClientData;
+	}
+
+	@Override
+	public boolean isClientObjectiveConsumer() {
+		boolean hasClientData = false;
+		try {
+			switch (this.slideEnum) {
+			
+			case ClientObjectiveCONSUMER:
+				hasClientData = true;
+				break;
+			default:
+				hasClientData = false;
+				break;
+			}
+			
+		} catch (Exception ex) {
+			mLog.severe(ex.getMessage());
+		}
+		// TODO Auto-generated method stub
+		return hasClientData;
 	}
 
 	@Override

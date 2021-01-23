@@ -1,5 +1,12 @@
 package web.google.slide;
 
 public enum SlideEnum {
-      BarChart, PieChart, StrategicMarketing, TextSlideReplacement
+      BarChart, 
+      ClientObjectivePRODUCTSERVICE, 
+      ClientObjectiveCONSUMER,
+      ClientObjectivePROMOTION,
+      ClientObjectiveBRAND,
+      PieChart, 
+      StrategicMarketing, 
+      TextSlideReplacement
 }
