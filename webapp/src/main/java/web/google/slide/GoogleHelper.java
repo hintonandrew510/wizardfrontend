@@ -667,7 +667,7 @@ public class GoogleHelper {
 					
 					
 					slidesData.getPageModels().setClientObjectivesOnePageModel(clientObjectivesOnePageModel);
-					FourClientObjectiveSlide slideProductService = new FourClientObjectiveSlide("SStrategicMarketing_Data_PRODUCT_SERVICE!B1:E", "StrategicMarketing_Data_PRODUCT_SERVICE", SlideEnum.ClientObjectivePRODUCTSERVICE, slidesData);
+					FourClientObjectiveSlide slideProductService = new FourClientObjectiveSlide("StrategicMarketing_Data_PRODUCT_SERVICE!B1:E", "StrategicMarketing_Data_PRODUCT_SERVICE", SlideEnum.ClientObjectivePRODUCTSERVICE, slidesData);
 					slidesList.add(slideProductService);
 					FourClientObjectiveSlide slideConsumer = new FourClientObjectiveSlide("StrategicMarketing_Data_CONSUMER!B1:E", "StrategicMarketing_Data_CONSUMER", SlideEnum.ClientObjectiveCONSUMER, slidesData);
 					slidesList.add(slideConsumer);

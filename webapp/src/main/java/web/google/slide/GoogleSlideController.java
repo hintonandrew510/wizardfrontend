@@ -78,6 +78,7 @@ import web.model.Wizard;
 import web.model.WizardData;
 import web.page.JSONManager;
 import web.page.PieChart;
+import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.planamedipage.MediaChart;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
@@ -585,6 +586,90 @@ public class GoogleSlideController {
 				 * 
 				 * @param service
 				 */
+				
+				if (page.isClientObjectivePromotion()) {
+					mLog.warning("iClientObjectivePromotion start writting [" + page.getPageName() + "]");
+
+					ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels().getClientObjectivesOnePageModel();
+					if (clientObjectivesOnePageModel == null ) {
+						mLog.warning("null clientObjectivesOnePageModel skipping " + page.getPageName());
+						continue;
+					}
+					List<Object> dataRowOne = new ArrayList<>();
+					List<Object> dataRowTwo = new ArrayList<>();
+					List<Object> dataRowThree = new ArrayList<>();
+					List<Object> dataRowFour = new ArrayList<>();
+					List<Object> dataRowFive = new ArrayList<>();
+					List<Object> dataRowSix = new ArrayList<>();
+					
+					/*
+					 * Make Promotional Events Stronger
+						Develop Digital/Mobile/Social Strategies
+						Establish a quarterly spike/seasonal campaign
+						Develop Database Marketing (Email and Text)
+						Initiate Cause Marketing Programs
+						Develop Specially Staged Events
+					 */
+					
+					
+					
+					Integer turnOn = null;
+					/*
+					turnOn = clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isChangeConsumerAttitudes() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isCreatePentUpDemand() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isDevelopAQuarterlySpike() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isDevelopDatabaseMarketing() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isDevelopSpeciallyStagedEvent() ? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage() ? 0 : 1;
+					
+					turnOn = clientObjectivesOnePageModel.isExpandTargetConsumers()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isFeatureSpecificProducts()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isImproveBusinessNameBrand()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isIncreaseCustomerVisits()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isIncreaseDigitalMobileOnlineResponse()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isIncreaseMarketShare()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isIncreaseTrafficLeadCalls()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isInitiateCauseMarketingProgram()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isIntroduceNewDepartment()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isMaintainMarketDominance()? 0 : 1;
+					
+					turnOn = clientObjectivesOnePageModel.isOther()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isPromoteOffPriceItemsServices()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isQuarterlySeasonalCampaign()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isRetainCurrentConsumers()? 0 : 1;
+					turnOn = clientObjectivesOnePageModel.isUtilizeCoopVendorDollars()? 0 : 1;
+					*/
+					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+					dataRowOne.add(turnOn);
+					writeData.add(dataRowOne);
+					
+					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+					dataRowTwo.add(turnOn);
+					writeData.add(dataRowTwo);
+					
+					
+					turnOn = clientObjectivesOnePageModel.isMakePromotionalEventsStronger() ? 0 : 1;
+					dataRowTwo.add(turnOn);
+					writeData.add(dataRowTwo);
+					
+					//dataRow.add(pieChart.getLabelValue());
+					
+					
+					writeData.add(dataRowThree);
+					writeData.add(dataRowFour);
+					writeData.add(dataRowFive);
+					writeData.add(dataRowSix);
+				
+					mLog.warning("finish ClientObjectivePromotion [" + page.getPageName() + "]");
+
+				}
+				
+				
+				
+				
+				
+				
 				if (page.isPieChart()) {
 					mLog.warning("pie chart start writting [" + page.getPageName() + "]");
 

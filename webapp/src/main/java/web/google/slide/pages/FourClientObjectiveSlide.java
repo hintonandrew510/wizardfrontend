@@ -11,6 +11,8 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 		super(writeRange, pageName, slideEnum, slidesData);
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 	
 }

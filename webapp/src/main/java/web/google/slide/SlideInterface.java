@@ -23,6 +23,7 @@ public interface SlideInterface {
 	    public boolean isChart();
 	    public boolean isPieChart();
 	    public boolean isBarChart();
+	    public SlidesData getSlidesData();
    
 	    
 	    

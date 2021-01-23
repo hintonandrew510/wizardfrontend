@@ -71,6 +71,12 @@ public abstract class AbstractSlide implements SlideInterface {
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
 	}
+	
+	@Override
+	public SlidesData getSlidesData() {
+		// TODO Auto-generated method stub
+		return mSlidesData;
+	}
 
 	public void setmSlidesData(SlidesData mSlidesData) {
 		this.mSlidesData = mSlidesData;
