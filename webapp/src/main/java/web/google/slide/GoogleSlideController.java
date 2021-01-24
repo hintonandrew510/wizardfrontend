@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -323,7 +325,12 @@ public class GoogleSlideController {
 			try {
 				writeSheetData(mSheets);
 			} catch (Exception ex) {
-                 mLog.severe("ERROR WRITTING DATA [" + ex + "]");
+				
+				StringWriter sw = new StringWriter();
+				PrintWriter pw = new PrintWriter(sw);
+				ex.printStackTrace(pw);
+				//mLog.severe(ex);
+                 mLog.severe("ERROR WRITTING DATA [" + sw.toString()  + "]");
 			}
 			mLog.info("DONE WITH WRITING DATA  ");
 			/*
@@ -573,8 +580,15 @@ public class GoogleSlideController {
 					mLog.info("no writerange  found");
 					continue;//skip
 				}
+				ClientObjectivesOnePageModel clientObjectivesOnePageModel = null;
 				
-				ClientObjectivesOnePageModel clientObjectivesOnePageModel = page.getSlidesData().getPageModels().getClientObjectivesOnePageModel();
+				try {
+                clientObjectivesOnePageModel = page.getSlidesData().getPageModels().getClientObjectivesOnePageModel();
+				} catch (Exception ex) {
+					//sollow 
+					mLog.info("just not yet in map");
+				}
+				
 				List<Object> dataRowOne = new ArrayList<>();
 				List<Object> dataRowTwo = new ArrayList<>();
 				List<Object> dataRowThree = new ArrayList<>();

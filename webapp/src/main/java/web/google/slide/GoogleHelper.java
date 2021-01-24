@@ -585,8 +585,14 @@ public class GoogleHelper {
 	}
 
 	public static String findLabelContent(String label) {
+		if (label == null) {
+			return "unknown label";
+		}
+		if (map == null) {
+			return "map is null";
+		}
 		String content = map.get(label);
-		if (content.isEmpty()) {
+		if (content == null || content.isEmpty()) {
 			content = "UNKNOWN [" + label + "]";
 		}
 		return content;
