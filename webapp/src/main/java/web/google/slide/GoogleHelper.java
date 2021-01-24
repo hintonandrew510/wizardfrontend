@@ -673,7 +673,7 @@ public class GoogleHelper {
 					slidesList.add(slideConsumer);
 					FourClientObjectiveSlide slidePromotion = new FourClientObjectiveSlide("StrategicMarketing_Data_Promotion!B1:E", "StrategicMarketing_Data_Promotion", SlideEnum.ClientObjectivePROMOTION, slidesData);
 					slidesList.add(slidePromotion);
-					FourClientObjectiveSlide slideBrand = new FourClientObjectiveSlide("StrategicMarketing_Data_Brand!A1:E", "StrategicMarketing_Data_Brand", SlideEnum.ClientObjectiveBRAND, slidesData);
+					FourClientObjectiveSlide slideBrand = new FourClientObjectiveSlide("StrategicMarketing_Data_Brand!A1:B", "StrategicMarketing_Data_Brand", SlideEnum.ClientObjectiveBRAND, slidesData);
 					slidesList.add(slideBrand);
 					
 					if (clientObjectivesOnePageModel.getOtherText() != null) {
