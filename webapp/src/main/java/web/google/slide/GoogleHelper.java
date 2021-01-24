@@ -593,7 +593,7 @@ public class GoogleHelper {
 		}
 		String content = map.get(label);
 		if (content == null || content.isEmpty()) {
-			content = "UNKNOWN [" + label + "]";
+			content = label;
 		}
 		return content;
 	}
