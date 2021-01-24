@@ -1,7 +1,10 @@
 package web.google.slide;
 
 
+import java.util.List;
+
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
+import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
 import web.page.extra.ExtraPageModel;
 import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
@@ -17,6 +20,14 @@ public class PageModels {
  private ExtraPageModel marketingStrategiesPageModel;
  private MarketPlaceCompetitionPageModel marketPlaceCompetitionPageModel;
  private StrategicMarketingPageOneModel strategicMarketingPageOneModel;
+ private List<ClientObjectivesOnePageTwoModel> orderList;
+
+public List<ClientObjectivesOnePageTwoModel> getOrderList() {
+	return orderList;
+}
+public void setOrderList(List<ClientObjectivesOnePageTwoModel> orderList) {
+	this.orderList = orderList;
+}
 public StrategicMarketingPageOneModel getStrategicMarketingPageOneModel() {
 	return strategicMarketingPageOneModel;
 }

@@ -79,6 +79,7 @@ import web.model.WizardData;
 import web.page.JSONManager;
 import web.page.PieChart;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
+import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.planamedipage.MediaChart;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
@@ -636,7 +637,25 @@ public class GoogleSlideController {
 					mLog.info("bar end chart [" + page.getPageName() + "]");
 
 					break;
-				
+					
+				case ClientObjectiveTop:
+					mLog.warning("ClientObjectiveTop start writting [" + page.getPageName() + "]");
+					
+					List<ClientObjectivesOnePageTwoModel> orderList = page.getSlidesData().getPageModels().getOrderList();
+					if (orderList == null ) {
+						mLog.warning("null orderList skipping " + page.getPageName());
+						continue;
+					}
+					int counter = 1;
+					for (ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel : orderList) {
+						List<Object> dataRow = new ArrayList<>();
+						dataRow.add(counter + ". " + clientObjectivesOnePageTwoModel.getLabel());
+						counter = counter + 1;
+						writeData.add(dataRow);
+					}
+					mLog.warning("finish ClientObjectiveTop [" + page.getPageName() + "]");
+
+				  break;
 				case ClientObjectivePRODUCTSERVICE: 
 					mLog.warning("ClientObjectiveProductService start writting [" + page.getPageName() + "]");
 

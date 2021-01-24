@@ -6,6 +6,7 @@ public enum SlideEnum {
       ClientObjectiveCONSUMER,
       ClientObjectivePROMOTION,
       ClientObjectiveBRAND,
+      ClientObjectiveTop,
       PieChart, 
       StrategicMarketing, 
       TextSlideReplacement
