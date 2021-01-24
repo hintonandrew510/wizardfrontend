@@ -550,9 +550,9 @@ public class GoogleHelper {
 		return formatter.format(date);
 	}
 
-	HashMap<String, String> map = new HashMap<String, String>();
+	static HashMap<String, String> map = new HashMap<String, String>();
 
-	private HashMap<String, String> getLabelMap() {
+	static  {
 		if (map.isEmpty()) {
 
 			map.put("introduceNewDepartmentLabel", "Introduce New Department/Products/Services");
@@ -567,26 +567,29 @@ public class GoogleHelper {
 			map.put("increaseTrafficLeadCallsLabel", "Grow New Traffic/Lead Calls");
 			map.put("expandTargetConsumersLabel", "Expand Target Consumers (by age, sex, geography)");
 			map.put("changeConsumerAttitudesLabel", "Change Consumer Attitudes");
-			 
-			   map.put("makePromotionalEventsStrongerLabel", "Make PromotionalEvents Stronger"); 
-			   map.put("increaseDigitalMobileOnlineResponseLabel","Develop Digital/Mobile/Social Strategies");
-			 map.put("developDatabaseMarketingLabel", "Develop Database Marketing (Email and Text)"); 
-			 map.put("initiateCauseMarketingProgramLabel", "Initiate Cause Marketing Programs"); 
-			 map.put("developSpeciallyStagedEventLabel", "Develop Specially Staged Events");
-			 map.put("maintainMarketDominanceLabel", "Maintain Market Dominance"); 
-			 map.put("improveBusinessNameBrandLabel", "Elevate Business Brand/Image"); 
-			 map.put("establishorReestablishBusinessImageLabel","Improve Reputation and Listing Management");
-			 map.put("createPentUpDemandLabel", "Enhance Website (Mobile, Response, SEO,SEM)"); 
-			 map.put("increaseMarketShareLabel", "Increase Market Share");
+
+			map.put("makePromotionalEventsStrongerLabel", "Make PromotionalEvents Stronger");
+			map.put("increaseDigitalMobileOnlineResponseLabel", "Develop Digital/Mobile/Social Strategies");
+			map.put("developDatabaseMarketingLabel", "Develop Database Marketing (Email and Text)");
+			map.put("initiateCauseMarketingProgramLabel", "Initiate Cause Marketing Programs");
+			map.put("developSpeciallyStagedEventLabel", "Develop Specially Staged Events");
+			map.put("maintainMarketDominanceLabel", "Maintain Market Dominance");
+			map.put("improveBusinessNameBrandLabel", "Elevate Business Brand/Image");
+			map.put("establishorReestablishBusinessImageLabel", "Improve Reputation and Listing Management");
+			map.put("createPentUpDemandLabel", "Enhance Website (Mobile, Response, SEO,SEM)");
+			map.put("increaseMarketShareLabel", "Increase Market Share");
 			map.put("otherLabel", "Other:");
-			 
+
 		}
-		return map;
+		
 	}
 
 	public static String findLabelContent(String label) {
-
-		return null;
+		String content = map.get(label);
+		if (content.isEmpty()) {
+			content = "UNKNOWN [" + label + "]";
+		}
+		return content;
 	}
 
 	/**

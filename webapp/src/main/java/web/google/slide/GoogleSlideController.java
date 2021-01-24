@@ -557,7 +557,7 @@ public class GoogleSlideController {
 		if (mSlidesModels != null) {
 			for (SlideInterface page : mSlidesModels) {
 				mLog.info("PAGE Name [" + page.getPageName() + "]");
-				mLog.info("SlideEnum [" + page.getSlideEnum() + "]");
+				mLog.info("SLIDEENUM [" + page.getSlideEnum() + "]");
 				
 				List<List<Object>> writeData = new ArrayList<>();
 				
@@ -643,7 +643,7 @@ public class GoogleSlideController {
 						mLog.warning("null mediachart values data skipping " + page.getPageName());
 						continue;
 					}
-					mLog.info("bar end chart [" + page.getPageName() + "]");
+					mLog.info("finish setting up bar end chart [" + page.getPageName() + "]");
 
 					break;
 					
@@ -657,12 +657,18 @@ public class GoogleSlideController {
 					}
 					int counter = 1;
 					for (ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel : orderList) {
+						int sortOrder = clientObjectivesOnePageTwoModel.getSortOrder();
+						if (sortOrder == 0) {
+							//skip
+							continue;
+						}
 						List<Object> dataRow = new ArrayList<>();
-						dataRow.add(counter + ". " + clientObjectivesOnePageTwoModel.getLabel());
+						String content = GoogleHelper.findLabelContent(clientObjectivesOnePageTwoModel.getLabel());
+						dataRow.add(counter + ". " + content);
 						counter = counter + 1;
 						writeData.add(dataRow);
 					}
-					mLog.warning("finish ClientObjectiveTop [" + page.getPageName() + "]");
+					mLog.warning("finish setting up ClientObjectiveTop [" + page.getPageName() + "]");
 
 				  break;
 				case ClientObjectivePRODUCTSERVICE: 
@@ -696,7 +702,7 @@ public class GoogleSlideController {
 					writeData.add(dataRowFive);
 					//dataRow.add(pieChart.getLabelValue());
 					
-					mLog.warning("finish ClientObjectiveProductService [" + page.getPageName() + "]");
+					mLog.warning("finish setting up ClientObjectiveProductService [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectiveCONSUMER:
@@ -737,7 +743,7 @@ public class GoogleSlideController {
 					mLog.info(writeData.toString());
 					//dataRow.add(pieChart.getLabelValue());
 					
-					mLog.warning("finish ClientObjectiveConsumer [" + page.getPageName() + "]");
+					mLog.warning("finish setting up ClientObjectiveConsumer [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectivePROMOTION:
@@ -777,7 +783,7 @@ public class GoogleSlideController {
 					
 					
 				
-					mLog.warning("finish ClientObjectivePromotion [" + page.getPageName() + "]");
+					mLog.warning("finish setting up ClientObjectivePromotion [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectiveBRAND:
@@ -824,7 +830,7 @@ public class GoogleSlideController {
 					
 					
 				
-					mLog.warning("finish ClientObjectiveBrand [" + page.getPageName() + "]");
+					mLog.warning("finish setting up ClientObjectiveBrand [" + page.getPageName() + "]");
 
 					break;
 				case PieChart:
@@ -848,7 +854,7 @@ public class GoogleSlideController {
 						}
 
 					}
-					mLog.warning("finish pie chart start writting [" + page.getPageName() + "]");
+					mLog.warning("finish setting up pie chart start writting [" + page.getPageName() + "]");
 
 					break;
 				default:
