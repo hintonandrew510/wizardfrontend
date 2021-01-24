@@ -558,10 +558,19 @@ public class GoogleSlideController {
 			for (SlideInterface page : mSlidesModels) {
 				mLog.info("PAGE Name [" + page.getPageName() + "]");
 				mLog.info("SlideEnum [" + page.getSlideEnum() + "]");
-				mLog.info("starting writing charts data");
+				
 				List<List<Object>> writeData = new ArrayList<>();
 				
 				if (page.getSlideEnum() == null) {
+					mLog.info("no enumeration found");
+					continue;//skip
+				}
+				
+
+				writeRange = page.getWriteRange();
+				mLog.info("writeRange [" + writeRange + "]");
+				if (writeRange == null) {
+					mLog.info("no writerange  found");
 					continue;//skip
 				}
 				
@@ -846,8 +855,6 @@ public class GoogleSlideController {
 					break;
 				}
 				
-				writeRange = page.getWriteRange();
-				mLog.info("writeRange [" + writeRange + "]");
 				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
 				// ValueRange body = new ValueRange().setValues(values);
 				try {
@@ -855,22 +862,22 @@ public class GoogleSlideController {
 					// cleare values
 					// TODO: Assign values to desired fields of `requestBody`:
 					ClearValuesRequest requestBody = new ClearValuesRequest();
-
+              
 					Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
 							page.getWriteRange(), requestBody);
-
+					mLog.info("ClearValuesResponse ");
 					ClearValuesResponse response = request.execute();
-					mLog.info("response [" + response + "]");
+					mLog.info("response from [" + response + "]");
 
 					UpdateValuesResponse result = service.spreadsheets().values()
 							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
-					mLog.info("result [" + result + "]");
-					mLog.warning("LEAVING writeSheetData");
+					mLog.info("updated data [" + result + "]");
+					mLog.warning("WROTE data for  [" + writeRange + "]");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					mLog.severe(spreadsheetId + " not found");
-					mLog.severe(e.getMessage());
-					mLog.severe("EXITING with ERROR writeSheetData");
+					mLog.severe(spreadsheetId + "  found");
+					mLog.severe("Error Mesage " + e.getMessage());
+					mLog.severe("ERROR write Sheet Data [" + writeRange + "]");
 				}
 
 			} // end of for
