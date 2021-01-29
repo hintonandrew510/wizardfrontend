@@ -32,6 +32,8 @@
 
 function signInCallback(authResult) {
 	console.group("Start actual signInCallback");
+	//scroll to div
+	document.getElementById('myBar').scrollIntoView();
 	//start progress bar
 	move();
 	if (authResult['code']) {

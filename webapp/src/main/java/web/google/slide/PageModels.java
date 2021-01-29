@@ -10,6 +10,8 @@ import web.page.extra.ExtraPageModel;
 import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
+import web.page.strategicmarketingpagethree.StrategicMarketingHelper;
+import web.page.strategicmarketingpagethree.StrategicMarketingPageThreeModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 public class PageModels {
@@ -21,7 +23,20 @@ public class PageModels {
  private MarketPlaceCompetitionPageModel marketPlaceCompetitionPageModel;
  private StrategicMarketingPageOneModel strategicMarketingPageOneModel;
  private List<ClientObjectivesOnePageTwoModel> orderList;
-
+ private StrategicMarketingPageThreeModel strategicMarketingPageThreeModel;
+ private StrategicMarketingHelper strategicMarketingHelper;
+public StrategicMarketingPageThreeModel getStrategicMarketingPageThreeModel() {
+	return strategicMarketingPageThreeModel;
+}
+public void setStrategicMarketingPageThreeModel(StrategicMarketingPageThreeModel strategicMarketingPageThreeModel) {
+	this.strategicMarketingPageThreeModel = strategicMarketingPageThreeModel;
+}
+public StrategicMarketingHelper getStrategicMarketingHelper() {
+	return strategicMarketingHelper;
+}
+public void setStrategicMarketingHelper(StrategicMarketingHelper strategicMarketingHelper) {
+	this.strategicMarketingHelper = strategicMarketingHelper;
+}
 public List<ClientObjectivesOnePageTwoModel> getOrderList() {
 	return orderList;
 }

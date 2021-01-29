@@ -25,6 +25,7 @@ import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
 import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
+import web.google.slide.pages.FiveStrategicMarketingPageSlide;
 import web.google.slide.pages.FourClientObjectiveSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
@@ -1163,7 +1164,8 @@ public class GoogleHelper {
 
 					publish.setStrategicMarketingPageOne(true);
 					slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
-
+					//FiveStrategicMarketingPageSlide
+					
 					mLog.info("value found page StrategicMarketingPageOne "
 							+ strategicMarketingPageOneModel.getYearsInBusiness());
 					break;
@@ -1183,7 +1185,11 @@ public class GoogleHelper {
 					StrategicMarketingHelper strategicMarketingHelper = new StrategicMarketingHelper(
 							strategicMarketingPageThreeModel);
 					// model.addAttribute("StrategicMarketingHelper", strategicMarketingHelper);
-
+					slidesData.getPageModels().setStrategicMarketingPageThreeModel(strategicMarketingPageThreeModel);
+					slidesData.getPageModels().setStrategicMarketingHelper(strategicMarketingHelper);
+					FiveStrategicMarketingPageSlide fiveStrategicMarketingPageSlide = new FiveStrategicMarketingPageSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(fiveStrategicMarketingPageSlide);
 					publish.setStrategicMarketingPageThree(true);
 					mLog.info("found page StrategicMarketingPageThree");
 
