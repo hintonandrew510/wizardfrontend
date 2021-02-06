@@ -30,6 +30,7 @@ import web.google.slide.pages.FourClientObjectiveSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
+import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
@@ -1230,6 +1231,17 @@ public class GoogleHelper {
 					// model.addAttribute("targetMarketingHeaderRow", targetMarketingHeaderRow);
 
 					publish.setTargetMarketingPage(true);
+					
+					slidesData.getPublish().setTargetMarketingPage(true);
+					slidesData.getPageModels().setTargetMarketingPageModel(targetMarketingPageModel);
+					slidesData.getPageModels().setTargetMarketingHeaderRow(targetMarketingHeaderRow);
+					SixTargetMarketingSlide slide = new SixTargetMarketingSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(slide);
+					
+					
+					
+					
 					mLog.info("found page targetMarketingPageModel");
 
 					break;

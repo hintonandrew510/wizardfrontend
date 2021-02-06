@@ -12,6 +12,8 @@ import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 import web.page.strategicmarketingpagethree.StrategicMarketingHelper;
 import web.page.strategicmarketingpagethree.StrategicMarketingPageThreeModel;
+import web.page.targetmarketingpage.TargetMarketingHeaderRow;
+import web.page.targetmarketingpage.TargetMarketingPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 public class PageModels {
@@ -25,6 +27,21 @@ public class PageModels {
  private List<ClientObjectivesOnePageTwoModel> orderList;
  private StrategicMarketingPageThreeModel strategicMarketingPageThreeModel;
  private StrategicMarketingHelper strategicMarketingHelper;
+ private TargetMarketingPageModel targetMarketingPageModel;
+ private TargetMarketingHeaderRow targetMarketingHeaderRow;
+ 
+public TargetMarketingPageModel getTargetMarketingPageModel() {
+	return targetMarketingPageModel;
+}
+public void setTargetMarketingPageModel(TargetMarketingPageModel targetMarketingPageModel) {
+	this.targetMarketingPageModel = targetMarketingPageModel;
+}
+public TargetMarketingHeaderRow getTargetMarketingHeaderRow() {
+	return targetMarketingHeaderRow;
+}
+public void setTargetMarketingHeaderRow(TargetMarketingHeaderRow targetMarketingHeaderRow) {
+	this.targetMarketingHeaderRow = targetMarketingHeaderRow;
+}
 public StrategicMarketingPageThreeModel getStrategicMarketingPageThreeModel() {
 	return strategicMarketingPageThreeModel;
 }

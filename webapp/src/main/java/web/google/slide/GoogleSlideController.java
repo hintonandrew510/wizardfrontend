@@ -1,25 +1,16 @@
 package web.google.slide;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Handler;
-import java.util.logging.Level;
 //import java.util.logging.Logger;
 import java.util.logging.Logger;
 
@@ -32,7 +23,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,34 +36,35 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.Data;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
-import com.google.api.services.drive.Drive.Files;
-import com.google.api.services.drive.model.Comment;
 import com.google.api.services.drive.model.File;
-import com.google.api.services.drive.model.FileList;
+import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.CellData;
+import com.google.api.services.sheets.v4.model.ClearValuesRequest;
+import com.google.api.services.sheets.v4.model.ClearValuesResponse;
+import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
+import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.api.services.slides.v1.Slides;
 import com.google.api.services.slides.v1.SlidesScopes;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.BatchUpdatePresentationResponse;
+import com.google.api.services.slides.v1.model.DeleteObjectRequest;
 import com.google.api.services.slides.v1.model.Page;
 import com.google.api.services.slides.v1.model.PageElement;
 import com.google.api.services.slides.v1.model.Presentation;
 import com.google.api.services.slides.v1.model.RefreshSheetsChartRequest;
 import com.google.api.services.slides.v1.model.ReplaceAllTextRequest;
 import com.google.api.services.slides.v1.model.Request;
-import com.google.api.services.slides.v1.model.DeleteObjectRequest;
 import com.google.api.services.slides.v1.model.Response;
 import com.google.api.services.slides.v1.model.SheetsChart;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
-import com.google.api.services.sheets.v4.*;
+
 import web.data.MyUserPrincipal;
 import web.model.Agent;
 import web.model.Wizard;
@@ -86,25 +77,6 @@ import web.page.planamedipage.MediaChart;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
 
-import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.Sheets.Spreadsheets;
-//import com.google.api.services.sheets.v4.Sheets.Spreadsheets;
-import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.CellData;
-import com.google.api.services.sheets.v4.model.ChartSpec;
-import com.google.api.services.sheets.v4.model.ClearValuesRequest;
-import com.google.api.services.sheets.v4.model.ClearValuesResponse;
-import com.google.api.services.sheets.v4.model.EmbeddedChart;
-import com.google.api.services.sheets.v4.model.ExtendedValue;
-import com.google.api.services.sheets.v4.model.GridCoordinate;
-import com.google.api.services.sheets.v4.model.RowData;
-import com.google.api.services.sheets.v4.model.Sheet;
-import com.google.api.services.sheets.v4.model.Spreadsheet;
-import com.google.api.services.sheets.v4.model.UpdateCellsRequest;
-import com.google.api.services.sheets.v4.model.UpdateChartSpecRequest;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
-import com.google.api.services.sheets.v4.model.ValueRange;
-
 /**
  * @author andrewhinton
  *
@@ -112,6 +84,7 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 @Controller // This means that this class is a Controller
 
 public class GoogleSlideController {
+
 	@Autowired
 	private Environment mEnvironment;
 	private static final Logger mLog = Logger.getLogger(GoogleSlideController.class.getName());
@@ -136,7 +109,7 @@ public class GoogleSlideController {
 	private String mNewFileId;
 	private String mNewFileName;
 	private String mAuthCodeId;
-
+	
 	private Wizard mWizard;
 	private Iterable<WizardData> mDataPages;
 	private List<SlideInterface> mSlidesModels;
@@ -286,8 +259,16 @@ public class GoogleSlideController {
 		mAuthCodeId = authCodeId;
 		mLog.entering(GoogleSlideController.class.getName(), "generate");
 		// TODO set to 37 wizard
-		String id = "37";
-		mDataPages = wizardDataRepository.findByWizardid(37);
+		String id = session.getAttribute("ID").toString();;
+		mLog.info("session id [" + id + "]");
+		String testWizardid = mEnvironment.getProperty("wizard");
+		if (testWizardid != null && id == null) {
+			id = testWizardid;
+			mLog.info("testWizardid [" + testWizardid + "]");
+		}
+		
+		
+		mDataPages = wizardDataRepository.findByWizardid(Integer.valueOf(id));
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 		mAgent = userDetails.getAgent();
 

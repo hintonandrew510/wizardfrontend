@@ -24,7 +24,7 @@ public class FiveStrategicMarketingPageSlide extends AbstractSlide {
 		StrategicMarketingPageOneModel model =  getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
 		StrategicMarketingPageThreeModel strategicMarketingPageThreeModel = getmSlidesData().getPageModels().getStrategicMarketingPageThreeModel();
 		
-		StrategicMarketingHelper strategicMarketingHelper =  getmSlidesData().getPageModels().getStrategicMarketingHelper();;
+		StrategicMarketingHelper strategicMarketingHelper =  getmSlidesData().getPageModels().getStrategicMarketingHelper();
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 		SlideReplacementData companyNameProjectImage = new SlideReplacementData("companyNameProjectImage", model.getCompanyNameProjectImage());
 		SlideReplacementData currentCompanySlogan = new SlideReplacementData("currentCompanySlogan", model.getCurrentCompanySlogan());
