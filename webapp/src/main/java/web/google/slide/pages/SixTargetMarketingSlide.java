@@ -29,8 +29,12 @@ public class SixTargetMarketingSlide extends AbstractSlide {
 		String pctWomenStr = targetMarketingPageModel.getPctWomen() + "%";
 		SlideReplacementData pctWomen = new SlideReplacementData("pctWomen", pctWomenStr);
 		listData.add(pctWomen);	
-		
-		
+		SlideReplacementData test = new SlideReplacementData("test", "\u2713");
+		listData.add(test);
+		String crossStr= "\u2713";
+		SlideReplacementData cross = new SlideReplacementData("cross", crossStr);
+		listData.add(test);
+		listData.add(cross);
 		return listData;
 	
 	}
