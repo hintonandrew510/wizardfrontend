@@ -649,6 +649,9 @@ public class GoogleHelper {
 		// get all pages
 
 		for (WizardData data : dataPages) {
+			
+			
+			
 			// pull of data model
 			PageNameEnum pageName = null;
 			try {
@@ -656,6 +659,49 @@ public class GoogleHelper {
 			} catch (Exception ex) {
 				mLog.severe("error " + ex.getMessage());
 				continue;
+			}
+			//get targetMarking data
+			if (pageName == PageNameEnum.TargetMarketingPage) {
+				mLog.info("FOUND targetMaring page");
+				List<String> targetList= new ArrayList<String>();
+				targetList.add("TargetMarketingWant12to18ToWant19to25");
+				targetList.add("TargetMarketingWant19to25ToWant26to35");
+				targetList.add("TargetMarketingWant26to35ToWant36to45");
+				targetList.add("TargetMarketingWant36to45ToWant46to55");
+				targetList.add("TargetMarketingWant46to55ToWant55Plus");
+				
+				TargetMarketingPageModel targetMarketingPageModel = null;
+
+				targetMarketingPageModel = (TargetMarketingPageModel) JSONManager
+						.convertFromJson(data.getPagedata(), TargetMarketingPageModel.class);
+				// model.addAttribute("targetMarketingPageModel", targetMarketingPageModel);
+				TargetMarketingHeaderRow targetMarketingHeaderRow = new TargetMarketingHeaderRow(
+						targetMarketingPageModel);
+				String rowStatus = targetMarketingHeaderRow.getRowStatus();
+				mLog.info("Row Status [" + rowStatus + "]");
+				
+				switch (rowStatus) {
+			    case "Want12to18ToWant19to25":
+			    	targetList.remove("TargetMarketingWant12to18ToWant19to25");
+			    	break;
+			    case "Want19to25ToWant26to35":
+			    	targetList.remove("TargetMarketingWant19to25ToWant26to35");
+			    	break;
+			    case "Want26to35ToWant36to45":
+			    	targetList.remove("TargetMarketingWant26to35ToWant36to45");
+			    	break;
+			    case "Want36to45ToWant46to55":
+			    	targetList.remove("TargetMarketingWant36to45ToWant46to55");
+			    	break;
+			    case "Want46to55ToWant55Plus":
+			    	targetList.remove("TargetMarketingWant46to55ToWant55Plus");
+			    	break;
+			    }//end of switch
+				//loop thru list to add to removal
+				for (String targetPage : targetList) {
+					mLog.info("removing [" + targetPage + "]");
+					slidesList.add(targetPage);
+				}
 			}
 
 			// exculded
