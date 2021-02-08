@@ -1,5 +1,4 @@
 package web.google.slide;
-
 import java.util.List;
 
 import web.page.Publish;
