@@ -803,6 +803,8 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
 					// slide 8
+					
+					slidesData.getPageModels().setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
 					EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new EightConfidentialClientEvaluationOneSlide(
 							pieChart, "ConfidentialClientEvaluationOnePage_Data!A1:B",

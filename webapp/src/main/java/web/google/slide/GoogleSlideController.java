@@ -291,8 +291,13 @@ public class GoogleSlideController {
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			mLog.severe(ioException.getMessage());
-		} catch (ProfileException e) {
+		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			// mLog.severe(ex);
+			mLog.severe("ERROR WRITTING DATA [" + sw.toString() + "]");
 			return "redirect:/googleprofile";
 		}
 
@@ -367,6 +372,12 @@ public class GoogleSlideController {
 
 			} catch (Exception e) {
 				mLog.severe("could not read comment   + " + e.getMessage());
+				StringWriter sw = new StringWriter();
+				PrintWriter pw = new PrintWriter(sw);
+				e.printStackTrace(pw);
+				// mLog.severe(ex);
+				mLog.severe("ERROR comment [" + sw.toString() + "]");
+				
 			}
 			mLog.info("DELETED OF SLIDES DONE");
 
@@ -472,7 +483,13 @@ public class GoogleSlideController {
 			// String data = new String(bdata, StandardCharsets.UTF_8);
 			// mLog.info(data);
 		} catch (Exception e) {
-			mLog.severe("ERROR [" + e.getMessage() + "]");
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			// mLog.severe(ex);
+			mLog.severe("ERROR  [" + sw.toString() + "]");
+			
+		
 		}
 		// ignore id
 		model.addAttribute("agent", mAgent);
