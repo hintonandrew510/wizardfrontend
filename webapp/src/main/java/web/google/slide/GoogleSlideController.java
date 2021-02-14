@@ -452,11 +452,12 @@ public class GoogleSlideController {
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
 			BatchUpdatePresentationRequest body = new BatchUpdatePresentationRequest().setRequests(requests);
-			mLog.info("requests  body " + body);
+			mLog.info("");
+			mLog.info("requests  body [" + body + "]");
 			BatchUpdatePresentationResponse responseA = mSlides.presentations().batchUpdate(this.mNewFileId, body)
 					.execute();
-
-			mLog.info("requests  responseA " + responseA);
+			mLog.info("");
+			//mLog.info("requests  responseA [" + responseA);
 			// Count total number of replacements made.
 			int numReplacements = 0;
 
@@ -464,7 +465,13 @@ public class GoogleSlideController {
 				try {
 					numReplacements += resp.getReplaceAllText().getOccurrencesChanged();
 				} catch (Exception ex) {
-					mLog.severe("replace text error " + ex.getMessage());
+					//StringWriter sw = new StringWriter();
+					//PrintWriter pw = new PrintWriter(sw);
+					//ex.printStackTrace(pw);
+					// mLog.severe(ex);
+					//mLog.severe("ERROR replace text error [" + resp.toString() + "]");
+					
+					
 				}
 
 			}
