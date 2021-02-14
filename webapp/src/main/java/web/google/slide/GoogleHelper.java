@@ -27,8 +27,10 @@ import com.google.api.services.slides.v1.model.Request;
 import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
 import web.google.slide.pages.FiveStrategicMarketingPageSlide;
 import web.google.slide.pages.FourClientObjectiveSlide;
+import web.google.slide.pages.FourClientObjectiveTextSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
 import web.google.slide.pages.OnePresentedToSlide;
+import web.google.slide.pages.SevenConfidentialClientEvaluationTextSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
@@ -807,6 +809,15 @@ public class GoogleHelper {
 							"ConfidentialClientEvaluationOnePage", SlideEnum.PieChart);
 
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
+					
+					
+					
+					SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(sevenConfidentialClientEvaluationTextSlide);
+					
+					
+					
 
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
@@ -1212,6 +1223,9 @@ public class GoogleHelper {
 					publish.setStrategicMarketingPageOne(true);
 					slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
 					//FiveStrategicMarketingPageSlide
+					FourClientObjectiveTextSlide fourClientObjectiveTextSlide = new FourClientObjectiveTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(fourClientObjectiveTextSlide);
 					
 					mLog.info("value found page StrategicMarketingPageOne "
 							+ strategicMarketingPageOneModel.getYearsInBusiness());
