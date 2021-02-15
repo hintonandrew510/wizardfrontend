@@ -35,6 +35,7 @@ import web.google.slide.pages.SevenConfidentialClientEvaluationTextSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
+import web.google.slide.pages.TwentyFivePlanAProposedTextSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
@@ -1033,7 +1034,11 @@ public class GoogleHelper {
 					planBProposedPageModel = (PlanProposedPageModel) JSONManager.convertFromJson(data.getPagedata(),
 							PlanProposedPageModel.class);
 					// model.addAttribute("PlanBProposedPageModel", planBProposedPageModel);
-
+					slidesData.getPublish().setPlanAProposedPage(true);
+					slidesData.getPageModels().setPlanBProposedPageModel(planBProposedPageModel);
+					TwentyFivePlanAProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanAProposedTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(twentyFivePlanAProposedTextSlide);
 					// publish.setPlanBProposedPage(true);
 					mLog.info("found page planBProposedPage");
 

@@ -30,7 +30,14 @@ public class PageModels {
  private TargetMarketingPageModel targetMarketingPageModel;
  private TargetMarketingHeaderRow targetMarketingHeaderRow;
  private PlanProposedPageModel planAProposedPageModel;
+ private PlanProposedPageModel planBProposedPageModel;
  
+public PlanProposedPageModel getPlanBProposedPageModel() {
+	return planBProposedPageModel;
+}
+public void setPlanBProposedPageModel(PlanProposedPageModel planBProposedPageModel) {
+	this.planBProposedPageModel = planBProposedPageModel;
+}
 public PlanProposedPageModel getPlanAProposedPageModel() {
 	return planAProposedPageModel;
 }

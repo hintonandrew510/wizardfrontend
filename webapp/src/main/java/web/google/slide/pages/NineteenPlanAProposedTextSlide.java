@@ -42,14 +42,14 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
 		String planADigitalImpressionsMonthlyStr = formatStringToCurrency(planAProposedPageModel.getPlanADigitalImpressionsMonthly());
 		SlideReplacementData planADigitalImpressionsMonthly = new SlideReplacementData("planADigitalImpressionsMonthly",
 				planADigitalImpressionsMonthlyStr);
-		listData.add(planACity);
-		listData.add(planAReach);
-		listData.add(planAFrequency);
-		listData.add(planADigitalImpressionsMonthly);
 		SlideReplacementData planAMonthly = new SlideReplacementData("planAMonthly",
 				planAProposedPageModel.getPlanAMonthly());
 		SlideReplacementData planADaily = new SlideReplacementData("planADaily",
 				planAProposedPageModel.getPlanADaily());
+		listData.add(planACity);
+		listData.add(planAReach);
+		listData.add(planAFrequency);
+		listData.add(planADigitalImpressionsMonthly);
 		listData.add(planAMonthly);
 		listData.add(planADaily);
 
