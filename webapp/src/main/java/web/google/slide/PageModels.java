@@ -7,6 +7,7 @@ import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
 import web.page.extra.ExtraPageModel;
 import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
+import web.page.planproposedpage.PlanProposedPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 import web.page.strategicmarketingpagethree.StrategicMarketingHelper;
@@ -28,7 +29,14 @@ public class PageModels {
  private StrategicMarketingHelper strategicMarketingHelper;
  private TargetMarketingPageModel targetMarketingPageModel;
  private TargetMarketingHeaderRow targetMarketingHeaderRow;
+ private PlanProposedPageModel planAProposedPageModel;
  
+public PlanProposedPageModel getPlanAProposedPageModel() {
+	return planAProposedPageModel;
+}
+public void setPlanAProposedPageModel(PlanProposedPageModel planAProposedPageModel) {
+	this.planAProposedPageModel = planAProposedPageModel;
+}
 public TargetMarketingPageModel getTargetMarketingPageModel() {
 	return targetMarketingPageModel;
 }

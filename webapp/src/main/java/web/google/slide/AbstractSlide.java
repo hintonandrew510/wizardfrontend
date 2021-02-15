@@ -1,6 +1,8 @@
 package web.google.slide;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import web.page.PieChart;
@@ -58,9 +60,21 @@ public abstract class AbstractSlide implements SlideInterface {
 		this.pageName = pageName;
 		this.slideEnum = slideEnum;
 	}
-	
-	
-	
+
+	public String formatStringToCurrency(String currency) {
+		try {
+			if (currency == null || currency == "") {
+				return "";
+			}
+			double amount = Double.parseDouble(currency);
+			String output = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(amount);
+			return output;
+		} catch (Exception ex) {
+			
+			return "";
+		}
+	}
+
 	public AbstractSlide(String writeRange, String pageName, SlideEnum slideEnum, SlidesData slidesData) {
 		super();
 		this.writeRange = writeRange;
@@ -68,10 +82,11 @@ public abstract class AbstractSlide implements SlideInterface {
 		this.slideEnum = slideEnum;
 		mSlidesData = slidesData;
 	}
+
 	public SlidesData getmSlidesData() {
 		return mSlidesData;
 	}
-	
+
 	@Override
 	public SlidesData getSlidesData() {
 		// TODO Auto-generated method stub
@@ -116,11 +131,13 @@ public abstract class AbstractSlide implements SlideInterface {
 		}
 		return isTextReplacement;
 	}
+
 	@Override
 	public SlideEnum getSlideEnum() {
 		// TODO Auto-generated method stub
 		return this.slideEnum;
 	}
+
 	private SlideEnum slideEnum;
 
 	@Override
