@@ -36,6 +36,8 @@ import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyFivePlanAProposedTextSlide;
+import web.google.slide.pages.TwentyPlanABEPTextSlide;
+import web.google.slide.pages.TwentySixPlanBBEPTextSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
@@ -957,8 +959,13 @@ public class GoogleHelper {
 					planABEPPageModel = (PlanABEPPageModel) JSONManager.convertFromJson(data.getPagedata(),
 							PlanABEPPageModel.class);
 					// model.addAttribute("PlanABEPPageModel", planABEPPageModel);
-
-					publish.setPlanABEPPage(true);
+					slidesData.getPublish().setPlanABEPPage(true);
+					slidesData.getPageModels().setPlanABEPPageModel(planABEPPageModel);
+					TwentyPlanABEPTextSlide twentyPlanABEPTextSlide = new TwentyPlanABEPTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(twentyPlanABEPTextSlide);
+					
+					//TwentyPlanABEPTextSlide
 					mLog.info("found page PlanABEPPage");
 
 					break;
@@ -1106,8 +1113,12 @@ public class GoogleHelper {
 					planBBEPPageModel = (PlanBBEPPageModel) JSONManager.convertFromJson(data.getPagedata(),
 							PlanBBEPPageModel.class);
 					// model.addAttribute("PlanBBEPPageModel", planBBEPPageModel);
-
-					publish.setPlanBBEPPage(true);
+					//slidesData.getPublish().setPlanBBEPPageModel(true);
+					slidesData.getPageModels().setPlanBBEPPageModel(planBBEPPageModel);
+					TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(twentySixPlanBBEPTextSlide);
+					slidesData.getPublish().setPlanBBEPPage(true);
 					mLog.info("found page PlanBBEPPage");
 
 					break;
