@@ -35,10 +35,12 @@ import web.google.slide.pages.SevenConfidentialClientEvaluationTextSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
+import web.google.slide.pages.TwentyEightPlanBDigitalROICalculatorTextSlide;
 import web.google.slide.pages.TwentyFivePlanAProposedTextSlide;
 import web.google.slide.pages.TwentyPlanABEPTextSlide;
 import web.google.slide.pages.TwentySixPlanBBEPTextSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
+import web.google.slide.pages.TwentyTwoPlanADigitalROICalculatorTextSlide;
 import web.google.slide.pages.TwoTeamCommitmentSlide;
 import web.model.Wizard;
 import web.model.WizardData;
@@ -983,8 +985,12 @@ public class GoogleHelper {
 					// model.addAttribute("PlanADigitalROICalculatorPage",
 					// planADigitalROICalculatorPageModel);
 
-					publish.setPlanADigitalROICalculatorPage(true);
+					slidesData.getPublish().setPlanADigitalROICalculatorPage(true);
 
+					slidesData.getPageModels().setPlanADigitalROICalculatorPageModel(planADigitalROICalculatorPageModel);
+					TwentyTwoPlanADigitalROICalculatorTextSlide textSlide = new TwentyTwoPlanADigitalROICalculatorTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(textSlide);
 					mLog.info("found page PlanADigitalROICalculatorPage");
 
 					break;
@@ -1135,6 +1141,13 @@ public class GoogleHelper {
 					// model.addAttribute("PlanBDigitalROICalculatorPage",
 					// planBDigitalROICalculatorPageModel);
 
+					slidesData.getPublish().setPlanBDigitalROICalculatorPage(true);
+
+					slidesData.getPageModels().setPlanBDigitalROICalculatorPageModel(planBDigitalROICalculatorPageModel);
+					TwentyEightPlanBDigitalROICalculatorTextSlide textSlide = new TwentyEightPlanBDigitalROICalculatorTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(textSlide);
+					
 					publish.setPlanBDigitalROICalculatorPage(true);
 					mLog.info("found page PlanBDigitalROICalculatorPage");
 

@@ -9,6 +9,7 @@ import web.page.extra.ExtraPageModel;
 import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
 import web.page.planABEPPage.PlanABEPPageModel;
 import web.page.planBBEPPage.PlanBBEPPageModel;
+import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
 import web.page.planproposedpage.PlanProposedPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
@@ -35,7 +36,23 @@ public class PageModels {
  private PlanProposedPageModel planBProposedPageModel;
  private PlanABEPPageModel planABEPPageModel;
  private PlanBBEPPageModel planBBEPPageModel;
+ private PlanDigitalROICalculatorPageModel planADigitalROICalculatorPageModel;
+ private PlanDigitalROICalculatorPageModel planBDigitalROICalculatorPageModel;
  
+public PlanDigitalROICalculatorPageModel getPlanBDigitalROICalculatorPageModel() {
+	return planBDigitalROICalculatorPageModel;
+}
+public void setPlanBDigitalROICalculatorPageModel(
+		PlanDigitalROICalculatorPageModel planBDigitalROICalculatorPageModel) {
+	this.planBDigitalROICalculatorPageModel = planBDigitalROICalculatorPageModel;
+}
+public PlanDigitalROICalculatorPageModel getPlanADigitalROICalculatorPageModel() {
+	return planADigitalROICalculatorPageModel;
+}
+public void setPlanADigitalROICalculatorPageModel(
+		PlanDigitalROICalculatorPageModel planADigitalROICalculatorPageModel) {
+	this.planADigitalROICalculatorPageModel = planADigitalROICalculatorPageModel;
+}
 public PlanBBEPPageModel getPlanBBEPPageModel() {
 	return planBBEPPageModel;
 }
