@@ -38,6 +38,8 @@ import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyEightPlanBDigitalROICalculatorTextSlide;
 import web.google.slide.pages.TwentyFivePlanAProposedTextSlide;
 import web.google.slide.pages.TwentyPlanABEPTextSlide;
+import web.google.slide.pages.TwentySevenPlanBLifetimeValuedTextSlide;
+import web.google.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
 import web.google.slide.pages.TwentySixPlanBBEPTextSlide;
 import web.google.slide.pages.TwentyThreePlanBMediaSlide;
 import web.google.slide.pages.TwentyTwoPlanADigitalROICalculatorTextSlide;
@@ -1068,7 +1070,11 @@ public class GoogleHelper {
 							.convertFromJson(data.getPagedata(), PlanALifetimeValuedPageModel.class);
 					// model.addAttribute("PlanALifetimeValuedPageModel",
 					// planALifetimeValuedPageModel);
-
+					
+					slidesData.getPageModels().setPlanALifetimeValuedPageModel(planALifetimeValuedPageModel);
+					TwentyOnePlanALifetimeValuedTextSlide textSlide = new TwentyOnePlanALifetimeValuedTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(textSlide);
 					mLog.info("found page PlanALifetimeValuedPage");
 
 					break;
@@ -1088,7 +1094,10 @@ public class GoogleHelper {
 							.convertFromJson(data.getPagedata(), PlanBLifetimeValuedPageModel.class);
 					// model.addAttribute("PlanBLifetimeValuedPageModel",
 					// planBLifetimeValuedPageModel);
-
+					slidesData.getPageModels().setPlanBLifetimeValuedPageModel(planBLifetimeValuedPageModel);
+					TwentySevenPlanBLifetimeValuedTextSlide textSlide = new TwentySevenPlanBLifetimeValuedTextSlide(slidesData,
+							SlideEnum.TextSlideReplacement);
+					slidesList.add(textSlide);
 					mLog.info("found page PlanBLifetimeValuedPage");
 
 					break;

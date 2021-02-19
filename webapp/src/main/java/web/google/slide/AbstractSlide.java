@@ -61,6 +61,11 @@ public abstract class AbstractSlide implements SlideInterface {
 		this.slideEnum = slideEnum;
 	}
 
+	public String formatStringToCurrency(int currency) {
+		String currencyStr =  String.valueOf(currency);
+		currencyStr = formatStringToCurrency(currencyStr);
+		return currencyStr;
+	}
 	public String formatStringToCurrency(String currency) {
 		try {
 			if (currency == null || currency == "") {
