@@ -17,10 +17,10 @@ import web.page.planproposedpage.PlanProposedPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 
-public class TwentyFivePlanAProposedTextSlide extends AbstractSlide {
-	private static final Logger mLog = Logger.getLogger(TwentyFivePlanAProposedTextSlide.class.getName());
+public class TwentyFivePlanBProposedTextSlide extends AbstractSlide {
+	private static final Logger mLog = Logger.getLogger(TwentyFivePlanBProposedTextSlide.class.getName());
 
-	public TwentyFivePlanAProposedTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
+	public TwentyFivePlanBProposedTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
 		super(sildeData, slideEnum);
 	}
 

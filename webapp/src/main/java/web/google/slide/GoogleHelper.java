@@ -36,7 +36,7 @@ import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyEightPlanBDigitalROICalculatorTextSlide;
-import web.google.slide.pages.TwentyFivePlanAProposedTextSlide;
+import web.google.slide.pages.TwentyFivePlanBProposedTextSlide;
 import web.google.slide.pages.TwentyPlanABEPTextSlide;
 import web.google.slide.pages.TwentySevenPlanBLifetimeValuedTextSlide;
 import web.google.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
@@ -1051,7 +1051,7 @@ public class GoogleHelper {
 					// model.addAttribute("PlanBProposedPageModel", planBProposedPageModel);
 					slidesData.getPublish().setPlanAProposedPage(true);
 					slidesData.getPageModels().setPlanBProposedPageModel(planBProposedPageModel);
-					TwentyFivePlanAProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanAProposedTextSlide(slidesData,
+					TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(slidesData,
 							SlideEnum.TextSlideReplacement);
 					slidesList.add(twentyFivePlanAProposedTextSlide);
 					// publish.setPlanBProposedPage(true);
