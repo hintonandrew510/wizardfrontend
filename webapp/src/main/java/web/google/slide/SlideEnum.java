@@ -8,6 +8,8 @@ public enum SlideEnum {
       ClientObjectiveBRAND,
       ClientObjectiveTop,
       PieChart, 
+      PlanASpreadSheet,
+      PlanBSpreadSheet,
       StrategicMarketing, 
       TextSlideReplacement
 }

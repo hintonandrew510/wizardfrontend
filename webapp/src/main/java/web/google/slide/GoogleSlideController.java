@@ -66,6 +66,8 @@ import com.google.api.services.slides.v1.model.SheetsChart;
 import com.google.api.services.slides.v1.model.SubstringMatchCriteria;
 
 import web.data.MyUserPrincipal;
+import web.google.slide.pages.PlanSpreadSheet;
+import web.google.slide.pages.PlanSpreadSheets;
 import web.model.Agent;
 import web.model.Wizard;
 import web.model.WizardData;
@@ -74,6 +76,8 @@ import web.page.PieChart;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.planamedipage.MediaChart;
+import web.page.planamedipage.PlanMediaPageModel;
+import web.page.planproposedpage.PlanProposedPageModel;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
 
@@ -377,7 +381,7 @@ public class GoogleSlideController {
 				e.printStackTrace(pw);
 				// mLog.severe(ex);
 				mLog.severe("ERROR comment [" + sw.toString() + "]");
-				
+
 			}
 			mLog.info("DELETED OF SLIDES DONE");
 
@@ -457,7 +461,7 @@ public class GoogleSlideController {
 			BatchUpdatePresentationResponse responseA = mSlides.presentations().batchUpdate(this.mNewFileId, body)
 					.execute();
 			mLog.info("");
-			//mLog.info("requests  responseA [" + responseA);
+			// mLog.info("requests responseA [" + responseA);
 			// Count total number of replacements made.
 			int numReplacements = 0;
 
@@ -465,13 +469,12 @@ public class GoogleSlideController {
 				try {
 					numReplacements += resp.getReplaceAllText().getOccurrencesChanged();
 				} catch (Exception ex) {
-					//StringWriter sw = new StringWriter();
-					//PrintWriter pw = new PrintWriter(sw);
-					//ex.printStackTrace(pw);
+					// StringWriter sw = new StringWriter();
+					// PrintWriter pw = new PrintWriter(sw);
+					// ex.printStackTrace(pw);
 					// mLog.severe(ex);
-					//mLog.severe("ERROR replace text error [" + resp.toString() + "]");
-					
-					
+					// mLog.severe("ERROR replace text error [" + resp.toString() + "]");
+
 				}
 
 			}
@@ -495,8 +498,7 @@ public class GoogleSlideController {
 			e.printStackTrace(pw);
 			// mLog.severe(ex);
 			mLog.severe("ERROR  [" + sw.toString() + "]");
-			
-		
+
 		}
 		// ignore id
 		model.addAttribute("agent", mAgent);
@@ -841,6 +843,83 @@ public class GoogleSlideController {
 					}
 
 					mLog.warning("finish setting up ClientObjectiveBrand [" + page.getPageName() + "]");
+
+					break;
+				case PlanASpreadSheet:
+					mLog.warning("PlanASpreadSheet WRITTING");
+					List<Object> dataRowPlanASpreadSheetHeader = new ArrayList<>();
+					PlanMediaPageModel planAMediaPagedataPageModel = page.getSlidesData().getPageModels()
+							.getPlanAMediaPagedataPageModel();
+					planAMediaPagedataPageModel.getMediaRows();
+
+					try {
+						PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows());
+
+						// spike = green slow = red base = blue
+						dataRowPlanASpreadSheetHeader.add("Media");
+						dataRowPlanASpreadSheetHeader.add("Jan");
+						dataRowPlanASpreadSheetHeader.add("Feb");
+						dataRowPlanASpreadSheetHeader.add("Mar");
+						dataRowPlanASpreadSheetHeader.add("Apr");
+						dataRowPlanASpreadSheetHeader.add("May");
+						dataRowPlanASpreadSheetHeader.add("Jun");
+						dataRowPlanASpreadSheetHeader.add("Jul");
+						dataRowPlanASpreadSheetHeader.add("Aug");
+						dataRowPlanASpreadSheetHeader.add("Sep");
+						dataRowPlanASpreadSheetHeader.add("Oct");
+						dataRowPlanASpreadSheetHeader.add("Nov");
+						dataRowPlanASpreadSheetHeader.add("Dec");
+						dataRowPlanASpreadSheetHeader.add("Total");
+						writeData.add(dataRowPlanASpreadSheetHeader);
+
+						List<PlanSpreadSheet> planSpreadSheetList = planSpreadSheets.getPlanSpreadSheets();
+						for (PlanSpreadSheet row : planSpreadSheetList) {
+							List<Object> dataRow = new ArrayList<>();
+							dataRow.add(row.getName());
+							dataRow.add(row.getJan());
+							dataRow.add(row.getFeb());
+							dataRow.add(row.getMar());
+							dataRow.add(row.getApr());
+							dataRow.add(row.getMay());
+							dataRow.add(row.getJun());
+							dataRow.add(row.getJul());
+							dataRow.add(row.getAug());
+							dataRow.add(row.getSep());
+							dataRow.add(row.getOct());
+							dataRow.add(row.getNov());
+							dataRow.add(row.getDec());
+							dataRow.add(row.getRt());
+							writeData.add(dataRow);
+						}
+
+					} catch (Exception ex) {
+						mLog.severe("ERROR PlanASpreadSheet WRITTING " + ex.getMessage());
+					}
+
+					mLog.warning("finish PlanASpreadSheet start writting [" + page.getPageName() + "]");
+
+					break;
+				case PlanBSpreadSheet:
+					mLog.warning("PlanBSpreadSheet WRITTING");
+					List<Object> dataRowPlanBSpreadSheetHeader = new ArrayList<>();
+
+					// spike = green slow = red base = blue
+					dataRowPlanBSpreadSheetHeader.add("Media");
+					dataRowPlanBSpreadSheetHeader.add("Jan");
+					dataRowPlanBSpreadSheetHeader.add("Feb");
+					dataRowPlanBSpreadSheetHeader.add("Mar");
+					dataRowPlanBSpreadSheetHeader.add("Apr");
+					dataRowPlanBSpreadSheetHeader.add("May");
+					dataRowPlanBSpreadSheetHeader.add("Jun");
+					dataRowPlanBSpreadSheetHeader.add("Jul");
+					dataRowPlanBSpreadSheetHeader.add("Aug");
+					dataRowPlanBSpreadSheetHeader.add("Sep");
+					dataRowPlanBSpreadSheetHeader.add("Oct");
+					dataRowPlanBSpreadSheetHeader.add("Nov");
+					dataRowPlanBSpreadSheetHeader.add("Dec");
+					writeData.add(dataRowPlanBSpreadSheetHeader);
+
+					mLog.warning("finish PlanBSpreadSheet start writting [" + page.getPageName() + "]");
 
 					break;
 				case PieChart:

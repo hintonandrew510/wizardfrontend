@@ -11,6 +11,7 @@ import web.page.planABEPPage.PlanABEPPageModel;
 import web.page.planBBEPPage.PlanBBEPPageModel;
 import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
 import web.page.planalifetimevaluedpage.PlanALifetimeValuedPageModel;
+import web.page.planamedipage.PlanMediaPageModel;
 import web.page.planbLifetimevaluedpage.PlanBLifetimeValuedPageModel;
 import web.page.planproposedpage.PlanProposedPageModel;
 import web.page.presentedtopage.PresentedToPageModel;
@@ -42,6 +43,24 @@ public class PageModels {
 	private PlanDigitalROICalculatorPageModel planBDigitalROICalculatorPageModel;
 	private PlanALifetimeValuedPageModel planALifetimeValuedPageModel;
     private PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel;
+    private PlanMediaPageModel planAMediaPagedataPageModel;
+    private PlanMediaPageModel planBMediaPagedataPageModel;
+
+	public PlanMediaPageModel getPlanAMediaPagedataPageModel() {
+		return planAMediaPagedataPageModel;
+	}
+
+	public void setPlanAMediaPagedataPageModel(PlanMediaPageModel planAMediaPagedataPageModel) {
+		this.planAMediaPagedataPageModel = planAMediaPagedataPageModel;
+	}
+
+	public PlanMediaPageModel getPlanBMediaPagedataPageModel() {
+		return planBMediaPagedataPageModel;
+	}
+
+	public void setPlanBMediaPagedataPageModel(PlanMediaPageModel planBMediaPagedataPageModel) {
+		this.planBMediaPagedataPageModel = planBMediaPagedataPageModel;
+	}
 
 	public PlanBLifetimeValuedPageModel getPlanBLifetimeValuedPageModel() {
 		return planBLifetimeValuedPageModel;
