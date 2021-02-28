@@ -851,7 +851,7 @@ public class GoogleSlideController {
 					List<Object> dataRowPlanASpreadSheetFooter = new ArrayList<>();
 					PlanMediaPageModel planAMediaPagedataPageModel = page.getSlidesData().getPageModels()
 							.getPlanAMediaPagedataPageModel();
-					planAMediaPagedataPageModel.getMediaRows();
+					
 
 					try {
 						PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows());
@@ -920,7 +920,13 @@ public class GoogleSlideController {
 				case PlanBSpreadSheet:
 					mLog.warning("PlanBSpreadSheet WRITTING");
 					List<Object> dataRowPlanBSpreadSheetHeader = new ArrayList<>();
-
+					List<Object> dataRowPlanBSpreadSheetFooter = new ArrayList<>();
+					PlanMediaPageModel planBMediaPagedataPageModel = page.getSlidesData().getPageModels()
+							.getPlanBMediaPagedataPageModel();
+					
+					try {
+					PlanSpreadSheets planBSpreadSheets = new PlanSpreadSheets(planBMediaPagedataPageModel.getMediaRows());
+					
 					// spike = green slow = red base = blue
 					dataRowPlanBSpreadSheetHeader.add("Media");
 					dataRowPlanBSpreadSheetHeader.add("Jan");
@@ -935,7 +941,48 @@ public class GoogleSlideController {
 					dataRowPlanBSpreadSheetHeader.add("Oct");
 					dataRowPlanBSpreadSheetHeader.add("Nov");
 					dataRowPlanBSpreadSheetHeader.add("Dec");
+					dataRowPlanBSpreadSheetHeader.add("Total");
 					writeData.add(dataRowPlanBSpreadSheetHeader);
+					
+					List<PlanSpreadSheet> planSpreadSheetList = planBSpreadSheets.getPlanSpreadSheets();
+					for (PlanSpreadSheet row : planSpreadSheetList) {
+						List<Object> dataRow = new ArrayList<>();
+						dataRow.add(row.getName());
+						dataRow.add(row.getJan());
+						dataRow.add(row.getFeb());
+						dataRow.add(row.getMar());
+						dataRow.add(row.getApr());
+						dataRow.add(row.getMay());
+						dataRow.add(row.getJun());
+						dataRow.add(row.getJul());
+						dataRow.add(row.getAug());
+						dataRow.add(row.getSep());
+						dataRow.add(row.getOct());
+						dataRow.add(row.getNov());
+						dataRow.add(row.getDec());
+						dataRow.add(row.getRt());
+						writeData.add(dataRow);
+					}
+					
+					dataRowPlanBSpreadSheetFooter.add("Monthly Totals");
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getJan());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getFeb());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getMar());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getApr());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getMay());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getJun());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getJul());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getAug());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getSep());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getOct());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getNov());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getDec());
+					dataRowPlanBSpreadSheetHeader.add(planBSpreadSheets.getRt());
+					writeData.add(dataRowPlanBSpreadSheetFooter);
+					
+					} catch (Exception ex) {
+						mLog.severe("ERROR PlanBSpreadSheet WRITTING " + ex.getMessage());
+					}
 
 					mLog.warning("finish PlanBSpreadSheet start writting [" + page.getPageName() + "]");
 

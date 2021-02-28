@@ -1186,7 +1186,7 @@ public class GoogleHelper {
 						SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(mediaChartA,
 								"PlanAMediaPage_Data!A1:E", "PlanAMediaPage", SlideEnum.BarChart);
 						slidesList.add(seventeenPlanAMediaSlide);
-						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide("PlanASpreadSheet","PlanASpreadSheet", SlideEnum.PlanASpreadSheet,slidesData);
+						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide("PlanASpreadSheet!A1:N","PlanASpreadSheet", SlideEnum.PlanASpreadSheet,slidesData);
 						slidesList.add(twentyNinePlanASpreadSheetSlide);
 						mLog.info("found page SeventeenPlanAMediaSlide");
 
@@ -1216,7 +1216,7 @@ public class GoogleHelper {
 						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
 								mediaChart, "PlanBMediaPage_Data!A1:E", "PlanBMediaPage", SlideEnum.BarChart);
 						slidesList.add(twentyThreePlanBMediaSlide);
-						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide("PlanBSpreadSheet","PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet,slidesData);
+						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide("PlanBSpreadSheet!A1:E","PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet,slidesData);
 						slidesList.add(thirtyPlanBSpreadSheetSlide);
 						mLog.info("found page TwentyThreePlanBMediaSlide");
 						mLog.info("found page TwentyThreePlanBMediaSlide");
