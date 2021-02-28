@@ -848,6 +848,7 @@ public class GoogleSlideController {
 				case PlanASpreadSheet:
 					mLog.warning("PlanASpreadSheet WRITTING");
 					List<Object> dataRowPlanASpreadSheetHeader = new ArrayList<>();
+					List<Object> dataRowPlanASpreadSheetFooter = new ArrayList<>();
 					PlanMediaPageModel planAMediaPagedataPageModel = page.getSlidesData().getPageModels()
 							.getPlanAMediaPagedataPageModel();
 					planAMediaPagedataPageModel.getMediaRows();
@@ -891,6 +892,23 @@ public class GoogleSlideController {
 							dataRow.add(row.getRt());
 							writeData.add(dataRow);
 						}
+						
+						
+						dataRowPlanASpreadSheetFooter.add("Monthly Totals");
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getJan());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getFeb());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getMar());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getApr());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getMay());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getJun());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getJul());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getAug());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getSep());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getOct());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getNov());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getDec());
+						dataRowPlanASpreadSheetHeader.add(planSpreadSheets.getRt());
+						writeData.add(dataRowPlanASpreadSheetFooter);
 
 					} catch (Exception ex) {
 						mLog.severe("ERROR PlanASpreadSheet WRITTING " + ex.getMessage());

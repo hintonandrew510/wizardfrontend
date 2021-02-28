@@ -2,6 +2,7 @@ package web.google.slide.pages;
 
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import com.google.common.reflect.TypeToken;
@@ -16,6 +17,7 @@ public class PlanSpreadSheets {
 	
 	private String jan;
 	public String getJan() {
+		jan = formatDoubleToCurrency(janTotal);
 		return jan;
 	}
 
@@ -24,6 +26,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getFeb() {
+		feb = formatDoubleToCurrency(febTotal);
 		return feb;
 	}
 
@@ -32,6 +35,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getMar() {
+		mar = formatDoubleToCurrency(marTotal);
 		return mar;
 	}
 
@@ -40,6 +44,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getApr() {
+		apr = formatDoubleToCurrency(aprTotal);
 		return apr;
 	}
 
@@ -48,6 +53,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getMay() {
+		may = formatDoubleToCurrency(mayTotal);
 		return may;
 	}
 
@@ -56,6 +62,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getJun() {
+		jun = formatDoubleToCurrency(junTotal);
 		return jun;
 	}
 
@@ -64,6 +71,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getJul() {
+		jul = formatDoubleToCurrency(julTotal);
 		return jul;
 	}
 
@@ -72,6 +80,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getAug() {
+		aug = formatDoubleToCurrency(augTotal);
 		return aug;
 	}
 
@@ -80,6 +89,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getSep() {
+		sep = formatDoubleToCurrency(sepTotal);
 		return sep;
 	}
 
@@ -88,6 +98,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getOct() {
+		oct = formatDoubleToCurrency(octTotal);
 		return oct;
 	}
 
@@ -96,6 +107,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getNov() {
+		nov = formatDoubleToCurrency(novTotal);
 		return nov;
 	}
 
@@ -104,6 +116,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getDec() {
+		dec = formatDoubleToCurrency(decTotal);
 		return dec;
 	}
 
@@ -112,6 +125,7 @@ public class PlanSpreadSheets {
 	}
 
 	public String getRt() {
+		rt = formatDoubleToCurrency(rtTotal);
 		return rt;
 	}
 
@@ -152,6 +166,16 @@ public class PlanSpreadSheets {
 
 	public void setPlanSpreadSheets(List<PlanSpreadSheet> planSpreadSheets) {
 		this.planSpreadSheets = planSpreadSheets;
+	}
+	
+	public String formatDoubleToCurrency(double amount) {
+		try {
+			String output = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(amount);
+			return output;
+		} catch (Exception ex) {
+			
+			return "";
+		}
 	}
 	
 	private void constructTotals() {
