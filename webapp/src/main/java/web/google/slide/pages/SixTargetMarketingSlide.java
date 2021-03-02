@@ -89,7 +89,8 @@ public class SixTargetMarketingSlide extends AbstractSlide {
 		SlideReplacementData have26to35 = new SlideReplacementData("have26to35", String.valueOf(targetMarketingPageModel.getHave26to35()));
 		listData.add(have26to35); 
 		
-		
+		SlideReplacementData have36to45 = new SlideReplacementData("have36to45", String.valueOf(targetMarketingPageModel.getHave36to45()));
+		listData.add(have36to45); 
 		
 		SlideReplacementData have46to55 = new SlideReplacementData("have46to55", String.valueOf(targetMarketingPageModel.getHave46to55()));
 		listData.add(have46to55);
