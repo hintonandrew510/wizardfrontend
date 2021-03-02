@@ -1,5 +1,7 @@
 package web.google.slide.pages;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -7,7 +9,7 @@ import java.util.logging.Logger;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-
+import java.util.Locale;
 import web.google.slide.GoogleHelper;
 
 public class PlanSpreadSheets {
@@ -146,19 +148,19 @@ public class PlanSpreadSheets {
 	private String dec;
 	private String rt;
 	
-	private double janTotal;
-	private double febTotal;
-	private double marTotal;
-	private double aprTotal;
-	private double mayTotal;
-	private double junTotal;
-	private double julTotal;
-	private double augTotal;
-	private double sepTotal;
-	private double octTotal;
-	private double novTotal;
-	private double decTotal;
-	private double rtTotal;
+	private long janTotal;
+	private long febTotal;
+	private long marTotal;
+	private long aprTotal;
+	private long mayTotal;
+	private long junTotal;
+	private long julTotal;
+	private long augTotal;
+	private long sepTotal;
+	private long octTotal;
+	private long novTotal;
+	private long decTotal;
+	private long rtTotal;
 	
 	public List<PlanSpreadSheet> getPlanSpreadSheets() {
 		return planSpreadSheets;
@@ -168,66 +170,100 @@ public class PlanSpreadSheets {
 		this.planSpreadSheets = planSpreadSheets;
 	}
 	
-	public String formatDoubleToCurrency(double amount) {
+	public String formatDoubleToCurrency(Number amount) {
 		try {
-			String output = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(amount);
+			mLog.warning("formatDoubleToCurrency starting");
+			mLog.info("amount " + amount);
+			 NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
+			 usdCostFormat.setMaximumFractionDigits(0);
+			String output = usdCostFormat.format(amount);
+			mLog.info("output " + output);
+			mLog.warning("formatDoubleToCurrency ending");
 			return output;
 		} catch (Exception ex) {
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			mLog.severe("ERROR  [" + sw.toString() + "]");
 			
-			return "";
+			return "0";
 		}
 	}
 	
-	private void constructTotals() {
-		NumberFormat nf = NumberFormat.getNumberInstance();
-		nf.setGroupingUsed(false);
-		nf.setMinimumFractionDigits(0);
-		String amount= null;
+	private void constructTotals() throws Exception {
+		mLog.warning("constructTotals starting");
+	//	NumberFormat nf = NumberFormat.getNumberInstance();
+		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+		
+		
+		
+		Number number = null;
 		for (PlanSpreadSheet rowData : planSpreadSheets ) {
-			amount= nf.format(rowData.getJan());
-			janTotal = janTotal + Double.parseDouble(amount);
-			amount= nf.format(rowData.getFeb());
-			febTotal = febTotal + Double.parseDouble(amount);
 			
-			amount= nf.format(rowData.getMar());
-			marTotal = marTotal + Double.parseDouble(amount);
+			  number = nf.parse(rowData.getJan());
+			//amount= nf.format(rowData.getJan());
+			mLog.info("Jan " + number);
 			
-			amount= nf.format(rowData.getApr());
-			aprTotal = aprTotal + Double.parseDouble(amount);
+			janTotal = janTotal + (Long)number;
 			
-			amount= nf.format(rowData.getMay());
-			mayTotal = mayTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getFeb());
+			mLog.info("feb " + number);
+			febTotal = febTotal +   (Long)number;
 			
-			amount= nf.format(rowData.getJun());
-			junTotal = junTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getMar());
+			mLog.info("mar " + number);
+			marTotal = marTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getJul());
-			julTotal = julTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getApr());
+			mLog.info("Apr " + number);
+			aprTotal = aprTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getJun());
-			junTotal = junTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getMay());
+			mLog.info("May " + number);
+			mayTotal = mayTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getJul());
-			julTotal = julTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getJun());
+			mLog.info("Jun " + number);
+			junTotal = junTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getAug());
-			augTotal = augTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getJul());
+			mLog.info("Jul " + number);
+			julTotal = julTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getSep());
-			sepTotal = sepTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getJun());
+			mLog.info("Jun " + number);
+			junTotal = junTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getOct());
-			octTotal = octTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getJul());
+			mLog.info("Jul " + number);
+			julTotal = julTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getNov());
-			novTotal = novTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getAug());
+			mLog.info("Aug " + number);
+			augTotal = augTotal +  (Long)number;
+			
+			number= nf.parse(rowData.getSep());
+			mLog.info("Sep " + number);
+			sepTotal = sepTotal + (Long)number;
+			
+			number= nf.parse(rowData.getOct());
+			mLog.info("Oct " + number);
+			octTotal = octTotal +  (Long)number;
+			
+			number= nf.parse(rowData.getNov());
+			mLog.info("Nov " + number);
+			novTotal = novTotal +  (Long)number;
 			
 			
-			amount= nf.format(rowData.getDec());
-			decTotal = decTotal + Double.parseDouble(amount);
+			number= nf.parse(rowData.getDec());
+			mLog.info("Dec " + number);
+			decTotal = decTotal +  (Long)number;
 			
-			amount= nf.format(rowData.getRt());
-			rtTotal = rtTotal + Double.parseDouble(amount);
+			String numberStr = rowData.getRt();
+			mLog.info("Rt " + numberStr);
+			rtTotal = rtTotal +  Long.parseLong(numberStr);
+			
+			mLog.warning("constructTotals ending");
 			
 		}
 	}
@@ -248,6 +284,12 @@ String ammount= nf.format(value);
 			
 		} catch (Exception ex) {
 			mLog.severe(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			// mLog.severe(ex);
+			mLog.severe("ERROR PlanASpreadSheet Constructor [" + sw.toString() + "]");
+		
 		}
 		mLog.warning("ending PlanSpreadSheets");
 	}

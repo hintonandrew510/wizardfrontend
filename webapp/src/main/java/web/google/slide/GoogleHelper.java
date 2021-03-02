@@ -1,12 +1,14 @@
 package web.google.slide;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -598,6 +600,14 @@ public class GoogleHelper {
 		
 	}
 
+	public static String convertStringToCurrency(String amount) {
+		NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
+		 usdCostFormat.setMaximumFractionDigits(0);
+		String output = usdCostFormat.format(amount);
+		return output;
+	}
+	
+	
 	public static String findLabelContent(String label) {
 		if (label == null) {
 			return "unknown label";
@@ -1186,7 +1196,8 @@ public class GoogleHelper {
 						SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(mediaChartA,
 								"PlanAMediaPage_Data!A1:E", "PlanAMediaPage", SlideEnum.BarChart);
 						slidesList.add(seventeenPlanAMediaSlide);
-						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide("PlanASpreadSheet!A1:N","PlanASpreadSheet", SlideEnum.PlanASpreadSheet,slidesData);
+						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide =
+								new TwentyNinePlanASpreadSheetSlide("PlanASpreadSheet!A1:P","PlanASpreadSheet", SlideEnum.PlanASpreadSheet,slidesData);
 						slidesList.add(twentyNinePlanASpreadSheetSlide);
 						mLog.info("found page SeventeenPlanAMediaSlide");
 
@@ -1216,7 +1227,7 @@ public class GoogleHelper {
 						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
 								mediaChart, "PlanBMediaPage_Data!A1:E", "PlanBMediaPage", SlideEnum.BarChart);
 						slidesList.add(twentyThreePlanBMediaSlide);
-						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide("PlanBSpreadSheet!A1:E","PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet,slidesData);
+						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide("PlanBSpreadSheet!A1:P","PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet,slidesData);
 						slidesList.add(thirtyPlanBSpreadSheetSlide);
 						mLog.info("found page TwentyThreePlanBMediaSlide");
 						mLog.info("found page TwentyThreePlanBMediaSlide");
