@@ -37,10 +37,12 @@ import web.google.slide.pages.SevenConfidentialClientEvaluationTextSlide;
 import web.google.slide.pages.SeventeenPlanAMediaSlide;
 import web.google.slide.pages.SixTargetMarketingSlide;
 import web.google.slide.pages.ThirtyPlanBSpreadSheetSlide;
+import web.google.slide.pages.ThirtyPlanBSpreadSheetTextSlide;
 import web.google.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.google.slide.pages.TwentyEightPlanBDigitalROICalculatorTextSlide;
 import web.google.slide.pages.TwentyFivePlanBProposedTextSlide;
 import web.google.slide.pages.TwentyNinePlanASpreadSheetSlide;
+import web.google.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.google.slide.pages.TwentyPlanABEPTextSlide;
 import web.google.slide.pages.TwentySevenPlanBLifetimeValuedTextSlide;
 import web.google.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
@@ -568,7 +570,7 @@ public class GoogleHelper {
 
 	static HashMap<String, String> map = new HashMap<String, String>();
 
-	static  {
+	static {
 		if (map.isEmpty()) {
 
 			map.put("introduceNewDepartmentLabel", "Introduce New Department/Products/Services");
@@ -597,17 +599,24 @@ public class GoogleHelper {
 			map.put("otherLabel", "Other:");
 
 		}
-		
+
 	}
 
-	public static String convertStringToCurrency(String amount) {
-		NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
-		 usdCostFormat.setMaximumFractionDigits(0);
-		String output = usdCostFormat.format(amount);
-		return output;
+	public static String convertStringToCurrency(String currency) {
+		
+		try {
+			mLog.info("amount " + currency);
+			double amount = Double.parseDouble(currency);
+			NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("en", "US"));
+			nf.setMaximumFractionDigits(0);
+			String output = nf.format(amount);
+			return output;
+		} catch (Exception ex) {
+			mLog.severe("ERROR converting " + ex.getMessage());
+			return currency;
+		}
 	}
-	
-	
+
 	public static String findLabelContent(String label) {
 		if (label == null) {
 			return "unknown label";
@@ -671,9 +680,7 @@ public class GoogleHelper {
 		// get all pages
 
 		for (WizardData data : dataPages) {
-			
-			
-			
+
 			// pull of data model
 			PageNameEnum pageName = null;
 			try {
@@ -682,44 +689,44 @@ public class GoogleHelper {
 				mLog.severe("error " + ex.getMessage());
 				continue;
 			}
-			//get targetMarking data
+			// get targetMarking data
 			if (pageName == PageNameEnum.TargetMarketingPage) {
 				mLog.info("FOUND targetMaring page");
-				List<String> targetList= new ArrayList<String>();
+				List<String> targetList = new ArrayList<String>();
 				targetList.add("TargetMarketingWant12to18ToWant19to25");
 				targetList.add("TargetMarketingWant19to25ToWant26to35");
 				targetList.add("TargetMarketingWant26to35ToWant36to45");
 				targetList.add("TargetMarketingWant36to45ToWant46to55");
 				targetList.add("TargetMarketingWant46to55ToWant55Plus");
-				
+
 				TargetMarketingPageModel targetMarketingPageModel = null;
 
-				targetMarketingPageModel = (TargetMarketingPageModel) JSONManager
-						.convertFromJson(data.getPagedata(), TargetMarketingPageModel.class);
+				targetMarketingPageModel = (TargetMarketingPageModel) JSONManager.convertFromJson(data.getPagedata(),
+						TargetMarketingPageModel.class);
 				// model.addAttribute("targetMarketingPageModel", targetMarketingPageModel);
 				TargetMarketingHeaderRow targetMarketingHeaderRow = new TargetMarketingHeaderRow(
 						targetMarketingPageModel);
 				String rowStatus = targetMarketingHeaderRow.getRowStatus();
 				mLog.info("Row Status [" + rowStatus + "]");
-				
+
 				switch (rowStatus) {
-			    case "Want12to18ToWant19to25":
-			    	targetList.remove("TargetMarketingWant12to18ToWant19to25");
-			    	break;
-			    case "Want19to25ToWant26to35":
-			    	targetList.remove("TargetMarketingWant19to25ToWant26to35");
-			    	break;
-			    case "Want26to35ToWant36to45":
-			    	targetList.remove("TargetMarketingWant26to35ToWant36to45");
-			    	break;
-			    case "Want36to45ToWant46to55":
-			    	targetList.remove("TargetMarketingWant36to45ToWant46to55");
-			    	break;
-			    case "Want46to55ToWant55Plus":
-			    	targetList.remove("TargetMarketingWant46to55ToWant55Plus");
-			    	break;
-			    }//end of switch
-				//loop thru list to add to removal
+				case "Want12to18ToWant19to25":
+					targetList.remove("TargetMarketingWant12to18ToWant19to25");
+					break;
+				case "Want19to25ToWant26to35":
+					targetList.remove("TargetMarketingWant19to25ToWant26to35");
+					break;
+				case "Want26to35ToWant36to45":
+					targetList.remove("TargetMarketingWant26to35ToWant36to45");
+					break;
+				case "Want36to45ToWant46to55":
+					targetList.remove("TargetMarketingWant36to45ToWant46to55");
+					break;
+				case "Want46to55ToWant55Plus":
+					targetList.remove("TargetMarketingWant46to55ToWant55Plus");
+					break;
+				}// end of switch
+					// loop thru list to add to removal
 				for (String targetPage : targetList) {
 					mLog.info("removing [" + targetPage + "]");
 					slidesList.add(targetPage);
@@ -823,23 +830,19 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
 					// slide 8
-					
-					slidesData.getPageModels().setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
+
+					slidesData.getPageModels()
+							.setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
 					EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new EightConfidentialClientEvaluationOneSlide(
 							pieChart, "ConfidentialClientEvaluationOnePage_Data!A1:B",
 							"ConfidentialClientEvaluationOnePage", SlideEnum.PieChart);
 
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
-					
-					
-					
-					SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+
+					SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(sevenConfidentialClientEvaluationTextSlide);
-					
-					
-					
 
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
@@ -980,8 +983,8 @@ public class GoogleHelper {
 					TwentyPlanABEPTextSlide twentyPlanABEPTextSlide = new TwentyPlanABEPTextSlide(slidesData,
 							SlideEnum.TextSlideReplacement);
 					slidesList.add(twentyPlanABEPTextSlide);
-					
-					//TwentyPlanABEPTextSlide
+
+					// TwentyPlanABEPTextSlide
 					mLog.info("found page PlanABEPPage");
 
 					break;
@@ -1001,9 +1004,10 @@ public class GoogleHelper {
 
 					slidesData.getPublish().setPlanADigitalROICalculatorPage(true);
 
-					slidesData.getPageModels().setPlanADigitalROICalculatorPageModel(planADigitalROICalculatorPageModel);
-					TwentyTwoPlanADigitalROICalculatorTextSlide textSlide = new TwentyTwoPlanADigitalROICalculatorTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					slidesData.getPageModels()
+							.setPlanADigitalROICalculatorPageModel(planADigitalROICalculatorPageModel);
+					TwentyTwoPlanADigitalROICalculatorTextSlide textSlide = new TwentyTwoPlanADigitalROICalculatorTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(textSlide);
 					mLog.info("found page PlanADigitalROICalculatorPage");
 
@@ -1044,8 +1048,8 @@ public class GoogleHelper {
 					publish.setPlanAProposedPage(true);
 					slidesData.getPublish().setPlanAProposedPage(true);
 					slidesData.getPageModels().setPlanAProposedPageModel(planAProposedPageModel);
-					NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(nineteenPlanAProposedTextSlide);
 					mLog.info("found page planAProposedPage");
 
@@ -1063,8 +1067,8 @@ public class GoogleHelper {
 					// model.addAttribute("PlanBProposedPageModel", planBProposedPageModel);
 					slidesData.getPublish().setPlanAProposedPage(true);
 					slidesData.getPageModels().setPlanBProposedPageModel(planBProposedPageModel);
-					TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(twentyFivePlanAProposedTextSlide);
 					// publish.setPlanBProposedPage(true);
 					mLog.info("found page planBProposedPage");
@@ -1082,10 +1086,10 @@ public class GoogleHelper {
 							.convertFromJson(data.getPagedata(), PlanALifetimeValuedPageModel.class);
 					// model.addAttribute("PlanALifetimeValuedPageModel",
 					// planALifetimeValuedPageModel);
-					
+
 					slidesData.getPageModels().setPlanALifetimeValuedPageModel(planALifetimeValuedPageModel);
-					TwentyOnePlanALifetimeValuedTextSlide textSlide = new TwentyOnePlanALifetimeValuedTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					TwentyOnePlanALifetimeValuedTextSlide textSlide = new TwentyOnePlanALifetimeValuedTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(textSlide);
 					mLog.info("found page PlanALifetimeValuedPage");
 
@@ -1107,8 +1111,8 @@ public class GoogleHelper {
 					// model.addAttribute("PlanBLifetimeValuedPageModel",
 					// planBLifetimeValuedPageModel);
 					slidesData.getPageModels().setPlanBLifetimeValuedPageModel(planBLifetimeValuedPageModel);
-					TwentySevenPlanBLifetimeValuedTextSlide textSlide = new TwentySevenPlanBLifetimeValuedTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					TwentySevenPlanBLifetimeValuedTextSlide textSlide = new TwentySevenPlanBLifetimeValuedTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(textSlide);
 					mLog.info("found page PlanBLifetimeValuedPage");
 
@@ -1140,7 +1144,7 @@ public class GoogleHelper {
 					planBBEPPageModel = (PlanBBEPPageModel) JSONManager.convertFromJson(data.getPagedata(),
 							PlanBBEPPageModel.class);
 					// model.addAttribute("PlanBBEPPageModel", planBBEPPageModel);
-					//slidesData.getPublish().setPlanBBEPPageModel(true);
+					// slidesData.getPublish().setPlanBBEPPageModel(true);
 					slidesData.getPageModels().setPlanBBEPPageModel(planBBEPPageModel);
 					TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
 							SlideEnum.TextSlideReplacement);
@@ -1164,11 +1168,12 @@ public class GoogleHelper {
 
 					slidesData.getPublish().setPlanBDigitalROICalculatorPage(true);
 
-					slidesData.getPageModels().setPlanBDigitalROICalculatorPageModel(planBDigitalROICalculatorPageModel);
-					TwentyEightPlanBDigitalROICalculatorTextSlide textSlide = new TwentyEightPlanBDigitalROICalculatorTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					slidesData.getPageModels()
+							.setPlanBDigitalROICalculatorPageModel(planBDigitalROICalculatorPageModel);
+					TwentyEightPlanBDigitalROICalculatorTextSlide textSlide = new TwentyEightPlanBDigitalROICalculatorTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(textSlide);
-					
+
 					publish.setPlanBDigitalROICalculatorPage(true);
 					mLog.info("found page PlanBDigitalROICalculatorPage");
 
@@ -1196,8 +1201,12 @@ public class GoogleHelper {
 						SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(mediaChartA,
 								"PlanAMediaPage_Data!A1:E", "PlanAMediaPage", SlideEnum.BarChart);
 						slidesList.add(seventeenPlanAMediaSlide);
-						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide =
-								new TwentyNinePlanASpreadSheetSlide("PlanASpreadSheet!A1:P","PlanASpreadSheet", SlideEnum.PlanASpreadSheet,slidesData);
+						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
+								"PlanASpreadSheet!A1:P", "PlanASpreadSheet", SlideEnum.PlanASpreadSheet, slidesData);
+						TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide= new TwentyNinePlanASpreadSheetTextSlide(slidesData,SlideEnum.TextSlideReplacement );
+						
+						slidesList.add(twentyNinePlanASpreadSheetTextSlide);
+						
 						slidesList.add(twentyNinePlanASpreadSheetSlide);
 						mLog.info("found page SeventeenPlanAMediaSlide");
 
@@ -1227,7 +1236,12 @@ public class GoogleHelper {
 						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
 								mediaChart, "PlanBMediaPage_Data!A1:E", "PlanBMediaPage", SlideEnum.BarChart);
 						slidesList.add(twentyThreePlanBMediaSlide);
-						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide("PlanBSpreadSheet!A1:P","PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet,slidesData);
+						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
+								"PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet, slidesData);
+						
+						ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide= new ThirtyPlanBSpreadSheetTextSlide(slidesData,SlideEnum.TextSlideReplacement );
+						
+						slidesList.add(thirtyPlanBSpreadSheetTextSlide);
 						slidesList.add(thirtyPlanBSpreadSheetSlide);
 						mLog.info("found page TwentyThreePlanBMediaSlide");
 						mLog.info("found page TwentyThreePlanBMediaSlide");
@@ -1286,11 +1300,11 @@ public class GoogleHelper {
 
 					publish.setStrategicMarketingPageOne(true);
 					slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
-					//FiveStrategicMarketingPageSlide
-					FourClientObjectiveTextSlide fourClientObjectiveTextSlide = new FourClientObjectiveTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					// FiveStrategicMarketingPageSlide
+					FourClientObjectiveTextSlide fourClientObjectiveTextSlide = new FourClientObjectiveTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(fourClientObjectiveTextSlide);
-					
+
 					mLog.info("value found page StrategicMarketingPageOne "
 							+ strategicMarketingPageOneModel.getYearsInBusiness());
 					break;
@@ -1312,8 +1326,8 @@ public class GoogleHelper {
 					// model.addAttribute("StrategicMarketingHelper", strategicMarketingHelper);
 					slidesData.getPageModels().setStrategicMarketingPageThreeModel(strategicMarketingPageThreeModel);
 					slidesData.getPageModels().setStrategicMarketingHelper(strategicMarketingHelper);
-					FiveStrategicMarketingPageSlide fiveStrategicMarketingPageSlide = new FiveStrategicMarketingPageSlide(slidesData,
-							SlideEnum.TextSlideReplacement);
+					FiveStrategicMarketingPageSlide fiveStrategicMarketingPageSlide = new FiveStrategicMarketingPageSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(fiveStrategicMarketingPageSlide);
 					publish.setStrategicMarketingPageThree(true);
 					mLog.info("found page StrategicMarketingPageThree");
@@ -1355,17 +1369,14 @@ public class GoogleHelper {
 					// model.addAttribute("targetMarketingHeaderRow", targetMarketingHeaderRow);
 
 					publish.setTargetMarketingPage(true);
-					
+
 					slidesData.getPublish().setTargetMarketingPage(true);
 					slidesData.getPageModels().setTargetMarketingPageModel(targetMarketingPageModel);
 					slidesData.getPageModels().setTargetMarketingHeaderRow(targetMarketingHeaderRow);
 					SixTargetMarketingSlide slide = new SixTargetMarketingSlide(slidesData,
 							SlideEnum.TextSlideReplacement);
 					slidesList.add(slide);
-					
-					
-					
-					
+
 					mLog.info("found page targetMarketingPageModel");
 
 					break;

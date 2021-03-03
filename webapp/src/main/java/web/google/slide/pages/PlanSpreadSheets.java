@@ -161,6 +161,29 @@ public class PlanSpreadSheets {
 	private long novTotal;
 	private long decTotal;
 	private long rtTotal;
+	public String monthlyAverage;
+	private Long  monthlyAverageLong;
+	private Long dailyCostLong;
+	public String getMonthlyAverage() {
+		monthlyAverage = formatDoubleToCurrency(monthlyAverageLong);
+		
+		return monthlyAverage;
+	}
+
+	public void setMonthlyAverage(String monthlyAverage) {
+		this.monthlyAverage = monthlyAverage;
+	}
+
+	public String getDailyCost() {
+		dailyCost = formatDoubleToCurrency(dailyCostLong);
+		return dailyCost;
+	}
+
+	public void setDailyCost(String dailyCost) {
+		this.dailyCost = dailyCost;
+	}
+
+	public String dailyCost;
 	
 	public List<PlanSpreadSheet> getPlanSpreadSheets() {
 		return planSpreadSheets;
@@ -265,7 +288,9 @@ public class PlanSpreadSheets {
 			
 			mLog.warning("constructTotals ending");
 			
-		}
+		}//end of for
+		monthlyAverageLong = rtTotal/12;
+		dailyCostLong = monthlyAverageLong/30;
 	}
 	
 	/*
