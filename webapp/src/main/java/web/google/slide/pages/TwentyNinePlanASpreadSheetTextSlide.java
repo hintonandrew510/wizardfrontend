@@ -26,13 +26,13 @@ public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-		SlideReplacementData dailyCost = new SlideReplacementData("dailyCost",
+		SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
 				planSpreadSheets.getDailyCost());
-		SlideReplacementData monthlyAverage = new SlideReplacementData("monthlyAverage",
+		SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
 				planSpreadSheets.getMonthlyAverage());
 		
-		listData.add(dailyCost);
-		listData.add(monthlyAverage);
+		listData.add(dailyCostA);
+		listData.add(monthlyAverageA);
 
 
 		
