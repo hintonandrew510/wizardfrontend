@@ -24,11 +24,13 @@ public class OnePresentedToSlide extends AbstractSlide {
 		SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
 		SlideReplacementData portfolioManagerName = new SlideReplacementData("portfolioManagerName", presentedToPageModel.getPortfolioManagerName());
 		SlideReplacementData station = new SlideReplacementData("station", presentedToPageModel.getStation());
-
+		SlideReplacementData portfolioPhoneNumber = new SlideReplacementData("portfolioPhoneNumber", presentedToPageModel.getPortfolioPhoneNumber());
+		
 		listData.add(clientContactName);
 		listData.add(clientBusinessName);
 		listData.add(portfolioManagerName);
 		listData.add(station);
+		listData.add(portfolioPhoneNumber);
 		return listData;
 
 
