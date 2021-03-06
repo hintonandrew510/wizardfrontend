@@ -42,9 +42,6 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
 		SlideReplacementData planAProspectValue = new SlideReplacementData("planAProspectValue",
 				planABEPPageModel.getPlanAProspectValue());
 		
-		// SlideReplacementData planAMonthly = new SlideReplacementData("planAMonthly",
-				// planABEPPageModel.getPlanAMonthly());
-		
 		SlideReplacementData planAProspectsNeeded = new SlideReplacementData("planAProspectsNeeded",
 				planABEPPageModel.getPlanAProspectsNeeded());
 		
@@ -64,7 +61,6 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
 		listData.add(planAGrossMargin);
 		listData.add(planAClosingPct);
 		listData.add(planAProspectValue);
-		//listData.add(planAMonthly);
 		listData.add(planAProspectsNeeded);
 		listData.add(planAProspectSalesNeeded);
 		listData.add(planAGrossProfitOnSales);
