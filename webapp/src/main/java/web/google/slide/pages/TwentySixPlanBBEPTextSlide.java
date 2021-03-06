@@ -34,9 +34,48 @@ public class TwentySixPlanBBEPTextSlide extends AbstractSlide {
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-			
+
+		SlideReplacementData planBAverageSale = new SlideReplacementData("planBAverageSale",
+				planBBEPPageModel.getPlanBAverageSale() + "%");
+		
+		SlideReplacementData planBGrossMargin = new SlideReplacementData("planBGrossMargin",
+				planBBEPPageModel.getPlanBGrossMargin() + "%");
+		
+		SlideReplacementData planBClosingPct = new SlideReplacementData("planBClosingPct",
+				planBBEPPageModel.getPlanBClosingPct() + "%");
+		
+		SlideReplacementData planBProspectValue = new SlideReplacementData("planBProspectValue",
+				planBBEPPageModel.getPlanBProspectValue());
+		
+		// SlideReplacementData planBMonthly = new SlideReplacementData("planBMonthly",
+				// planBBEPPageModel.getPlanBMonthly());
+		
+		SlideReplacementData planBProspectsNeeded = new SlideReplacementData("planBProspectsNeeded",
+				planBBEPPageModel.getPlanBProspectsNeeded());
+		
+		
+		SlideReplacementData planBProspectSalesNeeded = new SlideReplacementData("planBProspectSalesNeeded",
+				planBBEPPageModel.getPlanBProspectSalesNeeded());
+		
+		SlideReplacementData planBGrossProfitOnSales = new SlideReplacementData("planBGrossProfitOnSales",
+				planBBEPPageModel.getPlanBGrossProfitOnSales());
+		
 		SlideReplacementData planBMonths = new SlideReplacementData("planBMonths",
 				planBBEPPageModel.getPlanBMonths());
+		
+		SlideReplacementData planBAdditionalGrossSales = new SlideReplacementData("planBAdditionalGrossSales",
+				planBBEPPageModel.getPlanBAdditionalGrossSales());
+		
+		listData.add(planBAverageSale);
+		listData.add(planBGrossMargin);
+		listData.add(planBClosingPct);
+		listData.add(planBProspectValue);
+		//listData.add(planBMonthly);
+		listData.add(planBProspectsNeeded);
+		listData.add(planBProspectSalesNeeded);
+		listData.add(planBGrossProfitOnSales);
+		listData.add(planBMonths);
+		listData.add(planBAdditionalGrossSales);
 		
 		
 		
