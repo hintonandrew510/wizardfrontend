@@ -171,25 +171,29 @@ public class GoogleSlideController {
 
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
 		String domain = mEnvironment.getProperty("google.domain");
-
+		mLog.info("domain [" + domain + "]");
 		java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
 		String contents = FileUtils.readFileToString(file, "UTF-8");
-		mLog.info("contents [" + contents + "]");
+		mLog.info("File contents [" + contents + "]");
 
 		// mLog.info("resultContents [" + resultContents + "]");
 		InputStreamReader isr = new InputStreamReader(IOUtils.toInputStream(contents, "UTF-8"));
 		// Reader targetReader = new StringReader(initialString);
 		// targetReader.close();
-		mLog.info("file " + file);
+		mLog.info("json file " + file);
 		// InputStream inputStream = new FileInputStream(file);
 		// byte[] bdata = FileCopyUtils.copyToByteArray(inputStream);
 
 		// Exchange auth code for access token
 
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), isr);
+		mLog.info("clientSecrets [" + clientSecrets);
 		// GoogleClientSecrets clientSecrets =
 		// GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(),
 		// new FileReader(file));
+		mLog.info("clientSecrets.getDetails().getClientId() [" + clientSecrets.getDetails().getClientId() + "]");
+		mLog.info("clientSecrets.getDetails().getClientSecret() [" + clientSecrets.getDetails().getClientSecret() + "]");
+		
 		GoogleTokenResponse tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
 				JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
 				clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), mAuthCodeId,
@@ -197,10 +201,10 @@ public class GoogleSlideController {
 						// app. If you don't have a web version of your app, you can
 						// specify an empty string.
 						.execute();
-
+		mLog.info("tokenResponse [" + tokenResponse);
 		String accessToken = tokenResponse.getAccessToken();
 
-		mLog.info("access Token " + accessToken);
+		mLog.info("access Token [" + accessToken);
 		String emailAddress = GoogleHelper.emailAddress(tokenResponse);
 		mGeneratedSlide.setEmailAddress(emailAddress);
 
@@ -1064,22 +1068,31 @@ public class GoogleSlideController {
 					// cleare values
 					// TODO: Assign values to desired fields of `requestBody`:
 					ClearValuesRequest requestBody = new ClearValuesRequest();
-
-					Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
-							page.getWriteRange(), requestBody);
 					mLog.info("ClearValuesResponse ");
-					ClearValuesResponse response = request.execute();
-					mLog.info("response from [" + response + "]");
+					
+					
+                    if (page != null && page.getWriteRange() != null) {
+                    	Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
+    							page.getWriteRange(), requestBody);
+    					mLog.info("ClearValuesResponse ");
+    					ClearValuesResponse response = request.execute();
+    					mLog.info("response from [" + response + "]");
 
-					UpdateValuesResponse result = service.spreadsheets().values()
-							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
-					mLog.info("updated data [" + result + "]");
-					mLog.warning("WROTE data for  [" + writeRange + "]");
-				} catch (IOException e) {
+    					UpdateValuesResponse result = service.spreadsheets().values()
+    							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
+    					mLog.info("updated data [" + result + "]");
+    					mLog.warning("WROTE data for  [" + writeRange + "]");
+                    }
+					
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					mLog.severe(spreadsheetId + "  found");
-					mLog.severe("Error Mesage " + e.getMessage());
-					mLog.severe("ERROR write Sheet Data [" + writeRange + "]");
+					StringWriter sw = new StringWriter();
+					PrintWriter pw = new PrintWriter(sw);
+					e.printStackTrace(pw);
+					// mLog.severe(ex);
+					mLog.severe("ERROR Clearing data [" + sw.toString() + "]");
+				
+					
 				}
 
 			} // end of for

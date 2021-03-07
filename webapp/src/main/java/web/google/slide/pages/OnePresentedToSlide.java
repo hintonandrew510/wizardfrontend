@@ -18,6 +18,7 @@ public class OnePresentedToSlide extends AbstractSlide {
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {
+		
 		PresentedToPageModel presentedToPageModel =  getmSlidesData().getPageModels().getPresentedToPageModel();
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 		SlideReplacementData clientContactName = new SlideReplacementData("clientContactName", presentedToPageModel.getClientContactName());
@@ -31,6 +32,7 @@ public class OnePresentedToSlide extends AbstractSlide {
 		listData.add(portfolioManagerName);
 		listData.add(station);
 		listData.add(portfolioPhoneNumber);
+		
 		return listData;
 
 

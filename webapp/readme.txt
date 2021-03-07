@@ -42,4 +42,8 @@ auth client id
 requests.add(new Request()
         .setRefreshSheetsChart(new RefreshSheetsChartRequest()
                 .setObjectId(presentationChartId)));
+https://www.guldresourcewizard.com:8443/scr/
 
+
+https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=
+https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=wizard-295315
