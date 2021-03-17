@@ -7,7 +7,8 @@ import org.springframework.data.repository.query.Param;
 import web.model.Agent;
 import web.model.Contact;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface AgentRepository extends CrudRepository<Agent, Integer> {
 	Iterable<Agent> findAll(Sort sort);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
@@ -18,19 +19,24 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import web.data.MyUserPrincipal;
 import web.model.Agent;
 import web.model.Contact;
 import web.repository.AgentRepository;
 import web.repository.ContactRepository;
 
-import java.util.logging.Logger;
+//import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	private static final Logger mLog = Logger.getLogger(CustomAuthenticationProvider.class.getName());
+	//private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(AuthenticationProvider.class);
+	
 	@Autowired
 	private AgentRepository mAgentRepository;
 	@Autowired

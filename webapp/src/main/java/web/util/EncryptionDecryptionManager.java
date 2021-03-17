@@ -6,7 +6,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Base64;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AuthenticationProvider;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -14,8 +16,10 @@ import javax.crypto.spec.SecretKeySpec;
 import web.controller.WizardController;
  
 public class EncryptionDecryptionManager {
-	private static final Logger mLog = Logger.getLogger(EncryptionDecryptionManager.class.getName());
-	 private static SecretKeySpec secretKey;
+	//private static final Logger mLog = LoggerFactory.getLogger(EncryptionDecryptionManager.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(EncryptionDecryptionManager.class);
+	
+	private static SecretKeySpec secretKey;
 	    private static byte[] key;
 	  
 	    public static String decode(String valueToEncode) {
@@ -25,7 +29,7 @@ public class EncryptionDecryptionManager {
 			    return decodeValue;
 	    	} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
-	    		mLog.severe(e.getMessage());
+	    		mLog.error(e.getMessage());
 				//e.printStackTrace();
 			}
 	    return null;
@@ -38,7 +42,7 @@ public class EncryptionDecryptionManager {
 			mLog.info("encodedValue [ " + encodedValue + "]");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			mLog.severe(e.getMessage());
+			mLog.error(e.getMessage());
 		}
 	    return encodedValue;
 	 }
@@ -54,11 +58,11 @@ public class EncryptionDecryptionManager {
 	            secretKey = new SecretKeySpec(key, "AES");
 	        } 
 	        catch (NoSuchAlgorithmException e) {
-	        	mLog.severe(e.getMessage());
+	        	mLog.error(e.getMessage());
 	            
 	        } 
 	        catch (UnsupportedEncodingException e) {
-	        	mLog.severe(e.getMessage());
+	        	mLog.error(e.getMessage());
 	        }
 	    }
 	   public static String encrypt(Integer intToEncrypt)  {
@@ -81,7 +85,7 @@ public class EncryptionDecryptionManager {
 	        } 
 	        catch (Exception e) 
 	        {
-	        	mLog.severe("Error while encrypting: " + e.toString());
+	        	mLog.error("Error while encrypting: " + e.toString());
 	        }
 	        return null;
 	    }
@@ -100,7 +104,7 @@ public class EncryptionDecryptionManager {
 	        } 
 	        catch (Exception e) 
 	        {
-	            mLog.severe("Error while decrypting: " + e.toString());
+	            mLog.error("Error while decrypting: " + e.toString());
 	        }
 	        return null;
 	    }

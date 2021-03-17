@@ -7,13 +7,14 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
 
 public class ChartBuilder {
 
-	private static final Logger mLog = Logger.getLogger(ChartBuilder.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(ChartBuilder.class.getName());
 
 	public static List<PieChart> buildLastYearConfidentialClientEvaluation(
 			ConfidentialClientEvaluationOnePageModel model) {
@@ -30,7 +31,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue1() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue1() + "]");
 			}
 
 		}
@@ -58,7 +59,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse LastYear amount [" + model.getLastYearValue3() + "]");
+				mLog.warn("Could not parse LastYear amount [" + model.getLastYearValue3() + "]");
 			}
 
 		}
@@ -73,7 +74,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse LastYear amount [" + model.getLastYearValue4() + "]");
+				mLog.warn("Could not parse LastYear amount [" + model.getLastYearValue4() + "]");
 			}
 
 		}
@@ -88,7 +89,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not LastYear parse amount [" + model.getLastYearValue5() + "]");
+				mLog.warn("Could not LastYear parse amount [" + model.getLastYearValue5() + "]");
 			}
 
 		}
@@ -103,7 +104,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue6() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue6() + "]");
 			}
 
 		}
@@ -118,7 +119,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse LastYear amount [" + model.getLastYearValue7() + "]");
+				mLog.warn("Could not parse LastYear amount [" + model.getLastYearValue7() + "]");
 			}
 
 		}
@@ -133,7 +134,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue8() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue8() + "]");
 			}
 
 		}
@@ -148,7 +149,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue9() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue9() + "]");
 			}
 
 		}
@@ -171,7 +172,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue1() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue1() + "]");
 			}
 
 		}
@@ -199,7 +200,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue3() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue3() + "]");
 			}
 
 		}
@@ -214,7 +215,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getLastYearValue4() + "]");
+				mLog.warn("Could not parse amount [" + model.getLastYearValue4() + "]");
 			}
 
 		}
@@ -229,7 +230,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue5() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue5() + "]");
 			}
 
 		}
@@ -244,7 +245,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue6() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue6() + "]");
 			}
 
 		}
@@ -259,7 +260,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue7() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue7() + "]");
 			}
 
 		}
@@ -274,7 +275,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue8() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue8() + "]");
 			}
 
 		}
@@ -289,7 +290,7 @@ public class ChartBuilder {
 				pieCharts.add(pieChart);
 
 			} catch (Exception ex) {
-				mLog.warning("Could not parse amount [" + model.getProposedValue9() + "]");
+				mLog.warn("Could not parse amount [" + model.getProposedValue9() + "]");
 			}
 
 		}

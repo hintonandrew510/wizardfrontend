@@ -1,7 +1,8 @@
 package web.controller;
 
 import java.sql.SQLException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,7 +28,7 @@ public class AgentController {
 	private AgentRepository agentRepository;
 	@Autowired
 
-	private static final Logger mLog = Logger.getLogger(AgentController.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(AgentController.class.getName());
 	
 	@RequestMapping(value = "/googleprofile", method = RequestMethod.GET)
 	public String profile(Model model, Authentication authentication) 

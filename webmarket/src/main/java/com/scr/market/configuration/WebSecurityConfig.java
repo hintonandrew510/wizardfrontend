@@ -18,7 +18,8 @@ import com.scr.market.data.MyUserDetailsService;
 
 
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 //.antMatchers("/css/**", "/js/**", "/img/**").permitAll().anyRequest().permitAll()    
 @Configuration
 @EnableWebSecurity
@@ -27,7 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	  @Autowired
 	    private CustomAuthenticationProvider authProvider;
-    private static final Logger mLog = Logger.getLogger(WebSecurityConfig.class.getName());
+    private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         mLog.info("starting configure");

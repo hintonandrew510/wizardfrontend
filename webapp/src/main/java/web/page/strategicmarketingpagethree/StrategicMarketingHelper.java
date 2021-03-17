@@ -1,6 +1,7 @@
 package web.page.strategicmarketingpagethree;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import web.page.PublishController;
 
@@ -106,7 +107,7 @@ public class StrategicMarketingHelper {
 		this.bestDays = bestDays;
 	}
 
-	private static final Logger mLog = Logger.getLogger(StrategicMarketingHelper.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(StrategicMarketingHelper.class.getName());
 
 	public  String getPoorestMonths() {
 		StringBuilder builder = new StringBuilder();

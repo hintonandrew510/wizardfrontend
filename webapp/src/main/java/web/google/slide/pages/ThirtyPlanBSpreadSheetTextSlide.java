@@ -2,7 +2,8 @@ package web.google.slide.pages;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import web.google.slide.AbstractSlide;
 import web.google.slide.SlideEnum;
@@ -12,7 +13,7 @@ import web.page.planamedipage.PlanMediaPageModel;
 import web.page.planproposedpage.PlanProposedPageModel;
 
 public class ThirtyPlanBSpreadSheetTextSlide extends AbstractSlide {
-	private static final Logger mLog = Logger.getLogger(NineteenPlanAProposedTextSlide.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
 
 	public ThirtyPlanBSpreadSheetTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
 		super(sildeData, slideEnum);

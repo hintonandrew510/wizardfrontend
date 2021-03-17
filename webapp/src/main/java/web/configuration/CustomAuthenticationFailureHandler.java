@@ -13,7 +13,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  * Spring Security will send control to CustomAuthenticationFailureHandler when authentication will get failed
  */
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
-	private static final Logger mLog = Logger.getLogger(CustomAuthenticationFailureHandler.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationFailureHandler.class.getName());
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,

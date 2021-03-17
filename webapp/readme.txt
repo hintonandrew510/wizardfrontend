@@ -1,3 +1,18 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+LoggerFactory.getLogger(AgentController.class.getName());
+ 
+LoggerFactory.getLogger(AuthenticationProvider.class);
+
+mLog.error
+mLog.error
+
+
+
 ssh wizard@97.74.232.85 password Superman123#
 
 /etc/cron.daily

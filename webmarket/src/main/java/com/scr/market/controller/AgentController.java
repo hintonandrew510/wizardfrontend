@@ -24,7 +24,8 @@ import com.scr.market.repository.*;
 
 
 import java.util.Optional;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller // This means that this class is a Controller
 public class AgentController {
@@ -35,7 +36,7 @@ public class AgentController {
 	private ContactRepository contactRepository;
 	@Autowired
 	private Contact contact;
-	private static final Logger mLog = Logger.getLogger(AgentController.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(AgentController.class.getName());
 
 //@Autowired
 	// private IAuthenticationFacade authenticationFacade;
@@ -92,7 +93,7 @@ public class AgentController {
 		agentRepository.save(agent);
 		mLog.info("agent " + agent.getAgentid());
         } catch (Exception ex) {
-        	mLog.severe("SQl Error " + ex.getMessage());
+        	mLog.error("SQl Error " + ex.getMessage());
         	throw new DataIntegrityViolationException(ex.getMessage());
         }
 

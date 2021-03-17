@@ -20,11 +20,12 @@ import org.springframework.stereotype.Component;
 import com.scr.market.data.MyUserPrincipal;
 import com.scr.market.model.Contact;
 import com.scr.market.repository.ContactRepository;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	private static final Logger mLog = Logger.getLogger(CustomAuthenticationProvider.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class.getName());
 	@Autowired
 	private ContactRepository mContactRepository;
     public CustomAuthenticationProvider() {
@@ -49,7 +50,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         	try {
         	contact = mContactRepository.findByAddressAndPassword(name,password);
         	} catch (Exception e) {
-        		mLog.severe(e.getMessage() );
+        		mLog.error(e.getMessage() );
         		UsernameNotFoundException usernameNotFoundException = new UsernameNotFoundException("duplicate email addresses");
         	    throw usernameNotFoundException;
         	}

@@ -2,7 +2,8 @@ package web.client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 
@@ -13,7 +14,7 @@ import com.google.gson.GsonBuilder;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Category {
-	private static Logger mLog = Logger.getLogger("Category");
+	private static Logger mLog = LoggerFactory.getLogger("Category");
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;

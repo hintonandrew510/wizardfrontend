@@ -3,7 +3,8 @@ package web.google.slide.pages;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import web.google.slide.AbstractSlide;
 import web.google.slide.GoogleSlideController;
@@ -17,7 +18,7 @@ import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 
 public class SevenConfidentialClientEvaluationTextSlide extends AbstractSlide {
-	private static final Logger mLog = Logger.getLogger(SevenConfidentialClientEvaluationTextSlide.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(SevenConfidentialClientEvaluationTextSlide.class.getName());
 
 	public SevenConfidentialClientEvaluationTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
 		super(sildeData, slideEnum);

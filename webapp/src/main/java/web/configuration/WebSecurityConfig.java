@@ -1,6 +1,7 @@
 package web.configuration;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationProvider authProvider;
-	private static final Logger mLog = Logger.getLogger(WebSecurityConfig.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());
 
 	@Override
 

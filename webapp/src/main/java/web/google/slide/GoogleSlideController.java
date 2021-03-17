@@ -11,9 +11,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-//import java.util.logging.Logger;
-import java.util.logging.Logger;
+//import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -91,7 +94,7 @@ public class GoogleSlideController {
 
 	@Autowired
 	private Environment mEnvironment;
-	private static final Logger mLog = Logger.getLogger(GoogleSlideController.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(GoogleSlideController.class.getName());
 
 	private static final String APPLICATION_NAME = "Google Slides API Java Quickstart";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
@@ -129,7 +132,7 @@ public class GoogleSlideController {
 	@GetMapping(path = "/google")
 	public String googleAuthenticate(org.springframework.ui.Model model, Authentication authentication) {
 
-		mLog.warning("entering googleAuthenticate");
+		mLog.warn("entering googleAuthenticate");
 
 		// mLog.info(msg);(GoogleSlideController.class.getName(), "googleAuthenticate");
 
@@ -146,7 +149,7 @@ public class GoogleSlideController {
 
 		model.addAttribute("dataPageModel", dataPageModel);
 		model.addAttribute("contact", userDetails.getContact());
-		mLog.warning("exiting googleAuthenticate");
+		mLog.warn("exiting googleAuthenticate");
 		return "google";
 
 	}
@@ -154,11 +157,11 @@ public class GoogleSlideController {
 	/*
 	 * Initialize class variables
 	 */
-	private void initialize() throws IOException, ProfileException {
+	private void initialize(String localDomain) throws IOException, ProfileException {
 		// remove value from session
 
-		mLog.entering(GoogleSlideController.class.getName(), "initialize");
-		mLog.warning("entering initialize");
+		mLog.trace(GoogleSlideController.class.getName(), "initialize");
+		mLog.warn("entering initialize");
 		// agent.setContactId(contact.getContactId());
 		mExcludedPagesList = GoogleHelper.getSlidesExcluded(this.mDataPages);
 		// get Slide data from database
@@ -170,7 +173,12 @@ public class GoogleSlideController {
 		}
 
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
-		String domain = mEnvironment.getProperty("google.domain");
+		String domain = mEnvironment.getProperty("prod.google.domain");
+		
+		if (localDomain.contains("local")) {
+		domain = mEnvironment.getProperty("local.google.domain");
+		}
+		//domain = request.getLocalName();
 		mLog.info("domain [" + domain + "]");
 		java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
 		String contents = FileUtils.readFileToString(file, "UTF-8");
@@ -230,10 +238,10 @@ public class GoogleSlideController {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
-			// mLog.severe(ex);
-			mLog.severe("ERROR WRITTING [" + sw.toString() + "]");
+			// mLog.error(ex);
+			mLog.error("ERROR WRITTING [" + sw.toString() + "]");
 			// TODO Auto-generated catch block
-			//mLog.severe(e.getLocalizedMessage());
+			//mLog.error(e.getLocalizedMessage());
 		}
 
 		mSheets = new Sheets.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
@@ -251,8 +259,8 @@ public class GoogleSlideController {
 		// newFileName,
 		// this.mGoogleProfile.getGeneratedFolderId());
 
-		mLog.warning("exiting initialize");
-		mLog.exiting(GoogleSlideController.class.getName(), "initialize");
+		mLog.warn("exiting initialize");
+		mLog.trace(GoogleSlideController.class.getName(), "initialize");
 
 	}
 
@@ -265,12 +273,15 @@ public class GoogleSlideController {
 	 */
 
 	@RequestMapping(value = "/GenerateGoogleSlide", method = RequestMethod.POST)
-	public String generateGoogleSlide(Model model, Authentication authentication, HttpSession session,
+	public String generateGoogleSlide(Model model,HttpServletRequest request, Authentication authentication, HttpSession session,
 			@RequestParam(required = true) String authCodeId) {
-		mLog.warning("entering generate");
+		mLog.warn("entering generate");
+		mLog.info("request.getLocalName() " + request.getLocalName());
+		mLog.info(" request.getLocalAddr(); " + request.getLocalAddr());
+		
 		mLog.info("authCodeId [" + authCodeId + "]");
 		mAuthCodeId = authCodeId;
-		mLog.entering(GoogleSlideController.class.getName(), "generate");
+		mLog.trace(GoogleSlideController.class.getName(), "generate");
 		// TODO set to 37 wizard
 
 		String id = null;
@@ -281,8 +292,8 @@ public class GoogleSlideController {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
-			// mLog.severe(ex);
-			mLog.severe("ERROR WRITTING DATA [" + sw.toString() + "]");
+			// mLog.error(ex);
+			mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 		}
 		mLog.info("session id [" + id + "]");
 		String testWizardid = mEnvironment.getProperty("wizard");
@@ -301,21 +312,21 @@ public class GoogleSlideController {
 		if (mWizard != null) {
 			mLog.info("mWizard " + mWizard.getName());
 		} else {
-			mLog.severe("can not file wizard  " + id);
+			mLog.error("can not file wizard  " + id);
 		}
 
 		try {
-			initialize();
+			initialize(request.getLocalName());
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
-			mLog.severe(ioException.getMessage());
+			mLog.error(ioException.getMessage());
 		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
-			// mLog.severe(ex);
-			mLog.severe("ERROR WRITTING DATA [" + sw.toString() + "]");
+			// mLog.error(ex);
+			mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 			return "redirect:/googleprofile";
 		}
 
@@ -338,8 +349,8 @@ public class GoogleSlideController {
 				StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw);
 				ex.printStackTrace(pw);
-				// mLog.severe(ex);
-				mLog.severe("ERROR WRITTING DATA [" + sw.toString() + "]");
+				// mLog.error(ex);
+				mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 			}
 			mLog.info("DONE WITH WRITING DATA  ");
 			/*
@@ -389,12 +400,12 @@ public class GoogleSlideController {
 				}
 
 			} catch (Exception e) {
-				mLog.severe("could not read comment   + " + e.getMessage());
+				mLog.error("could not read comment   + " + e.getMessage());
 				StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw);
 				e.printStackTrace(pw);
-				// mLog.severe(ex);
-				mLog.severe("ERROR comment [" + sw.toString() + "]");
+				// mLog.error(ex);
+				mLog.error("ERROR comment [" + sw.toString() + "]");
 
 			}
 			mLog.info("DELETED OF SLIDES DONE");
@@ -486,8 +497,8 @@ public class GoogleSlideController {
 					// StringWriter sw = new StringWriter();
 					// PrintWriter pw = new PrintWriter(sw);
 					// ex.printStackTrace(pw);
-					// mLog.severe(ex);
-					// mLog.severe("ERROR replace text error [" + resp.toString() + "]");
+					// mLog.error(ex);
+					// mLog.error("ERROR replace text error [" + resp.toString() + "]");
 
 				}
 
@@ -502,7 +513,9 @@ public class GoogleSlideController {
 
 			mLog.info("Created merged presentation for  with ID: " + this.mNewFileId);
 			mLog.info("numReplacements " + numReplacements);
-
+			mLog.info("request.getLocalName() " + request.getLocalName());
+			mLog.info(" request.getLocalAddr(); " + request.getLocalAddr());
+			
 			// Credential Credential =
 			// String data = new String(bdata, StandardCharsets.UTF_8);
 			// mLog.info(data);
@@ -510,8 +523,8 @@ public class GoogleSlideController {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
-			// mLog.severe(ex);
-			mLog.severe("ERROR  [" + sw.toString() + "]");
+			// mLog.error(ex);
+			mLog.error("ERROR  [" + sw.toString() + "]");
 
 		}
 		// ignore id
@@ -519,8 +532,8 @@ public class GoogleSlideController {
 		model.addAttribute("generatedSlide", mGeneratedSlide);
 		model.addAttribute("googleProfile", mGoogleProfile);
 		String nextPage = "googleslidegeneratedpage";
-		mLog.warning("exiting generate");
-		mLog.entering(GoogleSlideController.class.getName(), "generate");
+		mLog.warn("exiting generate");
+		mLog.trace(GoogleSlideController.class.getName(), "generate");
 		return nextPage;
 
 	}
@@ -530,7 +543,7 @@ public class GoogleSlideController {
 	 * @param service
 	 */
 	private void writeSheetData(Sheets service) {
-		mLog.warning("ENTERING writeSheetData");
+		mLog.warn("ENTERING writeSheetData");
 		mLog.info("starting WriteSheetExample");
 		List<Data> myData = new ArrayList<Data>();
 
@@ -577,7 +590,7 @@ public class GoogleSlideController {
 		// spreadSheets.getClass().getName() + "]");
 		// } catch (IOException e1) {
 		// TODO Auto-generated catch block
-		// mLog.severe(e1.getMessage());
+		// mLog.error(e1.getMessage());
 		// }
 		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
 
@@ -624,11 +637,11 @@ public class GoogleSlideController {
 				switch (page.getSlideEnum()) {
 
 				case BarChart:
-					mLog.warning("BAR CHART WRITTING");
+					mLog.warn("BAR CHART WRITTING");
 					mLog.info("bar chart start write [" + page.getPageName() + "]");
 					MediaChart mediaChart = page.getMediaChart();
 					if (mediaChart == null) {
-						mLog.warning("null mediachart data skipping " + page.getPageName());
+						mLog.warn("null mediachart data skipping " + page.getPageName());
 						continue;
 					}
 					List<Object> dataRowHeader = new ArrayList<>();
@@ -678,7 +691,7 @@ public class GoogleSlideController {
 						List<Object> dataRowDec = GoogleHelper.writeDec(mediaChart);
 						writeData.add(dataRowDec);
 					} catch (Exception ex) {
-						mLog.warning("null mediachart values data skipping " + page.getPageName());
+						mLog.warn("null mediachart values data skipping " + page.getPageName());
 						continue;
 					}
 					mLog.info("finish setting up bar end chart [" + page.getPageName() + "]");
@@ -686,12 +699,12 @@ public class GoogleSlideController {
 					break;
 
 				case ClientObjectiveTop:
-					mLog.warning("ClientObjectiveTop start writting [" + page.getPageName() + "]");
+					mLog.warn("ClientObjectiveTop start writting [" + page.getPageName() + "]");
 
 					List<ClientObjectivesOnePageTwoModel> orderList = page.getSlidesData().getPageModels()
 							.getOrderList();
 					if (orderList == null) {
-						mLog.warning("null orderList skipping " + page.getPageName());
+						mLog.warn("null orderList skipping " + page.getPageName());
 						continue;
 					}
 					int counter = 1;
@@ -707,14 +720,14 @@ public class GoogleSlideController {
 						counter = counter + 1;
 						writeData.add(dataRow);
 					}
-					mLog.warning("finish setting up ClientObjectiveTop [" + page.getPageName() + "]");
+					mLog.warn("finish setting up ClientObjectiveTop [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectivePRODUCTSERVICE:
-					mLog.warning("ClientObjectiveProductService start writting [" + page.getPageName() + "]");
+					mLog.warn("ClientObjectiveProductService start writting [" + page.getPageName() + "]");
 
 					if (clientObjectivesOnePageModel == null) {
-						mLog.warning("null ClientObjectiveProductService skipping " + page.getPageName());
+						mLog.warn("null ClientObjectiveProductService skipping " + page.getPageName());
 						continue;
 					}
 
@@ -739,14 +752,14 @@ public class GoogleSlideController {
 					writeData.add(dataRowFive);
 					// dataRow.add(pieChart.getLabelValue());
 
-					mLog.warning("finish setting up ClientObjectiveProductService [" + page.getPageName() + "]");
+					mLog.warn("finish setting up ClientObjectiveProductService [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectiveCONSUMER:
-					mLog.warning("ClientObjectiveConsumer start writting [" + page.getPageName() + "]");
+					mLog.warn("ClientObjectiveConsumer start writting [" + page.getPageName() + "]");
 
 					if (clientObjectivesOnePageModel == null) {
-						mLog.warning("null ClientObjectiveConsumer skipping " + page.getPageName());
+						mLog.warn("null ClientObjectiveConsumer skipping " + page.getPageName());
 						continue;
 					}
 
@@ -778,14 +791,14 @@ public class GoogleSlideController {
 					mLog.info(writeData.toString());
 					// dataRow.add(pieChart.getLabelValue());
 
-					mLog.warning("finish setting up ClientObjectiveConsumer [" + page.getPageName() + "]");
+					mLog.warn("finish setting up ClientObjectiveConsumer [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectivePROMOTION:
-					mLog.warning("ClientObjectivePromotion start writting [" + page.getPageName() + "]");
+					mLog.warn("ClientObjectivePromotion start writting [" + page.getPageName() + "]");
 
 					if (clientObjectivesOnePageModel == null) {
-						mLog.warning("null clientObjectivesOnePageModel skipping " + page.getPageName());
+						mLog.warn("null clientObjectivesOnePageModel skipping " + page.getPageName());
 						continue;
 					}
 
@@ -814,14 +827,14 @@ public class GoogleSlideController {
 					dataRowSix.add(turnOn);
 					writeData.add(dataRowSix);
 
-					mLog.warning("finish setting up ClientObjectivePromotion [" + page.getPageName() + "]");
+					mLog.warn("finish setting up ClientObjectivePromotion [" + page.getPageName() + "]");
 
 					break;
 				case ClientObjectiveBRAND:
-					mLog.warning("ClientObjectiveBrand start writting [" + page.getPageName() + "]");
+					mLog.warn("ClientObjectiveBrand start writting [" + page.getPageName() + "]");
 
 					if (clientObjectivesOnePageModel == null) {
-						mLog.warning("null ClientObjectiveBrand skipping " + page.getPageName());
+						mLog.warn("null ClientObjectiveBrand skipping " + page.getPageName());
 						continue;
 					}
 
@@ -856,11 +869,11 @@ public class GoogleSlideController {
 						writeData.add(dataRowSix);
 					}
 
-					mLog.warning("finish setting up ClientObjectiveBrand [" + page.getPageName() + "]");
+					mLog.warn("finish setting up ClientObjectiveBrand [" + page.getPageName() + "]");
 
 					break;
 				case PlanASpreadSheet:
-					mLog.warning("PlanASpreadSheet WRITTING");
+					mLog.warn("PlanASpreadSheet WRITTING");
 					List<Object> dataRowPlanASpreadSheetHeader = new ArrayList<>();
 					List<Object> dataRowPlanASpreadSheetFooter = new ArrayList<>();
 					PlanMediaPageModel planAMediaPagedataPageModel = page.getSlidesData().getPageModels()
@@ -930,16 +943,16 @@ public class GoogleSlideController {
 						StringWriter sw = new StringWriter();
 						PrintWriter pw = new PrintWriter(sw);
 						ex.printStackTrace(pw);
-						// mLog.severe(ex);
-						mLog.severe("ERROR PlanASpreadSheet DATA [" + sw.toString() + "]");
-						//mLog.severe("ERROR PlanASpreadSheet WRITTING " + ex.getMessage());
+						// mLog.error(ex);
+						mLog.error("ERROR PlanASpreadSheet DATA [" + sw.toString() + "]");
+						//mLog.error("ERROR PlanASpreadSheet WRITTING " + ex.getMessage());
 					}
 
-					mLog.warning("finish PlanASpreadSheet start writting [" + page.getPageName() + "]");
+					mLog.warn("finish PlanASpreadSheet start writting [" + page.getPageName() + "]");
 
 					break;
 				case PlanBSpreadSheet:
-					mLog.warning("PlanBSpreadSheet WRITTING");
+					mLog.warn("PlanBSpreadSheet WRITTING");
 					List<Object> dataRowPlanBSpreadSheetHeader = new ArrayList<>();
 					List<Object> dataRowPlanBSpreadSheetFooter = new ArrayList<>();
 					PlanMediaPageModel planBMediaPagedataPageModel = page.getSlidesData().getPageModels()
@@ -1023,23 +1036,23 @@ public class GoogleSlideController {
 						StringWriter sw = new StringWriter();
 						PrintWriter pw = new PrintWriter(sw);
 						ex.printStackTrace(pw);
-						// mLog.severe(ex);
-						mLog.severe("ERROR PlanBSpreadSheet DATA [" + sw.toString() + "]");
+						// mLog.error(ex);
+						mLog.error("ERROR PlanBSpreadSheet DATA [" + sw.toString() + "]");
 						
 						
-						//mLog.severe("ERROR PlanBSpreadSheet WRITTING " + ex.getMessage());
+						//mLog.error("ERROR PlanBSpreadSheet WRITTING " + ex.getMessage());
 					}
 
-					mLog.warning("finish PlanBSpreadSheet start writting [" + page.getPageName() + "]");
+					mLog.warn("finish PlanBSpreadSheet start writting [" + page.getPageName() + "]");
 
 					break;
 				case PieChart:
-					mLog.warning("PIE CHART WRITTING");
-					mLog.warning("pie chart start writting [" + page.getPageName() + "]");
+					mLog.warn("PIE CHART WRITTING");
+					mLog.warn("pie chart start writting [" + page.getPageName() + "]");
 
 					List<PieChart> pieChartList = page.getPieChartData();
 					if (pieChartList == null) {
-						mLog.warning("null pie data skipping " + page.getPageName());
+						mLog.warn("null pie data skipping " + page.getPageName());
 						continue;
 					}
 
@@ -1054,7 +1067,7 @@ public class GoogleSlideController {
 						}
 
 					}
-					mLog.warning("finish setting up pie chart start writting [" + page.getPageName() + "]");
+					mLog.warn("finish setting up pie chart start writting [" + page.getPageName() + "]");
 
 					break;
 				default:
@@ -1081,7 +1094,7 @@ public class GoogleSlideController {
     					UpdateValuesResponse result = service.spreadsheets().values()
     							.update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
     					mLog.info("updated data [" + result + "]");
-    					mLog.warning("WROTE data for  [" + writeRange + "]");
+    					mLog.warn("WROTE data for  [" + writeRange + "]");
                     }
 					
 				} catch (Exception e) {
@@ -1089,8 +1102,8 @@ public class GoogleSlideController {
 					StringWriter sw = new StringWriter();
 					PrintWriter pw = new PrintWriter(sw);
 					e.printStackTrace(pw);
-					// mLog.severe(ex);
-					mLog.severe("ERROR Clearing data [" + sw.toString() + "]");
+					// mLog.error(ex);
+					mLog.error("ERROR Clearing data [" + sw.toString() + "]");
 				
 					
 				}
@@ -1117,9 +1130,9 @@ public class GoogleSlideController {
 		 * UpdateValuesResponse result =
 		 * service.spreadsheets().values().update(spreadsheetId, writeRange, body)
 		 * .setValueInputOption("RAW").execute(); mLog.info("result [" + result + "]");
-		 * mLog.warning("exting WriteSheetExample"); } catch (IOException e) { // TODO
-		 * Auto-generated catch block mLog.severe(spreadsheetId + " not found");
-		 * mLog.severe(e.getMessage()); mLog.warning("exiting WriteSheetExample"); }
+		 * mLog.warn("exting WriteSheetExample"); } catch (IOException e) { // TODO
+		 * Auto-generated catch block mLog.error(spreadsheetId + " not found");
+		 * mLog.error(e.getMessage()); mLog.warn("exiting WriteSheetExample"); }
 		 */
 
 		// BatchUpdateSpreadsheetRequest batchUpdateRequest = new
@@ -1127,7 +1140,7 @@ public class GoogleSlideController {
 		// .setRequests(requests);
 		// service.spreadsheets().batchUpdate(spreadsheetId, batchUpdateRequest)
 		// .execute();
-		mLog.warning("LEAVING writeSheetData");
+		mLog.warn("LEAVING writeSheetData");
 
 	}
 

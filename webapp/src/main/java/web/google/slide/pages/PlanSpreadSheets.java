@@ -5,7 +5,8 @@ import java.io.StringWriter;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -13,7 +14,7 @@ import java.util.Locale;
 import web.google.slide.GoogleHelper;
 
 public class PlanSpreadSheets {
-	private static final Logger mLog = Logger.getLogger(PlanSpreadSheets.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(PlanSpreadSheets.class.getName());
 	private List<PlanSpreadSheet> planSpreadSheets;
 	
 	
@@ -195,26 +196,26 @@ public class PlanSpreadSheets {
 	
 	public String formatDoubleToCurrency(Number amount) {
 		try {
-			mLog.warning("formatDoubleToCurrency starting");
+			mLog.warn("formatDoubleToCurrency starting");
 			mLog.info("amount " + amount);
 			 NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
 			 usdCostFormat.setMaximumFractionDigits(0);
 			String output = usdCostFormat.format(amount);
 			mLog.info("output " + output);
-			mLog.warning("formatDoubleToCurrency ending");
+			mLog.warn("formatDoubleToCurrency ending");
 			return output;
 		} catch (Exception ex) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
-			mLog.severe("ERROR  [" + sw.toString() + "]");
+			mLog.error("ERROR  [" + sw.toString() + "]");
 			
 			return "0";
 		}
 	}
 	
 	private void constructTotals() throws Exception {
-		mLog.warning("constructTotals starting");
+		mLog.warn("constructTotals starting");
 	//	NumberFormat nf = NumberFormat.getNumberInstance();
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
 		
@@ -286,7 +287,7 @@ public class PlanSpreadSheets {
 			mLog.info("Rt " + numberStr);
 			rtTotal = rtTotal +  Long.parseLong(numberStr);
 			
-			mLog.warning("constructTotals ending");
+			mLog.warn("constructTotals ending");
 			
 		}//end of for
 		monthlyAverageLong = rtTotal/12;
@@ -302,21 +303,21 @@ String ammount= nf.format(value);
 
 	public PlanSpreadSheets(String json) {
 		try {
-			mLog.warning("starting PlanSpreadSheets");
+			mLog.warn("starting PlanSpreadSheets");
 			planSpreadSheets = new Gson().fromJson(json, new TypeToken<List<PlanSpreadSheet>>() {
 			}.getType());
 			constructTotals();
 			
 		} catch (Exception ex) {
-			mLog.severe(ex.getMessage());
+			mLog.error(ex.getMessage());
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
-			// mLog.severe(ex);
-			mLog.severe("ERROR PlanASpreadSheet Constructor [" + sw.toString() + "]");
+			// mLog.error(ex);
+			mLog.error("ERROR PlanASpreadSheet Constructor [" + sw.toString() + "]");
 		
 		}
-		mLog.warning("ending PlanSpreadSheets");
+		mLog.warn("ending PlanSpreadSheets");
 	}
 
 }

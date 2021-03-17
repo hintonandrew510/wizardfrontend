@@ -8,7 +8,8 @@ import web.model.Agent;
 import web.model.Contact;
 import web.model.Wizard;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public interface WizardRepository extends CrudRepository<Wizard, Integer> {
 	Iterable<Wizard> findAll(Sort sort);
