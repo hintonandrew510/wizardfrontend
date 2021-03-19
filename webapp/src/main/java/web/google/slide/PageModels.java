@@ -2,6 +2,7 @@ package web.google.slide;
 
 import java.util.List;
 
+import web.page.PieChart;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
@@ -42,9 +43,28 @@ public class PageModels {
 	private PlanDigitalROICalculatorPageModel planADigitalROICalculatorPageModel;
 	private PlanDigitalROICalculatorPageModel planBDigitalROICalculatorPageModel;
 	private PlanALifetimeValuedPageModel planALifetimeValuedPageModel;
-    private PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel;
-    private PlanMediaPageModel planAMediaPagedataPageModel;
-    private PlanMediaPageModel planBMediaPagedataPageModel;
+	private PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel;
+	private PlanMediaPageModel planAMediaPagedataPageModel;
+	private PlanMediaPageModel planBMediaPagedataPageModel;
+	private List<PieChart> pieChartConfidentialClientEvaluationOnePage;
+	public List<PieChart> getPieChartConfidentialClientEvaluationOnePage() {
+		return pieChartConfidentialClientEvaluationOnePage;
+	}
+
+	public void setPieChartConfidentialClientEvaluationOnePage(List<PieChart> pieChartConfidentialClientEvaluationOnePage) {
+		this.pieChartConfidentialClientEvaluationOnePage = pieChartConfidentialClientEvaluationOnePage;
+	}
+
+	public List<PieChart> getPieChartConfidentialClientEvaluationProposed() {
+		return pieChartConfidentialClientEvaluationProposed;
+	}
+
+	public void setPieChartConfidentialClientEvaluationProposed(
+			List<PieChart> pieChartConfidentialClientEvaluationProposed) {
+		this.pieChartConfidentialClientEvaluationProposed = pieChartConfidentialClientEvaluationProposed;
+	}
+
+	private List<PieChart> pieChartConfidentialClientEvaluationProposed;
 
 	public PlanMediaPageModel getPlanAMediaPagedataPageModel() {
 		return planAMediaPagedataPageModel;

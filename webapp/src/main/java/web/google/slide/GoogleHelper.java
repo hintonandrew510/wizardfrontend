@@ -30,10 +30,12 @@ import com.google.api.services.slides.v1.model.BatchUpdatePresentationRequest;
 import com.google.api.services.slides.v1.model.Request;
 
 import web.google.slide.pages.EightConfidentialClientEvaluationOneSlide;
+import web.google.slide.pages.EightConfidentialClientEvaluationOneTextSlide;
 import web.google.slide.pages.FiveStrategicMarketingPageSlide;
 import web.google.slide.pages.FourClientObjectiveSlide;
 import web.google.slide.pages.FourClientObjectiveTextSlide;
 import web.google.slide.pages.NineConfidentialClientEvaluationProposedSlide;
+import web.google.slide.pages.NineConfidentialClientEvaluationProposedTextSlide;
 import web.google.slide.pages.NineteenPlanAProposedTextSlide;
 import web.google.slide.pages.OnePresentedToSlide;
 import web.google.slide.pages.SevenConfidentialClientEvaluationTextSlide;
@@ -692,6 +694,11 @@ public class GoogleHelper {
 			try {
 				pageName = PageNameEnum.valueOf(data.getPagename());
 				mLog.trace("page Name = " + pageName.toString());
+				
+				if (pageName == PageNameEnum.ConfidentialClientEvaluationOnePage) {
+					pageList.add("ConfidentialClientEvaluationProposed");
+				}
+				
 				if (pageName == PageNameEnum.TargetMarketingPage) {
 					mLog.info("FOUND targetMaring page");
 					
@@ -703,6 +710,9 @@ public class GoogleHelper {
 				} else {
 				pageList.add(pageName.toString());
 				}
+				
+				
+				
 			} catch (Exception ex) {
 				mLog.error("error " + ex.getMessage());
 				continue;
@@ -718,8 +728,8 @@ public class GoogleHelper {
 				if (!pageList.contains(slidename)) {
 					//get slide id
 					String slideId = commentKeys.get(slidename);
-					mLog.trace("slide Id " + slideId);
-					mLog.trace("slidename to remove " + slidename);
+					mLog.warn("slide Id " + slideId);
+					mLog.warn("slidename to remove " + slidename);
 					pageListToExclude.add(slidename);
 				}
 
@@ -890,7 +900,9 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
 					// slide 8
-
+					slidesData.getPageModels()
+					.setPieChartConfidentialClientEvaluationOnePage(pieChart);
+					
 					slidesData.getPageModels()
 							.setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
@@ -903,7 +915,11 @@ public class GoogleHelper {
 					SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(
 							slidesData, SlideEnum.TextSlideReplacement);
 					slidesList.add(sevenConfidentialClientEvaluationTextSlide);
-
+					
+					EightConfidentialClientEvaluationOneTextSlide eightConfidentialClientEvaluationOneTextSlide = new EightConfidentialClientEvaluationOneTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement);
+					slidesList.add(eightConfidentialClientEvaluationOneTextSlide);
+					
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
 					// model.addAttribute("ConfidentialClientEvaluationOnePageModel", pieChart);
@@ -917,7 +933,8 @@ public class GoogleHelper {
 					// confidentialClientEvaluationProposedPage
 					List<PieChart> pieChartProposed = ChartBuilder
 							.buildNextYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
-
+					slidesData.getPageModels()
+					.setPieChartConfidentialClientEvaluationProposed(pieChartProposed);
 					// slide 9
 					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
 					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = new NineConfidentialClientEvaluationProposedSlide(
@@ -926,6 +943,9 @@ public class GoogleHelper {
 
 					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 
+					NineConfidentialClientEvaluationProposedTextSlide nineConfidentialClientEvaluation = new NineConfidentialClientEvaluationProposedTextSlide(slidesData, SlideEnum.TextSlideReplacement) ;
+					slidesList.add(nineConfidentialClientEvaluation);
+					
 					// NineConfidentialClientEvaluationProposedSlide
 
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartProposedModel",
