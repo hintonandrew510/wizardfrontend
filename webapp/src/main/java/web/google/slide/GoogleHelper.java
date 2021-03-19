@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -87,6 +89,10 @@ import web.repository.WizardRepository;
 import web.util.EncryptionDecryptionManager;
 import web.util.EnvUtil;
 
+/**
+ * @author andrewhinton
+ *
+ */
 public class GoogleHelper {
 	private static final Logger mLog = LoggerFactory.getLogger(GoogleHelper.class.getName());
 	@Autowired // This means to get the bean called userRepository
@@ -604,7 +610,7 @@ public class GoogleHelper {
 	}
 
 	public static String convertStringToCurrency(String currency) {
-		
+
 		try {
 			mLog.info("amount " + currency);
 			double amount = Double.parseDouble(currency);
@@ -668,6 +674,59 @@ public class GoogleHelper {
 			throw new Exception(e);
 		}
 
+	}
+    /*
+     * 
+     */
+	public static List<String> getSlidesExcluded(Iterable<WizardData> dataPages, Map<String, String> commentKeys) {
+		mLog.warn("entering getSlidesExcluded comments");
+	
+		List<String> pageList = new ArrayList<String>();
+		List<String> pageListToExclude = new ArrayList<String>();
+		// get all pages
+
+		for (WizardData data : dataPages) {
+
+			// pull of data model
+			PageNameEnum pageName = null;
+			try {
+				pageName = PageNameEnum.valueOf(data.getPagename());
+				mLog.trace("page Name = " + pageName.toString());
+				if (pageName == PageNameEnum.TargetMarketingPage) {
+					mLog.info("FOUND targetMaring page");
+					
+					pageList.add("TargetMarketingWant12to18ToWant19to25");
+					pageList.add("TargetMarketingWant19to25ToWant26to35");
+					pageList.add("TargetMarketingWant26to35ToWant36to45");
+					pageList.add("TargetMarketingWant36to45ToWant46to55");
+					pageList.add("TargetMarketingWant46to55ToWant55Plus");
+				} else {
+				pageList.add(pageName.toString());
+				}
+			} catch (Exception ex) {
+				mLog.error("error " + ex.getMessage());
+				continue;
+			}
+			// get targetMarking data
+
+		} // end of for loop
+
+		// loop thru google slides
+		if (!pageList.isEmpty()) {
+			for (String slidename : commentKeys.keySet()) {
+				//mLog.trace("google slide name " + slidename);
+				if (!pageList.contains(slidename)) {
+					//get slide id
+					String slideId = commentKeys.get(slidename);
+					mLog.trace("slide Id " + slideId);
+					mLog.trace("slidename to remove " + slidename);
+					pageListToExclude.add(slidename);
+				}
+
+			}
+		}
+		mLog.warn("leaving exta getSlidesExcluded");
+		return pageListToExclude;
 	}
 
 	/**
@@ -1204,10 +1263,11 @@ public class GoogleHelper {
 						slidesList.add(seventeenPlanAMediaSlide);
 						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
 								"PlanASpreadSheet!A1:P", "PlanASpreadSheet", SlideEnum.PlanASpreadSheet, slidesData);
-						TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide= new TwentyNinePlanASpreadSheetTextSlide(slidesData,SlideEnum.TextSlideReplacement );
-						
+						TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide = new TwentyNinePlanASpreadSheetTextSlide(
+								slidesData, SlideEnum.TextSlideReplacement);
+
 						slidesList.add(twentyNinePlanASpreadSheetTextSlide);
-						
+
 						slidesList.add(twentyNinePlanASpreadSheetSlide);
 						mLog.info("found page SeventeenPlanAMediaSlide");
 
@@ -1239,9 +1299,10 @@ public class GoogleHelper {
 						slidesList.add(twentyThreePlanBMediaSlide);
 						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
 								"PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet, slidesData);
-						
-						ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide= new ThirtyPlanBSpreadSheetTextSlide(slidesData,SlideEnum.TextSlideReplacement );
-						
+
+						ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide = new ThirtyPlanBSpreadSheetTextSlide(
+								slidesData, SlideEnum.TextSlideReplacement);
+
 						slidesList.add(thirtyPlanBSpreadSheetTextSlide);
 						slidesList.add(thirtyPlanBSpreadSheetSlide);
 						mLog.info("found page TwentyThreePlanBMediaSlide");

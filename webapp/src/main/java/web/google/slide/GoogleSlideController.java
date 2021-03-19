@@ -164,6 +164,7 @@ public class GoogleSlideController {
 		mLog.warn("entering initialize");
 		// agent.setContactId(contact.getContactId());
 		mExcludedPagesList = GoogleHelper.getSlidesExcluded(this.mDataPages);
+		
 		// get Slide data from database
 		mSlidesModels = GoogleHelper.getSlidesData(this.mDataPages);
 
@@ -234,6 +235,18 @@ public class GoogleSlideController {
 			mLog.info("newFile id [" + newFile.getId() + "]");
 
 			this.mComments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
+	
+		//	this.mExcludedPagesList =
+		List<String>  extraPagesToExclude = GoogleHelper.getSlidesExcluded(this.mDataPages, this.mComments);
+		for (String extraPage : extraPagesToExclude) {
+			if (!mExcludedPagesList.contains(extraPage)) {
+				//todo mExcludedPagesList.add(extraPage);
+			}
+		}
+		
+		
+		
+		
 		} catch (Exception e) {
 			StringWriter sw = new StringWriter();
 			PrintWriter pw = new PrintWriter(sw);
@@ -446,10 +459,9 @@ public class GoogleSlideController {
 					mLog.info("SLIDEID " + pageId);
 					List<PageElement> pageElementList = page.getPageElements();
 					for (PageElement pageElement : pageElementList) {
-						// String desc = pageElement.getDescription();
-						// mLog.info("desc " + desc);
+						 
 						String elementid = pageElement.getObjectId();
-						// mLog.info("elementid " + elementid);
+						 mLog.info("elementid " + elementid);
 						SheetsChart chart = pageElement.getSheetsChart();
 						if (chart != null) {
 							Integer chartId = chart.getChartId();
