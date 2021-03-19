@@ -63,20 +63,23 @@ public abstract class AbstractSlide implements SlideInterface {
 	}
 
 	public String formatStringToCurrency(int currency) {
-		String currencyStr =  String.valueOf(currency);
+		String currencyStr = String.valueOf(currency);
 		currencyStr = formatStringToCurrency(currencyStr);
 		return currencyStr;
 	}
+
 	public String formatStringToCurrency(String currency) {
 		try {
 			if (currency == null || currency == "") {
 				return "";
 			}
 			double amount = Double.parseDouble(currency);
-			String output = NumberFormat.getCurrencyInstance(new Locale("en", "US")).format(amount);
+			NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
+			usdCostFormat.setMaximumFractionDigits(0);
+			String output = usdCostFormat.format(amount);
 			return output;
 		} catch (Exception ex) {
-			
+
 			return "";
 		}
 	}
@@ -122,7 +125,7 @@ public abstract class AbstractSlide implements SlideInterface {
 
 	@Override
 	public boolean hasReplacementData() {
-		
+
 		mLog.warn("hasReplacementData");
 		boolean isTextReplacement = false;
 		try {
