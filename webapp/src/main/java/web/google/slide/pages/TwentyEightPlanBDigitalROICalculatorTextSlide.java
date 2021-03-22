@@ -43,7 +43,7 @@ public class TwentyEightPlanBDigitalROICalculatorTextSlide extends AbstractSlide
 		SlideReplacementData planBCostPerThousand = new SlideReplacementData("planBCostPerThousand",
 				pageModel.getPlanACostPerThousand());
 		
-		String planBClosingPctNumberStr = pageModel.getPlanAMonthlyDigitalInvestment();
+		String planBClosingPctNumberStr = pageModel.getPlanAClosingPctNumber();
 		planBClosingPctNumberStr = this.formatStringToCurrency(planBClosingPctNumberStr);
 		SlideReplacementData planBClosingPctNumber = new SlideReplacementData("planBClosingPctNumber",
 				planBClosingPctNumberStr);
