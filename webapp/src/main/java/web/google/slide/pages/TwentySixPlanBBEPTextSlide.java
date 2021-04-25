@@ -37,7 +37,7 @@ public class TwentySixPlanBBEPTextSlide extends AbstractSlide {
 
 
 		SlideReplacementData planBAverageSale = new SlideReplacementData("planBAverageSale",
-				planBBEPPageModel.getPlanBAverageSale() + "%");
+				planBBEPPageModel.getPlanBAverageSale());
 		
 		SlideReplacementData planBGrossMargin = new SlideReplacementData("planBGrossMargin",
 				planBBEPPageModel.getPlanBGrossMargin() + "%");

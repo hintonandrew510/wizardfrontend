@@ -77,7 +77,7 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 		SlideReplacementData planAMonthlyROID = new SlideReplacementData("planAMonthlyROID",
 				pageModel.getPlanAMonthlyROID());
 		SlideReplacementData planAMonthlyROIP = new SlideReplacementData("planAMonthlyROIP",
-				pageModel.getPlanAMonthlyROIP());
+				pageModel.getPlanAMonthlyROIP() + "%");
 		
 		
 		listData.add(planAMonthlyDigitalInvestment);
