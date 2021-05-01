@@ -23,8 +23,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyOnePlanALifetimeValuedTextSlide.class.getName());
 
-	public TwentyOnePlanALifetimeValuedTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentyOnePlanALifetimeValuedTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

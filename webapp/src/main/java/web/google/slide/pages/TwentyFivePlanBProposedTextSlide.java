@@ -21,8 +21,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentyFivePlanBProposedTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyFivePlanBProposedTextSlide.class.getName());
 
-	public TwentyFivePlanBProposedTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentyFivePlanBProposedTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

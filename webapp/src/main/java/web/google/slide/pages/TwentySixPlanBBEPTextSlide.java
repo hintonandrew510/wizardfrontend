@@ -23,8 +23,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentySixPlanBBEPTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentySixPlanBBEPTextSlide.class.getName());
 
-	public TwentySixPlanBBEPTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentySixPlanBBEPTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

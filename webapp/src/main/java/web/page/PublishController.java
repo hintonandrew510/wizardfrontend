@@ -77,11 +77,12 @@ public class PublishController {
 	}
 
 	@RequestMapping(value = "/PublishClient", method = RequestMethod.GET)
-	public String clientView(Model model, @RequestParam String ID) {
+	public String clientView(Model model, @RequestParam String ID,  HttpSession session) {
 		mLog.info("ID  [" + ID + "]");
 		// String idDecode = EncryptionDecryptionManager.decode(ID);
 		// mLog.info("idDecode [" + idDecode + "]");
-		String decryptId = EncryptionDecryptionManager.decrypt(ID);
+		//String decryptId = EncryptionDecryptionManager.decrypt(ID);
+		String decryptId = session.getAttribute("ID").toString();
 		mLog.info("decryptId  [" + decryptId + "]");
 		String detail = detail(model, decryptId);
 		return detail;
@@ -89,24 +90,26 @@ public class PublishController {
 	}
 
 	@RequestMapping(value = "/PublishLink", method = RequestMethod.GET)
-	public String PublishLink(Model model, @RequestParam String encryptId, Authentication authentication) {
+	public String PublishLink(Model model, @RequestParam String encryptId, Authentication authentication, HttpSession session) {
 
 		mLog.info("encryptId  [" + encryptId + "]");
-		encryptId = EncryptionDecryptionManager.decode(encryptId);
-
+		//encryptId = EncryptionDecryptionManager.decode(encryptId);
+		mLog.info("starting detail");
+		String decryptID = session.getAttribute("ID").toString();
+		
 		mLog.info(" decode encryptId  [" + encryptId + "]");
 		StringBuffer buffer = new StringBuffer();
 		StringBuffer domainBuffer = new StringBuffer();
 
 		String domain = env.getProperty("domain");
 		// encryptId = EncryptionDecryptionManager.encode(encryptId);
-		String decodeEncryptId = EncryptionDecryptionManager.encode(encryptId);
+		//String decodeEncryptId = EncryptionDecryptionManager.encode(encryptId);
 
 		// mLog.info("domainA = " + domainA);
 		buffer.append(domain);
 		buffer.append("PublishClient");
 		buffer.append("?ID=");
-		buffer.append(decodeEncryptId);
+		buffer.append(decryptID);
 		mLog.info("buffer " + buffer.toString());
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 		String mailToMessage = env.getProperty("mailtoMessage");
@@ -135,9 +138,9 @@ public class PublishController {
 
 	public String detail(Model model, String ID) {
 		Integer idInt = Integer.parseInt(ID);
-		String encryptId = EncryptionDecryptionManager.encrypt(ID);
-		encryptId = EncryptionDecryptionManager.encode(encryptId);
-		model.addAttribute("encryptId", encryptId);
+		//String encryptId = EncryptionDecryptionManager.encrypt(ID);
+		//encryptId = EncryptionDecryptionManager.encode(encryptId);
+		model.addAttribute("encryptId", idInt);
 		Publish publish = new Publish();
 		// get all pages
 		Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(idInt);

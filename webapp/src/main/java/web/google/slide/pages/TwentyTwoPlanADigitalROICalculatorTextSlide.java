@@ -24,8 +24,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyTwoPlanADigitalROICalculatorTextSlide.class.getName());
 
-	public TwentyTwoPlanADigitalROICalculatorTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentyTwoPlanADigitalROICalculatorTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 		String planAClosingPctNumberStr = pageModel.getPlanAClosingPctNumber();
 		
 		planAClosingPctNumberStr = this.withLargeIntegers(planAClosingPctNumberStr);
-		
+		mLog.info("planAClosingPctNumberStr " + planAClosingPctNumberStr);
 		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("planAClosingPctNumber",
 				planAClosingPctNumberStr);
 		SlideReplacementData planAClickThroughRate = new SlideReplacementData("planAClickThroughRate",

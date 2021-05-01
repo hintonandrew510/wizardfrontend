@@ -13,8 +13,8 @@ import web.page.targetmarketingpage.TargetMarketingPageModel;
 
 public class SixTargetMarketingSlide extends AbstractSlide {
 
-	public SixTargetMarketingSlide(SlidesData sildeData , SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public SixTargetMarketingSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 		// TODO Auto-generated constructor stub
 	}
 	@Override

@@ -237,7 +237,7 @@ public class GoogleSlideController {
 
 			this.mComments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
 			for (String pageToExclude : this.mExcludedPagesList) {
-                mLog.warn("page to EXCLUDE " + pageToExclude);
+				mLog.warn("page to EXCLUDE " + pageToExclude);
 			}
 			// this.mExcludedPagesList =
 			List<String> extraPagesToExclude = GoogleHelper.getSlidesExcluded(this.mDataPages, this.mComments);
@@ -393,18 +393,18 @@ public class GoogleSlideController {
 
 			// delete slide
 			// get the slide names and ids from the comments and remove pages
-			mLog.info("FIGURE OUT SLIDES TO DELETE  ");
+			mLog.warn("FIGURE OUT SLIDES TO DELETE  ");
 			try {
 				mLog.info("pages to consider  " + this.mExcludedPagesList.size());
-				//mLog.info("comment size  " + this.mComments.size());
+				// mLog.info("comment size " + this.mComments.size());
 				for (String excludedPage : this.mExcludedPagesList) {
 					mLog.info("looking for  [" + excludedPage + "]");
 					if (this.mComments == null) {
 						mLog.info("null comments from template");
-						//skip this page
+						// skip this page
 						continue;
 					}
-					
+
 					if (this.mComments.containsKey(excludedPage)) {
 						String pageToExclude = this.mComments.get(excludedPage);
 						DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest();
@@ -412,7 +412,7 @@ public class GoogleSlideController {
 						// Request delRequest = new Request().setDeleteObject(deleteObjectRequest);
 						Request deleteRequest = new Request();
 						deleteRequest.setDeleteObject(deleteObjectRequest);
-						mLog.info("Removing page  [" + excludedPage + "]");
+						mLog.warn("Removing page  [" + excludedPage + "]");
 						requests.add(new Request().setDeleteObject(deleteObjectRequest));
 						// requests.add(deleteRequest);
 					}
@@ -428,10 +428,10 @@ public class GoogleSlideController {
 				mLog.error("ERROR comment [" + sw.toString() + "]");
 
 			}
-			mLog.info("DELETED OF SLIDES DONE");
+			mLog.warn("DELETED OF SLIDES DONE");
 
 			// gb1f3d784ca_0_16
-			mLog.info("REPLACE DATA IN SLIDES");
+			mLog.warn("REPLACE DATA IN SLIDES");
 			// add data to slides
 			if (mSlidesModels != null) {
 				for (SlideInterface page : mSlidesModels) {
@@ -441,6 +441,9 @@ public class GoogleSlideController {
 						continue; // skip over charts
 					}
 					List<SlideReplacementData> listSlideReplacementData = page.composeGoogleSlideData();
+					mLog.warn("page enum " + page.getSlideEnum());
+					mLog.warn("page name " + page.getPageName());
+					
 					for (SlideReplacementData slideReplacementData : listSlideReplacementData) {
 
 						requests.add(
@@ -1089,22 +1092,29 @@ public class GoogleSlideController {
 				default:
 					break;
 				}
-
+				mLog.warn(" Start Clearing Valuesfrom spreadsheets ");
+				// make sure there is something to write
+				if (writeData != null) {
+					if (writeData.isEmpty()) {
+						// nothing to write
+						return;
+					}
+				}
 				ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
 				// ValueRange body = new ValueRange().setValues(values);
 				try {
 
-					// cleare values
+					// clear values
 					// TODO: Assign values to desired fields of `requestBody`:
+					mLog.warn("ClearValuesResponse ");
 					ClearValuesRequest requestBody = new ClearValuesRequest();
-					mLog.info("ClearValuesResponse ");
 
 					if (page != null && page.getWriteRange() != null) {
 						mLog.info("service" + service);
-						mLog.info("spreadsheetId" + spreadsheetId);
+						mLog.error("spreadsheetId" + spreadsheetId);
 						Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
 								page.getWriteRange(), requestBody);
-						mLog.info("ClearValuesResponse ");
+						mLog.error("ClearValuesResponse ");
 						ClearValuesResponse response = request.execute();
 						mLog.info("response from [" + response + "]");
 

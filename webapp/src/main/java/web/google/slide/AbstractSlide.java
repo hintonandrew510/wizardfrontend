@@ -113,9 +113,10 @@ public abstract class AbstractSlide implements SlideInterface {
 		this.mSlidesData = mSlidesData;
 	}
 
-	public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum) {
+	public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum, String pageName) {
 		this.slideEnum = slideEnum;
 		mSlidesData = slidesData;
+		this.pageName = pageName;
 	}
 
 	@Override

@@ -24,8 +24,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentySevenPlanBLifetimeValuedTextSlide.class.getName());
 
-	public TwentySevenPlanBLifetimeValuedTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentySevenPlanBLifetimeValuedTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

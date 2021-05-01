@@ -315,19 +315,19 @@ public class WizardController {
 				hasRows = true;
 			}
 		}
-		List<Wizard> listEncode = new ArrayList();
+		//List<Wizard> listEncode = new ArrayList();
 		// loop en encode
-		for (Wizard wizard : wizards) {
-			try {
-				mLog.info("encrypt value " + wizard.getEncrypt());
-				String encodeIdValue = EncryptionDecryptionManager.encode(wizard.getEncrypt());
-				wizard.setEncrypt(encodeIdValue);
-				listEncode.add(wizard);
-			} catch (Exception e) {
-				mLog.error(e.getMessage());
-				e.printStackTrace();
-			}
-		}
+		//for (Wizard wizard : wizards) {
+			//try {
+			//	mLog.info("encrypt value " + wizard.getEncrypt());
+				//String encodeIdValue = EncryptionDecryptionManager.encode(wizard.getEncrypt());
+				//wizard.setEncrypt(encodeIdValue);
+				//listEncode.add(wizard);
+			//} catch (Exception e) {
+			//	mLog.error(e.getMessage());
+			//	e.printStackTrace();
+			//}
+		//}
 
 		mLog.info("has rows [" + hasRows + "]");
 		// add to model

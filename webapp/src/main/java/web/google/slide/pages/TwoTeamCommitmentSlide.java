@@ -13,8 +13,8 @@ import web.page.presentedtopage.PresentedToPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 public class TwoTeamCommitmentSlide extends AbstractSlide {
-	public TwoTeamCommitmentSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwoTeamCommitmentSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {

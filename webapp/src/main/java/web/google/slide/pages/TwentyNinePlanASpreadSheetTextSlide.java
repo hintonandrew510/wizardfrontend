@@ -15,8 +15,8 @@ import web.page.planproposedpage.PlanProposedPageModel;
 public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
 
-	public TwentyNinePlanASpreadSheetTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentyNinePlanASpreadSheetTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

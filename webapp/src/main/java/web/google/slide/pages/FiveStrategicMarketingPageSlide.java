@@ -16,8 +16,8 @@ import web.page.strategicmarketingpagethree.StrategicMarketingHelper;
 import web.page.strategicmarketingpagethree.StrategicMarketingPageThreeModel;
 
 public class FiveStrategicMarketingPageSlide extends AbstractSlide {
-	public FiveStrategicMarketingPageSlide(SlidesData sildeData , SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public FiveStrategicMarketingPageSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {

@@ -14,8 +14,8 @@ import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 
 public class EightConfidentialClientEvaluationOneTextSlide extends AbstractSlide {
-	public EightConfidentialClientEvaluationOneTextSlide(SlidesData sildeData , SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public EightConfidentialClientEvaluationOneTextSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {

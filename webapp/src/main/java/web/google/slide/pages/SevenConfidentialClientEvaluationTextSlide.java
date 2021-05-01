@@ -20,8 +20,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class SevenConfidentialClientEvaluationTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(SevenConfidentialClientEvaluationTextSlide.class.getName());
 
-	public SevenConfidentialClientEvaluationTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public SevenConfidentialClientEvaluationTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

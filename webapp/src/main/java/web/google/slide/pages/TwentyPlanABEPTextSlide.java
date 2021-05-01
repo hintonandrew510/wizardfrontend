@@ -22,8 +22,8 @@ import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 public class TwentyPlanABEPTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyPlanABEPTextSlide.class.getName());
 
-	public TwentyPlanABEPTextSlide(SlidesData sildeData, SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public TwentyPlanABEPTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 
 	@Override

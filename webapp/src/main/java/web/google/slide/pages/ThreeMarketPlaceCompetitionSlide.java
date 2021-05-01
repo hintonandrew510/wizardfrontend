@@ -12,8 +12,8 @@ import web.page.presentedtopage.PresentedToPageModel;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 
 public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
-	public ThreeMarketPlaceCompetitionSlide(SlidesData sildeData , SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public ThreeMarketPlaceCompetitionSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {

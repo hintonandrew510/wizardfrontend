@@ -13,8 +13,8 @@ import web.page.planamedipage.MediaChart;
 import web.page.presentedtopage.PresentedToPageModel;
 
 public class OnePresentedToSlide extends AbstractSlide {
-	public OnePresentedToSlide(SlidesData sildeData , SlideEnum slideEnum) {
-		super(sildeData, slideEnum);
+	public OnePresentedToSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
 	}
 	@Override
 	public List<SlideReplacementData> composeGoogleSlideData() {
