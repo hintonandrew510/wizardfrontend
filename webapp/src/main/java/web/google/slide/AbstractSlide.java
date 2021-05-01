@@ -1,5 +1,6 @@
 package web.google.slide;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -68,6 +69,12 @@ public abstract class AbstractSlide implements SlideInterface {
 		return currencyStr;
 	}
 
+	public String withLargeIntegers(String value) {
+		double valuedouble = Double.parseDouble(value);
+	    DecimalFormat df = new DecimalFormat("###,###,###");
+	    return df.format(valuedouble);
+	}
+	
 	public String formatStringToCurrency(String currency) {
 		try {
 			if (currency == null || currency == "") {

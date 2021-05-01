@@ -67,6 +67,10 @@ public class PublishController {
 
 	@RequestMapping(value = "/Publish", method = RequestMethod.GET)
 	public String agentView(Model model, @RequestParam String ID, HttpSession session) {
+		if (session == null) {
+			mLog.error("null session unknown error");
+			return "";
+		}
 		String decryptId = session.getAttribute("ID").toString();
 		String detail = detail(model, decryptId);
 		return detail;

@@ -396,9 +396,15 @@ public class GoogleSlideController {
 			mLog.info("FIGURE OUT SLIDES TO DELETE  ");
 			try {
 				mLog.info("pages to consider  " + this.mExcludedPagesList.size());
-				mLog.info("comment size  " + this.mComments.size());
+				//mLog.info("comment size  " + this.mComments.size());
 				for (String excludedPage : this.mExcludedPagesList) {
 					mLog.info("looking for  [" + excludedPage + "]");
+					if (this.mComments == null) {
+						mLog.info("null comments from template");
+						//skip this page
+						continue;
+					}
+					
 					if (this.mComments.containsKey(excludedPage)) {
 						String pageToExclude = this.mComments.get(excludedPage);
 						DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest();
@@ -1094,6 +1100,8 @@ public class GoogleSlideController {
 					mLog.info("ClearValuesResponse ");
 
 					if (page != null && page.getWriteRange() != null) {
+						mLog.info("service" + service);
+						mLog.info("spreadsheetId" + spreadsheetId);
 						Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
 								page.getWriteRange(), requestBody);
 						mLog.info("ClearValuesResponse ");

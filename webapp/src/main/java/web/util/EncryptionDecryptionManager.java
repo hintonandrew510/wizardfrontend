@@ -35,7 +35,11 @@ public class EncryptionDecryptionManager {
 	    return null;
 	    }
 	 public static String encode(String valueToEncode) {
-		String encodedValue = null;
+		if (valueToEncode == null) {
+			mLog.error("null value to encode received");
+			return null;
+		}
+		 String encodedValue = null;
 		try {
 			mLog.info("valueToEncode [ " + valueToEncode + "]");
 			encodedValue = URLEncoder.encode( valueToEncode, StandardCharsets.UTF_8.toString());

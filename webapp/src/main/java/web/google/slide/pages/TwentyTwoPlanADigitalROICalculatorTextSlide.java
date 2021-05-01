@@ -44,7 +44,9 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 				pageModel.getPlanACostPerThousand());
 		
 		String planAClosingPctNumberStr = pageModel.getPlanAClosingPctNumber();
-		//planAClosingPctNumberStr = this.formatStringToCurrency(planAClosingPctNumberStr);
+		
+		planAClosingPctNumberStr = this.withLargeIntegers(planAClosingPctNumberStr);
+		
 		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("planAClosingPctNumber",
 				planAClosingPctNumberStr);
 		SlideReplacementData planAClickThroughRate = new SlideReplacementData("planAClickThroughRate",
