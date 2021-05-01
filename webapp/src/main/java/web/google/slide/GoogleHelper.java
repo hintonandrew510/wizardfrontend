@@ -1350,10 +1350,14 @@ public class GoogleHelper {
 					// model.addAttribute("PresentedToPage", presentedToPageModel);
 					slidesData.getPublish().setPresentedToPage(true);
 					slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
-					OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
-							SlideEnum.TextSlideReplacement,"OnePresentedToSlide");
-					slidesList.add(presentedToSlide);
-					mLog.info("found page PresentedToPage");
+					if (!presentedToPageModel.getClientBusinessName().isEmpty() && !presentedToPageModel.getClientContactName().isEmpty()) {
+						OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
+								SlideEnum.TextSlideReplacement,"OnePresentedToSlide");
+						slidesList.add(presentedToSlide);
+						mLog.info("found page PresentedToPage");
+					}
+					
+					
 					break;
 				} catch (Exception ex) {
 					mLog.error("error " + ex.getMessage());

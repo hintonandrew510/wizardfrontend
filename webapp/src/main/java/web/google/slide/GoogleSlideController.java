@@ -432,6 +432,7 @@ public class GoogleSlideController {
 
 			// gb1f3d784ca_0_16
 			mLog.warn("REPLACE DATA IN SLIDES");
+			boolean dataToProcess = false;
 			// add data to slides
 			if (mSlidesModels != null) {
 				for (SlideInterface page : mSlidesModels) {
@@ -443,9 +444,14 @@ public class GoogleSlideController {
 					List<SlideReplacementData> listSlideReplacementData = page.composeGoogleSlideData();
 					mLog.warn("page enum " + page.getSlideEnum());
 					mLog.warn("page name " + page.getPageName());
-					
+					if (listSlideReplacementData == null) {
+						//skip over
+						mLog.warn("page name SKIPPED" + page.getPageName());
+					    continue;
+					}
+					mLog.warn("PROCESSING page name " + page.getPageName());
 					for (SlideReplacementData slideReplacementData : listSlideReplacementData) {
-
+						dataToProcess = true;
 						requests.add(
 								new Request()
 										.setReplaceAllText(
@@ -459,7 +465,12 @@ public class GoogleSlideController {
 					}
 				} // end if for
 					// refresh data from sheets for LInk data
-
+				mLog.warn("refresh data from sheets for LInk data " );
+				if (!dataToProcess) {
+					//no data to process
+					mLog.warn("no data to process " );
+					return "googleerror";
+				}
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
 

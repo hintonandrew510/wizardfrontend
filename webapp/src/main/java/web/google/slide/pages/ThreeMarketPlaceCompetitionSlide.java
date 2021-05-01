@@ -20,6 +20,10 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
 		MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
 		StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
 		
+		if (pageModel == null || strategicMarketingPageOneModel == null) {
+			return null;
+		}
+		
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 		
 		
