@@ -159,14 +159,16 @@ public class GoogleSlideController {
 	 */
 	private void initialize(String localDomain) throws IOException, ProfileException {
 		// remove value from session
-
+		mLog.info("localDomain = "+ localDomain);
 		mLog.trace(GoogleSlideController.class.getName(), "initialize");
 		mLog.warn("entering initialize");
 		// agent.setContactId(contact.getContactId());
 		mExcludedPagesList = GoogleHelper.getSlidesExcluded(this.mDataPages);
+		mLog.info("mExludedPagesList = "+ mExcludedPagesList);
 
 		// get Slide data from database
 		mSlidesModels = GoogleHelper.getSlidesData(this.mDataPages);
+		mLog.info("mSlidesModels = " + mSlidesModels);
 
 		String json = mAgent.getGoogleprofile();
 		if (json == null) {
@@ -176,7 +178,7 @@ public class GoogleSlideController {
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
 		String domain = mEnvironment.getProperty("prod.google.domain");
 
-		if (localDomain.contains("local")) {
+		if (localDomain.contains("local") || localDomain.contains("quiett")) {
 			domain = mEnvironment.getProperty("local.google.domain");
 		}
 		// domain = request.getLocalName();
@@ -315,10 +317,14 @@ public class GoogleSlideController {
 			id = testWizardid;
 			mLog.info("testWizardid [" + testWizardid + "]");
 		}
+		mLog.info("test wizard id =" + testWizardid);
 
 		mDataPages = wizardDataRepository.findByWizardid(Integer.valueOf(id));
+		mLog.info("mDataPages =" + mDataPages);
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+		mLog.info("userDetails ="+ userDetails);
 		mAgent = userDetails.getAgent();
+		mLog.info("mAgent = " + mAgent);
 
 		Optional<Wizard> wizardOpt = wizardRepository.findById(Integer.valueOf(id));
 
@@ -330,10 +336,13 @@ public class GoogleSlideController {
 		}
 
 		try {
+			mLog.info("try to initialize");
 			initialize(request.getLocalName());
+			mLog.info("after initialize");
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			mLog.error(ioException.getMessage());
+			return "googleerror";
 		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
@@ -471,8 +480,17 @@ public class GoogleSlideController {
 					mLog.warn("no data to process " );
 					return "googleerror";
 				}
+				if (mSlides == null) {
+					//no data to process
+					mLog.warn("no slides available " );
+					return "googleerror";
+				}
+				mLog.info("mSlides =" + mSlides);
+				mLog.info("this.mNewFileId =" + this.mNewFileId);
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
+				mLog.info("response =" + response);
+				mLog.info("pages =" + pages);
 
 				// change i to any other index if desired
 				for (Page page : pages) {
