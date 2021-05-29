@@ -54,7 +54,7 @@ public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
 				planBLifetimeValuedPageModel.getYearsOfPatronage() + "");
 		
 		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("b_lifetimeValuePerCustomer",
-				this.formatStringToCurrency(planBLifetimeValuedPageModel.getLifetimeValuePerCustomer()));
+				planBLifetimeValuedPageModel.getLifetimeValuePerCustomer());
 		
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("b_prospectsNeededToBreakEven",
 				planBLifetimeValuedPageModel.getProspectsNeededToBreakEven());

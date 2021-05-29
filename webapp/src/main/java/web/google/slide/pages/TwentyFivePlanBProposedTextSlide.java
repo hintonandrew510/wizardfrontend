@@ -33,7 +33,7 @@ public class TwentyFivePlanBProposedTextSlide extends AbstractSlide {
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-		String planAReachStr = formatStringToCurrency(planBProposedPageModel.getPlanAReach());
+		String planAReachStr = withLargeIntegers(planBProposedPageModel.getPlanAReach());
 		SlideReplacementData planBCity = new SlideReplacementData("planBCity",
 				planBProposedPageModel.getPlanACity());
 		SlideReplacementData planBReach = new SlideReplacementData("planBReach",

@@ -160,7 +160,7 @@ public class SevenConfidentialClientEvaluationTextSlide extends AbstractSlide {
 				: confidentialClientEvaluationOnePageModel.getProposedValue9();
 		SlideReplacementData proposedValue9 = new SlideReplacementData("proposedValue9", proposedValue9Str);
 		SlideReplacementData totalMediaInvestmentTwo = new SlideReplacementData("totalMediaInvestmentTwo",
-				confidentialClientEvaluationOnePageModel.getTotalMediaInvestment());
+				confidentialClientEvaluationOnePageModel.getTotalMediaInvestmentTwo());
 
 		SlideReplacementData taiNext12Months = new SlideReplacementData("taiNext12Months",
 				confidentialClientEvaluationOnePageModel.getTaiNext12Months());
