@@ -346,7 +346,7 @@ public class GoogleSlideController {
 			googleErrorModel.setError("Trying to initialize error " + ioException.getMessage());
 			ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 
-			return "GoogleErrorPage";
+			return "redirect:/GoogleErrorPage";
 		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
@@ -488,14 +488,14 @@ public class GoogleSlideController {
 					googleErrorModel.setError("No data to process");
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 
-					return "GoogleErrorPage";
+					return "redirect:/GoogleErrorPage";
 				}
 				if (mSlides == null) {
 					// no data to process
 					mLog.trace("no slides available ");
 					googleErrorModel.setError("No slides available");
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
-					return "GoogleErrorPage";
+					return "redirect:/GoogleErrorPage";
 				}
 				mLog.info("mSlides =" + mSlides);
 				mLog.info("this.mNewFileId =" + this.mNewFileId);
@@ -504,7 +504,7 @@ public class GoogleSlideController {
 					googleErrorModel.setError("Required parameter presentationId must be specified. ");
 
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
-					return "GoogleErrorPage";
+					return "redirect:/GoogleErrorPage";
 				}
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
@@ -599,7 +599,7 @@ public class GoogleSlideController {
 			googleErrorModel.setError("ERROR replacing text " + e.getMessage());
 
 			ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
-			return "GoogleErrorPage";
+			return "redirect:/GoogleErrorPage";
 
 		}
 		// ignore id
