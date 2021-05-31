@@ -15,10 +15,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class GoogleSlideErrorController {
 	private static final Logger mLog = LoggerFactory.getLogger(GoogleSlideErrorController.class.getName());
 
-	@RequestMapping(value = "/GoogleError", method = RequestMethod.POST)
-	public String displayErrorPage(Model model) {
+	@RequestMapping(value = "/GoogleErrorPage", method = RequestMethod.POST)
+	public String displayErrorPage() {
 		mLog.info("displayErrorPage");
-		GoogleErrorModel errorModel = (GoogleErrorModel)model;
+		
+		GoogleErrorModel errorModel;
+	    if(ErrorSessionHelper.isAvailable()) {
+	    	errorModel = ErrorSessionHelper.getGoogleErrorModel();;
+	    }
+	    else {
+	    	return "ERROR, no err available to display";
+	    }
+		
+		
 		mLog.trace(errorModel.getError());
 	 return "googleerror";
 	}

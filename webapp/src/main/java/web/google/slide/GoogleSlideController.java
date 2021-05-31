@@ -159,12 +159,12 @@ public class GoogleSlideController {
 	 */
 	private void initialize(String localDomain) throws IOException, ProfileException {
 		// remove value from session
-		mLog.info("localDomain = "+ localDomain);
+		mLog.info("localDomain = " + localDomain);
 		mLog.trace(GoogleSlideController.class.getName(), "initialize");
 		mLog.warn("entering initialize");
 		// agent.setContactId(contact.getContactId());
 		mExcludedPagesList = GoogleHelper.getSlidesExcluded(this.mDataPages);
-		mLog.info("mExludedPagesList = "+ mExcludedPagesList);
+		mLog.info("mExludedPagesList = " + mExcludedPagesList);
 
 		// get Slide data from database
 		mSlidesModels = GoogleHelper.getSlidesData(this.mDataPages);
@@ -294,7 +294,7 @@ public class GoogleSlideController {
 		mLog.warn("entering generate");
 		mLog.info("request.getLocalName() " + request.getLocalName());
 		mLog.info(" request.getLocalAddr(); " + request.getLocalAddr());
-		GoogleErrorModel googleErrorHelper = new GoogleErrorModel();
+		GoogleErrorModel googleErrorModel = new GoogleErrorModel();
 		mLog.info("authCodeId [" + authCodeId + "]");
 		mAuthCodeId = authCodeId;
 		mLog.trace(GoogleSlideController.class.getName(), "generate");
@@ -309,7 +309,7 @@ public class GoogleSlideController {
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
 			// mLog.error(ex);
-			googleErrorHelper.setError("ERROR WRITTING DATA");
+			googleErrorModel.setError("ERROR WRITTING DATA");
 			mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 		}
 		mLog.info("session id [" + id + "]");
@@ -323,7 +323,7 @@ public class GoogleSlideController {
 		mDataPages = wizardDataRepository.findByWizardid(Integer.valueOf(id));
 		mLog.info("mDataPages =" + mDataPages);
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
-		mLog.info("userDetails ="+ userDetails);
+		mLog.info("userDetails =" + userDetails);
 		mAgent = userDetails.getAgent();
 		mLog.info("mAgent = " + mAgent);
 
@@ -343,9 +343,10 @@ public class GoogleSlideController {
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			mLog.error(ioException.getMessage());
-			googleErrorHelper.setError("Trying to initialize error " + ioException.getMessage());
-			model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
-			return "GoogleError";
+			googleErrorModel.setError("Trying to initialize error " + ioException.getMessage());
+			ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
+
+			return "GoogleErrorPage";
 		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
@@ -376,8 +377,8 @@ public class GoogleSlideController {
 				PrintWriter pw = new PrintWriter(sw);
 				ex.printStackTrace(pw);
 				// mLog.error(ex);
-				googleErrorHelper.setError("ERROR WRITTING DATA " + ex.getMessage());
-				
+				googleErrorModel.setError("ERROR WRITTING DATA " + ex.getMessage());
+
 				mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 			}
 			mLog.info("DONE WITH WRITING DATA  ");
@@ -439,7 +440,7 @@ public class GoogleSlideController {
 				PrintWriter pw = new PrintWriter(sw);
 				e.printStackTrace(pw);
 				// mLog.error(ex);
-				googleErrorHelper.setError("ERROR reading sheet comments template corrupt " + e.getMessage());
+				googleErrorModel.setError("ERROR reading sheet comments template corrupt " + e.getMessage());
 				mLog.error("ERROR comment [" + sw.toString() + "]");
 
 			}
@@ -460,9 +461,9 @@ public class GoogleSlideController {
 					mLog.warn("page enum " + page.getSlideEnum());
 					mLog.warn("page name " + page.getPageName());
 					if (listSlideReplacementData == null) {
-						//skip over
+						// skip over
 						mLog.warn("page name SKIPPED" + page.getPageName());
-					    continue;
+						continue;
 					}
 					mLog.warn("PROCESSING page name " + page.getPageName());
 					for (SlideReplacementData slideReplacementData : listSlideReplacementData) {
@@ -480,29 +481,30 @@ public class GoogleSlideController {
 					}
 				} // end if for
 					// refresh data from sheets for LInk data
-				mLog.warn("refresh data from sheets for LInk data " );
+				mLog.warn("refresh data from sheets for LInk data ");
 				if (!dataToProcess) {
-					//no data to process
-					mLog.trace("no data to process " );
-					googleErrorHelper.setError("No data to process");
-					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
-					return "GoogleError";
+					// no data to process
+					mLog.trace("no data to process ");
+					googleErrorModel.setError("No data to process");
+					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
+
+					return "GoogleErrorPage";
 				}
 				if (mSlides == null) {
-					//no data to process
-					mLog.trace("no slides available " );
-					googleErrorHelper.setError("No slides available");
-					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
-					return "GoogleError";
+					// no data to process
+					mLog.trace("no slides available ");
+					googleErrorModel.setError("No slides available");
+					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
+					return "GoogleErrorPage";
 				}
 				mLog.info("mSlides =" + mSlides);
 				mLog.info("this.mNewFileId =" + this.mNewFileId);
 				if (this.mNewFileId == null) {
-					//pre should not be null unless profile not setup correctly
-					googleErrorHelper.setError("Required parameter presentationId must be specified. " );
-					
-					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
-					return "GoogleError";
+					// pre should not be null unless profile not setup correctly
+					googleErrorModel.setError("Required parameter presentationId must be specified. ");
+
+					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
+					return "GoogleErrorPage";
 				}
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
@@ -545,7 +547,7 @@ public class GoogleSlideController {
 			// .setContainsText(new
 			// SubstringMatchCriteria().setText("{{customer-name}}").setMatchCase(true))
 			// .setReplaceText("yes")));
-			
+
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
 			BatchUpdatePresentationRequest body = new BatchUpdatePresentationRequest().setRequests(requests);
@@ -594,10 +596,10 @@ public class GoogleSlideController {
 			e.printStackTrace(pw);
 			// mLog.error(ex);
 			mLog.trace("ERROR  [" + sw.toString() + "]");
-			googleErrorHelper.setError("ERROR replacing text " + e.getMessage());
-			
-			model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
-			return "GoogleError";
+			googleErrorModel.setError("ERROR replacing text " + e.getMessage());
+
+			ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
+			return "GoogleErrorPage";
 
 		}
 		// ignore id
