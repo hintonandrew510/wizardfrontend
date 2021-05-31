@@ -115,7 +115,7 @@ public class GoogleHelper {
 	private WizardRepository wizardRepository;
 
 	private List<Request> mRequests = new ArrayList<Request>();
-
+    
 	/**
 	 * 
 	 * @param mediaChart

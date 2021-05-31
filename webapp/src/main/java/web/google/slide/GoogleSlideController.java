@@ -294,7 +294,7 @@ public class GoogleSlideController {
 		mLog.warn("entering generate");
 		mLog.info("request.getLocalName() " + request.getLocalName());
 		mLog.info(" request.getLocalAddr(); " + request.getLocalAddr());
-
+		GoogleErrorModel googleErrorHelper = new GoogleErrorModel();
 		mLog.info("authCodeId [" + authCodeId + "]");
 		mAuthCodeId = authCodeId;
 		mLog.trace(GoogleSlideController.class.getName(), "generate");
@@ -309,6 +309,7 @@ public class GoogleSlideController {
 			PrintWriter pw = new PrintWriter(sw);
 			ex.printStackTrace(pw);
 			// mLog.error(ex);
+			googleErrorHelper.setError("ERROR WRITTING DATA");
 			mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 		}
 		mLog.info("session id [" + id + "]");
@@ -342,7 +343,9 @@ public class GoogleSlideController {
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			mLog.error(ioException.getMessage());
-			return "googleerror";
+			googleErrorHelper.setError("Trying to initialize error " + ioException.getMessage());
+			model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
+			return "GoogleError";
 		} catch (ProfileException ex) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
@@ -373,6 +376,8 @@ public class GoogleSlideController {
 				PrintWriter pw = new PrintWriter(sw);
 				ex.printStackTrace(pw);
 				// mLog.error(ex);
+				googleErrorHelper.setError("ERROR WRITTING DATA " + ex.getMessage());
+				
 				mLog.error("ERROR WRITTING DATA [" + sw.toString() + "]");
 			}
 			mLog.info("DONE WITH WRITING DATA  ");
@@ -434,6 +439,7 @@ public class GoogleSlideController {
 				PrintWriter pw = new PrintWriter(sw);
 				e.printStackTrace(pw);
 				// mLog.error(ex);
+				googleErrorHelper.setError("ERROR reading sheet comments template corrupt " + e.getMessage());
 				mLog.error("ERROR comment [" + sw.toString() + "]");
 
 			}
@@ -478,15 +484,26 @@ public class GoogleSlideController {
 				if (!dataToProcess) {
 					//no data to process
 					mLog.trace("no data to process " );
-					return "googleerror";
+					googleErrorHelper.setError("No data to process");
+					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
+					return "GoogleError";
 				}
 				if (mSlides == null) {
 					//no data to process
 					mLog.trace("no slides available " );
-					return "googleerror";
+					googleErrorHelper.setError("No slides available");
+					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
+					return "GoogleError";
 				}
 				mLog.info("mSlides =" + mSlides);
 				mLog.info("this.mNewFileId =" + this.mNewFileId);
+				if (this.mNewFileId == null) {
+					//pre should not be null unless profile not setup correctly
+					googleErrorHelper.setError("Required parameter presentationId must be specified. " );
+					
+					model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
+					return "GoogleError";
+				}
 				Presentation response = mSlides.presentations().get(this.mNewFileId).execute();
 				List<Page> pages = response.getSlides();
 				mLog.info("response =" + response);
@@ -576,7 +593,11 @@ public class GoogleSlideController {
 			PrintWriter pw = new PrintWriter(sw);
 			e.printStackTrace(pw);
 			// mLog.error(ex);
-			mLog.error("ERROR  [" + sw.toString() + "]");
+			mLog.trace("ERROR  [" + sw.toString() + "]");
+			googleErrorHelper.setError("ERROR replacing text " + e.getMessage());
+			
+			model.addAttribute(GoogleErrorModel.NAME, googleErrorHelper);
+			return "GoogleError";
 
 		}
 		// ignore id
