@@ -280,6 +280,12 @@ public class GoogleSlideController {
 
 	}
 
+	private String getCurrentMethodAndLineNumber() {
+	 String methodName = 	Thread.currentThread().getStackTrace()[1].getMethodName();
+	 int lineNumber = Thread.currentThread().getStackTrace()[2].getLineNumber();
+	 return " line number " + lineNumber + " method Name " + methodName +  " " + this.getClass().getSimpleName();
+	}
+	
 	/**
 	 * Creates an authorized Credential object.
 	 * 
@@ -343,7 +349,7 @@ public class GoogleSlideController {
 		} catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			mLog.error(ioException.getMessage());
-			googleErrorModel.setError("Trying to initialize error " + ioException.getMessage());
+			googleErrorModel.setError("Trying to initialize error " + ioException.getMessage() + getCurrentMethodAndLineNumber());
 			ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 
 			return "redirect:/GoogleErrorPage";
@@ -485,7 +491,7 @@ public class GoogleSlideController {
 				if (!dataToProcess) {
 					// no data to process
 					mLog.trace("no data to process ");
-					googleErrorModel.setError("No data to process");
+					googleErrorModel.setError(" No data to process " + getCurrentMethodAndLineNumber());
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 
 					return "redirect:/GoogleErrorPage";
@@ -493,7 +499,7 @@ public class GoogleSlideController {
 				if (mSlides == null) {
 					// no data to process
 					mLog.trace("no slides available ");
-					googleErrorModel.setError("No slides available");
+					googleErrorModel.setError(" No slides available " + getCurrentMethodAndLineNumber());
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 					return "redirect:/GoogleErrorPage";
 				}
@@ -501,7 +507,7 @@ public class GoogleSlideController {
 				mLog.info("this.mNewFileId =" + this.mNewFileId);
 				if (this.mNewFileId == null) {
 					// pre should not be null unless profile not setup correctly
-					googleErrorModel.setError("Required parameter presentationId must be specified. ");
+					googleErrorModel.setError(" Required parameter presentationId must be specified. " + getCurrentMethodAndLineNumber());
 
 					ErrorSessionHelper.setGoogleErromModel(googleErrorModel);
 					return "redirect:/GoogleErrorPage";

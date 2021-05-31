@@ -74,36 +74,29 @@
 		<div class="container">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">Unable to Create Google Slide</h5>
-					<p class="card-text">Please  fill out the SCR. You need to fill out the first pages</p>
-					
+					<h5 class="card-title">Unable to Create Google Slide (Possible problemns)</h5>
+					<ol class="card-text">
+					  <li>Please fill out the SCR. You need to fill
+						out the first pages </li>
+						<li>Your google setup is not complete </li>
+						<li><a href="googleprofile" >Your google SCR profile is invalid </a> </li>
+					</ol>
+
 				</div>
 			</div>
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Detail error message</h5>
+					<p class="card-text" th:text="${errorModel.error}"></p>
 
-
-			
-
-
-
+				</div>
+			</div>
 
 		</div>
 
 	</section>
 	<div class="container"></div>
-	<footer style="background-color: #111;">
-		<div class="container">
-			<div class="row copyright">
-				<div class="col-md-6">
-					<p class="mb-md-0 text-center text-md-left">&copy;2018 The Guld
-						Resource Group</p>
-				</div>
-				<div class="col-md-6">
-
-					<!-- Please do not remove the backlink to us. It is part of the licence conditions. Thanks for understanding :)-->
-				</div>
-			</div>
-		</div>
-	</footer>
+	
 	<!-- JavaScript files-->
 	<script
 		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery/jquery.min.js"></script>
@@ -129,6 +122,12 @@
 	</script>
 	<script
 		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/js/front.js"></script>
+		<div id="footerId"></div>
+	<script>
+		$(function() {
+			$("#footerId").load("footer.html");
+		});
+	</script>
 </body>
 </html>
 
