@@ -70,11 +70,15 @@ public abstract class AbstractSlide implements SlideInterface {
 	}
 
 	public String withLargeIntegers(String value) {
-		double valuedouble = Double.parseDouble(value);
-	    DecimalFormat df = new DecimalFormat("###,###,###");
-	    return df.format(valuedouble);
+		try {
+			double valuedouble = Double.parseDouble(value);
+			DecimalFormat df = new DecimalFormat("###,###,###");
+			return df.format(valuedouble);
+		} catch (Exception e) {
+            return "";
+		}
 	}
-	
+
 	public String formatStringToCurrency(String currency) {
 		try {
 			if (currency == null || currency == "") {

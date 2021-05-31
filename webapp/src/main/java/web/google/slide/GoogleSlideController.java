@@ -421,7 +421,7 @@ public class GoogleSlideController {
 						// Request delRequest = new Request().setDeleteObject(deleteObjectRequest);
 						Request deleteRequest = new Request();
 						deleteRequest.setDeleteObject(deleteObjectRequest);
-						mLog.warn("Removing page  [" + excludedPage + "]");
+						mLog.trace("Removing page  [" + excludedPage + "]");
 						requests.add(new Request().setDeleteObject(deleteObjectRequest));
 						// requests.add(deleteRequest);
 					}
@@ -477,12 +477,12 @@ public class GoogleSlideController {
 				mLog.warn("refresh data from sheets for LInk data " );
 				if (!dataToProcess) {
 					//no data to process
-					mLog.warn("no data to process " );
+					mLog.trace("no data to process " );
 					return "googleerror";
 				}
 				if (mSlides == null) {
 					//no data to process
-					mLog.warn("no slides available " );
+					mLog.trace("no slides available " );
 					return "googleerror";
 				}
 				mLog.info("mSlides =" + mSlides);
@@ -528,14 +528,15 @@ public class GoogleSlideController {
 			// .setContainsText(new
 			// SubstringMatchCriteria().setText("{{customer-name}}").setMatchCase(true))
 			// .setReplaceText("yes")));
-			mLog.info("REPLACE DATA IN SLIDES DONE");
+			
 			mLog.info("requests made");
 			// Execute the requests for this presentation.
 			BatchUpdatePresentationRequest body = new BatchUpdatePresentationRequest().setRequests(requests);
 			mLog.info("");
-			mLog.info("requests  body [" + body + "]");
+			mLog.trace("requests  body [" + body + "]");
 			BatchUpdatePresentationResponse responseA = mSlides.presentations().batchUpdate(this.mNewFileId, body)
 					.execute();
+			mLog.trace("REPLACE DATA IN SLIDES DONE");
 			mLog.info("");
 			// mLog.info("requests responseA [" + responseA);
 			// Count total number of replacements made.
@@ -1140,10 +1141,10 @@ public class GoogleSlideController {
 
 					if (page != null && page.getWriteRange() != null) {
 						mLog.info("service" + service);
-						mLog.error("spreadsheetId" + spreadsheetId);
+						mLog.info("spreadsheetId" + spreadsheetId);
 						Sheets.Spreadsheets.Values.Clear request = service.spreadsheets().values().clear(spreadsheetId,
 								page.getWriteRange(), requestBody);
-						mLog.error("ClearValuesResponse ");
+						mLog.info("ClearValuesResponse ");
 						ClearValuesResponse response = request.execute();
 						mLog.info("response from [" + response + "]");
 

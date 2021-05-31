@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import web.google.slide.AbstractSlide;
 import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
@@ -13,6 +16,8 @@ import web.page.planamedipage.MediaChart;
 import web.page.presentedtopage.PresentedToPageModel;
 
 public class OnePresentedToSlide extends AbstractSlide {
+	private static final Logger mLog = LoggerFactory.getLogger(OnePresentedToSlide.class.getName());
+
 	public OnePresentedToSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);
 	}
@@ -32,7 +37,7 @@ public class OnePresentedToSlide extends AbstractSlide {
 		listData.add(portfolioManagerName);
 		listData.add(station);
 		listData.add(portfolioPhoneNumber);
-		
+		mLog.trace(listData.toString());
 		return listData;
 
 
