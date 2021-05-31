@@ -5,11 +5,12 @@ public class GoogleErrorModel {
 	public final static String NAME = "GoogleErrorHelper";
 	private String error;
 	public String getError() {
-		return stringbufferError.toString();
+		
+		return error;
 	}
 	public void setError(String error) {
+		this.error = this.stringbufferError.append(error).toString();
 		
-		this.stringbufferError.append(error);
 	}
 
 }
