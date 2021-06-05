@@ -100,7 +100,7 @@ div {
 		
 			$('#signinButton').click(function() {
 				// signInCallback defined in step 6.
-				auth2.grantOfflineAccess().then(signInCallback);
+				auth2.grantOfflineAccess().then(signInCallbackVerification);
 			});
 		</script>
 		<div class="row">
@@ -128,7 +128,7 @@ div {
 	</div>
 
 
-	<form id="shareForm" method="post" action="GenerateGoogleSlide"
+	<form id="shareForm" method="post" action="GenerateGoogleSlideVerification"
 		autocomplete="off">
 
 
