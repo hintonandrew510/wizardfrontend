@@ -3,6 +3,8 @@ package web.google.slide;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,20 +46,15 @@ import web.model.Wizard;
 import web.page.JSONManager;
 import web.repository.AgentRepository;
 
-@Controller //
+@Controller 
 public class GoogleVerificationController {
 	@Autowired
 	private Environment mEnvironment;
-	private static final Logger mLog = LoggerFactory.getLogger(GoogleSlideController.class.getName());
+	private static final Logger mLog = LoggerFactory.getLogger(GoogleVerificationController.class.getName());
 
 	private static final String APPLICATION_NAME = "Google Slides API Java Quickstart";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static final String TOKENS_DIRECTORY_PATH = "tokens";
-
-	/**
-	 * Global instance of the scopes required by this quickstart. If modifying these
-	 * scopes, delete your previously saved tokens/ folder.
-	 */
 	private static final List<String> SCOPES = Collections.singletonList(SlidesScopes.PRESENTATIONS_READONLY);
 	private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 	private GoogleProfile mGoogleProfile;
@@ -69,20 +67,32 @@ public class GoogleVerificationController {
 	private String mNewFileId;
 	private String mNewFileName;
 	private String mAuthCodeId;
-	
-	private AgentRepository agentRepository;
 	@Autowired
+	private AgentRepository agentRepository;
 	
+	@GetMapping(path = "/dispalyGoogleVerification")
+	public String display(Model model, Authentication authentication) {
+		mLog.info("starting dispaly");
+
+		
+		return "googleverification";
+
+	}
+	
+	
+	/**/
 	@RequestMapping(value = "/GoogleSlideVerification", method = RequestMethod.POST)
-	public String verifyGoogleSlide( HttpServletRequest request, Authentication authentication,
-			HttpSession session, @RequestParam(required = true) String authCodeId, Model model) {
-		mLog.warn("entering generate");
+	public String verifyGoogleSlide( HttpServletRequest request,
+			@RequestParam(required = true) String authCodeId, Model model,  Authentication authentication) {
+		mLog.warn("entering GoogleSlideVerification");
 		GoogleVerification googleVerification = new GoogleVerification();
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
 		mLog.info("userDetails =" + userDetails);
+		mLog.info("authCodeId " + authCodeId);
 		mAgent = userDetails.getAgent();
 		Optional<Agent> agentdOpt = agentRepository.findById(mAgent.getAgentid());
 		mAgent = agentdOpt.orElse(null);
+		
 		String json = mAgent.getGoogleprofile();
 		if (json == null) {
 			//throw new ProfileException("profile not found");
@@ -143,25 +153,32 @@ public class GoogleVerificationController {
 				"clientSecrets.getDetails().getClientSecret() [" + clientSecrets.getDetails().getClientSecret() + "]");
 
 		GoogleTokenResponse tokenResponse = null;
+		String accessToken = null;
 		try {
 			tokenResponse = new GoogleAuthorizationCodeTokenRequest(new NetHttpTransport(),
 					JacksonFactory.getDefaultInstance(), "https://oauth2.googleapis.com/token",
-					clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), mAuthCodeId,
+					clientSecrets.getDetails().getClientId(), clientSecrets.getDetails().getClientSecret(), authCodeId,
 					domain) // Specify the same redirect URI that you use with your web
 							// app. If you don't have a web version of your app, you can
 							// specify an empty string.
 							.execute();
+			mLog.info("tokenResponse [" + tokenResponse);
+			accessToken = tokenResponse.getAccessToken();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			// mLog.error(ex);
+			mLog.error("ERROR WRITTING [" + sw.toString() + "]");
 		}
-		mLog.info("tokenResponse [" + tokenResponse);
-		String accessToken = tokenResponse.getAccessToken();
+	
+		
 		googleVerification.setAccessToken(accessToken);
 		String emailAddress = GoogleHelper.emailAddress(tokenResponse);
 		googleVerification.setEmail(emailAddress);
 		mLog.info("access Token [" + accessToken);
-		
+		mCredential = new GoogleCredential().setAccessToken(accessToken);
 		Drive mDrive = new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 				.setApplicationName(APPLICATION_NAME).build();
 		mLog.info("drive [" + mDrive + "]");
@@ -180,5 +197,5 @@ public class GoogleVerificationController {
 		//refresh
 		model.addAttribute("model", googleVerification);
 		return "googleVerificationStatus";
-	}
+	}//end of method
 }
