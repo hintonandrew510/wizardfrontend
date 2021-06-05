@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<title>Wizard</title>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+input[type=text], select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+input[type=submit] {
+	width: 100%;
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button {
+	width: auto;
+
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+div {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 20px;
+}
+
+#myProgress {
+	width: auto;
+	background-color: #ddd;
+}
+
+#myBar {
+	width: 1%;
+	height: 30px;
+	background-color: #4CAF50;
+}
+
+#myProgress1 {
+	width: auto;
+	background-color: white;
+}
+
+#myBar1 {
+	width: 1%;
+	height: 30px;
+	background-color: black;
+}
+</style>
+  <script src="js/googleslide.js"></script>
+
+</head>
+<body>
+	<!-- Add where you want your sign-in button to render -->
+	<!-- Use an image that follows the branding guidelines in a real app -->
+	<div class="container">
+		<img src="./img/system21.png" alt="" class="img-fluid" width="160"
+			height="40">
+	</div>
+
+	<div class="container">
+		<button id="signinButton"><img src="./img/btn_google_signin_dark_normal_web@2x.png"></button>
+
+		<script>
+		
+		
+			$('#signinButton').click(function() {
+				// signInCallback defined in step 6.
+				auth2.grantOfflineAccess().then(signInCallbackVerification);
+			});
+		</script>
+		<div class="row">
+			<ol>
+				<li>Select the Generate Google Slides option</li>
+				<li>Choose an account to continue to System 21. This is your
+					google account</li>
+				<li>The app is requesting access to sensitive info in your
+					Google Account.Until the developer (wwizard241@gmail.com) verifies
+					this app with Google, you shouldn't use it. Select the <mark>advance
+						option</mark>
+				</li>
+				<li>Continue only if you understand the risks and trust the
+					developer. Go to System 21 (unsafe)</li>
+				<li>Make sure you trust System 21. Select the allow option</li>
+			</ol>
+
+		</div>
+		<div class="row"></div>
+
+	</div>
+
+	<div id="myProgress" class="container">
+		<div id="myBar"></div>
+	</div>
+
+
+	<form id="shareForm" method="post" action="GenerateGoogleSlideVerification"
+		autocomplete="off">
+
+
+		<input type="hidden" id="authCodeId" name="authCodeId" />
+
+
+	</form>
+
+
+
+
+
+
+  
+	<script
+		src="https://apis.google.com/js/client:platform.js?onload=start" async
+		defer>
+		
+	</script>
+	
+    
+	<div id="footerId" class="container"></div>
+	<script>
+		$(function() {
+			$("#footerId").load("footer.html");
+		});
+	</script>
+
+</body>
+
+</html>
