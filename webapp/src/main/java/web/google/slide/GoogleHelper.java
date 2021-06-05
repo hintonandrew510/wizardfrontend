@@ -509,6 +509,7 @@ public class GoogleHelper {
 			GoogleIdToken idToken = tokenResponse.parseIdToken();
 			GoogleIdToken.Payload payload = idToken.getPayload();
 			email = payload.getEmail();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			mLog.error(e.getMessage());
