@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -163,7 +164,10 @@ public class GoogleVerificationController {
 							// specify an empty string.
 							.execute();
 			mLog.info("tokenResponse [" + tokenResponse);
+			
 			accessToken = tokenResponse.getAccessToken();
+			googleVerification.setAccessToken(accessToken);
+			//googleVerification.setAccessToken(accessToken);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			StringWriter sw = new StringWriter();
@@ -174,7 +178,7 @@ public class GoogleVerificationController {
 		}
 	
 		
-		googleVerification.setAccessToken(accessToken);
+		
 		String emailAddress = GoogleHelper.emailAddress(tokenResponse);
 		googleVerification.setEmail(emailAddress);
 		mLog.info("access Token [" + accessToken);
@@ -187,13 +191,35 @@ public class GoogleVerificationController {
 		String newFileName = "verify " + " " + GoogleHelper.getDateTime();
 		File newFile = null;
 		try {
+			mLog.info("try to access drive");
+			
 			newFile = GoogleHelper.copyFile(mDrive, mGoogleProfile.getSlidesId(), newFileName,
 					this.mGoogleProfile.getGeneratedFolderId());
+			mNewFileId = newFile.getId();
+			googleVerification.setNewFileId(mNewFileId);
+			
+			
+			Map<String, String> comments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
+			if (comments != null) {
+				StringBuilder mapAsString = new StringBuilder("{");
+			    for (String key : comments.keySet()) {
+			        mapAsString.append(key + "=" + comments.get(key) + ", ");
+			    }
+			    mapAsString.delete(mapAsString.length()-2, mapAsString.length()).append("}");
+			    googleVerification.setComments(mapAsString.toString());
+			}
+			mLog.info("setup up slides ");
+
+			mSlides = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
+					.setApplicationName(APPLICATION_NAME).build();
+			//mSlides.
+			//googleVerification.setComments(comments.);
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//swallow message
 		}
-		mNewFileId = newFile.getId();
+		
 		//refresh
 		model.addAttribute("model", googleVerification);
 		return "googleVerificationStatus";

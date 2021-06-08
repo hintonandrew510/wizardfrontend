@@ -80,7 +80,7 @@ public class AgentController {
 
 
 ////PresentedToPage?ID=PresentedToPage
-		return "redirect:/wizards";
+		return "redirect:/dispalyGoogleVerification";
 
 	}
 

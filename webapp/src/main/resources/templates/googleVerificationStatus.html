@@ -42,6 +42,13 @@
 .displayMedium {
 	font-size: 1.125em;
 }
+.change-green {
+  fill: green;
+}
+.change-red {
+  fill: red;
+}
+
 </style>
 
 </head>
@@ -70,7 +77,7 @@
 							class="nav-link link-scroll">Wizard/SCR</a></li>
 						<li class="nav-item"><a href="about"
 							class="nav-link link-scroll">About</a></li>
-							 <li class="nav-item"><a href="googleprofile"
+						<li class="nav-item"><a href="googleprofile"
 							class="nav-link link-scroll">Google Profile</a></li>
 						<li class="nav-item"><a href="logout"
 							class="nav-link link-scroll">Logout</a></li>
@@ -80,24 +87,82 @@
 			</div>
 		</nav>
 	</header>
-    <script>
-    
-  
-    </script>
+	<script>
+		
+	</script>
 	<div class="container-fluid"
 		style="background-color: white; color: black;">
 
-		<p class="displayMedium">
+		
+		
+		<div th:if="${model.canAccessGoogleDrive}">
+			<p class="displayMedium">
+			<img
+					src="./img/check.svg" alt="" class="img-fluid change-green" width="50"
+					height="40">
+				We were able to access your google drive  <span
+					th:text="${model?.newFileId}"></span>.
+			</p>
+		</div>
+		<div th:unless="${model.canAccessGoogleDrive}">
+			<p class="displayMedium"><img
+					src="./img/x.svg" alt="" class="img-fluid change-red" width="50"
+					height="40">We were unable to access your google drive. This means we can not create a google slide. 
+			Please contact your system administrator. </p>
+		</div>
+		
 
-			Your Google slide has been successfully created. The google slide was
-			written to account <span th:text="${model?.email}"></span>. 
-			The name of the new file is <mark><span th:text="${model?.accessToken}"></span>. </mark>
-            
-             
-		</p>
+		<div th:if="${model.hasAccessToken}">
+			<p class="displayMedium">
+			<img
+					src="./img/check.svg" alt="" class="img-fluid change-green" width="50"
+					height="40">
+				We were able to find your Access Token <span
+					th:text="${model?.accessToken}"></span>.
+			</p>
+		</div>
+		<div th:unless="${model.hasAccessToken}">
+		
+			<p class="displayMedium"><img
+					src="./img/x.svg" alt="" class="img-fluid change-red" width="50"
+					height="40">We were unable to find your Access
+				Token.</p>
+		</div>
+
+
+		<div th:if="${model.hasEmail}">
+			<p class="displayMedium">
+			<img
+					src="./img/check.svg" alt="" class="img-fluid change-green" width="50"
+					height="40">
+				We were able to find your google email <span
+					th:text="${model?.email}"></span>.
+			</p>
+		</div>
+		<div th:unless="${model.hasEmail}">
+			<p class="displayMedium"><img
+					src="./img/x.svg" alt="" class="img-fluid change-red" width="50"
+					height="40">We were unable to find your google
+				email.</p>
+		</div>
+		
+		<div th:if="${model.hasComments}">
+			<p class="displayMedium">
+			<img
+					src="./img/check.svg" alt="" class="img-fluid change-green" width="50"
+					height="40">
+				We were able to find your google slide comments <span
+					th:text="${model?.comments}"></span>.
+			</p>
+		</div>
+		<div th:unless="${model.hasComments}">
+			<p class="displayMedium"><img
+					src="./img/x.svg" alt="" class="img-fluid change-red" width="50"
+					height="40">We were unable to find your google slide comments.Please contact your system administrator</p>
+		</div>
 
 	</div>
-	
+
 	<!-- JavaScript files-->
 
 </body>
