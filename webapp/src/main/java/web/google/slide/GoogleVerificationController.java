@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,10 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.sheets.v4.Sheets;
+import com.google.api.services.sheets.v4.model.ClearValuesRequest;
+import com.google.api.services.sheets.v4.model.ClearValuesResponse;
+import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
+import com.google.api.services.sheets.v4.model.ValueRange;
 import com.google.api.services.slides.v1.Slides;
 import com.google.api.services.slides.v1.SlidesScopes;
 
@@ -72,14 +77,70 @@ public class GoogleVerificationController {
 	private AgentRepository agentRepository;
 	
 	@GetMapping(path = "/dispalyGoogleVerification")
-	public String display(Model model, Authentication authentication) {
+	public String display(Model model, Authentication authentication)  {
 		mLog.info("starting dispaly");
 
 		
 		return "googleverification";
 
 	}
-	
+	private GoogleVerification writeSheetData(Sheets service, GoogleVerification googleVerification) {
+		mLog.warn("ENTERING writeSheetData");
+		mLog.info("starting WriteSheetExample");
+		String spreadsheetId = this.mGoogleProfile.getSheetsId();
+		mLog.info("starting spreadsheetId [" + spreadsheetId + "]");
+
+		// String writeRange = "ConfidentialClientEvaluationOnePage_Data!A1:B"; // range
+		// and sheet name
+		String writeRange = "Verify_Data!A1:B"; // range and sheet name
+		
+
+		List<List<Object>> writeData = new ArrayList<>();
+		List<Object> dataRow = new ArrayList<>();
+
+		// spike = green slow = red base = blue
+		
+		dataRow.add("Writing to sheet has been verified on " + GoogleHelper.getDateTime());
+		//dataRow.add("test");
+		writeData.add(dataRow);
+		ValueRange body = new ValueRange().setValues(writeData).setMajorDimension("ROWS");
+		mLog.warn("ClearValuesResponse ");
+		ClearValuesRequest requestBody = new ClearValuesRequest();
+		Sheets.Spreadsheets.Values.Clear request = null;
+		try {
+			request = service.spreadsheets().values().clear(spreadsheetId,
+					writeRange, requestBody);
+			mLog.info("ClearValuesResponse ");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(e.getMessage());
+		}
+		mLog.info("ClearValuesResponse ");
+		try {
+		 request.execute();
+
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			googleVerification.setCanWriteDataSheet(false);
+			String message = " can not clear sheet " + "[" + spreadsheetId + "] " + e.getMessage();
+			mLog.error(message );
+			googleVerification.setWriteDataSheetComment(" can not clear " + e.getMessage());
+			return googleVerification;
+		}
+		try {
+			service.spreadsheets().values().update(spreadsheetId, writeRange, body).setValueInputOption("RAW").execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			String message = " can not update sheet " + "[" + spreadsheetId + "] " + e.getMessage();
+			mLog.error(message + " " + body);
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(message);
+		}
+		return googleVerification;
+	}
 	
 	/**/
 	@RequestMapping(value = "/GoogleSlideVerification", method = RequestMethod.POST)
@@ -183,6 +244,11 @@ public class GoogleVerificationController {
 		googleVerification.setEmail(emailAddress);
 		mLog.info("access Token [" + accessToken);
 		mCredential = new GoogleCredential().setAccessToken(accessToken);
+		
+		mSheets = new Sheets.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
+				.setApplicationName(APPLICATION_NAME).build();
+		
+		googleVerification = writeSheetData(mSheets, googleVerification);
 		Drive mDrive = new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 				.setApplicationName(APPLICATION_NAME).build();
 		mLog.info("drive [" + mDrive + "]");

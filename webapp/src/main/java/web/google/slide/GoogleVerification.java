@@ -27,6 +27,20 @@ public class GoogleVerification {
 	}
 	private String comments="";
 	private boolean hasComments;
+	private String writeDataSheetComment;
+	public String getWriteDataSheetComment() {
+		return writeDataSheetComment;
+	}
+	public void setWriteDataSheetComment(String writeDataSheetComment) {
+		this.writeDataSheetComment = writeDataSheetComment;
+	}
+	private boolean canWriteDataSheet = true;
+ 	public boolean isCanWriteDataSheet() {
+		return canWriteDataSheet;
+	}
+	public void setCanWriteDataSheet(boolean canWriteDataSheet) {
+		this.canWriteDataSheet = canWriteDataSheet;
+	}
 	public String getComments() {
 		return comments;
 	}

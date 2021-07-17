@@ -93,6 +93,23 @@
 	<div class="container-fluid"
 		style="background-color: white; color: black;">
 
+		<div th:if="${model.canWriteDataSheet}">
+			<p class="displayMedium">
+			<img
+					src="./img/check.svg" alt="" class="img-fluid change-green" width="50"
+					height="40">
+				We were able to write to data sheet  <span
+					th:text="${model?.newFileId}"></span>.
+			</p>
+		</div>
+		<div th:unless="${model.canWriteDataSheet}">
+			<p class="displayMedium"><img
+					src="./img/x.svg" alt="" class="img-fluid change-red" width="50"
+					height="40">We were unable able to write to data sheet 
+			Please contact your system administrator. </p>
+			<p th:text="${model?.writeDataSheetComment}"></p>
+		</div>
+		
 		
 		
 		<div th:if="${model.canAccessGoogleDrive}">
