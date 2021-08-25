@@ -177,8 +177,16 @@ public class SevenConfidentialClientEvaluationTextSlide extends AbstractSlide {
 		SlideReplacementData industryAverage = new SlideReplacementData("industryAverage", industryAverageStr);
 		SlideReplacementData salesGoals = new SlideReplacementData("salesGoals",
 				confidentialClientEvaluationOnePageModel.getSalesGoals());
+		SlideReplacementData pctTAIGrossSalesLastYear = new SlideReplacementData("pctTAIGrossSalesLastYear",
+				confidentialClientEvaluationOnePageModel.getPctTAIGrossSalesLastYear());
+		SlideReplacementData grossSalesLastyear = new SlideReplacementData("grossSalesLastyear",
+				confidentialClientEvaluationOnePageModel.getGrossSalesLastyear());
 
+		
+		//pctTAIGrossSalesLastYear grossSalesLastyear
 		listData.add(taiNext12Months);
+		listData.add(grossSalesLastyear);
+		listData.add(pctTAIGrossSalesLastYear);
 		listData.add(pctGrossSales);
 		listData.add(estimatedGrossSalesNext12Months);
 		listData.add(industryAverage);
