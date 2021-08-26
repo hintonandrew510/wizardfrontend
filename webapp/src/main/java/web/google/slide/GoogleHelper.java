@@ -544,21 +544,39 @@ public class GoogleHelper {
 			mLog.info("after service.comments().list(fileId).setFields(\"*\").execute()");
 			// service.comments().list(fileId).
 			List<Comment> commentList = comments.getComments();
-			mLog.info("commentList  [" + commentList.size() + "]");
-			for (Comment comment : commentList) {
-				String desc = comment.getContent();
-				mLog.info("desc [" + desc + "]");
+			mLog.error("commentList size  [" + commentList.size() + "]");
+			for (int x = 0; x < commentList.size(); x ++) {
+				Comment comm = commentList.get(x);
+				mLog.info("x = "+ x);
+				mLog.error("comm = "+comm.getContent());
+				//String desc = comm.getContent();
+				//mLog.error("comm [" + comm + "]");
+				String content = comm.getContent();
+                int position = content.indexOf(".");
+                mLog.info("position [" + position + "]");
+                String pageId = null;
+				String pageName = null;
+                if (position > -1) {
+                	pageId = content.substring(position + 1, content.length());
+                	pageName = content.substring(0,position);
+                	//mLog.error("pageId " + pageId);
+                	//mLog.error("pageName " + pageName);
+                	//String[] pageNameAndPageId = comm.getConte;nt().split("@");
+                }
+				
+				//mLog.error("pageNameAndPageId = "+pageNameAndPageId);
+				//mLog.error("pageNameAndPageId length [" + pageNameAndPageId.length + "]");
+			
+				 
+				if (pageId != null && pageName != null) {
+					slides.put(pageName, pageId);
+					mLog.info("pagename [" +pageName + "]" + "pageId [" + pageId + "]");
+					//mLog.error("pageId [" + pageId + "]");
+				} 
 
-				String[] pageNameAndPageId = desc.split("\\.");
-
-				mLog.info("pageNameAndPageId length [" + pageNameAndPageId.length + "]");
-				if (pageNameAndPageId != null && pageNameAndPageId.length > 0) {
-					slides.put(pageNameAndPageId[0], pageNameAndPageId[1]);
-					mLog.info("pagename [" + pageNameAndPageId[0] + "]");
-					mLog.info("pageId [" + pageNameAndPageId[1] + "]");
-				}
-
+			
 			}
+			
 			mLog.trace(GoogleSlideController.class.getName(), "retrieveComments");
 			mLog.warn("exiting retrieveComments");
 			return slides;
