@@ -548,7 +548,7 @@ public class GoogleHelper {
 			for (int x = 0; x < commentList.size(); x ++) {
 				Comment comm = commentList.get(x);
 				mLog.info("x = "+ x);
-				mLog.error("comm = "+comm.getContent());
+				mLog.info("comm = "+comm.getContent());
 				//String desc = comm.getContent();
 				//mLog.error("comm [" + comm + "]");
 				String content = comm.getContent();
