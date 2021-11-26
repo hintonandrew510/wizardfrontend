@@ -58,6 +58,7 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 		
 		
 		listData.add(averageSale);
+		grossProfitMargin = grossProfitMargin + "%";
 		listData.add(grossProfitMargin);
 		listData.add(grossProfitPerSale);
 		listData.add(averageRepeatSales);
