@@ -115,7 +115,7 @@ public class GoogleHelper {
 	private WizardRepository wizardRepository;
 
 	private List<Request> mRequests = new ArrayList<Request>();
-    
+
 	/**
 	 * 
 	 * @param mediaChart
@@ -509,7 +509,7 @@ public class GoogleHelper {
 			GoogleIdToken idToken = tokenResponse.parseIdToken();
 			GoogleIdToken.Payload payload = idToken.getPayload();
 			email = payload.getEmail();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			mLog.error(e.getMessage());
@@ -545,38 +545,36 @@ public class GoogleHelper {
 			// service.comments().list(fileId).
 			List<Comment> commentList = comments.getComments();
 			mLog.error("commentList size  [" + commentList.size() + "]");
-			for (int x = 0; x < commentList.size(); x ++) {
+			for (int x = 0; x < commentList.size(); x++) {
 				Comment comm = commentList.get(x);
-				mLog.info("x = "+ x);
-				mLog.info("comm = "+comm.getContent());
-				//String desc = comm.getContent();
-				//mLog.error("comm [" + comm + "]");
+				mLog.info("x = " + x);
+				mLog.info("comm = " + comm.getContent());
+				// String desc = comm.getContent();
+				// mLog.error("comm [" + comm + "]");
 				String content = comm.getContent();
-                int position = content.indexOf(".");
-                mLog.info("position [" + position + "]");
-                String pageId = null;
+				int position = content.indexOf(".");
+				mLog.info("position [" + position + "]");
+				String pageId = null;
 				String pageName = null;
-                if (position > -1) {
-                	pageId = content.substring(position + 1, content.length());
-                	pageName = content.substring(0,position);
-                	//mLog.error("pageId " + pageId);
-                	//mLog.error("pageName " + pageName);
-                	//String[] pageNameAndPageId = comm.getConte;nt().split("@");
-                }
-				
-				//mLog.error("pageNameAndPageId = "+pageNameAndPageId);
-				//mLog.error("pageNameAndPageId length [" + pageNameAndPageId.length + "]");
-			
-				 
+				if (position > -1) {
+					pageId = content.substring(position + 1, content.length());
+					pageName = content.substring(0, position);
+					// mLog.error("pageId " + pageId);
+					// mLog.error("pageName " + pageName);
+					// String[] pageNameAndPageId = comm.getConte;nt().split("@");
+				}
+
+				// mLog.error("pageNameAndPageId = "+pageNameAndPageId);
+				// mLog.error("pageNameAndPageId length [" + pageNameAndPageId.length + "]");
+
 				if (pageId != null && pageName != null) {
 					slides.put(pageName, pageId);
-					mLog.info("pagename [" +pageName + "]" + "pageId [" + pageId + "]");
-					//mLog.error("pageId [" + pageId + "]");
-				} 
+					mLog.info("pagename [" + pageName + "]" + "pageId [" + pageId + "]");
+					// mLog.error("pageId [" + pageId + "]");
+				}
 
-			
 			}
-			
+
 			mLog.trace(GoogleSlideController.class.getName(), "retrieveComments");
 			mLog.warn("exiting retrieveComments");
 			return slides;
@@ -586,6 +584,43 @@ public class GoogleHelper {
 			mLog.warn("exiting retrieveComments");
 			throw new RetrieveCommentsException(e.getMessage());
 		}
+	}
+
+	public static Map<String, String> retrieveComments(GoogleProfile googleProfile) throws RetrieveCommentsException {
+		mLog.trace(GoogleSlideController.class.getName(), "retrieveComments");
+		mLog.warn("entering retrieveComments");
+		CommentList comments;
+
+		Map<String, String> slides = new HashMap<String, String>();
+
+		// hard code for now
+		// slides.put(pageName, pageId);
+		if (googleProfile.getTargetMarketingWant12to18ToWant19to25() != null) {
+			slides.put("TargetMarketingWant12to18ToWant19to25",
+					googleProfile.getTargetMarketingWant12to18ToWant19to25());
+		}
+		if (googleProfile.getTargetMarketingWant19to25ToWant26to35() != null) {
+			slides.put("TargetMarketingWant19to25ToWant26to35",
+					googleProfile.getTargetMarketingWant19to25ToWant26to35());
+		}
+		if (googleProfile.getTargetMarketingWant26to35ToWant36to45() != null) {
+			slides.put("TargetMarketingWant26to35ToWant36to45",
+					googleProfile.getTargetMarketingWant26to35ToWant36to45());
+		}
+		if (googleProfile.getTargetMarketingWant36to45ToWant46to55() != null) {
+			slides.put("TargetMarketingWant36to45ToWant46to55",
+					googleProfile.getTargetMarketingWant36to45ToWant46to55());
+		}
+		if (googleProfile.getTargetMarketingWant46to55ToWant55Plus() != null) {
+			slides.put("TargetMarketingWant46to55ToWant55Plus",
+					googleProfile.getTargetMarketingWant46to55ToWant55Plus());
+		}
+		if (slides.isEmpty()) {
+			throw new RetrieveCommentsException("missing  slide ids from profile ");
+		}
+
+		return slides;
+
 	}
 
 	/**
@@ -698,12 +733,13 @@ public class GoogleHelper {
 		}
 
 	}
-    /*
-     * 
-     */
+
+	/*
+	 * 
+	 */
 	public static List<String> getSlidesExcluded(Iterable<WizardData> dataPages, Map<String, String> commentKeys) {
 		mLog.warn("entering getSlidesExcluded comments");
-	
+
 		List<String> pageList = new ArrayList<String>();
 		List<String> pageListToExclude = new ArrayList<String>();
 		// get all pages
@@ -715,32 +751,30 @@ public class GoogleHelper {
 			try {
 				pageName = PageNameEnum.valueOf(data.getPagename());
 				mLog.trace("page Name = " + pageName.toString());
-				
+
 				if (pageName == PageNameEnum.ConfidentialClientEvaluationOnePage) {
 					pageList.add("ConfidentialClientEvaluationProposed");
 				}
-				
+
 				if (pageName == PageNameEnum.TargetMarketingPage) {
 					mLog.info("FOUND targetMaring page");
-					
+
 					pageList.add("TargetMarketingWant12to18ToWant19to25");
 					pageList.add("TargetMarketingWant19to25ToWant26to35");
 					pageList.add("TargetMarketingWant26to35ToWant36to45");
 					pageList.add("TargetMarketingWant36to45ToWant46to55");
 					pageList.add("TargetMarketingWant46to55ToWant55Plus");
 				} else {
-				pageList.add(pageName.toString());
+					pageList.add(pageName.toString());
 				}
-				
-				
-				
+
 			} catch (Exception ex) {
 				StringWriter sw = new StringWriter();
 				PrintWriter pw = new PrintWriter(sw);
 				ex.printStackTrace(pw);
 				// mLog.error(ex);
 				mLog.error("ERROR getSlidesExcluded [" + sw.toString() + "]");
-				//mLog.error("error " + ex.getMessage());
+				// mLog.error("error " + ex.getMessage());
 				continue;
 			}
 			// get targetMarking data
@@ -750,9 +784,9 @@ public class GoogleHelper {
 		// loop thru google slides
 		if (!pageList.isEmpty()) {
 			for (String slidename : commentKeys.keySet()) {
-				//mLog.trace("google slide name " + slidename);
+				// mLog.trace("google slide name " + slidename);
 				if (!pageList.contains(slidename)) {
-					//get slide id
+					// get slide id
 					String slideId = commentKeys.get(slidename);
 					mLog.warn("slide Id " + slideId);
 					mLog.warn("slidename to remove " + slidename);
@@ -926,9 +960,8 @@ public class GoogleHelper {
 					List<PieChart> pieChart = ChartBuilder
 							.buildLastYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
 					// slide 8
-					slidesData.getPageModels()
-					.setPieChartConfidentialClientEvaluationOnePage(pieChart);
-					
+					slidesData.getPageModels().setPieChartConfidentialClientEvaluationOnePage(pieChart);
+
 					slidesData.getPageModels()
 							.setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
@@ -939,13 +972,14 @@ public class GoogleHelper {
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
 
 					SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"sevenConfidentialClientEvaluationOnePage");
+							slidesData, SlideEnum.TextSlideReplacement, "sevenConfidentialClientEvaluationOnePage");
 					slidesList.add(sevenConfidentialClientEvaluationTextSlide);
-					
+
 					EightConfidentialClientEvaluationOneTextSlide eightConfidentialClientEvaluationOneTextSlide = new EightConfidentialClientEvaluationOneTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"EightConfidentialClientEvaluationOneTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement,
+							"EightConfidentialClientEvaluationOneTextSlide");
 					slidesList.add(eightConfidentialClientEvaluationOneTextSlide);
-					
+
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartModel",
 					// pieChart);
 					// model.addAttribute("ConfidentialClientEvaluationOnePageModel", pieChart);
@@ -959,8 +993,7 @@ public class GoogleHelper {
 					// confidentialClientEvaluationProposedPage
 					List<PieChart> pieChartProposed = ChartBuilder
 							.buildNextYearConfidentialClientEvaluation(confidentialClientEvaluationOnePageModel);
-					slidesData.getPageModels()
-					.setPieChartConfidentialClientEvaluationProposed(pieChartProposed);
+					slidesData.getPageModels().setPieChartConfidentialClientEvaluationProposed(pieChartProposed);
 					// slide 9
 					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
 					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = new NineConfidentialClientEvaluationProposedSlide(
@@ -969,9 +1002,11 @@ public class GoogleHelper {
 
 					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 
-					NineConfidentialClientEvaluationProposedTextSlide nineConfidentialClientEvaluation = new NineConfidentialClientEvaluationProposedTextSlide(slidesData, SlideEnum.TextSlideReplacement,"NineConfidentialClientEvaluationProposedTextSlide") ;
+					NineConfidentialClientEvaluationProposedTextSlide nineConfidentialClientEvaluation = new NineConfidentialClientEvaluationProposedTextSlide(
+							slidesData, SlideEnum.TextSlideReplacement,
+							"NineConfidentialClientEvaluationProposedTextSlide");
 					slidesList.add(nineConfidentialClientEvaluation);
-					
+
 					// NineConfidentialClientEvaluationProposedSlide
 
 					// model.addAttribute("ConfidentialClientEvaluationOnePageLastYearChartProposedModel",
@@ -1049,7 +1084,7 @@ public class GoogleHelper {
 					// marketPlaceCompetitionPageModel);
 					slidesData.getPageModels().setMarketPlaceCompetitionPageModel(marketPlaceCompetitionPageModel);
 					ThreeMarketPlaceCompetitionSlide slide = new ThreeMarketPlaceCompetitionSlide(slidesData,
-							SlideEnum.TextSlideReplacement,"ThreeMarketPlaceCompetitionSlide");
+							SlideEnum.TextSlideReplacement, "ThreeMarketPlaceCompetitionSlide");
 					slidesList.add(slide);
 					mLog.info("found page marketingStrategiesPageModel");
 
@@ -1155,7 +1190,7 @@ public class GoogleHelper {
 					slidesData.getPublish().setPlanAProposedPage(true);
 					slidesData.getPageModels().setPlanAProposedPageModel(planAProposedPageModel);
 					NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"NineteenPlanAProposedTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "NineteenPlanAProposedTextSlide");
 					slidesList.add(nineteenPlanAProposedTextSlide);
 					mLog.info("found page planAProposedPage");
 
@@ -1174,7 +1209,7 @@ public class GoogleHelper {
 					slidesData.getPublish().setPlanAProposedPage(true);
 					slidesData.getPageModels().setPlanBProposedPageModel(planBProposedPageModel);
 					TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"TwentyFivePlanBProposedTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "TwentyFivePlanBProposedTextSlide");
 					slidesList.add(twentyFivePlanAProposedTextSlide);
 					// publish.setPlanBProposedPage(true);
 					mLog.info("found page planBProposedPage");
@@ -1195,7 +1230,7 @@ public class GoogleHelper {
 
 					slidesData.getPageModels().setPlanALifetimeValuedPageModel(planALifetimeValuedPageModel);
 					TwentyOnePlanALifetimeValuedTextSlide textSlide = new TwentyOnePlanALifetimeValuedTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"TwentyOnePlanALifetimeValuedTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "TwentyOnePlanALifetimeValuedTextSlide");
 					slidesList.add(textSlide);
 					mLog.info("found page PlanALifetimeValuedPage");
 
@@ -1218,7 +1253,7 @@ public class GoogleHelper {
 					// planBLifetimeValuedPageModel);
 					slidesData.getPageModels().setPlanBLifetimeValuedPageModel(planBLifetimeValuedPageModel);
 					TwentySevenPlanBLifetimeValuedTextSlide textSlide = new TwentySevenPlanBLifetimeValuedTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"TwentySevenPlanBLifetimeValuedTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "TwentySevenPlanBLifetimeValuedTextSlide");
 					slidesList.add(textSlide);
 					mLog.info("found page PlanBLifetimeValuedPage");
 
@@ -1253,7 +1288,7 @@ public class GoogleHelper {
 					// slidesData.getPublish().setPlanBBEPPageModel(true);
 					slidesData.getPageModels().setPlanBBEPPageModel(planBBEPPageModel);
 					TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
-							SlideEnum.TextSlideReplacement,"TwentySixPlanBBEPTextSlide");
+							SlideEnum.TextSlideReplacement, "TwentySixPlanBBEPTextSlide");
 					slidesList.add(twentySixPlanBBEPTextSlide);
 					slidesData.getPublish().setPlanBBEPPage(true);
 					mLog.info("found page PlanBBEPPage");
@@ -1277,7 +1312,8 @@ public class GoogleHelper {
 					slidesData.getPageModels()
 							.setPlanBDigitalROICalculatorPageModel(planBDigitalROICalculatorPageModel);
 					TwentyEightPlanBDigitalROICalculatorTextSlide textSlide = new TwentyEightPlanBDigitalROICalculatorTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"TwentyEightPlanBDigitalROICalculatorTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement,
+							"TwentyEightPlanBDigitalROICalculatorTextSlide");
 					slidesList.add(textSlide);
 
 					publish.setPlanBDigitalROICalculatorPage(true);
@@ -1310,7 +1346,7 @@ public class GoogleHelper {
 						TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
 								"PlanASpreadSheet!A1:P", "PlanASpreadSheet", SlideEnum.PlanASpreadSheet, slidesData);
 						TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide = new TwentyNinePlanASpreadSheetTextSlide(
-								slidesData, SlideEnum.TextSlideReplacement,"TwentyNinePlanASpreadSheetTextSlide");
+								slidesData, SlideEnum.TextSlideReplacement, "TwentyNinePlanASpreadSheetTextSlide");
 
 						slidesList.add(twentyNinePlanASpreadSheetTextSlide);
 
@@ -1347,7 +1383,7 @@ public class GoogleHelper {
 								"PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet, slidesData);
 
 						ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide = new ThirtyPlanBSpreadSheetTextSlide(
-								slidesData, SlideEnum.TextSlideReplacement,"ThirtyPlanBSpreadSheetTextSlide");
+								slidesData, SlideEnum.TextSlideReplacement, "ThirtyPlanBSpreadSheetTextSlide");
 
 						slidesList.add(thirtyPlanBSpreadSheetTextSlide);
 						slidesList.add(thirtyPlanBSpreadSheetSlide);
@@ -1369,14 +1405,14 @@ public class GoogleHelper {
 					// model.addAttribute("PresentedToPage", presentedToPageModel);
 					slidesData.getPublish().setPresentedToPage(true);
 					slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
-					//if (!presentedToPageModel.getClientBusinessName().isEmpty() && !presentedToPageModel.getClientContactName().isEmpty()) {
-						OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
-								SlideEnum.TextSlideReplacement,"OnePresentedToSlide");
-						slidesList.add(presentedToSlide);
-						mLog.info("found page PresentedToPage");
-					//}
-					
-					
+					// if (!presentedToPageModel.getClientBusinessName().isEmpty() &&
+					// !presentedToPageModel.getClientContactName().isEmpty()) {
+					OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
+							SlideEnum.TextSlideReplacement, "OnePresentedToSlide");
+					slidesList.add(presentedToSlide);
+					mLog.info("found page PresentedToPage");
+					// }
+
 					break;
 				} catch (Exception ex) {
 					mLog.error("error " + ex.getMessage());
@@ -1414,7 +1450,7 @@ public class GoogleHelper {
 					slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
 					// FiveStrategicMarketingPageSlide
 					FourClientObjectiveTextSlide fourClientObjectiveTextSlide = new FourClientObjectiveTextSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"FourClientObjectiveTextSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "FourClientObjectiveTextSlide");
 					slidesList.add(fourClientObjectiveTextSlide);
 
 					mLog.info("value found page StrategicMarketingPageOne "
@@ -1439,7 +1475,7 @@ public class GoogleHelper {
 					slidesData.getPageModels().setStrategicMarketingPageThreeModel(strategicMarketingPageThreeModel);
 					slidesData.getPageModels().setStrategicMarketingHelper(strategicMarketingHelper);
 					FiveStrategicMarketingPageSlide fiveStrategicMarketingPageSlide = new FiveStrategicMarketingPageSlide(
-							slidesData, SlideEnum.TextSlideReplacement,"FiveStrategicMarketingPageSlide");
+							slidesData, SlideEnum.TextSlideReplacement, "FiveStrategicMarketingPageSlide");
 					slidesList.add(fiveStrategicMarketingPageSlide);
 					publish.setStrategicMarketingPageThree(true);
 					mLog.info("found page StrategicMarketingPageThree");
@@ -1508,7 +1544,7 @@ public class GoogleHelper {
 					slidesData.getPublish().setTeamCommitmentPage(true);
 					slidesData.getPageModels().setTeamCommitmentPageModel(teamCommitmentPageModel);
 					TwoTeamCommitmentSlide slide = new TwoTeamCommitmentSlide(slidesData,
-							SlideEnum.TextSlideReplacement,"TwoTeamCommitmentSlide");
+							SlideEnum.TextSlideReplacement, "TwoTeamCommitmentSlide");
 					slidesList.add(slide);
 					mLog.info("found page TeamCommitmentPage");
 

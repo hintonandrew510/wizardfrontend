@@ -265,7 +265,7 @@ public class GoogleVerificationController {
 			googleVerification.setNewFileId(mNewFileId);
 			
 			
-			Map<String, String> comments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
+			Map<String, String> comments = GoogleHelper.retrieveComments(mGoogleProfile);
 			if (comments != null) {
 				StringBuilder mapAsString = new StringBuilder("{");
 			    for (String key : comments.keySet()) {

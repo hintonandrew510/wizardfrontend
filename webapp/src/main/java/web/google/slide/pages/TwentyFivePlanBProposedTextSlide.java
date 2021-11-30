@@ -40,7 +40,7 @@ public class TwentyFivePlanBProposedTextSlide extends AbstractSlide {
 				planAReachStr);
 		SlideReplacementData planBFrequency = new SlideReplacementData("planBFrequency",
 				planBProposedPageModel.getPlanAFrequency());
-		String planADigitalImpressionsMonthlyStr = formatStringToCurrency(planBProposedPageModel.getPlanADigitalImpressionsMonthly());
+		String planADigitalImpressionsMonthlyStr = withLargeIntegers(planBProposedPageModel.getPlanADigitalImpressionsMonthly());
 		SlideReplacementData planBDigitalImpressionsMonthly = new SlideReplacementData("planBDigitalImpressionsMonthly",
 				planADigitalImpressionsMonthlyStr);
 		SlideReplacementData planBMonthly = new SlideReplacementData("planBMonthly",

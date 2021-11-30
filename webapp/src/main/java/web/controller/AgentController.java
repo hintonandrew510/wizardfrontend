@@ -60,6 +60,11 @@ public class AgentController {
 			@RequestParam(required = true) String sheetsId,
 			@RequestParam(required = true) String slidesId,
 			@RequestParam(required = true) String generatedFolderId,
+			@RequestParam(required = true) String targetMarketingWant26to35ToWant36to45,
+			@RequestParam(required = true) String targetMarketingWant36to45ToWant46to55,
+			@RequestParam(required = true) String targetMarketingWant46to55ToWant55Plus,
+			@RequestParam(required = true) String targetMarketingWant19to25ToWant26to35,
+			@RequestParam(required = true) String targetMarketingWant12to18ToWant19to25,
 			Authentication authentication)
 			throws SQLException {
 		// @ResponseBody means the returned String is the response, not a view name
@@ -67,7 +72,12 @@ public class AgentController {
 		mLog.info("starting saveGoogleProfile");
 		
 		
-		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId,  generatedFolderId) ;
+		GoogleProfile googleProfile = new GoogleProfile(slidesId, sheetsId,  generatedFolderId
+				,targetMarketingWant26to35ToWant36to45
+				,targetMarketingWant36to45ToWant46to55
+				,targetMarketingWant46to55ToWant55Plus
+				, targetMarketingWant19to25ToWant26to35
+				, targetMarketingWant12to18ToWant19to25) ;
 		String dataGoogleProfileJSon = JSONManager.convertToJson(googleProfile);
 	
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();

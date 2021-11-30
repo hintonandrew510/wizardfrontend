@@ -49,7 +49,7 @@
 				<li>Turn on the Google Slides API</li>
 				<li>Create a Google Account</li>
 				<li>Logon to your Google Account</li>
-				
+
 			</ol>
 
 			`
@@ -61,8 +61,8 @@
 					<legend>
 						Google Profile</span>
 					</legend>
-					
-				
+
+
 					<div class="form-group">
 						<label for="sheetsId">Google sheets Id</label> <input type="text"
 							required maxlength="100" th:value="${dataPageModel?.sheetsId}"
@@ -80,6 +80,70 @@
 							class="form-control" name="generatedFolderId" />
 					</div>
 				</fieldset>
+
+
+
+
+				<fieldset>
+					<legend>
+						Google Presentation</span>
+					</legend>
+					<button type="button" class="btn btn-info" data-toggle="collapse"
+						data-target="#demo">Expand or collapse Definition of
+						Slides Ids</button>
+
+
+
+					<div id="demo" class="collapse">
+
+						<div class="form-group">
+							<label for=targetMarketingWant26to35ToWant36to45>TargetMarketingWant26to35ToWant36to45</label> 
+							
+							<input
+								type="text" maxlength="100"
+								th:value="${dataPageModel?.targetMarketingWant26to35ToWant36to45 ne null} ? ${dataPageModel.targetMarketingWant26to35ToWant36to45} : 'gaa4a52d53f_0_10'" required
+								class="form-control" name="targetMarketingWant26to35ToWant36to45" />
+						</div>
+
+						<div class="form-group">
+							<label for=targetMarketingWant36to45ToWant46to55>TargetMarketingWant36to45ToWant46to55</label> <input
+								type="text" maxlength="100" 
+								th:value="${dataPageModel?.targetMarketingWant36to45ToWant46to55 ne null} ? ${dataPageModel.targetMarketingWant36to45ToWant46to55} : 'gaa4a52d53f_0_105'" required
+								class="form-control" name="targetMarketingWant36to45ToWant46to55" />
+						</div>
+						<div class="form-group">
+							<label for=targetMarketingWant46to55ToWant55Plus>TargetMarketingWant46to55ToWant55Plus</label>
+							<input type="text" maxlength="100" 
+								th:value="${dataPageModel?.targetMarketingWant46to55ToWant55Plus ne null} ? ${dataPageModel.targetMarketingWant46to55ToWant55Plus} : 'gaa4a52d53f_0_130'" required
+								class="form-control" name="targetMarketingWant46to55ToWant55Plus" />
+						</div>
+						<div class="form-group">
+							<label for=targetMarketingWant19to25ToWant26to35>TargetMarketingWant19to25ToWant26to35</label>
+							<input type="text" maxlength="100" 
+								th:value="${dataPageModel?.targetMarketingWant19to25ToWant26to35 ne null} ? ${dataPageModel.targetMarketingWant19to25ToWant26to35} : 'gaa4a52d53f_0_55'" required
+								 class="form-control" name="targetMarketingWant19to25ToWant26to35" />
+						</div>
+						<div class="form-group">
+							<label for=targetMarketingWant12to18ToWant19to25>TargetMarketingWant12to18ToWant19to25</label> <input
+								type="text" maxlength="100" 
+								th:value="${dataPageModel?.targetMarketingWant12to18ToWant19to25 ne null} ? ${dataPageModel.targetMarketingWant12to18ToWant19to25} : 'gaa4a52d53f_0_80'" required
+								class="form-control" name="targetMarketingWant12to18ToWant19to25" />
+						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+
+					</div>
+
+				</fieldset>
+
 
 				<input name="submit" value="Update Profile" type="submit"
 					class="btn btn-primary" style="background-color: #C0B879;" />

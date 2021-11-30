@@ -237,7 +237,7 @@ public class GoogleSlideController {
 			mGeneratedSlide.setFileNameId(this.mNewFileId);
 			mLog.info("newFile id [" + newFile.getId() + "]");
 
-			this.mComments = GoogleHelper.retrieveComments(mDrive, mGoogleProfile.getSlidesId());
+			this.mComments = GoogleHelper.retrieveComments(mGoogleProfile);
 			for (String pageToExclude : this.mExcludedPagesList) {
 				mLog.warn("page to EXCLUDE " + pageToExclude);
 			}
