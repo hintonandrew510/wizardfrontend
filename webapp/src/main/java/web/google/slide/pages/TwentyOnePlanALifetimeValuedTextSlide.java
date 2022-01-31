@@ -38,7 +38,7 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData averageSale = new SlideReplacementData("a_averageSale",
 				planALifetimeValuedPageModel.getAverageSale());
 		SlideReplacementData grossProfitMargin = new SlideReplacementData("a_grossProfitMargin",
-				planALifetimeValuedPageModel.getGrossProfitMargin() );
+				planALifetimeValuedPageModel.getGrossProfitMargin() + "%" );
 		SlideReplacementData grossProfitPerSale = new SlideReplacementData("a_grossProfitPerSale",
 				planALifetimeValuedPageModel.getGrossProfitPerSale() );
 		SlideReplacementData averageRepeatSales = new SlideReplacementData("a_averageRepeatSales",
@@ -58,7 +58,7 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 		
 		
 		listData.add(averageSale);
-		grossProfitMargin = grossProfitMargin + "%";
+		//grossProfitMargin = grossProfitMargin + "%";
 		listData.add(grossProfitMargin);
 		listData.add(grossProfitPerSale);
 		listData.add(averageRepeatSales);

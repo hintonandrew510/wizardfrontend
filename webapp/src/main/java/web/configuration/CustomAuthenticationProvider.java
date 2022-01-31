@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	//private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class.getName());
-	private static final Logger mLog = LoggerFactory.getLogger(AuthenticationProvider.class);
+	private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 	
 	@Autowired
 	private AgentRepository mAgentRepository;
@@ -83,7 +83,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			boolean hasExpired = web.util.CalendarHelper.hasExpired(contact.getStartDate(), contact.getEndDate());
 			mLog.info("Has an invalid license [" + hasExpired + "]");
 			if (hasExpired) {
-				AuthenticationException ex=new AccountExpiredException("License has expired");
+				AuthenticationException ex=new AccountExpiredException("License has expired  contact " + contact.getName() + " or email " + contact.getEmailaddress() );
+				mLog.info("Has an invalid license [" + ex.getMessage() + "]");
+				//System.out.println("Has an invalid license [" + ex.getMessage() + "]");
+				
 				throw ex;
 				//return null;
 			}
