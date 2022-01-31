@@ -14,55 +14,63 @@
 
 
 		<div class="whiteGrad">
-			<h1 class="text-center w3-text-black" style="padding-bottom: 2%;">Proposed Schedule – Plan B</h1>
+			<h1 class="text-center w3-text-black" style="padding-bottom: 2%;">Proposed
+				Schedule – Plan B</h1>
 
-		<h2 style="padding-bottom: 1%;"  class="text-center bold-text"
-					th:text="${PresentedToPage?.clientBusinessName}"></h2>
-		
-		<div style="line-height: 99%;">
-		      <p class="text-center bold-text subTitleText">Brand Equity Schedule</p>
-				
-				<p class="text-center bold-text subTitleText">Monthly Station Summary​</p>
-			</div>	
-				
+			<h2 style="padding-bottom: 1%;" class="text-center bold-text"
+				th:text="${PresentedToPage?.clientBusinessName}"></h2>
 
-<div class="w3-row topPadding">
-					<label class="bold-text" for="planAReach">Market: </label> <span id="planACity" th:text="${PlanBProposedPageModel?.planACity}"></span>
-				</div>
-			<div class="w3-row topPadding">
-				<label class="bold-text" for="planAReach">Average Projected Broadcast monthly
-					reach: </label> <span id="planAReachB" th:text="${PlanBProposedPageModel?.planAReach}"></span>
+			<div style="line-height: 99%;">
+				<p class="text-center bold-text subTitleText">Brand Equity
+					Schedule</p>
+
+				<p class="text-center bold-text subTitleText">Monthly Station
+					Summary​</p>
 			</div>
-            <script>
-            var planAReachB = document.getElementById("planAReachB").innerHTML;
-            planAReachB = formatNumber(planAReachB); 	
-            document.getElementById("planAReachB").innerHTML = planAReachB;
-            </script>
+
 
 			<div class="w3-row topPadding">
-				<label class="bold-text" for="planAFrequency">Average Projected Monthly
-					Broadcast Frequency: </label> <span
+				<label class="bold-text" for="planAReach">Market: </label> <span
+					id="planACity" th:text="${PlanBProposedPageModel?.planACity}"></span>
+			</div>
+			<div class="w3-row topPadding">
+				<label class="bold-text" for="planAReach">Average Projected
+					Broadcast monthly reach: </label> <span id="planAReachB"
+					th:text="${PlanBProposedPageModel?.planAReach}"></span>
+			</div>
+			<script>
+				var planAReachB = document.getElementById("planAReachB").innerHTML;
+				planAReachB = formatNumber(planAReachB);
+				document.getElementById("planAReachB").innerHTML = planAReachB;
+			</script>
+
+			<div class="w3-row topPadding">
+				<label class="bold-text" for="planAFrequency">Average
+					Projected Monthly Broadcast Frequency: </label> <span
 					th:text="${PlanBProposedPageModel?.planAFrequency}"></span>
 			</div>
 			<div class="w3-row topPadding">
-				<label class="bold-text" for=planADigitalImpressionsMonthly>Average Estimated
-					Monthly Digital Gross Impressions: </label> <span id="planADigitalImpressionsMonthlyB"
+				<label class="bold-text" for=planADigitalImpressionsMonthly>Average
+					Estimated Monthly Digital Gross Impressions: </label> <span
+					id="planADigitalImpressionsMonthlyB"
 					th:text="${PlanBProposedPageModel?.planADigitalImpressionsMonthly}"></span>
 			</div>
-			     <script>
-            var planADigitalImpressionsMonthlyB = document.getElementById("planADigitalImpressionsMonthlyB").innerHTML;
-            planADigitalImpressionsMonthlyB = formatNumber(planADigitalImpressionsMonthlyB); 
-            document.getElementById("planADigitalImpressionsMonthlyB").innerHTML = planADigitalImpressionsMonthlyB;
-            </script>
+			<script>
+				var planADigitalImpressionsMonthlyB = document
+						.getElementById("planADigitalImpressionsMonthlyB").innerHTML;
+				planADigitalImpressionsMonthlyB = formatNumber(planADigitalImpressionsMonthlyB);
+				document.getElementById("planADigitalImpressionsMonthlyB").innerHTML = planADigitalImpressionsMonthlyB;
+			</script>
 			<div class="w3-row topPadding">
-				<label class="bold-text" for=planAMonthly>Average Base Monthly Advertising
-					Investment: </label> <span
+				<label class="bold-text" for=planAMonthly>Average Base
+					Monthly Advertising Investment: </label> <span
 					th:text="${PlanBProposedPageModel?.planAMonthly}"></span>
 			</div>
 
 			<div class="w3-row topPadding">
-				<label class="bold-text" for=planADaily>Average Base Daily Advertising
-					Investment:</label> <span th:text="${PlanBProposedPageModel?.planADaily}"></span>
+				<label class="bold-text" for=planADaily>Average Base Daily
+					Advertising Investment:</label> <span
+					th:text="${PlanBProposedPageModel?.planADaily}"></span>
 			</div>
 
 
@@ -75,11 +83,16 @@
 
 		<div class="w3-container d-print-none" style="padding-top: 2%;">
 			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
-		    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(26,'down');">Next</button>
-	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(24,'up');">Previous</button>		</div>
-			<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
-	
-				<div class="w3-row">
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(26,'down');">Next</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(24,'up');">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+
+		</div>
+
+		<div class="w3-row">
 			<div class="CopyRightId w3-col m8"></div>
 			<div class=" w3-col m2"></div>
 			<div align="right" class="w3-col m2">-CONFIDENTIAL- 25</div>
