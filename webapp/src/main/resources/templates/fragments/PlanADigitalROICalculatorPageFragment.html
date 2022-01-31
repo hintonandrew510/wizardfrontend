@@ -18,7 +18,8 @@
 			</div>
 
 			<div class="w3-row rowPaddingTop">
-				<div class="w3-col bold-text m8 w3-center">A. Monthly Digital Investment</div>
+				<div class="w3-col bold-text m8 w3-center">A. Monthly Digital
+					Investment</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAMonthlyDigitalInvestment}">$100,000</div>
@@ -26,31 +27,34 @@
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">B. Cost Per Thousand (CPM)</div>
+				<div class="w3-col bold-text m8 w3-center">B. Cost Per
+					Thousand (CPM)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planACostPerThousand} ">$100,000</div>
-				
+
 			</div>
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">C. Monthly Impressions (A/B *
-					1,000)</div>
+				<div class="w3-col bold-text m8 w3-center">C. Monthly
+					Impressions (A/B * 1,000)</div>
 				<div class="w3-col m1 w3-center ">=</div>
-				<div class="w3-col m2 numberident underline" id="planAClosingPctNumber"
+				<div class="w3-col m2 numberident underline"
+					id="planAClosingPctNumber"
 					th:text="${PlanADigitalROICalculatorPage?.planAClosingPctNumber}">$100,000</div>
-					<script>
-            var planAClosingPctNumber = document.getElementById("planAClosingPctNumber").innerHTML;
-            planAClosingPctNumber = formatNumber(planAClosingPctNumber); 
-            document.getElementById("planAClosingPctNumber").innerHTML = planAClosingPctNumber;
-            </script>
+				<script>
+					var planAClosingPctNumber = document
+							.getElementById("planAClosingPctNumber").innerHTML;
+					planAClosingPctNumber = formatNumber(planAClosingPctNumber);
+					document.getElementById("planAClosingPctNumber").innerHTML = planAClosingPctNumber;
+				</script>
 			</div>
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">D. Click Through Rate (.01%,
-					.1%, etc.)</div>
+				<div class="w3-col bold-text m8 w3-center">D. Click Through
+					Rate (.01%, .1%, etc.)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAClickThroughRate} + '%'">$100,000</div>
@@ -58,8 +62,8 @@
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">E. Equals the average
-					customer/client value per year (C*D)</div>
+				<div class="w3-col bold-text m8 w3-center">E. Equals the
+					average customer/client value per year (C*D)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAMonthlyClicks}">$100,000</div>
@@ -67,7 +71,8 @@
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">F. Cost Per Clicks (A/E)</div>
+				<div class="w3-col bold-text m8 w3-center">F. Cost Per Clicks
+					(A/E)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planACostPerClicks}">$100,000</div>
@@ -83,8 +88,8 @@
 
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col  bold-text m8 w3-center">H. Monthly Number of
-					Conversions (E*G)</div>
+				<div class="w3-col  bold-text m8 w3-center">H. Monthly Number
+					of Conversions (E*G)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 
 				<div class="w3-col m2 numberident underline"
@@ -92,7 +97,8 @@
 			</div>
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">I. Cost Per Conversion (A/H)</div>
+				<div class="w3-col bold-text m8 w3-center">I. Cost Per
+					Conversion (A/H)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planACostPerConversion}">$100,000</div>
@@ -101,30 +107,34 @@
 
 
 
-		
+
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">J. Projected Gross Profit Per Conversion ($100, $1,000, etc.)</div>
+				<div class="w3-col bold-text m8 w3-center">J. Projected Gross
+					Profit Per Conversion ($100, $1,000, etc.)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAProjectedGrossProfit}">$100,000</div>
 			</div>
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">K. Monthly Gross Profit Generated from all Conversions (H*J)</div>
+				<div class="w3-col bold-text m8 w3-center">K. Monthly Gross
+					Profit Generated from all Conversions (H*J)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAMonthlyGrossProfit}">$100,000</div>
 			</div>
 
 			<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col bold-text m8 w3-center">L. $ Monthly Return on Investment (K-A)</div>
+				<div class="w3-col bold-text m8 w3-center">L. $ Monthly Return
+					on Investment (K-A)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAMonthlyROID}  ">$100,000</div>
 			</div>
 
-	<div class="w3-row rowPaddingInnerTop">
-				<div class="w3-col m8 bold-text w3-center">M. % Monthly Return on Investment (L/A)</div>
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col m8 bold-text w3-center">M. % Monthly Return
+					on Investment (L/A)</div>
 				<div class="w3-col m1 w3-center ">=</div>
 				<div class="w3-col m2 numberident underline"
 					th:text="${PlanADigitalROICalculatorPage?.planAMonthlyROIP} + '%'">$100,000</div>
@@ -133,10 +143,16 @@
 		</div>
 		<div class="w3-container d-print-none" style="padding-top: 2%;">
 			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
-	
-	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(23,'down');">Next</button>
-	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(21,'up');">Previous</button>
-	
+
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(23,'down');">Next</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(21,'up');">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+
 		</div>
 		<div class="w3-row">
 			<div class="CopyRightId w3-col m8"></div>

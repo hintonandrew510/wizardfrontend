@@ -11,7 +11,8 @@
 			<div>
 				<a id="MarketPlaceCompetitionPage"></a>
 
-				<h1 class="text-center" style="padding-bottom: 2%;" >Marketplace Competition</h1>
+				<h1 class="text-center" style="padding-bottom: 2%;">Marketplace
+					Competition</h1>
 
 
 
@@ -21,24 +22,27 @@
 			<div class="w3-row" style="padding-bottom: 2%;">
 				<div class="w3-col m5 l6 left-indent">
 
-					<span class="bold-text">1. How long have you been in business?&nbsp; &nbsp;</span>
-					<span th:text="${StrategicMarketingPageOne?.yearsInBusiness}"></span>
-					<span> years </span>
-
-				</div>
-			
-
-				<div class="w3-col m3 l3">
-
-					<span class="bold-text">How many locations? &nbsp; &nbsp;</span>
-					<span th:text="${StrategicMarketingPageOne?.numberOfLocations}"></span>
+					<span class="bold-text">1. How long have you been in
+						business?&nbsp; &nbsp;</span> <span
+						th:text="${StrategicMarketingPageOne?.yearsInBusiness}"></span> <span>
+						years </span>
 
 				</div>
 
+
 				<div class="w3-col m3 l3">
 
-					<span><strong>Plan to Expand?&nbsp; &nbsp; </strong></span>
-					<span th:text="${StrategicMarketingPageOne?.planToExpand} ? 'Yes' : 'No'">/span>
+					<span class="bold-text">How many locations? &nbsp; &nbsp;</span> <span
+						th:text="${StrategicMarketingPageOne?.numberOfLocations}"></span>
+
+				</div>
+
+				<div class="w3-col m3 l3">
+
+					<span><strong>Plan to Expand?&nbsp; &nbsp; </strong></span> <span
+						th:text="${StrategicMarketingPageOne?.planToExpand} ? 'Yes' : 'No'">/span>
+
+
 					
 				</div>
 			</div>
@@ -58,16 +62,16 @@
 
 
 			</div>
-			
-			
 
-			<div class="w3-row" style="padding-top: 1%;padding-bottom: 2%;">
-				<div class="w3-col m6" style="padding-top: 1%;padding-left: 7%;">
+
+
+			<div class="w3-row" style="padding-top: 1%; padding-bottom: 2%;">
+				<div class="w3-col m6" style="padding-top: 1%; padding-left: 7%;">
 					<span class="curved-text bold-text"> 3<sup>rd</sup> Tier
 					</span>&nbsp; <span class="thirdMarketRevenue"
 						th:text="${MarketPlaceCompetitionPageModel?.thirdTierBusiness}"></span>
 				</div>
-				<div class="w3-col m6" style="padding-top: 1%;padding-left: 1%;">
+				<div class="w3-col m6" style="padding-top: 1%; padding-left: 1%;">
 					<span class="curved-text bold-text"> 4<sup>th</sup> Tier
 					</span>&nbsp; <span class="fourthMarketRevenue"
 						th:text="${MarketPlaceCompetitionPageModel?.fourthTierBusiness}"></span>
@@ -78,20 +82,22 @@
 			</div>
 
 			<div class="w3-row" style="padding-top: 1%;">
-				<div class="w3-col m6 bold-text left-indent">2. Who is the main competition?</div>
+				<div class="w3-col m6 bold-text left-indent">2. Who is the
+					main competition?</div>
 				<div class="w3-col m6"></div>
 
 			</div>
 
 			<div class="w3-row" style="padding-bottom: 2%;">
-				<div class="w3-col m6 left-indent-sub" 
+				<div class="w3-col m6 left-indent-sub"
 					th:text="${MarketPlaceCompetitionPageModel?.competitionA}"></div>
 				<div class="w3-col m6"
 					th:text="${MarketPlaceCompetitionPageModel?.competitionB}"></div>
 			</div>
 
 			<div class="w3-row">
-				<div class="w3-col m6 bold-text left-indent"> A. What are their strengths?</div>
+				<div class="w3-col m6 bold-text left-indent">A. What are their
+					strengths?</div>
 				<div class="w3-col m6"></div>
 
 			</div>
@@ -107,14 +113,15 @@
 				</div>
 			</div>
 
-			<div class="w3-row" >
-				<div class="w3-col m6 bold-text left-indent">B. What are their weaknesses?</div>
+			<div class="w3-row">
+				<div class="w3-col m6 bold-text left-indent">B. What are their
+					weaknesses?</div>
 				<div class="w3-col m6"></div>
 
 			</div>
 
 			<div class="w3-row" style="padding-bottom: 2%;">
-				<div class="w3-col m6 left-indent-sub" 
+				<div class="w3-col m6 left-indent-sub"
 					th:text="${MarketPlaceCompetitionPageModel?.competitionWeaknessA}">
 
 				</div>
@@ -128,14 +135,18 @@
 		</div>
 		<div class="w3-container d-print-none" style="padding-top: 2%;">
 			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
-	    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(4,'down');">Next</button>
-	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(2,'up');">Previous</button>		</div>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(4,'down');">Next</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(2,'up');">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+
+		</div>
 		<div class="w3-row">
-		      <div class="CopyRightId w3-col m8"></div>
-		      <div class=" w3-col m2"></div>
-		      <div align="right" class="w3-col m2">
-			-CONFIDENTIAL- 3     
-		      </div>	      
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 3</div>
 		</div>
 
 	</div>
@@ -202,8 +213,8 @@
 		</div>
 		<div class="w3-container d-print-none" style="padding-top: 2%;">
 			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
-			<a href="#next" class="w3-btn w3-white">Next</a>
-			<a href="#previous" class="w3-btn w3-white">Previousddddd</a>
+			<a href="#next" class="w3-btn w3-white">Next</a> <a href="#previous"
+				class="w3-btn w3-white">Previousddddd</a>
 			<button class="w3-btn w3-white" onclick="javascript:goBack();">Previous</button>
 		</div>
 	</div>

@@ -2,39 +2,40 @@
 	class="grad container pageBreakInside" style="height: 100%;">
 
 	<div th:if="${PublishModel.marketingStrategiesPage}">
-<!-- replace PlanAExcelPage begin -->
+		<!-- replace PlanAExcelPage begin -->
 		<div>
 			<a id="MarketingStrategiesPage"></a>
 			<p class="text-justify"></p>
-			<h1 class="text-center w3-text-white">Marketing Strategies </h1>
+			<h1 class="text-center w3-text-white">Marketing Strategies</h1>
 
 		</div>
-      
-  
+
+
 		<div class="whiteGrad mce-content-body">
-		<div class="w3-row">
-		<div id="MarketingStrategiesPageId" class="w3-row" >
-		</div>
-		
-		</div>
-		<script th:inline="javascript">
-			/*<![CDATA[*/
+			<div class="w3-row">
+				<div id="MarketingStrategiesPageId" class="w3-row"></div>
 
-    			var MarketingStrategiesPageIdMessage = /*[[${MarketingStrategiesPageModel?.textArea}]]*/ 'default';
-    			 //document.write(unescape(message));
-    			 document.getElementById("MarketingStrategiesPageId").innerHTML = MarketingStrategiesPageIdMessage;
-			    
+			</div>
+			<script th:inline="javascript">
+				/*<![CDATA[*/
 
-			/*]]>*/
-				</script>	
+				var MarketingStrategiesPageIdMessage = /*[[${MarketingStrategiesPageModel?.textArea}]]*/'default';
+				//document.write(unescape(message));
+				document.getElementById("MarketingStrategiesPageId").innerHTML = MarketingStrategiesPageIdMessage;
+
+				/*]]>*/
+			</script>
 		</div>
 
 
-	<div class="w3-container d-print-none" style="padding-top: 2%;">
-		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
-		<a href="#TeamCommitmentPage" class="w3-btn w3-white">Next</a>
-		<button class="w3-btn w3-white" onclick="javascript:goBack();">Previous</button>
-	</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+			<a href="#TeamCommitmentPage" class="w3-btn w3-white">Next</a>
+			<button class="w3-btn w3-white" onclick="javascript:goBack();">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+
+		</div>
 		<div class="CopyRightId"></div>
 	</div>
 
