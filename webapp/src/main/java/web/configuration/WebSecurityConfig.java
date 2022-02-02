@@ -73,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
     public AuthenticationFailureHandler customAuthenticationFailureHandler() {
-		//mLog.log("customAuthenticationFailureHandler");
+		
         return new CustomAuthenticationFailureHandler();
     }
 

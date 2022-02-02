@@ -1,8 +1,13 @@
 package web.configuration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
 import org.slf4j.Logger;
@@ -45,6 +52,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public CustomAuthenticationProvider() {
 		super();
 	}
+	
+	 
 
 	// API
 
@@ -67,7 +76,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			if (agent == null) {
 				mLog.info("could not find agent [" + name);
 				//return null;
-				throw new BadCredentialsException("Could not find agent");
+				throw new BadCredentialsException("Invalid email address or password");
 				
 			}
 			mLog.info("found agent [" + name);

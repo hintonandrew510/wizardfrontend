@@ -34,15 +34,18 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 		if (exception instanceof BadCredentialsException) {
 			mLog.info("BadCredentialsException");
 			request.getSession().setAttribute("BadCredentialsException", "BadCredentialsException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
 			
 		}
 		if (exception instanceof AuthenticationCredentialsNotFoundException) {
 			mLog.info("AuthenticationCredentialsNotFoundException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
 			request.getSession().setAttribute("AuthenticationCredentialsNotFoundException", "AuthenticationCredentialsNotFoundException");
 			
 		}
 		if (exception instanceof AccountExpiredException) {
 			mLog.info("AccountExpiredException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
 			request.getSession().setAttribute("AccountExpiredException", "AccountExpiredException");
 			
 		}	
@@ -52,8 +55,5 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 		
 	}
 
-	//@Override
-   // public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws
-       // response.sendRedirect("/loginFailed");
-    //}
+	
 }

@@ -112,12 +112,14 @@ body#LoginForm {
 
 <body id="LoginForm">
 
-		<div class="alert alert-danger" th:if="${session.AccountExpiredException}">
+		<div class="alert alert-danger" th:text="${session.ExceptionMessage}" th:if="${session.AccountExpiredException}">
 
 		License Expired</div>
 		<div class="alert alert-danger" th:if="${session.AuthenticationCredentialsNotFoundException}">Can not find user</div>
-		<div class="alert alert-danger" th:if="${session.BadCredentialsException}">Invalid
-		email address or password</div>
+		<div th:text="${session.ExceptionMessage}" class="alert alert-danger" th:if="${session.BadCredentialsException}">Invalid
+		email address or password
+		
+		</div>
 		<div class="alert alert-success" th:if="${param.logout}">
             You have been logged out.
         </div>
