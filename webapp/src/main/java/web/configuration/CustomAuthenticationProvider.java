@@ -90,9 +90,20 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			}
 			// determine if contact is valid
 			boolean hasExpired = web.util.CalendarHelper.hasExpired(contact.getStartDate(), contact.getEndDate());
+			String formattedEndDate = web.util.CalendarHelper.formatTimestamp( contact.getEndDate());
+			StringBuilder message= new StringBuilder();
+			message.append("License has expired  " );
+			message.append(" contact ");
+			message.append(formattedEndDate);
+			message.append(contact.getName() );
+			message.append(" or email ");
+			message.append( contact.getEmailaddress());
+			message.append( " ");
+			
+			
 			mLog.info("Has an invalid license [" + hasExpired + "]");
 			if (hasExpired) {
-				AuthenticationException ex=new AccountExpiredException("License has expired  contact " + contact.getName() + " or email " + contact.getEmailaddress() );
+				AuthenticationException ex=new AccountExpiredException(message.toString());
 				mLog.info("Has an invalid license [" + ex.getMessage() + "]");
 				//System.out.println("Has an invalid license [" + ex.getMessage() + "]");
 				

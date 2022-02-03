@@ -13,6 +13,11 @@ import java.text.*;
 public class CalendarHelper {
 	private static final Logger mLog = LoggerFactory.getLogger(CalendarHelper.class);
 
+	public static String formatTimestamp(Timestamp timeStamp) {
+		String s = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(timeStamp);
+		return s;
+	}
+	
 	public static boolean hasExpired(Timestamp startTime, Timestamp endTime) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -31,11 +36,11 @@ public class CalendarHelper {
 		int endMonth = end.get(Calendar.MONTH);
 		int endDayOfTheYear = end.get(Calendar.DAY_OF_YEAR);
 
-		int totalEnd = endYearInt + endMonth + endDayOfTheYear;
+		int totalEnd = endYearInt + endMonth ;
 		int currentYearInt = currentTimeCal.get(Calendar.YEAR);
 		int currentMonth = currentTimeCal.get(Calendar.MONTH);
 		int currentDayOfTheYear = currentTimeCal.get(Calendar.DAY_OF_YEAR);
-		int totalCurrent = currentYearInt + currentMonth + currentDayOfTheYear;
+		int totalCurrent = currentYearInt + currentMonth ;
 		mLog.info(" endYearInt " + endYearInt);
 		mLog.info(" endMonth " + endMonth);
 		mLog.info(" endDayOfTheYear " + endDayOfTheYear);
@@ -62,9 +67,12 @@ public class CalendarHelper {
 		//if (isCurrentTimeAfterStartTime && isCurrentTimeBeforEndTime) {
 		//	return false;
 		//}
-		 if (totalCurrent < totalEnd) {
-			 return false;
-		 }
+		if (currentYearInt < endYearInt) {
+			return false;
+		}
+		if (currentYearInt == endYearInt &&  currentMonth <= endMonth ) {
+			return false;
+		}
 
 		return expired;
 
