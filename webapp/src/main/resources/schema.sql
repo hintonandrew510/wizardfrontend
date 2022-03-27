@@ -62,6 +62,9 @@ create table IF NOT EXISTS contact (
 ALTER TABLE `wizarddata` 
 CHANGE COLUMN `pagedata` `pagedata` LONGTEXT NOT NULL ;
 
+ALTER TABLE `license`.`wizarddata` 
+ADD UNIQUE INDEX `pageIndex` (`wizardid` ASC, `pagesequence` ASC) VISIBLE;
+;
 
 
 
