@@ -58,13 +58,14 @@ create table IF NOT EXISTS contact (
    primary key (wizarddataid)
 ) ;
 
+--SELECT *  FROM license.wizarddata where wizardid = 39 and pagesequence = 27
+-- SELECT count(*) as count , pagesequence , wizardid , pagename  FROM license.wizarddata GROUP BY wizardid, pagesequence , pagename HAVING count >= 2
+--ALTER TABLE `wizarddata` 
+--CHANGE COLUMN `pagedata` `pagedata` LONGTEXT NOT NULL ;
 
-ALTER TABLE `wizarddata` 
-CHANGE COLUMN `pagedata` `pagedata` LONGTEXT NOT NULL ;
+--ALTER TABLE `license`.`wizarddata` 
+--ADD UNIQUE INDEX `pageIndex` (`wizardid` ASC, `pagesequence` ASC) VISIBLE;
 
-ALTER TABLE `license`.`wizarddata` 
-ADD UNIQUE INDEX `pageIndex` (`wizardid` ASC, `pagesequence` ASC) VISIBLE;
-;
 
 
 

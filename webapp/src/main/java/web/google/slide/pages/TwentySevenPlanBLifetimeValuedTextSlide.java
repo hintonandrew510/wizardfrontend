@@ -42,7 +42,10 @@ public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData grossProfitPerSale = new SlideReplacementData("b_grossProfitPerSale",
 				planBLifetimeValuedPageModel.getGrossProfitPerSale()  );
 		
-		String averageRepeatSalesStr = this.formatStringToCurrency(planBLifetimeValuedPageModel.getAverageRepeatSales());
+		//String averageRepeatSalesStr = this.formatStringToCurrency(planBLifetimeValuedPageModel.getAverageRepeatSales());
+		String averageRepeatSalesStr = String.valueOf(planBLifetimeValuedPageModel.getAverageRepeatSales());
+		
+		
 		
 		SlideReplacementData averageRepeatSales = new SlideReplacementData("b_averageRepeatSales",
 				averageRepeatSalesStr);
