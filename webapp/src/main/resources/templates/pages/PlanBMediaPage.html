@@ -128,9 +128,7 @@
 			<div class="col-8 border">
 				<form id="importForm" action="importPlanAMediaPage" method="post">
 					<input type="hidden" id="wizardId" th:value="${wizard.encrypt}"
-						name="wizardId" /> <input type="hidden" id="nextPage"
-						th:value="'redirect:/PlanBMediaPage?ID=' + ${wizard.encrypt}"
-						name="nextPage" /> <input type="hidden" id="wizarddataid"
+						name="wizardId" /> <input type="hidden" id="wizarddataid"
 						th:value="${wizardData?.wizarddataid}" name="wizarddataid" />
 				</form><div id="wizardCopyRightId"></div>
 
@@ -483,9 +481,7 @@
 							type="hidden" id="mediarows"
 							th:value="${dataPageModel?.mediaRows}" name="mediarows" /> <input
 							type="hidden" id="wizarddataid"
-							th:value="${wizardData?.wizarddataid}" name="wizarddataid" /> <input
-							name="next" type="submit" value="Next" class="btn btn-primary"
-							style="background-color: #C0B879;" /> <input name="publish"
+							th:value="${wizardData?.wizarddataid}" name="wizarddataid" />  <input name="publish"
 							type="submit" value="Publish" class="btn btn-primary"
 							style="background-color: #C0B879;" /> <input name="previous"
 							value="Previous" type="submit" class="btn btn-primary"
