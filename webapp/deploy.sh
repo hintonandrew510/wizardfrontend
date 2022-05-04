@@ -14,13 +14,13 @@ FILE='scrs.war'
 REMOTEPATH='.'
 
 
-ftp -nd $HOST <<END_SCRIPT
-quote USER $USER
-quote PASS $PASSWD
-cd $REMOTEPATH
-binary
-put $FILE
-quit
+#ftp -nd $HOST <<END_SCRIPT
+#quote USER $USER
+#quote PASS $PASSWD
+#cd $REMOTEPATH
+#binary
+#put $FILE
+#quit
 
 echo remote to server
 #copy file

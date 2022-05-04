@@ -40,6 +40,7 @@ function dailyCostAndMonthlyAverage()
 	document.getElementById("dailyCostId").textContent = dailyCostFormattted;
 }	
 function buildSpreadSheet() {
+	console.group("buildSpreadSheet A");
 
 	// determine to hide spread sheet
 	if (objs === undefined || objs.length == 0) {
@@ -83,6 +84,8 @@ function buildSpreadSheet() {
 			marTotal = marTotal + convertToNumberFromCurrency(objs[i].mar);
 			aprTotal = aprTotal + convertToNumberFromCurrency(objs[i].apr);
 			mayTotal = mayTotal + convertToNumberFromCurrency(objs[i].may);
+			console.log("jun " + convertToNumberFromCurrency(objs[i].jun));
+			console.log("junTotal " + junTotal);
 			junTotal = junTotal + convertToNumberFromCurrency(objs[i].jun);
 			julTotal = julTotal + convertToNumberFromCurrency(objs[i].jul);
 			augTotal = augTotal + convertToNumberFromCurrency(objs[i].aug);
@@ -159,6 +162,7 @@ function buildSpreadSheet() {
 		// Find another way to add the rows to the table because
 		// the HTML template element is not supported.
 	}// end of footer
+	console.groupEnd();
 
 }// end of function
 

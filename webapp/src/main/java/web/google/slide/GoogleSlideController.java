@@ -619,6 +619,26 @@ public class GoogleSlideController {
 
 	}
 
+	private void clearSheetsData(String spreadsheetId, Sheets service, String writeRange ) {
+		mLog.warn("ENTERING clearSheetsData");
+		ClearValuesRequest requestBody = new ClearValuesRequest();
+		 Sheets.Spreadsheets.Values.Clear request;
+		try {
+			request = service.spreadsheets().values().clear(spreadsheetId, writeRange, requestBody);
+			 ClearValuesResponse response = request.execute();
+			 // TODO: Change code below to process the `response` object:
+			    System.out.println(response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			mLog.error("Error " + e.getMessage());
+		}
+
+			   
+
+	}
+	
+	
+	
 	/**
 	 * 
 	 * @param service
@@ -692,6 +712,10 @@ public class GoogleSlideController {
 				}
 
 				writeRange = page.getWriteRange();
+				
+				//clear data
+				//clearSheetsData(spreadsheetId, this.mSheets, writeRange );
+				
 				mLog.info("writeRange [" + writeRange + "]");
 				if (writeRange == null) {
 					mLog.info("no writerange  found");
@@ -962,7 +986,7 @@ public class GoogleSlideController {
 
 					try {
 						PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(
-								planAMediaPagedataPageModel.getMediaRows());
+								planAMediaPagedataPageModel.getMediaRows(),"PlanASpreadSheet");
 
 						// spike = green slow = red base = blue
 						dataRowPlanASpreadSheetHeader.add("Media");
@@ -1016,6 +1040,7 @@ public class GoogleSlideController {
 						dataRowPlanASpreadSheetFooter.add(planSpreadSheets.getNov());
 						dataRowPlanASpreadSheetFooter.add(planSpreadSheets.getDec());
 						dataRowPlanASpreadSheetFooter.add(planSpreadSheets.getRt());
+						mLog.error("WHAT dataRowPlanASpreadSheetFooter " + dataRowPlanASpreadSheetFooter.toString());
 						writeData.add(dataRowPlanASpreadSheetFooter);
 
 					} catch (Exception ex) {
@@ -1039,7 +1064,7 @@ public class GoogleSlideController {
 
 					try {
 						PlanSpreadSheets planBSpreadSheets = new PlanSpreadSheets(
-								planBMediaPagedataPageModel.getMediaRows());
+								planBMediaPagedataPageModel.getMediaRows(),"PlanBSpreadSheet");
 
 						// spike = green slow = red base = blue
 						dataRowPlanBSpreadSheetHeader.add("Media");
@@ -1081,19 +1106,7 @@ public class GoogleSlideController {
 
 						dataRowPlanBSpreadSheetFooter.add("Monthly Totals");
 
-						mLog.info(planBSpreadSheets.getJan());
-						mLog.info(planBSpreadSheets.getFeb());
-						mLog.info(planBSpreadSheets.getMar());
-						mLog.info(planBSpreadSheets.getApr());
-						mLog.info(planBSpreadSheets.getMay());
-						mLog.info(planBSpreadSheets.getJun());
-						mLog.info(planBSpreadSheets.getJul());
-						mLog.info(planBSpreadSheets.getAug());
-						mLog.info(planBSpreadSheets.getSep());
-						mLog.info(planBSpreadSheets.getOct());
-						mLog.info(planBSpreadSheets.getNov());
-						mLog.info(planBSpreadSheets.getDec());
-						mLog.info(planBSpreadSheets.getRt());
+					
 
 						dataRowPlanBSpreadSheetFooter.add(planBSpreadSheets.getJan());
 						dataRowPlanBSpreadSheetFooter.add(planBSpreadSheets.getFeb());
@@ -1108,7 +1121,7 @@ public class GoogleSlideController {
 						dataRowPlanBSpreadSheetFooter.add(planBSpreadSheets.getNov());
 						dataRowPlanBSpreadSheetFooter.add(planBSpreadSheets.getDec());
 						dataRowPlanBSpreadSheetFooter.add(planBSpreadSheets.getRt());
-
+						mLog.error("WHAT dataRowPlanBSpreadSheetFooter " + dataRowPlanBSpreadSheetFooter.toString());
 						writeData.add(dataRowPlanBSpreadSheetFooter);
 
 					} catch (Exception ex) {

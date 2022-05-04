@@ -23,7 +23,7 @@ public class ThirtyPlanBSpreadSheetTextSlide extends AbstractSlide {
 	public List<SlideReplacementData> composeGoogleSlideData() {
 		PlanMediaPageModel planBMediaPagedataPageModel = getmSlidesData()
 				.getPageModels().getPlanBMediaPagedataPageModel();
-		PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planBMediaPagedataPageModel.getMediaRows());
+		PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planBMediaPagedataPageModel.getMediaRows(),"ThirtyPlanBSpreadSheetTextSlide",true);
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 

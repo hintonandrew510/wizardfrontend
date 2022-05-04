@@ -66,6 +66,7 @@ public class PlanSpreadSheets {
 
 	public String getJun() {
 		jun = formatDoubleToCurrency(junTotal);
+		mLog.info("get jUn " + jun + " source " + this.source);
 		return jun;
 	}
 
@@ -75,6 +76,7 @@ public class PlanSpreadSheets {
 
 	public String getJul() {
 		jul = formatDoubleToCurrency(julTotal);
+		mLog.info("get Jul " + jul + " source " + this.source);
 		return jul;
 	}
 
@@ -196,13 +198,13 @@ public class PlanSpreadSheets {
 	
 	public String formatDoubleToCurrency(Number amount) {
 		try {
-			mLog.warn("formatDoubleToCurrency starting");
-			mLog.info("amount " + amount);
+			mLog.debug("formatDoubleToCurrency starting");
+			mLog.debug("amount " + amount);
 			 NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
 			 usdCostFormat.setMaximumFractionDigits(0);
 			String output = usdCostFormat.format(amount);
-			mLog.info("output " + output);
-			mLog.warn("formatDoubleToCurrency ending");
+			mLog.debug("output " + output);
+			mLog.debug("formatDoubleToCurrency ending");
 			return output;
 		} catch (Exception ex) {
 			StringWriter sw = new StringWriter();
@@ -213,6 +215,32 @@ public class PlanSpreadSheets {
 			return "0";
 		}
 	}
+	private void constructBottomTotals() throws Exception {
+		mLog.warn("constructBottomTotals starting");
+	//	NumberFormat nf = NumberFormat.getNumberInstance();
+		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+		
+		
+		
+		
+		for (PlanSpreadSheet rowData : planSpreadSheets ) {
+			
+		
+			
+	
+			
+			String numberStr = rowData.getRt();
+			mLog.info("Rt " + numberStr);
+			rtTotal = rtTotal +  Long.parseLong(numberStr);
+			
+			mLog.warn("constructBottomTotals ending");
+			
+		}//end of for
+		monthlyAverageLong = rtTotal/12;
+		dailyCostLong = monthlyAverageLong/30;
+	}
+	
+	
 	
 	private void constructTotals() throws Exception {
 		mLog.warn("constructTotals starting");
@@ -226,72 +254,71 @@ public class PlanSpreadSheets {
 			
 			  number = nf.parse(rowData.getJan());
 			//amount= nf.format(rowData.getJan());
-			mLog.info("Jan " + number);
+			mLog.debug("Jan " + number);
 			
 			janTotal = janTotal + (Long)number;
 			
 			number= nf.parse(rowData.getFeb());
-			mLog.info("feb " + number);
+			mLog.debug("feb " + number);
 			febTotal = febTotal +   (Long)number;
 			
 			number= nf.parse(rowData.getMar());
-			mLog.info("mar " + number);
+			mLog.debug("mar " + number);
 			marTotal = marTotal +  (Long)number;
 			
 			number= nf.parse(rowData.getApr());
-			mLog.info("Apr " + number);
+			mLog.debug("Apr " + number);
 			aprTotal = aprTotal +  (Long)number;
 			
 			number= nf.parse(rowData.getMay());
-			mLog.info("May " + number);
+			mLog.debug("May " + number);
 			mayTotal = mayTotal +  (Long)number;
 			
 			number= nf.parse(rowData.getJun());
 			mLog.info("Jun " + number);
 			junTotal = junTotal +  (Long)number;
+			mLog.info("junTotal " + junTotal);
 			
 			number= nf.parse(rowData.getJul());
 			mLog.info("Jul " + number);
 			julTotal = julTotal +  (Long)number;
+			mLog.info("julTotal " + julTotal);
 			
-			number= nf.parse(rowData.getJun());
-			mLog.info("Jun " + number);
-			junTotal = junTotal +  (Long)number;
 			
-			number= nf.parse(rowData.getJul());
-			mLog.info("Jul " + number);
-			julTotal = julTotal +  (Long)number;
+			
+		
 			
 			number= nf.parse(rowData.getAug());
-			mLog.info("Aug " + number);
+			mLog.debug("Aug " + number);
 			augTotal = augTotal +  (Long)number;
 			
 			number= nf.parse(rowData.getSep());
-			mLog.info("Sep " + number);
+			mLog.debug("Sep " + number);
 			sepTotal = sepTotal + (Long)number;
 			
 			number= nf.parse(rowData.getOct());
-			mLog.info("Oct " + number);
+			mLog.debug("Oct " + number);
 			octTotal = octTotal +  (Long)number;
 			
 			number= nf.parse(rowData.getNov());
-			mLog.info("Nov " + number);
+			mLog.debug("Nov " + number);
 			novTotal = novTotal +  (Long)number;
 			
 			
 			number= nf.parse(rowData.getDec());
-			mLog.info("Dec " + number);
+			mLog.debug("Dec " + number);
 			decTotal = decTotal +  (Long)number;
 			
 			String numberStr = rowData.getRt();
 			mLog.info("Rt " + numberStr);
 			rtTotal = rtTotal +  Long.parseLong(numberStr);
+			mLog.info("rtTotal " + rtTotal);
+			
 			
 			mLog.warn("constructTotals ending");
 			
 		}//end of for
-		monthlyAverageLong = rtTotal/12;
-		dailyCostLong = monthlyAverageLong/30;
+	
 	}
 	
 	/*
@@ -300,10 +327,31 @@ nf.setGroupingUsed(false);
 nf.setMinimumFractionDigits(2);
 String ammount= nf.format(value);
 	 */
-
-	public PlanSpreadSheets(String json) {
+	private String source;
+	public PlanSpreadSheets(String json, String  source, boolean justBottomTotal) {
+		this.source = source;
 		try {
-			mLog.warn("starting PlanSpreadSheets");
+			mLog.warn("starting PlanSpreadSheets bottom for " + this.source);
+			planSpreadSheets = new Gson().fromJson(json, new TypeToken<List<PlanSpreadSheet>>() {
+			}.getType());
+			this.constructBottomTotals();
+			
+		} catch (Exception ex) {
+			mLog.error(ex.getMessage());
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			ex.printStackTrace(pw);
+			// mLog.error(ex);
+			mLog.error("ERROR PlanASpreadSheet Constructor [" + sw.toString() + "]");
+		
+		}
+		mLog.warn("ending PlanSpreadSheets bottom " + this.source);
+	}
+	
+	public PlanSpreadSheets(String json,  String source) {
+		this.source = source;
+		try {
+			mLog.warn("starting PlanSpreadSheets " + this.source);
 			planSpreadSheets = new Gson().fromJson(json, new TypeToken<List<PlanSpreadSheet>>() {
 			}.getType());
 			constructTotals();
@@ -317,7 +365,7 @@ String ammount= nf.format(value);
 			mLog.error("ERROR PlanASpreadSheet Constructor [" + sw.toString() + "]");
 		
 		}
-		mLog.warn("ending PlanSpreadSheets");
+		mLog.warn("ending PlanSpreadSheets  " + this.source);
 	}
 
 }
