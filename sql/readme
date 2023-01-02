@@ -2,9 +2,10 @@
 #spring.datasource.url=jdbc:mysql://35.184.42.189:3306/license?useSSL=false
 #spring.datasource.password=license
 
-##https://cloud.digitalocean.com/projects/
-spring.datasource.url=jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.co$
+##https://cloud.digitalocean.com/projects/ 
+spring.datasource.url=jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false
 spring.datasource.password=AVNS_mOUXndVvrMMxFzVCCPH
+
 
 
 
