@@ -8,8 +8,10 @@ login: db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com 25060 lice
 
 mysql -u license -p AVNS_mOUXndVvrMMxFzVCCPH -h $db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com -P $25060 
 
+                           mysql://doadmin:AVNS_gsk_4d7Z0-mCO8URiuH@db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/defaultdb?ssl-mode=REQUIRED
 
-spring.datasource.url=jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false
+spring.datasource.url=jdbc:mysql://license:AVNS_mOUXndVvrMMxFzVCCPH@db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?ssl-mode=REQUIRED
+#spring.datasource.url=jdbc:mysql://db-mysql-nyc1-75629-do-user-13210603-0.b.db.ondigitalocean.com:25060/license?useSSL=false
 spring.datasource.username=license
 spring.datasource.password=AVNS_mOUXndVvrMMxFzVCCPH
 
