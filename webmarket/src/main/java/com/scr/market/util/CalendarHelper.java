@@ -18,7 +18,8 @@ public class CalendarHelper {
 	}
 	
 	public static boolean hasExpired(Timestamp startTime, Timestamp endTime) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		
 
 		Calendar start = Calendar.getInstance();
 		start.setTimeInMillis(startTime.getTime());
