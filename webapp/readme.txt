@@ -2,18 +2,6 @@ mvn spring-boot:run
 ./mvnw package
 java -jar target/*.jar
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-LoggerFactory.getLogger(AgentController.class.getName());
- 
-LoggerFactory.getLogger(AuthenticationProvider.class);
-
-mLog.error
-mLog.error
 
 
 
