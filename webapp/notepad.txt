@@ -1,11 +1,29 @@
-oc new-app mysql-ephemeral --name mysql
+oc get templates --namespace openshift
+oc new-app mysql-ephemeral --name mysqlA
+oc new-app mysql-persistent --name mysqlAH
+oc get pods
+
+ db4free.net and the port is 3306
+n8M6Vde.zGE_qae
+Database: license123
+Username: license123
+
+https://www.db4free.net/signup.php
 
 Username: userUVH
             Password: 1Rue1H2sYLxalBKP
        Database Name: sampledb
       Connection URL: mysql://mysql:3306/
 
-
+With parameters:
+        * Memory Limit=512Mi
+        * Namespace=openshift
+        * Database Service Name=mysql
+        * MySQL Connection Username=user5S7 # generated
+        * MySQL Connection Password=0FEOTLA6D08PfJBj # generated
+        * MySQL root user Password=3fdUdHDctKgwvnsK # generated
+        * MySQL Database Name=sampledb
+        * Version of MySQL Image=8.0-el8
 
 keytool -genkey -alias tomcat -keyalg RSA \
   -keystore /Users/andrewhinton/Documents/GitHub/wizardfrontend/keystore password changeit
