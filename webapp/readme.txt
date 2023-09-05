@@ -5,7 +5,7 @@ java -jar target/*.jar
 Process 8080-tcp is now listening on port 8080. Open it ?
 
 http://andrewalexanderhinto-wizardfrontend-code-redirect-3.apps.sandbox-m3.1530.p1.openshiftapps.com/
-
+http://andrewalexanderhinto-spring-petclinic-8080-tcp.apps.sandbox-m3.1530.p1.openshiftapps.com/
 http://andrewalexanderhinto-spring-petclinic-8080-tcp.apps.sandbox-m3.1530.p1.openshiftapps.com/
 
 ssh wizard@97.74.232.85 password Superman123#
