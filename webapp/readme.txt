@@ -3,7 +3,7 @@ mvn spring-boot:run
 java -jar target/*.jar
 
 
-
+http://andrewalexanderhinto-spring-petclinic-8080-tcp.apps.sandbox-m3.1530.p1.openshiftapps.com/
 
 ssh wizard@97.74.232.85 password Superman123#
 
