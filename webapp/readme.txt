@@ -2,6 +2,7 @@ mvn spring-boot:run
 ./mvnw package
 java -jar target/*.jar
 
+Process 8080-tcp is now listening on port 8080. Open it ?
 
 http://andrewalexanderhinto-spring-petclinic-8080-tcp.apps.sandbox-m3.1530.p1.openshiftapps.com/
 
