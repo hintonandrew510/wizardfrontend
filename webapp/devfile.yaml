@@ -1,0 +1,20 @@
+schemaVersion: 2.1.0
+metadata:
+  name: spring-petclinic
+components:
+
+  - name: tools
+    container:
+      memoryLimit: 3Gi
+      endpoints:
+        - exposure: none
+          name: debug
+          protocol: tcp
+          targetPort: 5005
+        - exposure: public
+          name: 8080-tcp
+          protocol: http
+          targetPort: 8080
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
