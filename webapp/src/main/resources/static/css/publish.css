@@ -1,3 +1,6 @@
+.copyRight:before {
+  content: "Joe's Task: ";
+}
 .arrow-text {
 	font-size: 1.3em;
 	
