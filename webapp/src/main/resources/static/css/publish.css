@@ -1,13 +1,5 @@
 .copyRight:before {
-  content: "Copyright © 1984-2023 Executive Decision Systems,
-	Inc. and The Guld Resource Group, LLC. The data, formulas, and
-	all other content in these materials are the property of Executive
-	Decision Systems, Inc. and The Guld Resource Group, LLC and are
-	protected by copyright and other intellectual property laws. No
-	part of these materials may be reproduced, distributed, or used in
-	any way without a license agreement or other written consent of
-	The Guld Resource Group, LLC permitting such use. All rights
-	reserved. To report violations, please call (804) 356-7006.";
+  content: "Copyright © 1984-2023 Executive Decision Systems,Inc. and The Guld Resource Group, LLC. The data, formulas, and all other content in these materials are the property of Executive Decision Systems, Inc. and The Guld Resource Group, LLC and are protected by copyright and other intellectual property laws. No part of these materials may be reproduced, distributed, or used in any way without a license agreement or other written consent of The Guld Resource Group, LLC permitting such use. All rightsreserved. To report violations, please call (804) 356-7006.";
 }
 .arrow-text {
 	font-size: 1.3em;
