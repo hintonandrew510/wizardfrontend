@@ -170,7 +170,10 @@ public class GoogleVerificationController {
 		java.io.File file = null;
 		try {
 			mLog.info(" try to get classpath:client_secret.json");
-			file = ResourceUtils.getFile("classpath:client_secret.json");
+			
+			String  secretLocation = mEnvironment.getProperty("client_secret");
+			mLog.info(" secretLocation " + secretLocation);
+			file = ResourceUtils.getFile(secretLocation);
 			if (file != null ) {
 				mLog.info(" got file  classpath:client_secret.json " + file.toString());
 			} else {
