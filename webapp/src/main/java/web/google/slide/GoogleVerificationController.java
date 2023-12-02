@@ -184,6 +184,7 @@ public class GoogleVerificationController {
 			mLog.info("File contents [" + contents + "]");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			mlog.info("ERROR " + e.getMessage());
 			e.printStackTrace();
 		}
 		
