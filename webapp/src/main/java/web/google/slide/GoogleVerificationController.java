@@ -142,7 +142,7 @@ public class GoogleVerificationController {
 	/**/
 	@RequestMapping(value = "/GoogleSlideVerification", method = RequestMethod.POST)
 	public String verifyGoogleSlide( HttpServletRequest request,
-			@PathVariable("authCodeId") String authCodeId, Model model,  Authentication authentication) {
+			@PathVariable(name = "authCodeId") String authCodeId, Model model,  Authentication authentication) {
 		mLog.info("entering GoogleSlideVerification");
 		mLog.info("authCodeId " + authCodeId);
 		GoogleVerification googleVerification = new GoogleVerification();
