@@ -171,7 +171,14 @@ public class GoogleVerificationController {
 		String contents = null;
 		java.io.File file = null;
 		try {
+			mLog.info(" try to get classpath:client_secret.json");
 			file = ResourceUtils.getFile("classpath:client_secret.json");
+			if (file != null ) {
+				mLog.info(" got file  classpath:client_secret.json " + file.toString());
+			} else {
+				mLog.info(" COULD not get file ");
+			}
+			
 			contents = FileUtils.readFileToString(file, "UTF-8");
 			mLog.info("File contents [" + contents + "]");
 		} catch (Exception e) {
