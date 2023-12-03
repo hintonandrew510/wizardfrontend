@@ -190,7 +190,7 @@ public class GoogleVerificationController {
 			}
 		catch (Exception ex) {
 			// TODO Auto-generated catch block
-			mlog.info("ERROR " + ex.getMessage());
+			mLog.info("ERROR " + ex.getMessage());
 			ex.printStackTrace();
 		}
 		
