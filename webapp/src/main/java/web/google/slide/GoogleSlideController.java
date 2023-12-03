@@ -183,7 +183,9 @@ public class GoogleSlideController {
 		}
 		// domain = request.getLocalName();
 		mLog.info("domain [" + domain + "]");
-		java.io.File file = ResourceUtils.getFile("classpath:client_secret.json");
+		String  secretLocation = mEnvironment.getProperty("client_secret");
+		mLog.info(" secretLocation " + secretLocation);
+		java.io.File file = ResourceUtils.getFile(secretLocation);
 		String contents = FileUtils.readFileToString(file, "UTF-8");
 		mLog.info("File contents [" + contents + "]");
 
