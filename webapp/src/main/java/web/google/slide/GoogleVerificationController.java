@@ -182,15 +182,16 @@ public class GoogleVerificationController {
 			
 			contents = FileUtils.readFileToString(file, "UTF-8");
 			mLog.info("File contents [" + contents + "]");
-		} catch (com.google.api.client.googleapis.json.GoogleJsonResponseException e) {
+		} 
+		catch (com.google.api.client.googleapis.json.GoogleJsonResponseException e) {
      				 com.google.api.client.googleapis.json.GoogleJsonError error = e.getDetails();
 			mLog.info("JSON ERROR [" + error.getMessage() + "]");
      			 // Print out the message and errors
 			}
-		} catch (Exception e) {
+		catch (Exception ex) {
 			// TODO Auto-generated catch block
-			mlog.info("ERROR " + e.getMessage());
-			e.printStackTrace();
+			mlog.info("ERROR " + ex.getMessage());
+			ex.printStackTrace();
 		}
 		
 		
