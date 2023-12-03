@@ -298,7 +298,7 @@ public class GoogleSlideController {
 
 	@RequestMapping(value = "/GenerateGoogleSlide", method = RequestMethod.POST)
 	public String generateGoogleSlide(Model model, HttpServletRequest request, Authentication authentication,
-			HttpSession session, @RequestParam(required = true) String authCodeId) {
+			HttpSession session, @RequestParam(name = "authCodeId") String authCodeId) {
 		mLog.warn("entering generate");
 		mLog.info("request.getLocalName() " + request.getLocalName());
 		mLog.info(" request.getLocalAddr(); " + request.getLocalAddr());
