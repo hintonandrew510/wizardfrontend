@@ -160,12 +160,12 @@ public class GoogleVerificationController {
 
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
 		String domain = mEnvironment.getProperty("prod.google.domain");
-		String localDomain = request.getLocalName();
-		if (localDomain.contains("local") || localDomain.contains("quiett")) {
-			domain = mEnvironment.getProperty("local.google.domain");
-		}
+		//String localDomain = request.getLocalName();
+		//if (localDomain.contains("local") || localDomain.contains("quiett")) {
+		//	domain = mEnvironment.getProperty("local.google.domain");
+		//}
 		// domain = request.getLocalName();
-		mLog.info("domain [" + domain + "]");
+		mLog.info("Domain [" + domain + "]");
 		String contents = null;
 		java.io.File file = null;
 		try {
