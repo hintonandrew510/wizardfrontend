@@ -25,7 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
-
+import com.google.api.client.auth.oauth2.TokenResponseException;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -184,7 +184,7 @@ public class GoogleVerificationController {
 			mLog.info("File contents [" + contents + "]");
 		} 
 		catch (com.google.api.client.googleapis.json.GoogleJsonResponseException e) {
-     				 com.google.api.client.googleapis.json.GoogleJsonError error = e.getDetails();
+     			com.google.api.client.googleapis.json.GoogleJsonError error = e.getDetails();
 			mLog.info("JSON ERROR [" + error.getMessage() + "]");
      			 // Print out the message and errors
 			}
@@ -244,13 +244,28 @@ public class GoogleVerificationController {
 			accessToken = tokenResponse.getAccessToken();
 			googleVerification.setAccessToken(accessToken);
 			//googleVerification.setAccessToken(accessToken);
-		} catch (IOException e) {
+		} 
+		catch (TokenResponseException et) {
+     			if (et.getDetails() != null) {
+     			     mLog.error("Error: " + et.getDetails().getError());
+      			 if (et.getDetails().getErrorDescription() != null) {
+        		     mLog.error(" ERROR DES" + et.getDetails().getErrorDescription());
+      			 }
+       			if (et.getDetails().getErrorUri() != null) {
+        		 mLog.error(" ERROR URL" + et.getDetails().getErrorUri());
+      			 }
+   		  } else {
+      		   mLog.error(" ERROR MESSAGE " + et.getMessage());
+     		}
+              }		
+		
+		catch (IOException e) {
 			// TODO Auto-generated catch block
-			StringWriter sw = new StringWriter();
-			PrintWriter pw = new PrintWriter(sw);
-			e.printStackTrace(pw);
+			//StringWriter sw = new StringWriter();
+			//PrintWriter pw = new PrintWriter(sw);
+			//e.printStackTrace(pw);
 			// mLog.error(ex);
-			mLog.error("ERROR WRITTING [" + sw.toString() + "]");
+			mLog.error("ERROR WRITTING [" + e.getMessage() + "]");
 		}
 	
 		
