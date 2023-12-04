@@ -308,15 +308,18 @@ public class GoogleVerificationController {
 
 			mSlides = new Slides.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), mCredential)
 					.setApplicationName(APPLICATION_NAME).build();
+			mLog.info("Completed slides ");
 			//mSlides.
 			//googleVerification.setComments(comments.);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//swallow message
+			mLog.error("ERROR Creating slides [" + e.getMessage() + "]");
 		}
 		
 		//refresh
+		mLog.info("Completed slides GOTO googleVerificationStatus");
 		model.addAttribute("model", googleVerification);
 		return "googleVerificationStatus";
 	}//end of method
