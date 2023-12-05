@@ -186,6 +186,8 @@ public class GoogleVerificationController {
 		catch (com.google.api.client.googleapis.json.GoogleJsonResponseException e) {
      			com.google.api.client.googleapis.json.GoogleJsonError error = e.getDetails();
 			mLog.info("JSON ERROR [" + error.getMessage() + "]");
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(error.getMessage());
      			 // Print out the message and errors
 			}
 		catch (Exception ex) {
