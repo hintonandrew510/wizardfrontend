@@ -189,7 +189,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(error.getMessage());
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
      			 // Print out the message and errors
 			}
 		catch (Exception ex) {
@@ -200,7 +200,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(ex.getMessage());
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
 		}
 		
 		
@@ -215,7 +215,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(e.getMessage());
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
 			
 		}
 		// Reader targetReader = new StringReader(initialString);
@@ -237,7 +237,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(e.getMessage());
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
 		}
 		
 		// GoogleClientSecrets clientSecrets =
@@ -282,7 +282,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(message);
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
               }		
 		
 		catch (IOException e) {
@@ -295,7 +295,7 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment("ERROR WRITTING [" + e.getMessage() + "]");
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"
+		       return "googleVerificationStatus";
 		}
 	
 		
@@ -349,7 +349,8 @@ public class GoogleVerificationController {
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment("ERROR Creating slides [" + e.getMessage() + "]");
 			model.addAttribute("model", googleVerification);
-		       return "googleVerificationStatus"		}
+		       return "googleVerificationStatus";		
+		}
 		
 		//refresh
 		mLog.info("Completed slides GOTO googleVerificationStatus");
