@@ -188,12 +188,19 @@ public class GoogleVerificationController {
 			mLog.info("JSON ERROR [" + error.getMessage() + "]");
 			googleVerification.setCanWriteDataSheet(false);
 			googleVerification.setWriteDataSheetComment(error.getMessage());
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
      			 // Print out the message and errors
 			}
 		catch (Exception ex) {
 			// TODO Auto-generated catch block
 			mLog.info("ERROR " + ex.getMessage());
+			
 			ex.printStackTrace();
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(ex.getMessage());
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
 		}
 		
 		
@@ -205,6 +212,11 @@ public class GoogleVerificationController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(e.getMessage());
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
+			
 		}
 		// Reader targetReader = new StringReader(initialString);
 		// targetReader.close();
@@ -222,6 +234,10 @@ public class GoogleVerificationController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(e.getMessage());
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
 		}
 		
 		// GoogleClientSecrets clientSecrets =
@@ -248,17 +264,25 @@ public class GoogleVerificationController {
 			//googleVerification.setAccessToken(accessToken);
 		} 
 		catch (TokenResponseException et) {
+			String message = "";
      			if (et.getDetails() != null) {
      			     mLog.error("Error: " + et.getDetails().getError());
+				message =  "Error: " + et.getDetails().getError();
       			 if (et.getDetails().getErrorDescription() != null) {
         		     mLog.error(" ERROR DES" + et.getDetails().getErrorDescription());
-      			 }
+				message =  " ERROR DES" + et.getDetails().getErrorDescription() ;
+			 }
        			if (et.getDetails().getErrorUri() != null) {
         		 mLog.error(" ERROR URL" + et.getDetails().getErrorUri());
+			message =  " ERROR URL" + et.getDetails().getErrorUri() ;
       			 }
    		  } else {
       		   mLog.error(" ERROR MESSAGE " + et.getMessage());
      		}
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment(message);
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
               }		
 		
 		catch (IOException e) {
@@ -268,6 +292,10 @@ public class GoogleVerificationController {
 			//e.printStackTrace(pw);
 			// mLog.error(ex);
 			mLog.error("ERROR WRITTING [" + e.getMessage() + "]");
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment("ERROR WRITTING [" + e.getMessage() + "]");
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"
 		}
 	
 		
@@ -318,7 +346,10 @@ public class GoogleVerificationController {
 			// TODO Auto-generated catch block
 			//swallow message
 			mLog.error("ERROR Creating slides [" + e.getMessage() + "]");
-		}
+			googleVerification.setCanWriteDataSheet(false);
+			googleVerification.setWriteDataSheetComment("ERROR Creating slides [" + e.getMessage() + "]");
+			model.addAttribute("model", googleVerification);
+		       return "googleVerificationStatus"		}
 		
 		//refresh
 		mLog.info("Completed slides GOTO googleVerificationStatus");
