@@ -353,8 +353,9 @@ public class GoogleVerificationController {
 		}
 		
 		//refresh
-		mLog.info("Completed slides GOTO googleVerificationStatus");
+		
 		model.addAttribute("model", googleVerification);
-		return "googleVerificationStatus";
+		mLog.info("Completed Verification GOTO googleVerificationStatus");
+		return "redirect:/googleVerificationStatus";
 	}//end of method
 }
