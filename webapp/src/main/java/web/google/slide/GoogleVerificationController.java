@@ -356,6 +356,6 @@ public class GoogleVerificationController {
 		
 		model.addAttribute("model", googleVerification);
 		mLog.info("Completed Verification GOTO googleVerificationStatus");
-		return "redirect:/googleVerificationStatus";
+		return "googleVerificationStatus";
 	}//end of method
 }
