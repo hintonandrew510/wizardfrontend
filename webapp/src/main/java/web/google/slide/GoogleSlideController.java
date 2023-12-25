@@ -178,9 +178,9 @@ public class GoogleSlideController {
 		mGoogleProfile = (GoogleProfile) JSONManager.convertFromJson(json, GoogleProfile.class);
 		String domain = mEnvironment.getProperty("prod.google.domain");
 
-		if (localDomain.contains("local") || localDomain.contains("quiett")) {
-			domain = mEnvironment.getProperty("local.google.domain");
-		}
+		//if (localDomain.contains("local") || localDomain.contains("quiett")) {
+			//domain = mEnvironment.getProperty("local.google.domain");
+		//}
 		// domain = request.getLocalName();
 		mLog.info("domain [" + domain + "]");
 		String  secretLocation = mEnvironment.getProperty("client_secret");
