@@ -31,4 +31,7 @@ echo copy war
 END_SCRIPT
 exit 0
 
+ mvn -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/Users/andrewhinton/Downloads/jdk-23.0.2.jdk/Contents/Home/bin/javac compile
 
+  mvn -Dmaven.compiler.fork=true -Dmaven.compiler.executable=/Users/andrewhinton/Downloads/jdk-23.0.2.jdk/Contents/Home/bin/javac clean install
+ 

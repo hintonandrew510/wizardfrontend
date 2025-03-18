@@ -1,3 +1,6 @@
+/Users/andrewhinton/Downloads/jdk-23.0.2.jdk/Contents/Home/bin/java -cp /Users/andrewhinton/Documents/GitHub/wizardfrontendToday/lib/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
+
+
 mvn spring-boot:run
 ./mvnw package
 java -jar target/*.jar
