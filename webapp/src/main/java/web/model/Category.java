@@ -5,7 +5,12 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -20,7 +25,7 @@ public class Category {
 	private String name;
 
 	@OneToMany
-	@JoinTable(name = "webclient", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "id"))
+//	@JoinTable(name = "webclient", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "id"))
 	private List<WebClient> mWebClients;
 
 	public List<WebClient> getmWebClients() {

@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,14 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.servlet.http.HttpSession;
 
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.Pages;
-import web.page.JSONManager;
-import web.page.PageNameEnum;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
+import web.page.JSONManager;
+import web.page.PageNameEnum;
 import web.util.EncryptionDecryptionManager;
 
 @Controller // This means that this class is a Controller
@@ -35,10 +36,10 @@ public class PresentedToPageController {
 	private static final Logger mLog = LoggerFactory.getLogger(PresentedToPageController.class.getName());
 
 	@RequestMapping(value = "/PresentedToPage", method = RequestMethod.GET)
-	public String detail(Model model, @RequestParam(required = false) String ID,HttpSession session) {
+	public String detail(Model model, @RequestParam(required = false) String ID, HttpSession session) {
 		mLog.info("starting detail");
 		
-		String decryptID = session.getAttribute("ID").toString();
+		String decryptID = (String) session.getAttribute("ID");
 		
 		// determine if value is in session
 		//if (session.getAttribute("ID") == null) {

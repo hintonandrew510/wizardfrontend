@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -28,26 +30,36 @@ import org.springframework.stereotype.Component;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import web.data.MyUserPrincipal;
 import web.model.Agent;
 import web.model.Contact;
 import web.repository.AgentRepository;
 import web.repository.ContactRepository;
+import web.service.AgentService;
+import web.service.ContactService;
 
 //import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 
-@Component
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+//@Component
+//public class CustomAuthenticationProvider  implements AuthenticationProvider
+public class CustomAuthenticationProvider  {
+
+	
+
+	
+
 	//private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class.getName());
 	private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
-	
+	/*
+	  @Qualifier("agentRepository")
 	@Autowired
-	private AgentRepository mAgentRepository;
+	private AgentService agentService;
 	@Autowired
-	private ContactRepository mContactRepository;
+	private ContactService contactService;
 
 	public CustomAuthenticationProvider() {
 		super();
@@ -55,11 +67,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
 	 
 
-	// API
 
 	@Override
 	public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
-		mLog.info("------------starting authenticate-------------");
+		mLog.info("------------Starting authenticate-------------");
 		Contact contact = null;
 	
 		final String name = authentication.getName();
@@ -71,7 +82,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			final Authentication auth = new UsernamePasswordAuthenticationToken(principal, password, grantedAuths);
 			return auth;
 		} else {
-			Agent agent = mAgentRepository.findByAddressAndPassword(name, password);
+			Agent agent = agentService.findByAddressAndPassword(name, password);
 
 			if (agent == null) {
 				mLog.info("could not find agent [" + name);
@@ -80,7 +91,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 				
 			}
 			mLog.info("found agent [" + name);
-			Optional<Contact> contactOpt = mContactRepository.findById(agent.getContactId());
+			Optional<Contact> contactOpt = contactService.findById(agent.getContactId());
 			contact = contactOpt.orElse(null);
 			if (contact == null) {
 				mLog.info("could not find contact---------" + agent.getContactId());
@@ -124,5 +135,5 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	public boolean supports(final Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-
+*/
 }

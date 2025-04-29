@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -209,7 +209,7 @@ public class GoogleVerificationController {
 		InputStreamReader isr = null;
 		try {
 			isr = new InputStreamReader(IOUtils.toInputStream(contents, "UTF-8"));
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			googleVerification.setCanWriteDataSheet(false);

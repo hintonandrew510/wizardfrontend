@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.security.core.Authentication;
+
 import web.data.MyUserPrincipal;
 import web.model.Wizard;
 import web.model.WizardData;
 import web.page.Pages;
-
-import web.page.JSONManager;
-import web.page.PageNameEnum;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
+import web.page.JSONManager;
+import web.page.PageNameEnum;
 import web.util.EncryptionDecryptionManager;
 @Controller // This means that this class is a Controller
 public class ExtraPageControl {

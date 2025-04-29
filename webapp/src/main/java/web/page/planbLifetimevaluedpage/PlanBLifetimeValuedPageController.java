@@ -18,10 +18,10 @@ import web.model.Wizard;
 import web.model.WizardData;
 import web.page.Pages;
 import web.page.planproposedpage.PlanProposedPageModel;
-import web.page.JSONManager;
-import web.page.PageNameEnum;
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
+import web.page.JSONManager;
+import web.page.PageNameEnum;
 import web.util.EncryptionDecryptionManager;
 
 @Controller // This means that this class is a Controller

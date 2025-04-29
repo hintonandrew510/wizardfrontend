@@ -24,7 +24,6 @@ import org.slf4j.LoggerFactory;
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 	private static final Logger mLog = LoggerFactory.getLogger(CustomAuthenticationFailureHandler.class.getName());
 
-	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 		// TODO Auto-generated method stub
@@ -52,6 +51,18 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 		
 	
 		response.sendRedirect("login");
+		
+	}
+
+	@Override
+	public void onAuthenticationFailure(jakarta.servlet.http.HttpServletRequest request,
+			jakarta.servlet.http.HttpServletResponse response, AuthenticationException exception)
+	
+			throws IOException, jakarta.servlet.ServletException {
+		
+		mLog.info("onAuthenticationFailure " + exception.getMessage());
+		
+		// TODO Auto-generated method stub
 		
 	}
 

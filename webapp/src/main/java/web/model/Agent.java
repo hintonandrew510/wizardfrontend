@@ -1,19 +1,13 @@
 package web.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import javax.persistence.Table;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
+@Entity
 
-@Entity // This tells Hibernate to make a table out of this class
-@Table(name = "agent")
-@SessionScope
-@Component
 public class Agent {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
