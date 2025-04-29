@@ -57,6 +57,13 @@ requests.add(new Request()
                 .setObjectId(presentationChartId)));
 https://www.guldresourcewizard.com:8443/scr/
 
+curl -O 
+
+
+
+
+
+THIW https://download.java.net/java/GA/jdk24/1f9ff9062db4449d8ca828c504ffae90/36/GPL/openjdk-24_linux-aarch64_bin.tar.gz
 
 https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=
 https://console.developers.google.com/apis/credentials/oauthclient/${your_client_id}?project=wizard-295315
