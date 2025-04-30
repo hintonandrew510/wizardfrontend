@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<title>Wizard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/publish.css">
+<link rel="stylesheet" href="css/extra.css">
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- BEGIN Pre-requisites -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+	
+</script>
+<script src="https://apis.google.com/js/client:platform.js?onload=start"
+	async defer>
+	
+</script>
+<script src="js/googleslide.js"></script>
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="js/ClientObjectivesOnePageControl.js"></script>
+<script src="js/media.js"></script>
+<script src="js/currency.js"></script>
+<script src="js/presentationNavigation.js"></script>
+
+
+<script>
+	function printPage() {
+		document.getElementById("shareForm").submit();
+	}
+
+	function gotoSection(elementToScroll) {
+		console.group("gotoSection");
+		console.log("section [" + elementToScroll + "]");
+
+		var elmnt = document.getElementById(elementToScroll);
+		elmnt.scrollIntoView();
+		console.groupEnd();
+	}
+
+	function share() {
+		window.print();
+	}
+	function goBack() {
+		window.history.back();
+	}
+</script>
+</head>
+<body>
+<!-- Add where you want your sign-in button to render -->
+<!-- Use an image that follows the branding guidelines in a real app -->
+
+<script>
+  $('#signinButton').click(function() {
+    // signInCallback defined in step 6.
+    auth2.grantOfflineAccess().then(signInCallback);
+  });
+</script>
+	<script>
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
+		});
+	</script>
+	<form id="shareForm" method="get" action="google"
+		autocomplete="off">
+		<input type="hidden" id="encryptId" th:value="${encryptId}"
+			name="encryptId" />
+			<input type="hidden" id="authCodeId" 
+			name="authCodeId" />
+	</form>
+	<div class="content">
+
+
+
+
+		<div class="w3-container" id="wizard">
+			<!-- outer div  -->
+			<code hidden>presentedToPage</code>
+			<section>
+				<div th:if="${PublishModel.presentedToPage}">
+					<!-- replace presentToFragment slide 1 begin -->
+					<div
+						th:replace="fragments/PresentedToPageFragment :: PresentedToPage"></div>
+					<!-- replace presentToFragment end -->
+				</div>
+
+			</section>
+			<code hidden>teamCommitmentPage</code>
+			<section>
+
+				<div th:if="${PublishModel.teamCommitmentPage}">
+					<!-- replace teamCommitmentPageFragment  slide 2 begin -->
+					<div
+						th:replace="fragments/TeamCommitmentPageFragment :: TeamCommitmentPage"></div>
+					<!-- replace TeamCommitmentPageFragment end -->
+				</div>
+			</section>
+
+			<!-- replace marketPlaceCompetitionPage slide 3 begin -->
+			<code hidden>marketPlaceCompetitionPage</code>
+			<section>
+				<div th:if="${PublishModel.marketPlaceCompetitionPage}">
+					<div
+						th:replace="fragments/MarketPlaceCompetitionPageFragment :: MarketPlaceCompetitionPage"></div>
+				</div>
+			</section>
+
+			<!-- replace ClientObjectivesFragment slide 4 begin -->
+			<code hidden>clientObjectivesPage</code>
+			<section>
+				<div th:if="${PublishModel.clientObjectivesPage}">
+					<div
+						th:replace="fragments/ClientObjectivesFragment :: ClientObjectivesPage"></div>
+				</div>
+			</section>
+
+
+			<!-- replace StrategicMarketingPageTwoFragment begin slide 5-->
+			<div th:if="${PublishModel.strategicMarketingPageOne}">
+				<div
+					th:replace="fragments/StrategicMarketingPageTwoFragment :: StrategicMarketingPageTwo"></div>
+			</div>
+
+			<!-- replace TargetMarketingPage begin slide 6-->
+			<div th:if="${PublishModel.targetMarketingPage}">
+				<div
+					th:replace="fragments/TargetMarketingPageFragment :: TargetMarketingPage"></div>
+			</div>
+
+
+			<!-- replace ConfidentialClientEvaluationPageDataFragment slide 7 begin -->
+			<div th:if="${PublishModel.confidentialClientEvaluationOnePage}">
+				<div
+					th:replace="fragments/ConfidentialClientEvaluationPageDataFragment :: ConfidentialClientEvaluationPageData"></div>
+			</div>
+
+
+
+			<!-- replace ConfidentialClientEvaluationLastYearPage slide 8 begin -->
+			<div th:if="${PublishModel.confidentialClientEvaluationOnePage}">
+				<div
+					th:replace="fragments/ConfidentialClientEvaluationLastYearPageFragment :: ConfidentialClientEvaluationLastYearPage"></div>
+			</div>
+
+
+
+
+			<!-- replace ConfidentialClientEvaluationProposedPage slide 9 begin -->
+			<div th:if="${PublishModel.confidentialClientEvaluationProposedPage}">
+				<div
+					th:replace="fragments/ConfidentialClientEvaluationProposedPageFragment :: ConfidentialClientEvaluationProposedPage"></div>
+			</div>
+
+
+	
+
+
+
+			
+			
+
+			
+
+			<!-- replace LongRangeStrategicPlansPage slide 10 begin -->
+			<div
+				th:replace="fragments/LongRangeStrategicPlansFragment :: LongRangeStrategicPlansPage"></div>
+
+			<!-- replace AdvantagesLongRange slide 11 begin -->
+			<div
+				th:replace="fragments/AdvantagesLongRangeFragment :: AdvantagesLongRange"></div>
+
+
+
+
+			<!-- replace PlanAMediaPage slide 12 begin -->
+			<div th:if="${PublishModel.planAMediaPage}">
+				<div
+					th:replace="fragments/PlanAMediaPagePageFragment :: PlanAMediaPage"></div>
+			</div>
+
+			
+
+			<!-- replace PlanAProposedPage begin slide 13-->
+			<div th:if="${PublishModel.planAProposedPage}">
+				<div
+					th:replace="fragments/PlanAProposedPageFragment :: PlanAProposedPage"></div>
+			</div>
+
+			<!-- replace PlanABEPPage slide 14 begin -->
+			<div th:if="${PublishModel.planABEPPage}">
+				<div th:replace="fragments/PlanABEPPageFragment :: PlanABEPPage"></div>
+			</div>
+
+			<!-- replace PlanALifetimeValuedPageFragment slide 15 begin -->
+			<div th:if="${PublishModel.planALifetimeValuedPage}">
+				<div
+					th:replace="fragments/PlanALifetimeValuedPageFragment :: PlanALifetimeValuedPage"></div>
+			</div>
+
+
+			<!-- replace PlanADigitalROICalculatorPageFragment slide 16 begin -->
+			<div th:if="${PublishModel.planADigitalROICalculatorPage}">
+				<div
+					th:replace="fragments/PlanADigitalROICalculatorPageFragment :: PlanADigitalROICalculator"></div>
+			</div>
+
+			<!-- replace PlanBMediaPage slide 17 begin -->
+			<div th:if="${PublishModel.planBMediaPage}">
+				<div
+					th:replace="fragments/PlanBMediaPagePageFragment :: PlanBMediaPage"></div>
+			</div>
+
+			
+
+
+
+
+
+			<!-- replace PlanBProposedPage slide 18 begin -->
+			<div th:if="${PublishModel.planBProposedPage}">
+				<div
+					th:replace="fragments/PlanBProposedPageFragment :: PlanBProposedPage"></div>
+			</div>
+
+			<!-- replace PlanBBEPPage  slide 19 begin -->
+			<div th:if="${PublishModel.planBBEPPage}">
+				<div th:replace="fragments/PlanBBEPPageFragment :: PlanBBEPPage"></div>
+			</div>
+
+
+			<!-- replace PlanBLifetimeValuedPageFragment slide 20 begin -->
+			<div th:if="${PublishModel.planBLifetimeValuedPage}">
+				<div
+					th:replace="fragments/PlanBLifetimeValuedPageFragment :: PlanBLifetimeValuedPage"></div>
+			</div>
+
+
+
+			<!-- replace PlanBDigitalROICalculatorPageFragment slide 21 begin -->
+			<div th:if="${PublishModel.planBDigitalROICalculatorPage}">
+				<div
+					th:replace="fragments/PlanBDigitalROICalculatorPageFragment :: PlanBDigitalROICalculator"></div>
+			</div>
+
+
+			<!-- replace PlanAMediaPageFlightDatesFragment slide 22 begin -->
+			<div th:if="${PublishModel.planAMediaPage}">
+				<div
+					th:replace="fragments/PlanAMediaPageFlightDatesFragment :: PlanAMediaPageFlightDates"></div>
+			</div>
+
+			<!-- replace PlanBMediaPageFlightDatesFragment slide 23 begin -->
+			<div th:if="${PublishModel.planBMediaPage}">
+				<div
+					th:replace="fragments/PlanBMediaPageFlightDatesFragment :: PlanBMediaPageFlightDates"></div>
+			</div>
+
+
+			<!-- replace ClientPolicyAgreementPageFragment slide 24 begin -->
+			<div
+				th:replace="fragments/ClientPolicyAgreementPageFragment :: ClientPolicyAgreement"></div>
+
+
+			<!-- replace SalesServiceAgreementPageFragment slide 25 begin -->
+			<div
+				th:replace="fragments/SalesServiceAgreementPageFragment :: SalesServiceAgreement"></div>
+
+
+		</div>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			$('.CopyRightId').load("copyright.html");
+		});
+	</script>
+
+
+	<script
+		src="https://cdn.tiny.cloud/1/d5s7yeul5jnhtk9c7dv0oswtm488cvisrrsq0i3zwb5rkr0b/tinymce/5/tinymce.min.js"></script>
+	<script>
+		tinymce
+				.init({
+					selector : '.editor',
+					height : 1300,
+					toolbar : false,
+					statusbar : false,
+					menubar : false,
+					plugins : [
+							'advlist autolink lists link image charmap print preview anchor',
+							'searchreplace visualblocks code fullscreen',
+							'insertdatetime media table paste code help wordcount' ],
+					content_css : [ 'css/extra.css' ],
+					content_style : [ 'body { font-family: Verdana,sans-serif; }' ]
+				});
+	</script>
+
+
+
+
+</body>
+
+</html>

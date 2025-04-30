@@ -1,0 +1,161 @@
+<!DOCTYPE>
+<html ng-app="myapp" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Web Client</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+
+
+<style type="text/css">
+body>.container {
+	padding-top: 40px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	padding-top: 5px;
+	background-color: #3c3c3c;
+	color: #e8e3e3;
+}
+
+.border {
+	border: 1px solid;
+}
+
+.fixed-height {
+	position: fixed;
+	top: 140px;
+	bottom: 40px;
+	overflow-y: scroll;
+}
+
+.message {
+	border-bottom: 1px solid #bebebe;
+	padding: 10px;
+}
+
+.message .sender {
+	font-size: 13px;
+}
+
+.message .subject {
+	font-size: 14px;
+	color: #807e7e;
+}
+
+.message .date {
+	font-size: 11px;
+	color: #333232;
+}
+
+.email-header {
+	position: fixed;
+	width: 100%;
+	padding: 20px;
+	background-color: #d9d6d6;
+	color: #5a5959;
+}
+
+.email-header .row div:first-child {
+	color: #000 !important;
+}
+
+.email-body {
+	padding-top: 100px;
+}
+
+@media screen and (max-width: 1000px) {
+	.email-body {
+		padding-top: 160px;
+	}
+}
+</style>
+
+</head>
+
+<body>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="/home">Home</a></li>
+					<li class="active"><a href="#">Create Category</a></li>
+					<li><a href="#contact">Contact</a></li>
+
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<!-- Begin page content -->
+	<div class="container">
+		<div class="page-header">
+			<h2>Category</h2>
+		</div>
+
+
+		<div>
+
+			<form method="get" action="/addCategory">
+				<div class="form-group">
+					<label for="exampleInputEmail1">Category name</label> 
+					<input required="required"
+						type="text" class="form-control" id="name" name="name"
+						aria-describedby="nameHelp" placeholder="Enter name"> 
+						<small
+						id="nameHelp" class="form-text text-muted">Please enter a descriptive name.</small>
+				</div>
+				
+				
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<p>&copy; Footer content here.</p>
+		</div>
+	</footer>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+
+	<script type="text/javascript">
+		var app = angular.module('myapp', [ 'ui.bootstrap' ]).controller(
+				'TabsDemoCtrl', function($scope, $window) {
+
+					// Demo Logic to Manipulate No of Objects on left
+					$scope.number = 16;
+					$scope.getNumber = function(num) {
+						return new Array(num);
+					}
+				});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<div th:fragment="PlanAExcelPage" class="grad container pageBreakInside"
+	style="height: 100%;">
+
+	<div th:if="${PublishModel.planAExcelPage}">
+		<!-- replace PlanAExcelPage begin -->
+		<div>
+			<a id="PlanAExcelPage"></a>
+			<p class="text-justify"></p>
+
+
+		</div>
+
+
+
+
+
+
+		<div class="whiteGrad">
+			<h1 class="text-center w3-text-black">Proposed Schedule – Plan A
+			</h1>
+			<div class="w3-row">
+				<div class="w3-col m12">
+					<textarea class="editor mce-content-body" id="textareaId"
+						name="textareaId" th:text="${PlanAExcelPageModel?.textArea}" />
+				</div>
+
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+
+		<button class="w3-btn w3-white"
+			onclick="javascript:gotoAnchor(19,'down');">Next</button>
+		<button class="w3-btn w3-white"
+			onclick="javascript:gotoAnchor(17,'up');">Previous</button>
+		<button class="w3-btn w3-white" onclick="history.back()">Go
+			Back</button>
+
+	</div>
+	<div class="w3-row">
+		<div class="CopyRightId w3-col m8"></div>
+		<div class=" w3-col m2"></div>
+		<div align="right" class="w3-col m2">-CONFIDENTIAL- 18</div>
+	</div>
+</div>
+
+</div>

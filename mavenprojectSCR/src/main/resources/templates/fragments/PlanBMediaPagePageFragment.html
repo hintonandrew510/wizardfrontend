@@ -1,0 +1,136 @@
+
+<!-- begin of PlanBMediaPageTofragment -->
+<div th:fragment="PlanBMediaPage"
+	class="grad w3-container pageBreakInside">
+	<div th:if="${PublishModel.planBMediaPage}">
+		<!-- determine if we show PlanBMediaPagePage content -->
+		<div class="whiteGrad" style="line-height: 1;">
+			<a id="PlanBMediaPage"></a>
+			<h1 class="text-center w3-text-black">Proposed Schedule – Plan B</h1>
+			<h2 class="text-center w3-text-black">BUDGET BREAKOUT BY MONTH
+				(For Next 12 Months)</h2>
+			<h2 class="text-center w3-text-black">Proposed Media Plan</h2>
+			<h2 th:text="${PresentedToPage?.station}"
+				class="text-center w3-text-black">station</h2>
+
+
+			<div id="columnchart_values" style="width: 100%; height: 100%;"></div>
+
+			<div style="padding-bottom: 2%;">
+				<div class="box green col-p-2"></div>
+				<div class="col-p-2">Spike Months</div>
+				<div class="box red col-p-2"></div>
+				<div class="col-p-2">Slow Months</div>
+				<div class="box blue col-p-2"></div>
+				<div class="col-p-2">Brand Equity Months</div>
+			</div>
+		</div>
+		<!-- end of white content -->
+
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(24,'down');">Next</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(22,'up');">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">
+				Go Back</button>
+
+		</div>
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 17</div>
+		</div>
+	</div>
+	<!-- end of if statement -->
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var station = /*[[${PresentedToPage?.station}]]*/'unknown';
+		var jan = /*[[${PlanBMediaPage.jan}]]*/'jan';
+		var feb = /*[[${PlanBMediaPage.feb}]]*/'feb';
+		var apr = /*[[${PlanBMediaPage.apr}]]*/'apr';
+		var mar = /*[[${PlanBMediaPage.mar}]]*/'mar';
+
+		var may = /*[[${PlanBMediaPage.may}]]*/'may';
+		var jun = /*[[${PlanBMediaPage.jun}]]*/'jun';
+		var jul = /*[[${PlanBMediaPage.jul}]]*/'jul';
+
+		var aug = /*[[${PlanBMediaPage.aug}]]*/'aug';
+		var sep = /*[[${PlanBMediaPage.sep}]]*/'sep';
+		var oct = /*[[${PlanBMediaPage.oct}]]*/'oct';
+		var nov = /*[[${PlanBMediaPage.nov}]]*/'nov';
+		var dec = /*[[${PlanBMediaPage.dec}]]*/'dec';
+
+		var janColor = /*[[${PlanBMediaPage.janColor}]]*/'janColor';
+		var febColor = /*[[${PlanBMediaPage.febColor}]]*/'febColor';
+		var aprColor = /*[[${PlanBMediaPage.aprColor}]]*/'aprColor';
+		var marColor = /*[[${PlanBMediaPage.marColor}]]*/'marColor';
+
+		var mayColor = /*[[${PlanBMediaPage.mayColor}]]*/'mayColor';
+		var junColor = /*[[${PlanBMediaPage.junColor}]]*/'junColor';
+		var julColor = /*[[${PlanBMediaPage.julColor}]]*/'julColor';
+
+		var augColor = /*[[${PlanBMediaPage.augColor}]]*/'augColor';
+		var sepColor = /*[[${PlanBMediaPage.sepColor}]]*/'sepColor';
+		var octColor = /*[[${PlanBMediaPage.octColor}]]*/'octColor';
+		var novColor = /*[[${PlanBMediaPage.novColor}]]*/'novColor';
+		var decColor = /*[[${PlanBMediaPage.decColor}]]*/'decColor';
+
+		google.charts.setOnLoadCallback(drawChartPlanBMediaPage);
+
+		function drawChartPlanBMediaPage() {
+			console.group("drawChartPlanBMediaPage");
+			var data = google.visualization.arrayToDataTable([
+					[ "Element", "Month", {
+						role : "style"
+					} ], [ "Jan", jan, janColor ], [ "Feb", feb, febColor ],
+					[ "Mar", mar, marColor ], [ "Apr", apr, aprColor ],
+					[ "May", may, mayColor ], [ "Jun", jun, junColor ],
+					[ "Jul", jul, julColor ], [ "Aug", aug, augColor ],
+					[ "Sep", sep, sepColor ], [ "Oct", oct, octColor ],
+					[ "Nov", nov, novColor ], [ "Dec", dec, decColor ] ]);
+
+			//format data
+			var formatter = new google.visualization.NumberFormat({
+				negativeColor : 'red',
+				negativeParens : true,
+				pattern : '$###,###'
+			});
+			formatter.format(data, 1);
+
+			var view = new google.visualization.DataView(data);
+			view.setColumns([ 0, 1, {
+				calc : "stringify",
+				sourceColumn : 1,
+				type : "string",
+				role : "annotation"
+			}, 2 ]);
+			var options = {
+				width : '50%',
+				height : 600,
+				bar : {
+					groupWidth : "95%"
+				},
+				vAxis : {
+					format : '$###,###'
+				},
+				legend : {
+					position : "none"
+				},
+			};
+			var chartB = new google.visualization.ColumnChart(document
+					.getElementById("columnchart_values"));
+			chartB.draw(view, options);
+
+			console.groupEnd();
+		}
+
+		/*]]>*/
+	</script>
+
+
+</div>
+<!-- end of PlanBMediaPagefragment -->

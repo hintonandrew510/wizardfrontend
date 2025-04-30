@@ -1,0 +1,121 @@
+<!-- begin of SalesServiceAgreementPageFragment -->
+<div th:fragment="SalesServiceAgreement"
+	class="grad w3-container pageBreakInside">
+
+
+
+	<div>
+		<a id="SalesServiceAgreementPage"></a>
+
+
+
+	</div>
+
+	<div class="whiteGrad">
+		<div align="center">
+			<h1>Sales Service Agreement</h1>
+
+		</div>
+		<div class="bold-text" align="center"><i>This Sales Service Agreement is part of our
+			Consumer Satisfaction Index Program (CSI) which is meant to build and
+			serve long-term alliances. Please help me know how well we are
+			servicing you by grading each of the following segments 1 to 5 with 5
+			being the highest.</i></div>
+		<div style="padding-top: 5%;">
+			<h2 class="text-center">
+				This agreement is between <span
+					th:text="${PresentedToPage?.station}"></span> & <span
+					th:text="${PresentedToPage?.clientBusinessName}"></span>
+			</h2>
+		</div>
+		<div style="padding-top: 3%; padding-left: 2%;">
+			<h2>CONTINUOUS BASIC SERVICE</h2>
+		</div>
+		<div class="w3-row" style="padding-left: 2%;">
+			<div class="w3-col m10">
+				<ul class="list">
+					<li>The Marketing Representative has a full understanding of
+						my business needs, goals and objectives.</li>
+					<li>He/she has been in constant contact to make sure that the
+						program is running as planned.</li>
+					<li>Statement/Invoice questions have been handled in a timely
+						fashion.</li>
+					<li>Client calls have been returned within a reasonable time
+						frame.</li>
+					<li>Promises have been kept and commitments have been honored
+						at all times.</li>
+					<li>The overall service experience rating I would give my
+						Marketing Representative.</li>
+					<li>The marketing program has met my expectations given the
+						time period it has been running.</li>
+					<li>How likely I would be to recommend someone else to this group.</li>
+				</ul>
+			</div>
+
+			<div class="w3-col m2">
+				<ul class="list" style="list-style-type: none">
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					<li>_____</li>
+					
+				</ul>
+			</div>
+
+		</div>
+
+
+		<div style="padding-top: 5%; padding-bottom: 5%; padding-left: 5%;">
+
+			
+		
+			
+			
+			
+			
+			<div class="b w3-row">
+					<div class="w3-col w3-container m6">
+						<hr class="new4" />
+					</div>
+					<div class="w3-col w3-container m6">
+						<hr class="new4" />
+					</div>
+
+				</div>
+			<div class="b w3-row">
+					<div class="w3-col w3-container m3">Signed by Integrated Marketing Consultant</div>
+					<div class="w3-col w3-container m3">Date</div>
+
+					<div class="w3-col w3-container m3">Signed by Client</div>
+					<div class="w3-col w3-container m3">Date</div>
+
+				</div>
+
+
+		</div>
+
+
+
+	</div>
+	<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(1,'up');">Top</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(31,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+	</div>
+	<div class="w3-row">
+		<div class="CopyRightId w3-col m8"></div>
+		<div class=" w3-col m2"></div>
+		<div align="right" class="w3-col m2">-CONFIDENTIAL- 25</div>
+	</div>
+
+</div>
+<!-- end of if statement -->
+
+</div>
+<!-- end of PresentedTofragment -->

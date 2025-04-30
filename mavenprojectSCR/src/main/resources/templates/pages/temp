@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4 border">
+                <h2> Media items </h2>
+                
+            </div>
+            <div class="col-8 border">
+               <h2 class="text-center" >Monthly Values </h2>
+                <form>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="ex1">Jan</label>
+                            <input class="form-control" id="jan" type="text" name="jan">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex2">Feb</label>
+                            <input class="form-control" id="feb" type="text" name="feb">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex3">Mar</label>
+                            <input class="form-control" id="mar" type="text" name="mar">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="ex1">Apr</label>
+                            <input class="form-control" id="apr" type="text" name="apr">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex2">May</label>
+                            <input class="form-control" id="may" type="text" name="may">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex3">Jun</label>
+                            <input class="form-control" id="may" type="text" name="may">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="ex1">July</label>
+                            <input class="form-control" id="july" type="text" name="july">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex2">Aug</label>
+                            <input class="form-control" id="aug" type="text" name="aug">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex3">Sept</label>
+                            <input class="form-control" id="sept" type="text" name="sept">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label for="ex1">Oct</label>
+                            <input class="form-control" id="oct" type="text" name="oct">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex2">Nov</label>
+                            <input class="form-control" id="nov" type="text" name="nov">
+                        </div>
+                        <div class="col-4">
+                            <label for="ex3">Dec</label>
+                            <input class="form-control" id="dec" type="text" name="dec">
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+      <div class="row">
+       <div class="col-4">
+       </div>
+              <div class="col-8">
+              <button type="button" class="btn btn-success">Save</button>
+       </div>
+      
+      </div>
+    </div>
+
+</body>
+
+</html>

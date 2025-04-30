@@ -1,0 +1,86 @@
+       /*<![CDATA[*/
+			var app = angular.module('myApp', []);
+                 
+			var lastYearLabel1 =/*[[${dataPageModel?.lastYearLabel1}]]*/ ;
+			var lastYearValue1 =/*[[${dataPageModel?.lastYearValue1}]]*/ ;
+			 var lastYearLabel2 =/*[[${dataPageModel?.lastYearLabel2}]]*/ ;
+			 var lastYearValue2 =/*[[${dataPageModel?.lastYearValue2}]]*/ ;
+				var lastYearLabel3 =/*[[${dataPageModel?.lastYearLabel3}]]*/ ;
+				var lastYearValue3 =/*[[${dataPageModel?.lastYearValue3}]]*/ ;
+				var lastYearLabel4 =/*[[${dataPageModel?.lastYearLabel4}]]*/ ;
+				var lastYearValue4 =/*[[${dataPageModel?.lastYearValue4}]]*/ ;
+				var lastYearLabel5 =/*[[${dataPageModel?.lastYearLabel5}]]*/ ;
+				var lastYearValue5 =/*[[${dataPageModel?.lastYearValue5}]]*/ ;
+				var lastYearLabel6 =/*[[${dataPageModel?.lastYearLabel6}]]*/ ;
+				var lastYearValue6 =/*[[${dataPageModel?.lastYearValue6}]]*/ ;
+				
+			console.log ('lastYearLabel1 ' + lastYearLabel1);
+			app.controller('myCtrl', function($scope) {
+				
+				if (lastYearLabel1 != null)
+			        $scope.lastYearLabel1 = lastYearLabel1;
+     
+				if (lastYearValue1 != null) 
+					$scope.lastYearValue1=lastYearValue1;
+				
+				if (lastYearLabel2 != null) 
+					$scope.lastYearLabel2 = lastYearLabel2;
+				if (lastYearValue2 != null) 
+					$scope.lastYearValue2=lastYearValue2;
+				
+				if (lastYearLabel3 != null) 
+					$scope.lastYearLabel3 = lastYearLabel3;
+				if (lastYearValue3 != null) 
+					$scope.lastYearValue3=lastYearValue3;
+				
+			});
+			
+			
+			
+			
+			
+			
+			
+			
+
+                 var proposedLabel1 = /*[[${dataPageModel?.proposedLabel1}]]*/ '';
+		 var proposedValue1 = /*[[${dataPageModel?.proposedValue1}]]*/ '';
+	         var proposedLabel2 = /*[[${dataPageModel?.proposedLabel2}]]*/ '';
+		 var proposedValue2 = /*[[${dataPageModel?.proposedValue2}]]*/ '';	
+			
+	         var proposedLabel3 = /*[[${dataPageModel?.proposedLabel3}]]*/ '';
+		 var proposedValue3 = /*[[${dataPageModel?.proposedValue3}]]*/ '';
+	         var proposedLabel4 = /*[[${dataPageModel?.proposedLabel4}]]*/ '';
+		 var proposedValue4 = /*[[${dataPageModel?.proposedValue4}]]*/ '';	
+			
+	         var proposedLabel5 = /*[[${dataPageModel?.proposedLabel5}]]*/ '';
+		 var proposedValue5 = /*[[${dataPageModel?.proposedValue5}]]*/ '';
+	         var proposedLabel6 = /*[[${dataPageModel?.proposedLabel6}]]*/ '';
+		 var proposedValue6 = /*[[${dataPageModel?.proposedValue6}]]*/ '';	
+			
+		if (proposedLabel1 != null) 
+                    $("#proposedLabel1").val(proposedLabel1);
+		if (proposedValue1 != null) 	
+		    $("#proposedValue1").val(proposedValue1);
+		if (proposedLabel2 != null) 	
+	            $("#proposedLabel2").val(proposedLabel2);
+		if (proposedValue2 != null) 	
+		    $("#proposedValue2").val(proposedValue2);
+		 if (proposedLabel3 != null)       
+		    $("#proposedLabel3").val(proposedLabel3);
+		if (proposedValue3 != null) 	
+		    $("#proposedValue3").val(proposedValue3);
+		if (proposedLabel4 != null) 	
+	            $("#proposedLabel4").val(proposedLabel4);
+		if (proposedValue4 != null) 	
+		    $("#proposedValue4").val(proposedValue4);
+		if (proposedLabel5 != null) 
+		    $("#proposedLabel5").val(proposedLabel5);
+		if (proposedValue5 != null) 	
+		    $("#proposedValue5").val(proposedValue5);
+		if (proposedLabel6!= null) 	
+	            $("#proposedLabel6").val(proposedLabel6);
+		if (proposedValue6 != null) 	
+		    $("#proposedValue6").val(proposedValue6);	
+			
+                  /*]]>*/

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="Home21"/>
+  <runtime name="jdk21"/>
   <installed facet="cloudfoundry.standalone.app" version="1.0"/>
 </faceted-project>

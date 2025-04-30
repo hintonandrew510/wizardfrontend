@@ -1,0 +1,99 @@
+<div th:fragment="PlanAProposedPage"
+	class="grad container pageBreakInside" style="height: 100%;">
+
+
+	<div th:if="${PublishModel.planAProposedPage}" class="container"
+		style="padding-top: 1%;">
+
+		<div>
+			<a id="PlanAProposedPage"></a>
+			<p class="text-justify"></p>
+			
+
+		</div>
+
+
+		<div class="whiteGrad">
+             <h1 class="text-center" style="padding-bottom: 2%;">Proposed Schedule – Plan A  </h1>
+				
+				
+				<h2 style="padding-bottom: 1%;" class="bold-text text-center"
+					th:text="${PresentedToPage?.clientBusinessName}"></h2>
+		        
+		        <div style="line-height: 99%;">
+		        <p class="text-center bold-text subTitleText">Brand Equity Schedule</p>
+				
+				<p class="text-center bold-text subTitleText">Monthly Station Summary​</p>
+				</div>
+				
+				<div class="w3-row  topPadding">
+					<label class="bold-text" for="planAReach">Market: </label> <span id="planACity" th:text="${PlanAProposedPageModel?.planACity}"></span>
+				</div>
+				<div class="w3-row topPadding">
+					<label class="bold-text" for="planAReach">Average Projected Broadcast monthly
+						reach: </label> <span id="planAReachA" th:text="${PlanAProposedPageModel?.planAReach}"></span>
+				</div>
+                 <script>
+            var planAReachA = document.getElementById("planAReachA").innerHTML;
+            planAReachA = formatNumber(planAReachA); 
+            document.getElementById("planAReachA").innerHTML = planAReachA;
+            </script>
+
+				<div class="w3-row topPadding">
+					<label  class="bold-text"  for="planAFrequency">Average Projected Monthly
+						Broadcast Frequency: </label> <span
+						th:text="${PlanAProposedPageModel?.planAFrequency}"></span>
+				</div>
+				<div class="w3-row topPadding">
+					<label  class="bold-text" for=planADigitalImpressionsMonthly>Average Estimated
+						Monthly Digital Gross Impressions: </label> <span id="planADigitalImpressionsMonthlyA"
+						th:text="${PlanAProposedPageModel?.planADigitalImpressionsMonthly}"></span>
+				</div>
+				<script>
+            var planADigitalImpressionsMonthlyA = document.getElementById("planADigitalImpressionsMonthlyA").innerHTML;
+            planADigitalImpressionsMonthlyA = formatNumber(planADigitalImpressionsMonthlyA); 
+            document.getElementById("planADigitalImpressionsMonthlyA").innerHTML = planADigitalImpressionsMonthlyA;
+            </script>
+				
+				<div class="w3-row topPadding">
+					<label class="bold-text" for=planAMonthly>Average Base Monthly
+						Advertising Investment: </label> <span
+						th:text="${PlanAProposedPageModel?.planAMonthly}"></span>
+				</div>
+
+				<div class="w3-row topPadding">
+					<label class="bold-text" for=planADaily>Average Base Daily Advertising
+						Investment:</label> <span 
+						th:text="${PlanAProposedPageModel?.planADaily}"></span>
+				</div>
+
+
+		
+
+
+
+		</div>
+
+
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+	
+		<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(20,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(18,'up');">Previous</button>
+		<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 13     
+		      </div>	      
+		</div>
+		
+		
+	</div>
+
+</div>
+
+</div>

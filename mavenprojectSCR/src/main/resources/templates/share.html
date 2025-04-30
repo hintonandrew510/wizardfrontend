@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SCR</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="css/publish.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body class="grad w3-text-white">
+	<div class="w3-container">
+		<h1 class="text-center">Marketing Solutions</h1>
+		<h2 class="text-center">Summary, Conclusions, and
+			Recommendations</h2>
+		<div class="w3-card-8 text-center" style="width: 90%;">
+			<header class="w3-container" style="background-image: linear-gradient(green, black);">
+				<h2>
+					Hello <span th:text="${PresentedToPage?.clientContactName}">Mark</span> This presentation is provided by
+					 <span th:text="${PresentedToPage?.portfolioManagerName}">
+						Michael Guld </span>
+				</h2>
+			</header>
+			<div class="w3-container w3-large">
+				<p>
+					View the presentation:<mark> 
+					<span th:text="${link}">https://join.freeconferencecall.com/hintonandrew510
+					</span>
+					</mark>
+				</p>
+				<p>
+					
+					<a class="w3-button w3-yellow" th:href="${mailToMessage}" href="mailto:someone@yoursite.com?cc=someoneelse@theirsite.com, another@thatsite.com, me@mysite.com&bcc=lastperson@theirsite.com&subject=Big%20News&body=Body-goes-here">Send Email</a>
+					
+				</p>
+				<p>
+					For additional assistance connecting to the presentation please
+					called me by phone at: <span th:text="${PresentedToPage?.portfolioPhoneNumber}">7777777777777</span>
+				</p>
+			</div>
+			<p>
+				<button onclick="closePage()" type="button">Close And Return to Presentation</button>
+			</p>
+			<script>
+				function closePage() {
+					window.history.back();
+				}
+			</script>
+			<footer class="position-bottom" style="background-image: linear-gradient(green, black);">
+				<p>
+					<small>Copyright © 1984-2023 Executive Decision Systems,
+						Inc. and The Guld Resource Group, LLC. The data, formulas, and
+						other content in these materials are the property of Executive
+						Decision Systems, Inc. and The Guld Resource Group, LLC and are
+						protected by copyright and other intellectual property laws. No
+						part of these materials may be reproduced, distributed, or used in
+						any way without a license agreement or other written consent of
+						The Guld Resource Group, LLC permitting such use. All rights
+						reserved. To report violations, please call (804) 356-7006.</small>
+				</p>
+			</footer>
+		</div>
+
+
+	</div>
+
+</body>
+
+</html>
+

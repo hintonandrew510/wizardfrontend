@@ -1,0 +1,148 @@
+<div th:fragment="PlanBDigitalROICalculator"
+	class="grad container pageBreakInside" style="height: 100%;">
+	<div th:if="${PublishModel.planBDigitalROICalculatorPage}"
+		class="container" style="padding-top: 1%;">
+
+		<div>
+			<a id="PlanBDigitalROICalculator"></a>
+			<p class="text-justify"></p>
+
+
+		</div>
+
+
+		<div class="whiteGrad">
+			<div align="center">
+				<h1>Digital ROI Calculator – Plan B</h1>
+
+			</div>
+
+			<div class="w3-row rowPaddingTop">
+				<div class="w3-col bold-text m8 w3-center">A. Monthly Digital Investment</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyDigitalInvestment}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">B. Cost Per Thousand (CPM)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planACostPerThousand}">$100,000</div>
+				
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">C. Monthly Impressions (A/B *
+					1,000)</div>
+				<div class="w3-col m1 w3-center">=</div>
+				<div id="planAClosingPctNumber" class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAClosingPctNumber}">$100,000</div>
+					<script>
+					      var planAClosingPctNumber = document.getElementById("planAClosingPctNumber");
+					      var formattedPlanAClosingPctNumber = formatNumber(planAClosingPctNumber.innerHTML);
+					      planAClosingPctNumber.innerHTML = formattedPlanAClosingPctNumber;
+					</script>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">D. Click Through Rate (.01%,
+					.1%, etc.)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAClickThroughRate} + '%'">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">E. Monthly # Clicks (C*D)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyClicks}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">F. Cost Per Click (A/E)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planACostPerClicks}">$100,000</div>
+			</div>
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">G. Sales Conversion
+					Percentage (2%, 10%, etc.)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planASalesConversionPercentage} + '%'">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">H. Monthly Number of
+					Conversions (E*G)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyConversions ne null} ? ${PlanBDigitalROICalculatorPage?.planAMonthlyConversions} : '0'">$100,000</div>
+			</div>
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">I. Cost Per Conversion (A/H)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planACostPerConversion}">$100,000</div>
+			</div>
+
+
+
+
+		
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">J. Projected Gross Profit Per Conversion ($100, $1,000, etc.)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAProjectedGrossProfit}">$100,000</div>
+			</div>
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">K. Monthly Gross Profit Generated from all Conversions (H*J)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyGrossProfit}">$100,000</div>
+			</div>
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">L. $ Monthly Return on Investment (K-A)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyROID}">$100,000</div>
+			</div>
+
+	<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">M. % Monthly Return on Investment (L/A)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanBDigitalROICalculatorPage?.planAMonthlyROIP} + '%'">$100,000</div>
+			</div>
+
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+	
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(29,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(27,'up');">Previous</button>
+		<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 21</div>
+		</div>
+
+	</div>
+</div>

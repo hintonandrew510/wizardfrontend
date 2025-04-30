@@ -1,0 +1,44 @@
+<!-- begin of MarketingStrategiesFragment -->
+<div th:fragment="MarketingStrategiesPage"
+	class="grad container pageBreakInside" style="height: 100%;">
+
+	<div th:if="${PublishModel.marketingStrategiesPage}">
+
+		<div>
+			<a id="MarketingStrategiesPage"></a>
+			<p class="text-justify"></p>
+
+		</div>
+      
+  
+		<div class="whiteGrad mce-content-body">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+    			var message = /*[[${MarketingStrategiesPageModel?.textArea}]]*/ 'default';
+    			 document.write(unescape(message));
+			     console.log(message);
+
+			/*]]>*/
+				</script>	
+		</div>
+
+
+	<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(12,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(10,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+	
+	</div>
+		<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 11     
+		      </div>	      
+		</div>
+	</div>
+
+</div>

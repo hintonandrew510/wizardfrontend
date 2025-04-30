@@ -1,0 +1,129 @@
+<!-- begin of ConfidentialClientEvaluationProposedPage -->
+<div th:fragment="ConfidentialClientEvaluationProposedPage"
+	class="grad w3-container pageBreakInside">
+
+	<div th:if="${PublishModel.confidentialClientEvaluationProposedPage}">
+		<!-- determine if we show presentedToPage content -->
+
+		<div>
+			<a id="ConfidentialClientEvaluationProposedPage"></a>
+
+		</div>
+
+		<div class="whiteGrad">
+
+			<h1 class="text-center w3-text-black">Proposed Year’s Media
+				Allocation</h1>
+			<script>
+			// Load the Visualization API and the corechart package.
+            //google.charts.load('current', {'packages':['corechart']});
+
+
+           // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChartProposed);
+           
+            var totalAdvertisingInvestmentProposedValue=0;
+			var arrayChartDataPointProposed= [];
+			class ChartDataPointProposed {
+			    constructor(name, value) {
+			        this.name = name;
+			        this.value = value;
+			    }
+			}
+
+			function addChartDataPointProposed (name, value) {
+				console.group("addChartDataPointProposed");
+				//name = "'" + name +  "'";
+			          let x = new ChartDataPointProposed(name,value); 
+				      arrayChartDataPointProposed.push(x);
+				      console.groupEnd();
+			   
+			}
+
+			function drawChartProposed() {
+
+				   console.group("drawChartProposed");
+				   console.log("arrayChartDataPointProposed.length " + arrayChartDataPointProposed.length);
+				   var data = new google.visualization.DataTable();
+			           data.addColumn('string', 'Topping');
+			           data.addColumn('number', 'Slices');
+				
+				     for (i = 0; i < arrayChartDataPointProposed.length; i++) {
+			                   var name = arrayChartDataPointProposed[i].name;
+			                   var value = arrayChartDataPointProposed[i].value;
+			                   totalAdvertisingInvestmentProposedValue = totalAdvertisingInvestmentProposedValue + value;
+			                   console.log("totalAdvertisingInvestmentProposedValue " + totalAdvertisingInvestmentProposedValue);
+			                   data.addRow([name, value]);
+			          
+			        }//end of for
+			        totalAdvertisingInvestmentProposedValue = CurrencyFormatted(totalAdvertisingInvestmentProposedValue);
+			        document.getElementById("totalAdvertisingInvestmentProposedValue").innerHTML = totalAdvertisingInvestmentProposedValue;
+				      
+				     // Set chart options
+				        //var options = {'title':'Previous Year’s Media Allocation '};
+					var options = {
+        				width: '100%',
+				        is3D: true,
+                		       height: '100%',
+          
+             			chartArea: {
+            				left: "25%",
+            				top: "3%",
+            				height: "94%",
+            				width: "94%"
+            			  }
+        				};
+				
+					// find total to calc % manually
+					
+				
+				        // Instantiate and draw our chart, passing in some options.
+				        var chart = new google.visualization.PieChart(document.getElementById('piechart_3dProposed'));
+				        //chart.draw(data);
+				        chart.draw(data, options);
+			}
+
+
+			</script>
+
+			<script type="text/javascript" th:inline="javascript">
+				/*<![CDATA[*/
+				
+
+				/*[# th:each="chartData : ${ConfidentialClientEvaluationOnePageLastYearChartProposedModel}"]*/
+
+					addChartDataPointProposed(/*[[${chartData.label}]]*/, /*[[${chartData.labelValue}]]*/); // Add a row with a string and a date value.
+					
+				/*[/]*/	
+					
+
+               /*]]>*/
+			</script>
+			<div id="chart_wrap">
+				<div id="piechart_3dProposed"></div>
+			</div>
+			<div>
+				Total Advertising Investment (TAI): <span
+					id="totalAdvertisingInvestmentProposedValue"></span>
+			</div>
+			<script>
+	     
+			     
+			</script>
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(10,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(8,'up');">Previous</button>
+		<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 9</div>
+		</div>
+		<!-- end of if statement -->
+
+	</div>
+	<!-- end of ConfidentialClientEvaluationProposedPage -->

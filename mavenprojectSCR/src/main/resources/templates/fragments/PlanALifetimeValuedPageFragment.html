@@ -1,0 +1,117 @@
+<div th:fragment="PlanALifetimeValuedPage"
+	class="grad container pageBreakInside" style="height: 100%;">
+	<div th:if="${PublishModel.planALifetimeValuedPage}" class="container"
+		style="padding-top: 1%;">
+
+		<div>
+			<a id="PlanALifetimeValuedPage"></a>
+			<p class="text-justify"></p>
+
+
+		</div>
+
+
+		<div class="whiteGrad" style="padding-top: 1%;">
+			<div align="center">
+				<h1>Lifetime Value Analysis – Plan A</h1>
+
+			</div>
+
+			<div class="w3-row rowPaddingTop">
+				<div class="w3-col bold-text m8 w3-center">A. Average sale (ticket,
+					transaction, invoice)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.averageSale}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">B. Times gross profit margin
+					on average sale (sale less cost of goods sold)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.grossProfitMargin} + '%'">$100,000</div>
+				
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">C. Equals gross profit per
+					average sale (A*B)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.grossProfitPerSale}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">D. Times the average repeat
+					sales per year (per customer/client)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.averageRepeatSales}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">E. Equals the average
+					customer/client value per year (C*D)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.averageCustomerValue}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">F. Times the average number
+					of years of patronage</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.yearsOfPatronage}">$100,000</div>
+			</div>
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">G. Equals the lifetime value
+					of one customer/client (E*F)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.lifetimeValuePerCustomer}">$100,000</div>
+			</div>
+
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">H. So if your base monthly
+					advertising investment averages</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				
+				<div class="w3-col m2 numberident underline" th:text="${PlanAProposedPageModel?.planAMonthly ne null} ? ${PlanAProposedPageModel?.planAMonthly} : '0'">$100,000</div>
+			</div>
+
+			<div class="w3-row rowPaddingInnerTop">
+				<div class="w3-col bold-text m8 w3-center">I. Then monthly
+					customers/clients needed to break even (H/G)</div>
+				<div class="w3-col m1 w3-center ">=</div>
+				<div class="w3-col m2 numberident underline"
+					th:text="${PlanALifetimeValuedPageModel?.prospectsNeededToBreakEven}">$100,000</div>
+			</div>
+
+
+
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		
+		<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(22,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(20,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 15</div>
+		</div>
+
+	</div>
+</div>

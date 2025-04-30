@@ -1,0 +1,6 @@
+${MYSQL_URL:jdbc:mysql://localhost/petclinic}
+
+jdbc:mysql://localhost/petclinic -
+
+
+"jdbc:mysql://localhost/test?"user=minty&password=greatsqldb

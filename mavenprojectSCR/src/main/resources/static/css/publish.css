@@ -1,0 +1,1004 @@
+.copyRight:before {
+  content: "Copyright © 1984-2025 Executive Decision Systems,Inc. and The Guld Resource Group, LLC. The data, formulas, and all other content in these materials are the property of Executive Decision Systems, Inc. and The Guld Resource Group, LLC and are protected by copyright and other intellectual property laws. No part of these materials may be reproduced, distributed, or used in any way without a license agreement or other written consent of The Guld Resource Group, LLC permitting such use. All rightsreserved. To report violations, please call (804) 356-7006.";
+}
+.arrow-text {
+	font-size: 1.3em;
+	
+	padding-top: 2.15%;
+}
+.arrow-text-middle {
+	padding-left: 9%;
+}
+.arrow_dim {
+	padding-left: 2%;
+	padding-right: 2%;
+	
+}
+.numberident {
+	text-indent: 2em;
+}
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+
+.subTitleText {
+    font-style: italic;
+    font-size: 30px;
+}
+svg:path.green {
+	fill: #002b00;
+}
+/* width: 250px; */
+img.longrange {
+	
+ 	width: 200px;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.bordered {
+            width: 200px;
+            height: 100px;
+            margin-top: 12px;
+            border-spacing: 45px;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+.center-ol
+{
+ list-style-position: inside;
+}
+
+ol.center-ol li
+{
+
+ margin-left: 25%;
+ padding: 5px 0px;
+}
+ol.center-ol1 li::before {
+  content: "";
+  width: 20px;
+  display: inline-block;
+}
+
+.tableHeader table th{
+  background-color: green;
+  color: white;
+
+}
+.flight {
+	text-indent: 3em;
+	font-size: 1.8em;
+}
+
+label {
+color: black;
+/*font-weight: bold;*/
+
+}
+
+.topPadding {
+	padding-top: 2%;
+	padding-left: 20%;
+	font-size: 1.275em; /* 30px/16=1.875em */
+}
+
+.hide {
+	 visibility: hidden;
+}
+.position-bottom {
+  position: absolute;
+  
+  bottom: 0;
+
+}
+.list {
+
+	line-height:200%;
+	padding-left:2%;
+
+
+}
+.firstMarketRevenue:after {
+  content:"\A \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 #1 in Market Revenue ";
+  white-space: pre; /* or pre-wrap */
+}
+
+.secondMarketRevenue:after {
+  content:"\A \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 #2 in Market Revenue ";
+  white-space: pre; /* or pre-wrap */
+}
+.thirdMarketRevenue:after {
+  content:"\A \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 #3 in Market Revenue ";
+  white-space: pre; /* or pre-wrap */
+}
+
+.fourthMarketRevenue:after {
+  content:"\A \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0 #4 in Market Revenue ";
+  white-space: pre; /* or pre-wrap */
+}
+
+
+
+
+/* signature & title part */
+.completed-by, .signature, .title  { float: left; }
+.signature, .title { 
+  margin: 20px 10px;
+  border-top: 1px solid #000;
+  width: 220px; 
+  text-align: center;
+}
+hr.dark {
+  border: 2px solid black;
+  font-weight: bold;
+}
+/* phone & date part */
+ .date > .line, .phone > .line {
+  display: inline-block;
+  border-bottom: 1px solid #000;
+  width: 100px; 
+}
+/* Thick red border */
+hr.new4 {
+	line-height: 80%;
+  border: 1px solid black;
+}
+.bold-text,h1,legend {
+  font-weight: bold;
+}
+
+.highlight {
+  font-weight: bold;
+  background-color: #FFFF00;
+}
+
+.left-indent-small {
+	padding-left:2%;
+}
+.left-indent-small-sub {
+	padding-left:4%;
+}
+.left-indent {
+	padding-left:3%;
+}
+
+.left-indent-sub {
+	padding-left:5%;
+}
+
+.fill-arrow-green {
+  fill: #002b00;
+}
+.fill-arrow-yellow {
+  fill: #7f7e05;
+}
+.arrow-width {
+	width: 90%;
+}
+.arrow-black {
+      width: 228px;
+      height: 50px;
+       top: 20px;
+      background-color: black;
+      border: 1px solid #999;
+      position: relative;
+    }
+    .arrow-black:after {
+      content: '';
+      position: absolute;
+      top: -22px;
+      left: 228px;
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      border-left: 32px solid black;
+    }
+    
+    
+    .arrow-green {
+      width: 228px;
+      height: 50px;
+       top: 20px;
+      background-color: #006600;
+      border: 1px solid #999;
+      position: relative;
+    }
+    .arrow-green:after {
+      content: '';
+      position: absolute;
+      top: -22px;
+      left: 228px;
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      border-left: 32px solid #006600;
+    }
+    
+    
+    .arrow-green-yellow {
+      width: 228px;
+      height: 50px;
+       top: 20px;
+      background-color: #6D734F;
+      border: 1px solid #999;
+      position: relative;
+    }
+    .arrow-green-yellow:after {
+      content: '';
+      position: absolute;
+      top: -22px;
+      left: 228px;
+      width: 0;
+      height: 0;
+      border: 50px solid transparent;
+      border-left: 32px solid #6D734F;
+    }
+    
+
+.box {
+	width: 5px;
+	height: 5px;
+}
+
+.curved-text {
+  border: 2px solid black;
+  width: 140px;
+  height: 20px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.numbers {
+	line-height: 10px;
+}
+
+.thick {
+	font-weight: bold;
+}
+
+.inner {
+	width: 80%;
+	margin: 0 auto;
+}
+div.sign {
+    width:  1px;
+    border-top: 2px solid black;
+}
+
+
+.extend-underline u:after {
+	content: "\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+}
+u {
+font-size: 1.275em;	
+}
+
+
+input.underline {
+	border: 0;
+	width: 100px;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid black;
+}
+
+.red {
+	background: red;
+}
+
+.green {
+	background: green;
+}
+
+.blue {
+	background: blue;
+}
+
+.chartwrap {
+	border: 1px solid gray;
+	position: relative;
+	padding-left: 5%;
+	height: 0;
+	overflow: hidden;
+}
+#chart_wrap {
+    border: 1px solid gray;
+    position: relative;
+    padding-bottom: 100%;
+    height: 0;
+    overflow: hidden;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
+
+input {
+	border: none;
+}
+
+#piechart_3d,
+#piechart_3dProposed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.chart_div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div.curved-text {
+	border: 3px solid black;
+	border-radius: 7px;
+	padding: 8px;
+	background-color: white;
+	color: #000;
+	text-align: center;
+	width: 150px;
+	font-weight: bold;
+}
+
+.grad {
+	padding: 2%;
+	color: white;
+	min-height: 800px;
+	height: auto !important;
+	height: 800px;
+	background-image: linear-gradient(#0a1c31, #d7d3a6);
+	/* Standard syntax (must be last) */
+}
+
+
+.full-width-div {
+	position: absolute;
+	width: 100%;
+	left: 0;
+}
+
+.whiteGrad {
+	padding: 2%;
+	min-height: 700px;
+	font-size: 1.0275em; /* 30px/16=1.875em */
+	position: relative;
+	color: black;
+	background-image: linear-gradient(white, white);
+	/* Standard syntax (must be last) */
+}
+
+.text-center {
+	text-align: center;
+}
+
+#chart_wrap {
+	position: relative;
+	padding-bottom: 100%;
+	height: 0;
+	overflow: hidden;
+}
+
+.chart_div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.full-width-div {
+	position: absolute;
+	width: 100%;
+	left: 0;
+}
+
+.whiteGrad {
+	padding: 1%;
+	color: black;
+	background-image: linear-gradient(white, white);
+	height: 100%;
+	/* Standard syntax (must be last) */
+}
+
+.underline {
+border-bottom: 1px solid black;
+}
+
+.col-p-1,
+.col-p-2,
+.col-p-3,
+.col-p-4,
+.col-p-5,
+.col-p-6,
+.col-p-7,
+.col-p-8,
+.col-p-9,
+.col-p-10,
+.col-p-11,
+.col-p-12 {
+	float: left;
+	position: relative;
+	min-height: 1px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.col-p-12 {
+	width: 100%;
+}
+
+.col-p-11 {
+	width: 91.66666667%;
+}
+
+.col-p-10 {
+	width: 83.33333333%;
+}
+
+.col-p-9 {
+	width: 75%;
+}
+
+.col-p-8 {
+	width: 66.66666667%;
+}
+
+.col-p-7 {
+	width: 58.33333333%;
+}
+
+.col-p-6 {
+	width: 50%;
+}
+
+.col-p-5 {
+	width: 41.66666667%;
+}
+
+.col-p-4 {
+	width: 33.33333333%;
+}
+
+.col-p-3 {
+	width: 25%;
+}
+
+.col-p-2 {
+	width: 16.66666667%;
+}
+
+.col-p-1 {
+	width: 8.33333333%;
+}
+
+.col-p-pull-12 {
+	right: 100%;
+}
+
+.col-p-pull-11 {
+	right: 91.66666667%;
+}
+
+.col-p-pull-10 {
+	right: 83.33333333%;
+}
+
+.col-p-pull-9 {
+	right: 75%;
+}
+
+.col-p-pull-8 {
+	right: 66.66666667%;
+}
+
+.col-p-pull-7 {
+	right: 58.33333333%;
+}
+
+.col-p-pull-6 {
+	right: 50%;
+}
+
+.col-p-pull-5 {
+	right: 41.66666667%;
+}
+
+.col-p-pull-4 {
+	right: 33.33333333%;
+}
+
+.col-p-pull-3 {
+	right: 25%;
+}
+
+.col-p-pull-2 {
+	right: 16.66666667%;
+}
+
+.col-p-pull-1 {
+	right: 8.33333333%;
+}
+
+.col-p-pull-0 {
+	right: auto;
+}
+
+.col-p-push-12 {
+	left: 100%;
+}
+
+.col-p-push-11 {
+	left: 91.66666667%;
+}
+
+.col-p-push-10 {
+	left: 83.33333333%;
+}
+
+.col-p-push-9 {
+	left: 75%;
+}
+
+.col-p-push-8 {
+	left: 66.66666667%;
+}
+
+.col-p-push-7 {
+	left: 58.33333333%;
+}
+
+.col-p-push-6 {
+	left: 50%;
+}
+
+.col-p-push-5 {
+	left: 41.66666667%;
+}
+
+.col-p-push-4 {
+	left: 33.33333333%;
+}
+
+.col-p-push-3 {
+	left: 25%;
+}
+
+.col-p-push-2 {
+	left: 16.66666667%;
+}
+
+.col-p-push-1 {
+	left: 8.33333333%;
+}
+
+.col-p-push-0 {
+	left: auto;
+}
+
+.col-p-offset-12 {
+	margin-left: 100%;
+}
+
+.col-p-offset-11 {
+	margin-left: 91.66666667%;
+}
+
+.col-p-offset-10 {
+	margin-left: 83.33333333%;
+}
+
+.col-p-offset-9 {
+	margin-left: 75%;
+}
+
+.col-p-offset-8 {
+	margin-left: 66.66666667%;
+}
+
+.col-p-offset-7 {
+	margin-left: 58.33333333%;
+}
+
+.col-p-offset-6 {
+	margin-left: 50%;
+}
+
+.col-p-offset-5 {
+	margin-left: 41.66666667%;
+}
+
+.col-p-offset-4 {
+	margin-left: 33.33333333%;
+}
+
+.col-p-offset-3 {
+	margin-left: 25%;
+}
+
+.col-p-offset-2 {
+	margin-left: 16.66666667%;
+}
+
+.col-p-offset-1 {
+	margin-left: 8.33333333%;
+}
+
+.col-p-offset-0 {
+	margin-left: 0%;
+}
+
+
+
+@media print {
+	
+	 @page {size: A4 landscape;min-height:1500px; max-width:100%}
+	.whiteGrad {
+	padding: 2%;
+	width: 90%;
+    height:90%;
+	
+	
+	margin: auto;
+	margin-top: 0px !important;
+	border: 1px solid;
+	color: black;
+	background-image: linear-gradient(white, white);
+	/* Standard syntax (must be last) */
+}
+	body {
+		-webkit-print-color-adjust: exact;
+		/*chrome & webkit browsers*/
+		color-adjust: exact;
+	    min-height:2000px;
+	
+		/*firefox & IE */
+	}
+	.divPrint * {
+		visibility: visible;
+	}
+	/* Always insert a page break after the element */
+	.always-page-break-after,
+	.always-pba {
+		page-break-after: always;
+	}
+	/* Avoid page break after the element (if possible) */
+	.avoid-page-break-after,
+	.avoid-pba {
+		page-break-after: avoid;
+	}
+	/* Insert page breaks after the element so that the next page is formatted as a left page */
+	.left-page-break-after,
+	.left-pba {
+		page-break-after: left;
+	}
+	/* Insert page breaks after the element so that the next page is formatted as a right page */
+	.right-page-break-after,
+	.right-pba {
+		page-break-after: right;
+	}
+	/* Always insert a page break before the element */
+	.always-page-break-before,
+	.always-pbb {
+		page-break-before: always;
+	}
+	/* Avoid page break before the element (if possible) */
+	.avoid-page-break-before,
+	.avoid-pbb {
+		page-break-before: avoid;
+	}
+	/* Insert page breaks before the element so that the next page is formatted as a left page */
+	.left-page-break-before,
+	.left-pbb {
+		page-break-before: left;
+	}
+	/* Insert page breaks before the element so that the next page is formatted as a right page */
+	.right-page-break-before,
+	.right-pbb {
+		page-break-before: right;
+	}
+	/* Avoid page break inside the element (if possible) */
+	.avoid-page-break-inside,
+	.avoid-pbi {
+		page-break-inside: avoid;
+		width: 3;
+	}
+	.centerDev {
+		margin: auto;
+		width: 60%;
+		padding: 50px;
+	}
+	/* Hide link's href URL in print. */
+	.pageBreakBefore {
+		background-color: black !important;
+		font-size: medium !important;
+		color: black !important;
+		-webkit-print-color-adjust: exact !important;
+		display: block;
+		/*height: 100vh;*/
+		page-break-before: always;
+		/* print information */
+	}
+	.pageBreakAfter {
+		background-color: black !important;
+		font-size: medium !important;
+		color: black !important;
+		-webkit-print-color-adjust: exact !important;
+		page-break-after: avoid;
+	}
+	.pageBreakInside {
+		background-color: black !important;
+		font-size: medium !important;
+		color: blue !important;
+		-webkit-print-color-adjust: exact !important;
+		page-break-inside: avoid;
+	}
+
+	.d-print-none {
+		display: none !important;
+	}
+}
+
+
+/*  */
+
+
+/*# sourceMappingURL=bootstrap-print.css.map */
+
+.vertical-center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+p.big {
+	line-height: 1.8;
+}
+
+.flip {
+	transform: scale(-1, 1);
+}
+
+.some-page-wrapper {
+	margin: 15px;
+	border-color: red;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+
+
+.column-right {
+display: flex;
+	height: 100px;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+	/*align-items: flex-end;
+	justify-content: flex-end;*/
+	text-align: right;
+}
+
+.column-right.normal {
+	border: 1px solid black;
+}
+
+.column-right.dark-left {
+	border-left: 3px solid black;
+}
+
+.column-right.dark-right {
+	border-right: 3px solid black;
+}
+
+.column-right.dark-bottom {
+	border-bottom: 3px solid black;
+}
+
+.column-right.dark-top {
+	border-top: 3px solid black;
+}
+
+.column-right.no-border {
+	border: none;
+}
+
+.column-right.no-border-right {
+	border-right: none;
+}
+
+.column-right.top-header {
+	background-color: yellow;
+	font-size: large;
+	font-weight: bold;
+}
+
+.column-right.sub-header {
+	font-size: large;
+	font-weight: bold;
+}
+
+
+.column-left {
+		display: flex;
+		text-indent: 15px;
+	height: 100px;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+	/*align-items: flex-start;
+	justify-content: flex-start;*/
+	text-align: left;
+}
+
+.column-left.normal {
+	border: 1px solid black;
+}
+
+.column-left.dark-left {
+	border-left: 3px solid black;
+}
+
+.column-left.dark-right {
+	border-right: 3px solid black;
+}
+
+.column-left.dark-bottom {
+	border-bottom: 3px solid black;
+}
+
+.column-left.dark-top {
+	border-top: 3px solid black;
+}
+
+.column-left.no-border {
+	border: none;
+}
+
+.column-left.no-border-right {
+	border-right: none;
+}
+
+.column-left.top-header {
+	background-color: yellow;
+	font-size: large;
+	font-weight: bold;
+}
+
+.column-left.sub-header {
+	font-size: large;
+	font-weight: bold;
+}
+
+.column {
+	display: flex;
+	height: 100px;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
+
+.column.normal {
+	border: 1px solid black;
+}
+
+.column.dark-left {
+	border-left: 3px solid black;
+}
+
+.column.dark-right {
+	border-right: 3px solid black;
+}
+
+.column.dark-bottom {
+	border-bottom: 3px solid black;
+}
+
+.column.dark-top {
+	border-top: 3px solid black;
+}
+
+.column.no-border {
+	border: none;
+}
+
+.column.no-border-right {
+	border-right: none;
+}
+
+.column.top-header {
+	background-color: yellow;
+	font-size: large;
+	font-weight: bold;
+}
+
+.column.sub-header {
+	font-size: large;
+	font-weight: bold;
+}
+
+input[type="checkbox"] {
+	-webkit-appearance: initial;
+	appearance: initial;
+	background: gray;
+	width: 40px;
+	height: 40px;
+	border: none;
+	position: relative;
+}
+
+input[type="checkbox"]:checked {
+	background: red;
+}
+
+input[type="checkbox"]:checked:after {
+	/* Heres your symbol replacement */
+	content: "X";
+	color: #fff;
+	/* The following positions my tick in the center, 
+         * but you could just overlay the entire box
+         * with a full after element with a background if you want to */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	/*
+         * If you want to fully change the check appearance, use the following:
+         * content: " ";
+         * width: 100%;
+         * height: 100%;
+         * background: blue;
+         * top: 0;
+         * left: 0;
+         */
+}
+.strategicMarketingII_question {
+	padding-top: 2%;padding-left: 4%;
+	
+}
+.strategicMarketingII_question_sub {
+	padding-top: 2%;padding-left: 6%;
+	
+}
+.strategicMarketingII_question_sub2 {
+	padding-left: 6%;
+	
+}
+.strategicMarketingII_answer_sub {
+	padding-left: 8%;
+	
+}
+.strategicMarketingII_answer {
+	padding-left: 6%;
+	
+}

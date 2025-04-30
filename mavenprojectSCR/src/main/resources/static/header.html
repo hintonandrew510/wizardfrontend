@@ -1,0 +1,126 @@
+
+<!-- intro end-->
+<!-- navbar-->
+<!--
+<script type="text/javascript" src="js/log4javascript.js"></script> 
+<script type="text/javascript">
+			// <![CDATA[
+			var mediaLog = log4javascript.getLogger("main");
+			var appender = new log4javascript.BrowserConsoleAppender();
+			mediaLog.addAppender(appender);
+			
+			
+			
+		
+
+			// ]]>
+</script>
+-->
+<script type="text/javascript">
+	var id = sessionStorage.getItem("ID");
+	console.log("id = " + id);
+
+	function openWindow(page) {
+		var pageURL = page + "?ID=" + id;
+		location.href = pageURL;
+		//window.open(pageURL);
+	}
+	var consoleVisible = false;
+
+	function turnOnConsole() {
+		try {
+
+			if (consoleVisible) {
+				appender.hide();
+
+				consoleVisible = false;
+			} else {
+				appender.show();
+
+				consoleVisible = true;
+			}
+
+			appender.show();
+		} catch (err) {
+			console.log(err);
+		}
+
+	}
+</script>
+
+<header class="header">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a href="#intro" class="navbar-brand link-scroll"><img
+				src="./img/wizard.png" alt="" class="img-fluid"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="wizards">Wizard/SCR</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Pages
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="javascript:openWindow('PresentedToPage');">Presented To</a>
+          <a class="dropdown-item" href="#">Team Commitment</a>
+          <a class="dropdown-item" href="javascript:openWindow('MarketPlaceCompetitionPage');">Marketplace Competition</a>
+          <a class="dropdown-item" href="javascript:openWindow('ClientObjectivesOnePage');">Client Objectives</a> 
+         <a class="dropdown-item" href="javascript:openWindow('ClientObjectivesOnePageTwo');">Client Objectives II</a>
+          
+          
+          <a class="dropdown-item" href="javascript:openWindow('StrategicMarketingPageOne');">Strategic Marketing I</a>
+          <a class="dropdown-item" href="javascript:openWindow('StrategicMarketingPageThree');">Strategic Marketing II</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('TargetMarketingPage');">Target Marketing</a>
+          <a class="dropdown-item" href="javascript:openWindow('ConfidentialClientEvaluationOnePage');">Confidential Client Evaluation</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('ConfidentialClientEvaluationOnePage');">Confidential Client Evaluation</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanAProposedPage');">Plan A Proposed Schedule</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('PlanABEPPage');">Plan A EDS Break Even Point Analysis (BEP)</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanALifetimeValuedPage');">Plan A Lifetime Value Analysis</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('PlanADigitalROICalculatorPage');">Plan A Digital ROI Calculator</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanBProposedPage');">Plan B Proposed Schedule</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('PlanBBEPPage');">Plan B EDS Break Even Point Analysis (BEP)</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanBLifetimeValuedPage');">Plan B Lifetime Value Analysis</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanBDigitalROICalculatorPage');">Plan B Digital ROI Calculator</a>
+          
+          <a class="dropdown-item" href="javascript:openWindow('PlanAMediaPage');">Plan A Proposed 12 Month Media Investment</a>
+          <a class="dropdown-item" href="javascript:openWindow('PlanBMediaPage');">Plan B Proposed 12 Month Media Investment</a>
+             
+             
+        
+        </div>
+      </li>
+      <li class="nav-item"><a href="googleprofile"
+							class="nav-link link-scroll">Google Profile</a></li>
+      <li class="nav-item"><a href="about"
+							class="nav-link link-scroll">About</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="logout">Logout</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+	
+</header>

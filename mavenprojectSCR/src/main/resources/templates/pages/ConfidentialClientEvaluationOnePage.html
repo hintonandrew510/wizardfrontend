@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Confidential Client Evaluation I</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+<!-- Bootstrap CSS-->
+
+
+
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/icon.png">
+<link rel="stylesheet" href="css/scr.css">
+</head>
+
+<body>
+	<!-- Begin page content -->
+	<!--- start header container -->
+	<div id="headerId"></div>
+	<div class="container" style="padding-top: 1%;">
+		<style>
+.media {
+	padding: 1%;
+}
+</style>
+		<form ng-app="myApp" ng-controller="myCtrl" method="post"
+			action="saveConfidentialClientEvaluationOnePage" autocomplete="off">
+			<fieldset>
+				<legend>
+					(9 of 19) Confidential Client Evaluation - <span
+						th:text="${wizard.name}"></span>
+				</legend>
+				<p>A. What was spent last year in:</p>
+				<div class="row media">
+					<div class="col-6">Media:</div>
+					<div class="col-6">Amount:</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel1}" maxlength="50"
+							class="form-control"  id="lastYearLabel1" name="lastYearLabel1"
+							
+							 />
+					</div>
+					<div class="col-6">
+						<input type="text" 
+ 					        th:value="${dataPageModel?.lastYearValue1}"
+ 						autofocus="autofocus" onfocus="this.select()"
+                            class="form-control" id="lastYearValue1" 
+							maxlength="50" ng-model="lastYearValue1" data-type="currency"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="lastYearValue1" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input maxlength="50" th:value="${dataPageModel?.lastYearLabel2}" type="text" autofocus="autofocus" onfocus="this.select()" 	
+						
+							class="form-control" id="lastYearLabel2" name="lastYearLabel2" />
+					</div>
+					<div class="col-6">
+						<input maxlength="50" type="text"  class="form-control"
+							id="lastYearValue2" 
+							autofocus="autofocus" onfocus="this.select()"
+							 th:value="${dataPageModel?.lastYearValue2}"
+ 					      
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="lastYearValue2" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input maxlength="50" th:value="${dataPageModel?.lastYearLabel3}" type="text" autofocus="autofocus" onfocus="this.select()" oninput="changeProposed(document.getElementById('lastYearLabel3'),document.getElementById('proposedLabel3'))"
+						
+							class="form-control" id="lastYearLabel3" name="lastYearLabel3" />
+					</div>
+					<div class="col-6">
+						<input maxlength="50" type="text"  class="form-control"
+							id="lastYearValue3" 
+							 th:value="${dataPageModel?.lastYearValue3}"
+ 					      
+ 					    	  autofocus="autofocus" onfocus="this.select()"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="lastYearValue3" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input maxlength="50" 
+						 
+						 type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel4}"
+							class="form-control" id="lastYearLabel4" name="lastYearLabel4" />
+					</div>
+					<div class="col-6">
+						<input maxlength="50"  type="text" class="form-control"
+							id="lastYearValue4" 
+							autofocus="autofocus" onfocus="this.select()"
+							 th:value="${dataPageModel?.lastYearValue4}"
+ 					      
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="lastYearValue4" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input maxlength="50" th:value="${dataPageModel?.lastYearLabel5}" type="text" autofocus="autofocus" onfocus="this.select()" 
+						
+							class="form-control" id="lastYearLabel5" name="lastYearLabel5" />
+					</div>
+					<div class="col-6">
+						<input maxlength="50"  type="text"  class="form-control"
+							id="lastYearValue5" 
+							 th:value="${dataPageModel?.lastYearValue5}"
+ 					       
+ 					        	autofocus="autofocus" onfocus="this.select()"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="lastYearValue5" />
+					</div>
+				</div>
+				
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel6}"
+						      class="form-control"
+							id="lastYearLabel6" name="lastYearLabel6" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" id="lastYearValue6"
+							data-type="currency"
+							autofocus="autofocus" onfocus="this.select()"
+							 th:value="${dataPageModel?.lastYearValue6}"
+ 					       
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="lastYearValue6" />
+					</div>
+				</div>
+				
+					<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel7}" 
+						
+                   class="form-control"
+							id="lastYearLabel7" name="lastYearLabel7" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" id="lastYearValue7"
+						 th:value="${dataPageModel?.lastYearValue7}"
+ 					      
+ 					    	 autofocus="autofocus" onfocus="this.select()"
+							 data-type="currency"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="lastYearValue7" />
+					</div>
+				</div>
+				
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel8}" 
+							
+						class="form-control"
+							id="lastYearLabel8" name="lastYearLabel8" />
+					</div>
+					<div class="col-6">
+						<input type="text"   class="form-control" id="lastYearValue8"
+							 data-type="currency"
+							 autofocus="autofocus" onfocus="this.select()"
+							  th:value="${dataPageModel?.lastYearValue8}"
+ 					   
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="lastYearValue8" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.lastYearLabel9}"  
+						
+	                     
+                            class="form-control"
+							id="lastYearLabel9" name="lastYearLabel9" />
+					</div>
+					<div class="col-6">
+						<input type="text" class="form-control" id="lastYearValue9"
+							data-type="currency"
+							autofocus="autofocus" onfocus="this.select()"
+							 th:value="${dataPageModel?.lastYearValue9}"
+ 					     
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="lastYearValue9" />
+					</div>
+				</div>			
+				
+				<div class="row media">
+					<div class="col-6">Total Media Investment:</div>
+					<div class="col-6">
+						<input type="text" class="form-control" id="totalMediaInvestment"
+							th:value="${dataPageModel?.totalMediaInvestment}" readonly tabindex="-1" 
+							name="totalMediaInvestment" />
+					</div>
+				</div>
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2">B.</div>
+							<div class="col-10">
+								<input type="text" maxlength="50" readonly tabindex="-1" 
+									th:value="${dataPageModel?.totalMediaInvestment}"
+									class="form-control" data-type="currency"
+									pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									id="totalMediaInvestmentInput" name="totalMediaInvestmentInput">
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2">/</div>
+							<div class="col-10">
+							<div class="input-group mb-3">
+								<input readonly tabindex="-1"  type="number" maxlength="50"
+									th:value="${dataPageModel?.pctTAIGrossSalesLastYear}"
+									class="form-control" id="pctTAIGrossSalesLastYear"
+									name="pctTAIGrossSalesLastYear">
+								<div class="input-group-append"><span class="input-group-text">%</span></div>		
+				            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2">=</div>
+
+							<div class="col-10">
+								<input type="text"  maxlength="50"
+								    onClick="canCopy(false)"
+									th:value="${dataPageModel?.grossSalesLastyear}"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									class="form-control" id="grossSalesLastyear"
+									name="grossSalesLastyear">
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">
+								<div class="row">Total Advertising Investment</div>
+								<div class="row">(TAI) Last 12 Months</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">Adv % of Gross Sales</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2"></div>
+
+							<div class="col-10">Gross Sales Last Year</div>
+
+						</div>
+
+
+
+					</div>
+				</div>
+
+
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2">C.</div>
+							<div class="col-10">
+								<input data-type="currency"
+								
+									autofocus="autofocus" onfocus="this.select()"
+									pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" type="text" 
+									maxlength="50" th:value="${dataPageModel?.taiNext12Months}"
+									class="form-control" id="taiNext12Months"
+									name="taiNext12Months">
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2">/</div>
+							<div class="col-10">
+							<div class="input-group mb-3">
+								<input type="number" th:value="${dataPageModel?.pctGrossSales}"
+								autofocus="autofocus" onfocus="this.select()"
+									class="form-control" maxlength="50" readonly tabindex="-1"  id="pctGrossSales"
+									name="pctGrossSales">
+								<div class="input-group-append"><span class="input-group-text">%</span></div>		
+				            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2">=</div>
+
+							<div class="col-10">
+								<input type="text" 
+								
+									autofocus="autofocus" onfocus="this.select()"
+									th:value="${dataPageModel?.estimatedGrossSalesNext12Months}"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									class="form-control" id="estimatedGrossSalesNext12Months"
+									name="estimatedGrossSalesNext12Months">
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+
+
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">
+								<div class="row">Total Advertising Investment (TAI)</div>
+								<div class="row">Next 12 Months</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">Adv % of Gross Sales</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2"></div>
+
+							<div class="col-10">Estimated Gross Sales Next 12 Months</div>
+
+						</div>
+
+
+
+					</div>
+				</div>
+
+
+				<p>D. Proposed 12 Month Media Allocation:</p>
+				<div class="row media">
+					<div class="col-6">Media:  <button onclick="setProposedValues()" type="button">Copy</button>  </div>
+					<div class="col-6">Amount:</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" maxlength="50" th:value="${dataPageModel?.proposedLabel1}"
+							class="form-control"  id="proposedLabel1" name="proposedLabel1" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" id="proposedValue1" 
+							autofocus="autofocus" onfocus="this.select()"
+							maxlength="50" th:value="${dataPageModel?.proposedValue1}" data-type="currency"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="proposedValue1" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.proposedLabel2}" maxlength="50" 
+							class="form-control" id="proposedLabel2" name="proposedLabel2" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" id="proposedValue2" 
+							th:value="${dataPageModel?.proposedValue2}" data-type="currency"
+							
+								autofocus="autofocus" onfocus="this.select()"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="proposedValue2" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" maxlength="50" th:value="${dataPageModel?.proposedLabel3}"
+							class="form-control" id="proposedLabel3" name="proposedLabel3" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" maxlength="50" 
+						
+							autofocus="autofocus" onfocus="this.select()"
+							id="proposedValue3" th:value="${dataPageModel?.proposedValue3}"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue3" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.proposedLabel4}" maxlength="50" 
+							class="form-control" id="proposedLabel4" name="proposedLabel4" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" id="proposedValue4" 
+						
+							autofocus="autofocus" onfocus="this.select()"
+							maxlength="50" th:value="${dataPageModel?.proposedValue4}" data-type="currency"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" name="proposedValue4" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input maxlength="50" type="text" autofocus="autofocus" onfocus="this.select()" th:value="${dataPageModel?.proposedLabel5}"
+							class="form-control" id="proposedLabel5" name="proposedLabel5" />
+					</div>
+					<div class="col-6">
+						<input maxlength="50" type="text" class="form-control" 
+							id="proposedValue5" th:value="${dataPageModel?.proposedValue5}"
+							
+								autofocus="autofocus" onfocus="this.select()"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue5" />
+					</div>
+				</div>
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" maxlength="50" th:value="${dataPageModel?.proposedLabel7}"
+							class="form-control" id="proposedLabel6" name="proposedLabel6" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" maxlength="50" 
+							id="proposedValue6" th:value="${dataPageModel?.proposedValue6}"
+							
+								autofocus="autofocus" onfocus="this.select()"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue6" />
+					</div>
+				</div>
+					<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()" maxlength="50" th:value="${dataPageModel?.proposedLabel7}"
+							class="form-control" id="proposedLabel7" name="proposedLabel7" />
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" maxlength="50" 
+						
+							autofocus="autofocus" onfocus="this.select()"
+							id="proposedValue7" th:value="${dataPageModel?.proposedValue7}"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue7" />
+					</div>
+				</div>
+				
+				
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" autofocus="autofocus" onfocus="this.select()"  maxlength="50" th:value="${dataPageModel?.proposedLabel8}"
+							class="form-control" id="proposedLabel8" name="proposedLabel8" />
+					</div>
+					<div class="col-6">
+						<input type="text" class="form-control" maxlength="50" 
+						   
+						    	autofocus="autofocus" onfocus="this.select()"
+							id="proposedValue8" th:value="${dataPageModel?.proposedValue8}"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue8" />
+					</div>
+				</div>
+				
+				<div class="row media">
+					<div class="col-6">
+						<input type="text" th:value="${dataPageModel?.proposedLabel9}" maxlength="50" 
+							class="form-control" id="proposedLabel9" name="proposedLabel9"  autofocus="autofocus" onfocus="this.select()"/>
+					</div>
+					<div class="col-6">
+						<input type="text"  class="form-control" maxlength="50" 
+						   
+						    	autofocus="autofocus" onfocus="this.select()"
+							id="proposedValue9" th:value="${dataPageModel?.proposedValue9}"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							name="proposedValue9" />
+					</div>
+				</div>			
+				<div class="row media">
+					<div class="col-6">Total Media Investment:</div>
+					<div class="col-6">
+						<input  class="form-control"
+							id="totalMediaInvestmentTwo"
+							th:value="${dataPageModel?.totalMediaInvestmentTwo}" readonly tabindex="-1" 
+							name="totalMediaInvestmentTwo" />
+					</div>
+				</div>
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2">E.</div>
+							<div class="col-10">
+								<input type="text"  maxlength="50"
+								   
+								    	autofocus="autofocus" onfocus="this.select()"
+									th:value="${dataPageModel?.taiShouldBe}" data-type="currency"
+									pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" class="form-control"
+									id="taiShouldBe" name="taiShouldBe" oninput="totalRow()"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2">/</div>
+							<div class="col-10">
+							<div class="input-group mb-3">
+								<input type="number"
+									th:value="${dataPageModel?.industryAverage}"
+									 class="form-control" id="industryAverage"
+									name="industryAverage" readonly tabindex="-1" >
+								<div class="input-group-append"><span class="input-group-text">%</span></div>		
+				            </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2">=</div>
+
+							<div class="col-10">
+								<input type="text"  th:value="${dataPageModel?.salesGoals}"
+								data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+								
+									autofocus="autofocus" onfocus="this.select()"
+									oninput="totalRow()" class="form-control" id="salesGoals" name="salesGoals">
+							</div>
+
+						</div>
+
+
+					</div>
+				</div>
+
+				<div class="row media">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">
+								<div class="row">Stretch Goal Total Advertising</div>
+								<div class="row">Investment (TAI) Next 12 Months</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+						<div class="row">
+							<div class="col-2"></div>
+							<div class="col-10">
+								<div class="row ">Adv % of Gross Sales</div>
+								<div class="row" style="color: red;">(using industry
+									average or if</div>
+
+								<div class="row" style="color: red;">not known the current
+									Adv %</div>
+								<div class="row" style="color: red;">of gross sales)</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-4 ">
+
+						<div class="row">
+
+							<div class="col-2"></div>
+
+							<div class="col-10">
+								<div class="row">Stretch Sales Goal</div>
+								<div class="row">For Next 12 Months</div>
+							</div>
+
+						</div>
+
+
+
+					</div>
+
+					<div
+						class="form-group custom-control custom-switch-extra custom-switch custom-switch-md">
+						<input name="excluded" id="excluded"
+							th:checked="${wizardData?.excluded}" type="checkbox"
+							class="custom-control-input"> <label for="excluded"
+							class="custom-control-label">Exclude from presentation</label>
+					</div>
+
+
+					<div class="container" style="padding-top: 2%;">
+
+
+
+
+						<input type="hidden" id="nextPage"
+							th:value="'redirect:/PlanAProposedPage?ID=' + ${wizard.encrypt}"
+							name="nextPage" /> <input type="hidden" id="previousPage"
+							th:value="'redirect:/TargetMarketingPage?ID=' + ${wizard.encrypt}"
+							name="previousPage" /> <input type="hidden" id="publishPage"
+							th:value="'redirect:/Publish?ID=' + ${wizard.encrypt}"
+							name="publishPage" /> <input type="hidden" id="wizardId"
+							th:value="${wizard.encrypt}" name="wizardId" /> <input
+							type="hidden" id="wizarddataid"
+							th:value="${wizardData?.wizarddataid}" name="wizarddataid" /> <input
+							name="next" type="submit" value="Next" class="btn btn-primary"
+							style="background-color: #C0B879;" /> <input name="publish"
+							type="submit" value="Publish" class="btn btn-primary"
+							style="background-color: #C0B879;" /> <input name="previous"
+							value="Previous" type="submit" class="btn btn-primary"
+							style="background-color: #C0B879;" />
+			</fieldset>
+		</form><div id="wizardCopyRightId"></div>
+		<div id="wizardCopyRightId"></div>
+		<div class="container" style="padding-top: 2%;">
+
+			<div class="progress">
+				<div class="progress-bar" role="progressbar" aria-valuenow="5"
+					aria-valuemin="0" aria-valuemax="100"
+					style="width: 36%; background-color: #C0B879;">36%</div>
+			</div>
+		</div>
+	</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+
+
+	<script src="js/currency.js "></script>
+	<script src="js/ConfidentialClientEvaluationOnePage.js"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
+			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
+			
+		});
+		/*]]>*/
+	</script>
+	
+
+
+
+</body>
+
+</html>

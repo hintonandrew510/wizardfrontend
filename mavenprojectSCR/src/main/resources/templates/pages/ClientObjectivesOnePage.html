@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>(4 of 19) Client Objectives</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+<!-- Bootstrap CSS-->
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet" href="css/scr.css">
+<script src="js/ClientObjectivesOnePageControl.js">
+</script>
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/icon.png">
+
+</head>
+<body>
+
+
+	<!-- Begin page content -->
+	<!--- start header container -->
+
+	<div id="headerId"></div>
+	<div class="container" style="padding-top: 1%;">
+
+		<div>
+			<form method="post" action="saveClientObjectivesOnePage" autocomplete="off">
+				<fieldset>
+					<legend>
+						(4 of 19) Client Objectives - <span th:text="${wizard.name}"></span>
+					</legend>
+
+					<fieldset>
+						<legend>PRODUCT / SERVICE</legend>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="introduceNewDepartment"
+									type="checkbox"
+									th:checked="${dataPageModel?.introduceNewDepartment}">
+									
+									<span id="introduceNewDepartmentLabel">
+									<script>
+									addLabel("introduceNewDepartmentLabel");
+									</script>
+									
+									</span>
+									</label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="featureSpecificProducts"
+									type="checkbox"
+									th:checked="${dataPageModel?.featureSpecificProducts}">
+									<span id="featureSpecificProductsLabel">
+									<script>
+									addLabel("featureSpecificProductsLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input
+									name="callAttentiontoBrandsPrivateLabelsCarried"
+									type="checkbox"
+									th:checked="${dataPageModel?.callAttentiontoBrandsPrivateLabelsCarried}">
+									<span id="callAttentiontoBrandsPrivateLabelsCarriedLabel">
+									<script>
+									addLabel("callAttentiontoBrandsPrivateLabelsCarriedLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="promoteOffPriceItemsServices"
+									type="checkbox"
+									th:checked="${dataPageModel?.promoteOffPriceItemsServices}">
+									<span id="promoteOffPriceItemsServicesLabel">
+									<script>
+									addLabel("promoteOffPriceItemsServicesLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="utilizeCoopVendorDollars"
+									type="checkbox"
+									th:checked="${dataPageModel?.utilizeCoopVendorDollars}">
+									<span id="utilizeCoopVendorDollarsLabel">
+									<script>
+									addLabel("utilizeCoopVendorDollarsLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+
+					</fieldset>
+
+					<fieldset>
+						<legend>CONSUMER</legend>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="retainCurrentConsumers"
+									type="checkbox"
+									th:checked="${dataPageModel?.retainCurrentConsumers}">
+									<span id="retainCurrentConsumersLabel">
+									<script>
+									addLabel("retainCurrentConsumersLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="increaseCustomerVisits"
+									type="checkbox"
+									th:checked="${dataPageModel?.increaseCustomerVisits}">
+									<span id="increaseCustomerVisitsLabel">
+									<script>
+									addLabel("increaseCustomerVisitsLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="increaseTrafficLeadCalls"
+									type="checkbox"
+									th:checked="${dataPageModel?.increaseTrafficLeadCalls}">
+									<span id="increaseTrafficLeadCallsLabel">
+									<script>
+									addLabel("increaseTrafficLeadCallsLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="expandTargetConsumers"
+									type="checkbox"
+									th:checked="${dataPageModel?.expandTargetConsumers}">
+									<span id="expandTargetConsumersLabel">
+									<script>
+									addLabel("expandTargetConsumersLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="changeConsumerAttitudes"
+									type="checkbox"
+									th:checked="${dataPageModel?.changeConsumerAttitudes}">
+									<span id="changeConsumerAttitudesLabel">
+									<script>
+									addLabel("changeConsumerAttitudesLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+
+					</fieldset>
+
+
+					<fieldset>
+						<legend>PROMOTION</legend>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="makePromotionalEventsStronger"
+									type="checkbox"
+									th:checked="${dataPageModel?.makePromotionalEventsStronger}">
+									<span id="makePromotionalEventsStrongerLabel">
+									<script>
+									addLabel("makePromotionalEventsStrongerLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="increaseDigitalMobileOnlineResponse"
+									type="checkbox"
+									th:checked="${dataPageModel?.increaseDigitalMobileOnlineResponse}">
+									<span id="increaseDigitalMobileOnlineResponseLabel">
+									<script>
+									addLabel("increaseDigitalMobileOnlineResponseLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="quarterlySeasonalCampaign"
+									type="checkbox"
+									th:checked="${dataPageModel?.quarterlySeasonalCampaign}">
+									<span id="quarterlySeasonalCampaignLabel">
+									<script>
+									addLabel("quarterlySeasonalCampaignLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="developDatabaseMarketing"
+									type="checkbox"
+									th:checked="${dataPageModel?.developDatabaseMarketing}">
+									<span id="developDatabaseMarketingLabel">
+									<script>
+									addLabel("developDatabaseMarketingLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="initiateCauseMarketingProgram"
+									type="checkbox"
+									th:checked="${dataPageModel?.initiateCauseMarketingProgram}">
+									<span id="initiateCauseMarketingProgramLabel">
+									<script>
+									addLabel("initiateCauseMarketingProgramLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="developSpeciallyStagedEvent"
+									type="checkbox"
+									th:checked="${dataPageModel?.developSpeciallyStagedEvent}">
+									<span id="developSpeciallyStagedEventLabel">
+									<script>
+									addLabel("developSpeciallyStagedEventLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+
+					</fieldset>
+
+					<fieldset>
+						<legend>BRAND</legend>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="maintainMarketDominance"
+									type="checkbox"
+									th:checked="${dataPageModel?.maintainMarketDominance}">
+									<span id="maintainMarketDominanceLabel">
+									<script>
+									addLabel("maintainMarketDominanceLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="improveBusinessNameBrand"
+									type="checkbox"
+									th:checked="${dataPageModel?.improveBusinessNameBrand}">
+									<span id="improveBusinessNameBrandLabel">
+									<script>
+									addLabel("improveBusinessNameBrandLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="establishorReestablishBusinessImage"
+									type="checkbox"
+									th:checked="${dataPageModel?.establishorReestablishBusinessImage}">
+									<span id="establishorReestablishBusinessImageLabel">
+									<script>
+									addLabel("establishorReestablishBusinessImageLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="createPentUpDemand" type="checkbox"
+									th:checked="${dataPageModel?.createPentUpDemand}">
+									<span id="createPentUpDemandLabel">
+									<script>
+									addLabel("createPentUpDemandLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="increaseMarketShare" type="checkbox"
+									th:checked="${dataPageModel?.increaseMarketShare}">
+									<span id="increaseMarketShareLabel">
+									<script>
+									addLabel("increaseMarketShareLabel");
+									</script>
+									
+									</span></label>
+							</div>
+
+						</div>
+						<div class="form-group">
+
+							<div class="checkbox">
+								<label><input name="other" type="checkbox"
+									th:checked="${dataPageModel?.other}"> 
+									<span id="otherLabel">
+									<script>
+									addLabel("otherLabel");
+									</script>
+									
+									</span>
+								</label>
+							</div>
+							<div>
+								<input  maxlength="50" name="otherText" type="text" onClick="this.setSelectionRange(0, this.value.length)" class="form-control input-medium"
+									th:value="${dataPageModel?.otherText}">
+							</div>
+
+						</div>
+											<div
+						class="form-group custom-control custom-switch-extra custom-switch custom-switch-md">
+						<input name="excluded" id="excluded"
+							th:checked="${wizardData?.excluded}" type="checkbox"
+							class="custom-control-input"> <label for="excluded"
+							class="custom-control-label">Exclude from presentation</label>
+					</div>
+
+					</fieldset>
+					
+<div style="padding-bottom: 2%;"></div> <!-- include space before buttons -->
+
+					
+	<input type="hidden" id="introduceNewDepartmentSortOrderStr"  th:value="${dataPageModel?.introduceNewDepartmentSortOrder}" name="introduceNewDepartmentSortOrderStr" />
+	
+	<input type="hidden" name="featureSpecificProductsSortOrderStr" th:value="${dataPageModel?.featureSpecificProductsSortOrder}"  />
+	<input type="hidden" name="callAttentiontoBrandsPrivateLabelsCarriedSortOrderStr" th:value="${dataPageModel?.callAttentiontoBrandsPrivateLabelsCarriedSortOrder}" />
+	<input type="hidden" name="promoteOffPriceItemsServicesSortOrderStr" th:value="${dataPageModel?.promoteOffPriceItemsServicesSortOrder}" />
+
+	<input type="hidden" name="retainCurrentConsumersSortOrderStr" th:value="${dataPageModel?.retainCurrentConsumersSortOrder}" />
+	<input type="hidden" name="increaseCustomerVisitsSortOrderStr" th:value="${dataPageModel?.increaseCustomerVisitsSortOrder}">
+	<input type="hidden" name="increaseTrafficLeadCallsSortOrderStr" th:value="${dataPageModel?.increaseTrafficLeadCallsSortOrder}" />
+	<input type="hidden" name="expandTargetConsumersSortOrderStr" th:value="${dataPageModel?.expandTargetConsumersSortOrder}" />
+	<input type="hidden" name="changeConsumerAttitudesSortOrderStr" th:value="${dataPageModel?.changeConsumerAttitudesSortOrder}" />
+
+	<input type="hidden" name="makePromotionalEventsStrongerSortOrderStr" th:value="${dataPageModel?.makePromotionalEventsStrongerSortOrder}" />
+	<input type="hidden" name="increaseDigitalMobileOnlineResponseSortOrderStr" th:value="${dataPageModel?.increaseDigitalMobileOnlineResponseSortOrder}" />
+	<input type="hidden" name="quarterlySeasonalCampaignSortOrder" th:value="${dataPageModel?.quarterlySeasonalCampaignSortOrder}" />
+	
+	
+	<input type="hidden" name="developAQuarterlySpikeSortOrderStr"  th:value="${dataPageModel?.developAQuarterlySpikeSortOrder}" />
+	<input type="hidden" name="developDatabaseMarketingSortOrderStr" th:value="${dataPageModel?.developDatabaseMarketingSortOrder}">
+	<input type="hidden" name="initiateCauseMarketingProgramSortOrderStr" th:value="${dataPageModel?.initiateCauseMarketingProgramSortOrder}" />
+	<input type="hidden" name="developSpeciallyStagedEventSortOrderStr" th:value="${dataPageModel?.developSpeciallyStagedEventSortOrder}" />
+
+	<input type="hidden" name="maintainMarketDominanceSortOrderStr" th:value="${dataPageModel?.maintainMarketDominanceSortOrder}" />
+	<input type="hidden" name="improveBusinessNameBrandSortOrderStr" th:value="${dataPageModel?.improveBusinessNameBrandSortOrder}" />
+	<input type="hidden" name="establishorReestablishBusinessImageSortOrderStr" th:value="${dataPageModel?.establishorReestablishBusinessImageSortOrder}" />
+	<input type="hidden" name="createPentUpDemandSortOrderStr" th:value="${dataPageModel?.createPentUpDemandSortOrder}" />
+	<input type="hidden" name="increaseMarketShareSortOrderStr" th:value="${dataPageModel?.increaseMarketShareSortOrder}" />
+	
+	<input type="hidden" name="otherSortOrderStr" th:value="${dataPageModel?.otherSortOrder}"/>
+	<input type="hidden" name="utilizeCoopVendorDollarsSortOrderStr" th:value="${dataPageModel?.utilizeCoopVendorDollarsSortOrder}"/>				
+					
+					
+					
+					
+					<input type="hidden" id="nextPage"
+						th:value="'redirect:/ClientObjectivesOnePageTwo?ID=' + ${wizard.encrypt}"
+						name="nextPage" /> 
+						<input type="hidden" id="previousPage"
+						th:value="'redirect:/MarketPlaceCompetitionPage?ID=' + ${wizard.encrypt}"
+						name="previousPage" /> 
+						<input type="hidden" id="publishPage"
+						th:value="'redirect:/Publish?ID=' + ${wizard.encrypt}"
+						name="publishPage" /> 
+						
+						<input type="hidden" id="wizardId"
+						th:value="${wizard.encrypt}" name="wizardId" /> <input
+						type="hidden" id="wizarddataid"
+						th:value="${wizardData?.wizarddataid}" name="wizarddataid" /> <input
+						name="next" type="submit" value="Next" class="btn btn-primary"
+						style="background-color: #C0B879;" /> <input name="publish"
+						type="submit" value="Publish" class="btn btn-primary"
+						style="background-color: #C0B879;" /> <input name="previous"
+						value="Previous" type="submit" class="btn btn-primary"
+						style="background-color: #C0B879;" />
+				</fieldset>
+			</form><div id="wizardCopyRightId"></div>
+		       <div id="wizardCopyRightId"></div>
+			<div class="container" style="padding-top: 2%;">
+
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="7"
+						aria-valuemin="0" aria-valuemax="100"
+						style="width: 16%; background-color: #C0B879;">16%</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	</div>
+
+
+
+
+	<!-- JavaScript files-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
+			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
+			
+		});
+		/*]]>*/
+	</script>
+
+
+
+
+
+</body>
+</html>
+

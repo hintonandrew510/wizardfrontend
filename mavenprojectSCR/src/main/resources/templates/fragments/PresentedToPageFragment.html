@@ -1,0 +1,59 @@
+<!-- begin of PresentedTofragment -->
+<div th:fragment="PresentedToPage"
+	class="grad w3-container pageBreakInside">
+
+	<div th:if="${PublishModel.presentedToPage}">
+		<!-- determine if we show presentedToPage content -->
+
+<div>
+			<a id="PresentedToPage"></a>
+
+			<h1 class="text-center w3-text-white">Marketing Solutions</h1>
+
+
+			<h2 class="text-center w3-text-white">Summary, Conclusions, and
+				Recommendations</h2>
+
+		</div>
+		
+		<div class="whiteGrad">
+		
+			<div align="center" style="padding-top: 10%;">
+				<h1>Presented To:</h1>
+				<p>
+				<h2 class="bold-text" th:text="${PresentedToPage?.clientContactName}"></h2>
+				</p>
+				<p>
+				<h2 class="bold-text" th:text="${PresentedToPage?.clientBusinessName}"></h2>
+				</p>
+			</div>
+			<div align="center" style="padding-top: 2%;">
+				<h1>Presented By:</h1>
+				<p>
+				<h2 class="bold-text"
+					th:text="${PresentedToPage?.portfolioManagerName}"></h2>
+				</p>
+				<p>	
+				<h2 class="bold-text" th:text="${PresentedToPage?.station}"></h2>
+				</p>
+			</div>
+			<div class="position-bottom">
+				<p>
+					<small class="copyRight"></small>
+				</p>
+			</div>
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		
+			<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(2,'down');">Next</button>
+			<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(32,'down');">Last</button>
+		<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+			
+		</div>
+	</div>
+	<!-- end of if statement -->
+
+</div>
+<!-- end of PresentedTofragment -->

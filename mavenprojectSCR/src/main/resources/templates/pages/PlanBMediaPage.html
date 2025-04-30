@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+<title>Plan B Proposed 12 Month Media Investment</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS-->
+
+
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet" href="css/scr.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/icon.png">
+<script src="js/media.js">
+	</script>
+<script src="js/medialSpreadSheet.js">	
+	</script>
+
+
+</head>
+
+<body onLoad="convertFromJSON();buildSpreadSheet()">
+	<!-- Begin page content -->
+	<!--- start header container -->
+
+	<div id="headerId"></div>
+
+
+	<template id="leftMenu">
+	<div class="row">
+		<div class="col-1"></div>
+		<div class="col-10">
+			<a href="#" id="myAnchor"> test items </a>
+		</div>
+
+		<div class="col-1"></div>
+	</div>
+	</template>
+	<div class="container">
+		<div id="spreadSheet">
+			<table class="table table-striped" id="headerTable">
+				<thead>
+					<tr>
+						<th>Media</th>
+						<th>Jan</th>
+						<th>Feb</th>
+						<th>Mar</th>
+						<th>Apr</th>
+						<th>May</th>
+						<th>Jun</th>
+						<th>Jul</th>
+						<th>Aug</th>
+						<th>Sep</th>
+						<th>Oct</th>
+						<th>Nov</th>
+						<th>Dec</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- existing data could optionally be included here -->
+				</tbody>
+				<tfoot>
+					<!-- existing data could optionally be included here -->
+
+				</tfoot>
+			</table>
+		</div>
+
+		<template id="productrow">
+		<tr>
+			<td>www</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>110</td>
+		</tr>
+		</template>
+
+		<template id="footerrow">
+		<tr>
+			<td>Total</td>
+			<td>1</td>
+			<td>2</td>
+			<td>3</td>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+			<td>9</td>
+			<td>10</td>
+			<td>11</td>
+			<td>12</td>
+			<td>110</td>
+		</tr>
+		</template>
+	</div>
+	<!-- end of spreadsheet -->
+	</div>
+
+	<div class="container" style="padding-top: 1%;">
+		<div class="row">
+			<div class="col-4 border">
+				<h2>Media items</h2>
+				<div id="items"></div>
+
+			</div>
+			<div class="col-8 border">
+				<form id="importForm" action="importPlanAMediaPage" method="post">
+					<input type="hidden" id="nextPage"
+							th:value="'redirect:/PlanBMediaPage?ID=' + ${wizard.encrypt}"
+							name="nextPage" /> 
+					<input type="hidden" id="wizardId" th:value="${wizard.encrypt}"
+						name="wizardId" /> <input type="hidden" id="wizarddataid"
+						th:value="${wizardData?.wizarddataid}" name="wizarddataid" />
+				</form><div id="wizardCopyRightId"></div>
+
+				<form id="myForm">
+					<fieldset>
+						<legend>
+							(19 of 19) Plan B Proposed 12 Month Media Investment <span
+								th:text="${wizard.name}"></span>
+						</legend>
+						<div class="form-group row" style="padding: 1%;">
+
+							<button type="button" onClick="javascript:copyToOtherMonths()"
+								class="btn btn-success btn-lg btn-block">Fill</button>
+
+						</div>
+						<div class="form-group row">
+							<div class="col-4">
+								<label for="ex1">Jan</label> <input class="form-control"
+									id="jan" name="jan" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$">
+							</div>
+							<div class="col-4">
+								<label for="ex2">Feb</label> <input class="form-control"
+									id="feb" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="feb">
+							</div>
+							<div class="col-4">
+								<label for="ex3">Mar</label> <input class="form-control"
+									id="mar" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="mar">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-4">
+								<label for="ex1">Apr</label> <input class="form-control"
+									id="apr" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="apr">
+							</div>
+							<div class="col-4">
+								<label for="ex2">May</label> <input class="form-control"
+									id="may" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="may">
+							</div>
+							<div class="col-4">
+								<label for="ex3">Jun</label> <input class="form-control"
+									id="jun" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="jun">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-4">
+								<label for="ex1">Jul</label> <input class="form-control"
+									id="jul" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="jul">
+							</div>
+							<div class="col-4">
+								<label for="ex2">Aug</label> <input class="form-control"
+									id="aug" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="aug">
+							</div>
+							<div class="col-4">
+								<label for="ex3">Sep</label> <input class="form-control"
+									id="sep" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="sep">
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-4">
+								<label for="ex1">Oct</label> <input class="form-control"
+									id="oct" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="oct">
+							</div>
+							<div class="col-4">
+								<label for="ex2">Nov</label> <input class="form-control"
+									id="nov" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="nov">
+							</div>
+							<div class="col-4">
+								<label for="ex3">Dec</label> <input class="form-control"
+									id="dec" type="text"
+									onClick="this.setSelectionRange(0, this.value.length)"
+									data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+									name="dec">
+							</div>
+						</div>
+						<div class="form-group row" style="padding: 2%;">
+							<label for="totalRow">Total</label> <input id="totalRow"
+								type="text"
+								onClick="this.setSelectionRange(0, this.value.length)"
+								class="form-control" disabled />
+						</div>
+
+						<div class="form-group row" style="padding: 2%;">
+
+							<label for="ex1">Name</label> <input class="form-control"
+								id="medianame" type="text"
+								onClick="this.setSelectionRange(0, this.value.length)"
+								name="medianame" /> <input id="idname" type="hidden"
+								name="idname" />
+
+						</div>
+
+						<div id="add" class="form-group row" style="padding: 1%;">
+
+							<button type="button" onClick="javascript:addOrUpdate()"
+								class="btn btn-success btn-lg btn-block">Add</button>
+							<button type="button" onClick="javascript:importPlanMediaA()"
+								class="btn btn-success btn-lg btn-block">Import Plan
+								A Media</button>
+						</div>
+
+						<div id="update" class="form-group row"
+							style="padding: 1%; display: none;">
+
+							<button type="button" onClick="javascript:addOrUpdate()"
+								class="btn btn-success btn-lg btn-block">Update</button>
+							<button type="button" onClick="javascript:deleteRow()"
+								class="btn btn-success btn-lg btn-block">Delete</button>
+						</div>
+						<div
+							class="form-group custom-control custom-switch-extra custom-switch custom-switch-md">
+							<input name="excluded" id="excluded"
+								th:checked="${wizardData?.excluded}" type="checkbox"
+								class="custom-control-input"> <label for="excluded"
+								class="custom-control-label">Exclude from presentation</label>
+						</div>
+
+					</fieldset>
+
+				</form><div id="wizardCopyRightId"></div>
+			</div>
+			<div class="container" style="padding-top: 2%;">
+				<form method="post" action="savePlanBMediaPage">
+					<fieldset>
+						<legend> Types </legend>
+						<div class="form-group row">
+							<div class="col-3">
+								<label for="ex1">Jan</label> <select class="selectpicker"
+									name="jantype" id="jantype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+
+							</div>
+							<div class="col-3">
+								<label for="ex2">Feb</label> <select class="selectpicker"
+									name="febtype" id="febtype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Mar</label> <select class="selectpicker"
+									name="martype" id="martype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Apr</label> <select class="selectpicker"
+									name="aprtype" id="aprtype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-3">
+								<label for="ex1">May</label> <select class="selectpicker"
+									name="maytype" id="maytype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+
+							</div>
+							<div class="col-3">
+								<label for="ex2">Jun</label> <select class="selectpicker"
+									name="juntype" id="juntype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Jul</label> <select class="selectpicker"
+									name="jultype" id="jultype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Aug</label> <select class="selectpicker"
+									name="augtype" id="augtype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-3">
+								<label for="ex1">Sep</label> <select class="selectpicker"
+									name="septype" id="septype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+
+							</div>
+							<div class="col-3">
+								<label for="ex2">Oct</label> <select class="selectpicker"
+									name="octtype" id="octtype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Nov</label> <select class="selectpicker"
+									name="novtype" id="novtype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+							<div class="col-3">
+								<label for="ex3">Dec</label> <select class="selectpicker"
+									name="dectype" id="dectype">
+									<option>Base</option>
+									<option>Slow</option>
+									<option>Spike</option>
+								</select>
+							</div>
+
+						</div>
+
+
+						<script th:inline="javascript">
+							/*<![CDATA[*/
+							
+							var jantype = /*[[${dataPageModel?.janType}]]*/;
+							if (jantype != null ) {
+							   document.getElementById('jantype').value=jantype;	
+							   console.log(" jantype " + document.getElementById('jantype').value);
+							}
+							
+							var febtype = /*[[${dataPageModel?.febType}]]*/;
+							if (febtype != null ) {
+							   document.getElementById('febtype').value=febtype;	
+							}
+							
+														
+							var marType = /*[[${dataPageModel?.marType}]]*/;
+							if (marType != null ) {
+							   document.getElementById('martype').value=marType;	
+							}
+							
+														
+							var aprType = /*[[${dataPageModel?.aprType}]]*/;
+							if (aprType != null ) {
+							   document.getElementById('aprtype').value=aprType;	
+							}
+														
+							var mayType = /*[[${dataPageModel?.mayType}]]*/;
+							if (mayType != null ) {
+							   document.getElementById('maytype').value=mayType;	
+							}
+														
+							var junType = /*[[${dataPageModel?.junType}]]*/;
+							if (junType != null ) {
+							   document.getElementById('juntype').value=junType;	
+							}
+														
+							var julType = /*[[${dataPageModel?.julType}]]*/;
+							if (julType != null ) {
+							   document.getElementById('jultype').value=julType;	
+							}
+							
+														
+							var augType = /*[[${dataPageModel?.augType}]]*/;
+							if (augType != null ) {
+							   document.getElementById('augtype').value=augType;	
+							}
+														
+							var sepType = /*[[${dataPageModel?.septType}]]*/;
+							if (sepType != null ) {
+							   document.getElementById('septype').value=sepType;	
+							}
+														
+							var octType = /*[[${dataPageModel?.octType}]]*/;
+							if (octType != null ) {
+							   document.getElementById('octtype').value=octType;	
+							}
+														
+							var novType = /*[[${dataPageModel?.novType}]]*/;
+							if (novType != null ) {
+							   document.getElementById('novtype').value=novType;	
+							}
+														
+							var decType = /*[[${dataPageModel?.decType}]]*/;
+							if (decType != null ) {
+							   document.getElementById('dectype').value=decType;	
+							}
+							
+							
+							/*]]>*/
+						</script>
+
+
+
+
+					
+							
+							<input type="hidden" id="previousPage"
+							th:value="'redirect:/PlanAMediaPage?ID=' + ${wizard.encrypt}"
+							name="previousPage" /> <input type="hidden" id="publishPage"
+							th:value="'redirect:/Publish?ID=' + ${wizard.encrypt}"
+							name="publishPage" /> <input type="hidden" id="wizardId"
+							th:value="${wizard.encrypt}" name="wizardId" /> <input
+							type="hidden" id="mediarows"
+							th:value="${dataPageModel?.mediaRows}" name="mediarows" /> <input
+							type="hidden" id="wizarddataid"
+							th:value="${wizardData?.wizarddataid}" name="wizarddataid" />  <input name="publish"
+							type="submit" value="Publish" class="btn btn-primary"
+							style="background-color: #C0B879;" /> <input name="previous"
+							value="Previous" type="submit" class="btn btn-primary"
+							style="background-color: #C0B879;" />
+					</fieldset>
+				</form><div id="wizardCopyRightId"></div>
+
+			</div>
+			<div class="container" style="padding-top: 2%;">
+
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="7"
+						aria-valuemin="0" aria-valuemax="100"
+						style="width: 100%; background-color: #C0B879;">100%</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+	<!-- JavaScript files-->
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+
+
+	<script src="js/currency.js">
+		
+	</script>
+
+
+
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
+			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
+		});
+		/*]]>*/
+	</script>
+
+
+
+</body>
+
+</html>

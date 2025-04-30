@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Plan B Proposed Schedule - Brand Equity Months</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+<!-- Bootstrap CSS-->
+
+
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous" />
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+<link rel="stylesheet" href="css/scr.css">
+
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/tools_wizard.png">
+
+</head>
+<body>
+
+
+	<!-- Begin page content -->
+	<!--- start header container -->
+
+	<div id="headerId"></div>
+
+
+
+	<div class="container" style="padding-top: 1%;">
+
+		<div>
+			<form method="post" action="savePlanBProposedPage" autocomplete="off">
+				<fieldset>
+					<legend>
+						(14 0f 20) Plan B Proposed Schedule - Brand Equity Months - <span
+							th:text="${wizard.name}"></span>
+					</legend>
+					<div class="form-group">
+						<label for="planACity">A. What market/city is the client
+							going to dominate?</label> <input th:value="${dataPageModel?.planACity}"
+							type="text"
+							onClick="this.setSelectionRange(0, this.value.length)"
+							class="form-control" id="planACity" name="planACity"
+							aria-describedby="planACity" />
+					</div>
+					<div class="form-group">
+						<label for="planAReach">B. What is the projected broadcast
+							monthly reach in thousands?</label> <input type="number"
+							th:value="${dataPageModel?.planAReach}" class="form-control"
+							id="planAReach" name="planAReach" min=0 />
+					</div>
+					<div class="form-group">
+						<label for="planAFrequency">C. What is the projected
+							monthly broadcast frequency?</label> <input type="number" step=".01"
+							th:value="${dataPageModel?.planAFrequency}" class="form-control"
+							id="planAFrequency" name="planAFrequency" min=0 />
+					</div>
+					<div class="form-group">
+						<label for=planADigitalImpressionsMonthly>D. What are the
+							estimated monthly digital gross impressions?</label> <input type="number"
+							th:value="${dataPageModel?.planADigitalImpressionsMonthly}"
+							class="form-control" id="planADigitalImpressionsMonthly"
+							name="planADigitalImpressionsMonthly" min=0 />
+					</div>
+					<div class="form-group">
+						<label for=planAMonthly>E. What is the average base
+							monthly advertising investment?</label> <input type="currency"
+							th:value="${dataPageModel?.planAMonthly}" class="form-control"
+							id="planAMonthly" name="planAMonthly" data-type="currency"
+							pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$"
+							oninput="calculatePlanDaily()" />
+					</div>
+
+					<div class="form-group">
+						<label for=planADaily>F. What is the average base daily
+							advertising investment?</label> <input type="currency"
+							th:value="${dataPageModel?.planADaily}" class="form-control"
+							id="planADaily" name="planADaily" readonly tabindex="-1"
+							data-type="currency" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" />
+					</div>
+					<div
+						class="form-group custom-control custom-switch-extra custom-switch custom-switch-md">
+						<input name="excluded" id="excluded"
+							th:checked="${wizardData?.excluded}" type="checkbox"
+							class="custom-control-input"> <label for="excluded"
+							class="custom-control-label">Exclude from presentation</label>
+					</div>
+
+					<input type="hidden" id="nextPage"
+						th:value="'redirect:/PlanBBEPPage?ID=' + ${wizard.encrypt}"
+						name="nextPage" /> <input type="hidden" id="previousPage"
+						th:value="'redirect:/PlanADigitalROICalculatorPage?ID=' + ${wizard.encrypt}"
+						name="previousPage" /> <input type="hidden" id="publishPage"
+						th:value="'redirect:/Publish?ID=' + ${wizard.encrypt}"
+						name="publishPage" /> <input type="hidden" id="wizardId"
+						th:value="${wizard.encrypt}" name="wizardId" /> <input
+						type="hidden" id="wizarddataid"
+						th:value="${wizardData?.wizarddataid}" name="wizarddataid" /> <input
+						name="next" value="Next" type="submit" class="btn btn-primary"
+						style="background-color: #C0B879;" /> <input name="publish"
+						value="Publish" type="submit" class="btn btn-primary"
+						style="background-color: #C0B879;" /> <input name="previous"
+						value="Previous" type="submit" class="btn btn-primary"
+						style="background-color: #C0B879;" />
+
+				</fieldset>
+			</form><div id="wizardCopyRightId"></div>
+			<div class="container" style="padding-top: 2%;">
+
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="5"
+						aria-valuemin="0" aria-valuemax="100"
+						style="width: 58%; background-color: #C0B879;">58%</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+	<!-- JavaScript files-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
+	<script
+		src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+	<script src="js/currency.js"></script>
+	<script src="js/planabproposed.js"></script>
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
+			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
+		});
+		/*]]>*/
+	</script>
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+<div th:fragment="CreateConceptOne"
+	class="grad container pageBreakInside" style="height: 100%;">
+
+	<div th:if="${PublishModel.createConceptOnePage}">
+
+		<div>
+			<a id="CreateConceptOne"></a>
+			<p class="text-justify"></p>
+
+		</div>
+      
+  
+		<div class="whiteGrad mce-content-body">
+		<div class="w3-row">
+			
+					<textarea class="editor mce-content-body" id="textareaId" name="textareaId"
+						th:text="${CreateConceptOnePageModel?.textArea}" />
+			
+				
+			</div>
+		
+		
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+    			var message = /*[[${CreateConceptOnePageModel?.textArea}]]*/ 'default';
+    			 //document.write(unescape(message));
+			     console.log(message);
+
+			/*]]>*/
+				</script>	
+		</div>
+
+
+	<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(13,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(11,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+	</div>
+		<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 12     
+		      </div>	      
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,233 @@
+<div th:fragment="PlanAMediaPageFlightDates"
+	class="grad container pageBreakInside" style="height: 100%;">
+	<div th:if="${PublishModel.planAMediaPage}">
+
+		<input type="hidden" id="mediarows"
+			th:value="${PlanAMediaPagedataPageModel?.mediaRows}" name="mediarows" />
+
+		<div>
+			<a id="PlanAMediaPageFlightDates"></a>
+			<p class="text-justify"></p>
+
+		</div>
+
+
+		<div class="whiteGrad">
+			<div>
+				<h1 class="w3-center">Plan A</h1>
+                <div class="w3-row">
+                
+               <span> For the benefit of the client,  </span>
+                
+                <span class="bold-text" th:text="${PresentedToPage?.station}" ></span>
+               
+                <span> agrees to develop a marketing strategy to help:  </span>
+                </div>
+                
+                
+						
+				
+				
+				
+			</div>
+
+
+
+
+
+
+
+			<!-- if="${PublishModel.clientObjectivesPage} -->
+			<div  th:if="${PublishModel.clientObjectivesPage}">
+
+
+               
+                
+				<ol class="center-ol">
+					<li style="color: red;" th:each="selectedModel : ${ClientObjectivesPageModel}"
+						th:if="${selectedModel.sortOrder} != 0"><span style='color:black;'
+						th:id="${selectedModel?.label} + '-a' "> <script
+								th:inline="javascript">
+							/*<![CDATA[*/
+							var message = /*[[${selectedModel?.label}]]*/'default';
+							message = message + "-a";
+							//message = "'" + message + "'";
+							addLabel(message);
+							/*]]>*/
+						</script>
+
+					</span></li>
+
+
+
+				</ol>
+				
+			
+
+				<!-- loop thru clientObjectives -->
+			</div>
+			<!-- end of clientObjectivesPage} -->
+
+			<p>In return for fulfilling stated goals Premium Auto Centers
+				agrees to invest in the following long-term plan:</p>
+            <div class="bold-text w3-center">FLIGHT DATES:</div>
+			
+			<div class="mce-content-body" id="spreadSheet">
+				<table class="table table-striped" id="headerTable">
+					<thead>
+						<tr>
+							<th style="background-color: green; color: white;">Media</th>
+							<th style="background-color: green; color: white;">Jan</th>
+							<th style="background-color: green; color: white;">Feb</th>
+							<th style="background-color: green; color: white;">Mar</th>
+							<th style="background-color: green; color: white;">Apr</th>
+							<th style="background-color: green; color: white;">May</th>
+							<th style="background-color: green; color: white;">Jun</th>
+							<th style="background-color: green; color: white;">Jul</th>
+							<th style="background-color: green; color: white;">Aug</th>
+							<th style="background-color: green; color: white;">Sep</th>
+							<th style="background-color: green; color: white;">Oct</th>
+							<th style="background-color: green; color: white;">Nov</th>
+							<th style="background-color: green; color: white;">Dec</th>
+							<th style="background-color: green; color: white;">Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- existing data could optionally be included here -->
+					</tbody>
+					<tfoot>
+						<!-- existing data could optionally be included here -->
+
+					</tfoot>
+				</table>
+			</div>
+
+			<template id="productrow">
+			<tr>
+				<td>www</td>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>10</td>
+				<td>11</td>
+				<td>12</td>
+				<td>110</td>
+			</tr>
+			</template>
+
+			<template id="footerrow">
+			<tr>
+				<td>Monthly Totals</td>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+				<td>10</td>
+				<td>11</td>
+				<td>12</td>
+				<td>110</td>
+			</tr>
+			</template>
+
+
+
+			<div>
+
+				<script src="js/medialSpreadSheet.js">
+					
+				</script>
+				<script>
+					console.group("medialSpreadSheet");
+
+					const mediaRows = document.getElementById("mediarows").value;
+					console.log("mediaRows [" + mediaRows + "]");
+					if (mediaRows.length > 4) {
+						objs = JSON.parse(mediaRows);
+					}
+					buildSpreadSheet();
+
+					console.groupEnd();
+				</script>
+
+
+			</div>
+
+			<div>
+				<p class="bold-text"><small>Client may cancel after 13 weeks from schedule start date
+					with two weeks’ notice and no short rate. This offer is good for 10
+					business days from the date of presentation. In accordance with
+					Paragraphs 49 and 50 of United States Federal Communications
+					Commission Report and Order No. FCC 07-217, this station will not
+					discriminate in any contract for advertising on the basis of race
+					or ethnicity, and all such contracts will be evaluated, accepted,
+					negotiated and completed without regard to race or ethnicity</small></p>
+
+				<u class="bold-text">Analysis of Schedule:</u>
+
+				<p>
+					<span class="bold-text">AVERAGE MONTHLY CLIENT INVESTMENT:</span> <span id="monthlyAverageId"></span>
+					
+				</p>
+				<p>
+					<span class="bold-text">AVERAGE DAILY CLIENT INVESTMENT:</span> <span id="dailyCostId"></span>
+
+				</p>
+				<p class="w3-center">Thank you for your trust and confidence</p>
+
+
+				<div class="b w3-row">
+					<div class="w3-col w3-container m6">
+						<hr class="new4" />
+					</div>
+					<div class="w3-col w3-container m6">
+						<hr class="new4" />
+					</div>
+
+				</div>
+
+				<div class="b w3-row">
+					<div class="w3-col w3-container m3">Accepted for</div>
+					<div class="w3-col w3-container m3">Date</div>
+
+					<div class="w3-col w3-container m3">Accepted for</div>
+					<div class="w3-col w3-container m3">Date</div>
+
+				</div>
+
+
+
+
+				<script>
+					dailyCostAndMonthlyAverage();
+				</script>
+			</div>
+		</div>
+		
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(30,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(28,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+	
+	</div>
+	<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 22     
+		      </div>	      
+		</div>
+	</div>

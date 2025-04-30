@@ -1,0 +1,236 @@
+<!-- begin of MarketPlaceCompetitionfragment -->
+<div th:fragment="MarketPlaceCompetitionPage"
+	class="grad container pageBreakInside" style="height: 100%;">
+	<div th:if="${PublishModel.marketPlaceCompetitionPage}">
+		<!-- determine if we show content -->
+
+
+		<div class="whiteGrad">
+
+
+			<div>
+				<a id="MarketPlaceCompetitionPage"></a>
+
+				<h1 class="text-center" style="padding-bottom: 2%;">Marketplace
+					Competition</h1>
+
+
+
+
+			</div>
+
+			<div class="w3-row" style="padding-bottom: 2%;">
+				<div class="w3-col m5 l6 left-indent">
+
+					<span class="bold-text">1. How long have you been in
+						business?&nbsp; &nbsp;</span> <span
+						th:text="${StrategicMarketingPageOne?.yearsInBusiness}"></span> <span>
+						years </span>
+
+				</div>
+
+
+				<div class="w3-col m3 l3">
+
+					<span class="bold-text">How many locations? &nbsp; &nbsp;</span> <span
+						th:text="${StrategicMarketingPageOne?.numberOfLocations}"></span>
+
+				</div>
+
+				<div class="w3-col m3 l3">
+
+					<span><strong>Plan to Expand?&nbsp; &nbsp; </strong></span> <span
+						th:text="${StrategicMarketingPageOne?.planToExpand} ? 'Yes' : 'No'">/span>
+
+
+					
+				</div>
+			</div>
+
+			<div class="w3-row" style="padding-top: 1%;">
+				<div class="w3-col m6" style="padding-left: 7%;">
+					<span class="curved-text bold-text"> 1<sup>st</sup> Tier
+					</span>&nbsp; <span class="firstMarketRevenue"
+						th:text="${MarketPlaceCompetitionPageModel?.firstTierBusiness}"></span>
+				</div>
+				<div class="w3-col m6" style="padding-left: 1%;">
+					<span class="curved-text bold-text"> 2<sup>nd</sup> Tier
+					</span>&nbsp; <span class="secondMarketRevenue"
+						th:text="${MarketPlaceCompetitionPageModel?.secondTierBusiness}"></span>
+				</div>
+
+
+
+			</div>
+
+
+
+			<div class="w3-row" style="padding-top: 1%; padding-bottom: 2%;">
+				<div class="w3-col m6" style="padding-top: 1%; padding-left: 7%;">
+					<span class="curved-text bold-text"> 3<sup>rd</sup> Tier
+					</span>&nbsp; <span class="thirdMarketRevenue"
+						th:text="${MarketPlaceCompetitionPageModel?.thirdTierBusiness}"></span>
+				</div>
+				<div class="w3-col m6" style="padding-top: 1%; padding-left: 1%;">
+					<span class="curved-text bold-text"> 4<sup>th</sup> Tier
+					</span>&nbsp; <span class="fourthMarketRevenue"
+						th:text="${MarketPlaceCompetitionPageModel?.fourthTierBusiness}"></span>
+				</div>
+
+
+
+			</div>
+
+			<div class="w3-row" style="padding-top: 1%;">
+				<div class="w3-col m6 bold-text left-indent">2. Who is the
+					main competition?</div>
+				<div class="w3-col m6"></div>
+
+			</div>
+
+			<div class="w3-row" style="padding-bottom: 2%;">
+				<div class="w3-col m6 left-indent-sub"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionA}"></div>
+				<div class="w3-col m6"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionB}"></div>
+			</div>
+
+			<div class="w3-row">
+				<div class="w3-col m6 bold-text left-indent">A. What are their
+					strengths?</div>
+				<div class="w3-col m6"></div>
+
+			</div>
+
+			<div class="w3-row" style="padding-bottom: 2%;">
+				<div class="w3-col m6 left-indent-sub"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionStrengthA}">
+
+				</div>
+				<div class="w3-col m6"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionStrengthB}">
+
+				</div>
+			</div>
+
+			<div class="w3-row">
+				<div class="w3-col m6 bold-text left-indent">B. What are their
+					weaknesses?</div>
+				<div class="w3-col m6"></div>
+
+			</div>
+
+			<div class="w3-row" style="padding-bottom: 2%;">
+				<div class="w3-col m6 left-indent-sub"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionWeaknessA}">
+
+				</div>
+				<div class="w3-col m6"
+					th:text="${MarketPlaceCompetitionPageModel?.competitionWeaknessB}">
+
+				</div>
+			</div>
+
+
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(4,'down');">Next</button>
+			<button class="w3-btn w3-white"
+				onclick="javascript:gotoAnchor(2,'up');">Previous</button>
+			<button class="w3-btn w3-white" onclick="history.back()">Go
+				Back</button>
+
+		</div>
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 3</div>
+		</div>
+
+	</div>
+	<!-- end of if statement -->
+</div>
+
+
+<!-- begin of MarketPlaceCompetitionfragment -->
+<div class="grad container pageBreakInside" style="height: 100%;">
+	<div th:if="${PublishModel.marketPlaceCompetitionPage}">
+		<!-- determine if we show content -->
+		<div>
+			<a id="MarketPlaceCompetitionPage"></a>
+			<h1 class="text-center w3-text-white">Marketplace Competition</h1>
+			<h2 class="text-center w3-text-white">Summary, Conclusions, and
+				Recommendations</h2>
+		</div>
+		<div class="whiteGrad">
+			<div class="row">
+				<div class="col-4">
+					<div class="row, form-group">
+						<span class="form-control, border-0">How long have you been
+							in business?</span>
+					</div>
+				</div>
+				<div class="col-1">
+					<div class="row, form-group">
+						<span class="form-control, border-0"
+							th:text="${StrategicMarketingPageOne?.yearsInBusiness}"></span>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="row, form-group">
+						<span class="form-control, border-0">How many locations?</span>
+					</div>
+				</div>
+				<div class="col-1">
+					<div class="row, form-group">
+						<span class="form-control, border-0"><span
+							th:text="${StrategicMarketingPageOne?.numberOfLocations}"></span></span>
+					</div>
+				</div>
+				<div class="col-2">
+					<div class="row, form-group">
+						<span class="form-control, border-0">Plan to Expand?</span>
+					</div>
+				</div>
+				<div class="col-1">
+					<div class="row, form-group">
+						<span class="form-control, border-0"><span
+							th:text="${StrategicMarketingPageOne?.planToExpand}"></span></span>
+					</div>
+				</div>
+			</div>
+			<p>
+				How long have you been in business? <span
+					th:text="${StrategicMarketingPageOne?.yearsInBusiness}"></span>
+			</p>
+			<h2>Presented To</h2>
+			<span th:text="${PresentedToPage?.clientContactName}"></span>
+			<h2>Presented By</h2>
+			<p>Copyright © 1984-2023 Executive Decision Systems, Inc. and The
+				Guld Resource Group, LLC.</p>
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+			<a href="#next" class="w3-btn w3-white">Next</a> <a href="#previous"
+				class="w3-btn w3-white">Previousddddd</a>
+			<button class="w3-btn w3-white" onclick="javascript:goBack();">Previous</button>
+		</div>
+	</div>
+	<!-- end of if statement -->
+</div>
+<!-- begin of MarketPlaceCompetitionfragment -->
+<div class="curved-text">
+	1<sup>st</sup> Tier
+</div>
+<div class="curved-text">
+	2<sup>nd</sup> Tier
+</div>
+<div class="curved-text">
+	3<sup>rd</sup> Tier
+</div>
+<div class="curved-text">
+	4<sup>th</sup> Tier
+</div>
+

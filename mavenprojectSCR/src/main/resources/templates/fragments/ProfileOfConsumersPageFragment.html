@@ -1,0 +1,43 @@
+<!-- begin of ProfileOfConsumersPagefragment -->
+<div th:fragment="ProfileOfConsumersPage"
+	class="grad container pageBreakInside" style="height: 100%;">
+
+	<div th:if="${PublishModel.profileOfConsumersPage}">
+
+		<div>
+			<a id="ProfileOfConsumersPage"></a>
+			<p class="text-justify"></p>
+
+		</div>
+      
+  
+		<div class="whiteGrad mce-content-body">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+    			var message = /*[[${ProfileOfConsumersPageModel?.textArea}]]*/ 'default';
+    			 document.write(unescape(message));
+			     console.log(message);
+
+			/*]]>*/
+				</script>	
+		</div>
+
+
+	<div class="w3-container d-print-none" style="padding-top: 2%;">
+		<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(11,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(9,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+	</div>
+		<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 10     
+		      </div>	      
+		</div>
+	</div>
+
+</div>

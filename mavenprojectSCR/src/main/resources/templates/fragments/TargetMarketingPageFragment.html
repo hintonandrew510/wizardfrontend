@@ -1,0 +1,531 @@
+<!-- begin of TargetMarketingPagefragment -->
+<div th:fragment="TargetMarketingPage"
+	class="grad w3-container pageBreakInside">
+
+	<div th:if="${PublishModel.targetMarketingPage}">
+		<!-- determine if we show TargetMarketingPagefragment content -->
+
+
+		<div class="whiteGrad">
+			<a id="TargetMarketingPage"></a>
+
+			<div class="w3-container">
+				
+				<h1 class="text-center">Target Marketing</h1>
+			</div>
+<!-- I'm just using the class we used for the strategic marketing to create the indentation-->
+			<div class="w3-row strategicMarketingII_question">
+				<p><strong>
+					A. What percentage of your "target" consumers are Men? ​ </strong><span
+						th:text="${targetMarketingPageModel?.pctMen + '%'}">
+						</span>
+						<span style="padding-left: 2%;">
+						<strong>Women?</strong>  
+						</span>
+						<span 
+						th:text="${targetMarketingPageModel?.pctWomen + '%'}"></span>
+				</p>
+			</div>
+			<div class="w3-row strategicMarketingII_question">
+				<p><strong>B. What is the perceived income of your "target" consumer’s household? </strong></p>
+			</div>
+			<div class="w3-container">
+				<div class="w3-row">
+					<div class="col-p-1 w3-center">
+						<input type="checkbox" id="under50Id" disabled="disabled" />
+					</div>
+					<div class="col-p-1 w3-center">Under $50K</div>
+					<div class="col-p-1 w3-center">
+						<input type="checkbox" id="5099Id" disabled="disabled" />
+					</div>
+					<div class="col-p-1 w3-center">$50-$99K</div>
+					<div class="col-p-1 w3-center">
+						<input type="checkbox" id="100149Id" disabled="disabled" />
+					</div>
+					<div class="col-p-1 w3-center"> $100-$149K </div>
+					<div class="col-p-1 w3-center">
+						<input type="checkbox" id="150Id" disabled="disabled" />
+					</div>
+					<div class="col-p-1 w3-center">$150k Plus</div>
+				</div>
+
+			</div>
+
+
+			<div class="w3-row strategicMarketingII_question">
+				
+				<p><strong>C. How else would you describe your ideal "target" consumer
+					(i.e. geo-targeting, home value, behavior, lifestyle, interests,
+					family structure, etc)?</strong></p>
+				<p
+					th:text="${targetMarketingPageModel?.describeIdealTargetConsumer}"></p>
+			</div>
+			<div class="w3-row strategicMarketingII_question">
+				<h4> <strong>A Lenograph is a picture of consumption by target values
+					expressed by ratings 1-10, ten being highest.</strong></h4>
+			</div>
+			<div class='some-page-wrapper'>
+
+				<!-- th:block rather than unneeded div -->
+				<th:block th:switch="${targetMarketingHeaderRow.rowStatus}">
+					<div th:case="'Want12to18ToWant19to25'">
+						<!-- Want12to18ToWant19to25 -->
+						<div class='row'>
+							<div class='column no-border'></div>
+							<div class='column dark-left no-border-right dark-top top-header'>
+								<h2 class="bold-text">Target</h2>	</div>
+							<div class='column dark-right dark-top top-header'><h2 class="bold-text"> 85%</h2> </div>
+							<div class='column  no-border'>
+									<img
+					src="./img/arrow.svg" alt="" class="img-fluid" 
+					height="100">
+							</div>
+							<div class='column  no-border'></div>
+							<div class='column  no-border'></div>
+							<div class='column no-border'></div>
+						</div>
+						
+						
+				<div class='row'>
+					<div class='column no-border'></div>
+					<div class='column normal dark-left sub-header'>12-18</div>
+					<div class='column normal dark-left dark-right sub-header'>19-25</div>
+					<div class='column normal sub-header'>26-35</div>
+					<div class='column normal sub-header'>36-45</div>
+					<div class='column normal sub-header'>46-55</div>
+					<div class='column normal sub-header'>56 +</div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>HAVE</div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.have12to18}"></div>
+					<div class='column normal  dark-right dark-left'
+						th:text="${targetMarketingPageModel?.have19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have56Plus}"></div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>WANT</div>
+					<div class='column normal dark-left dark-bottom'
+						th:text="${targetMarketingPageModel?.want12to18}"></div>
+					<div class='column normal dark-left dark-right dark-bottom'
+						th:text="${targetMarketingPageModel?.want19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want55Plus}"></div>
+				</div>
+					</div>
+					
+					<div th:case="'Want19to25ToWant26to35'">
+						<!-- Want19to25ToWant26to35 -->
+						<div class='row'>
+							<div class='column no-border'></div>
+
+							<div class='column no-border'>
+							<!-- show left arrow -->
+						<img
+					src="./img/arrow.svg" alt="" class="img-fluid flip" 
+					height="100">
+							</div>
+
+
+							<div class='column-right dark-left no-border-right dark-top top-header'>
+								<h2 class="bold-text">Target </h2></div>
+							<div class='column-left column-left dark-right dark-top top-header'><h2 class="bold-text"> 85%</h2></div>
+							<div class='column  no-border'>
+							<!-- show right arrow -->
+									<img
+					src="./img/arrow.svg" alt="" class="img-fluid" 
+					height="100">
+							</div>
+							<div class='column  no-border'></div>
+							<div class='column  no-border'></div>
+						</div>
+						
+						
+				<div class='row'>
+					<div class='column no-border'></div>
+					<div class='column normal sub-header'>12-18</div>
+					<div class='column normal dark-left sub-header'>19-25</div>
+					<div class='column normal dark-left dark-right sub-header'>26-35</div>
+					<div class='column normal sub-header'>36-45</div>
+					<div class='column normal sub-header'>46-55</div>
+					<div class='column normal sub-header'>56 +</div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>HAVE</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have12to18}"></div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.have19to25}"></div>
+					<div class='column normal dark-left dark-right'
+						th:text="${targetMarketingPageModel?.have26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have56Plus}"></div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>WANT</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want12to18}"></div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.want19to25}"></div>
+					<div class='column normal dark-right dark-left dark-bottom'
+						th:text="${targetMarketingPageModel?.want26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want55Plus}"></div>
+				</div>
+					</div>
+					<div th:case="'Want26to35ToWant36to45'">
+					<!-- Want26to35ToWant36to45 -->
+						<div class='row'>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'>
+							<!-- show left arrow -->
+								<img
+					src="./img/arrow.svg" alt="" class="img-fluid flip" 
+					height="100">
+							</div>
+							
+							<div class='column-right dark-left no-border-right dark-top top-header'>
+								<h2 class="bold-text">Target </h2></div>
+							<div class='column-left column-left dark-right dark-top top-header'><h2 class="bold-text"> 85%</h2></div>
+							<div class='column  no-border'>
+							<!-- show right arrow -->
+								<img
+					src="./img/arrow.svg" alt="" class="img-fluid" 
+					height="100">
+							</div>
+							<div class='column  no-border'></div>
+						</div>
+						
+						
+				<div class='row'>
+					<div class='column no-border'></div>
+					<div class='column normal sub-header'>12-18</div>
+					<div class='column normal sub-header'>19-25</div>
+					<div class='column normal dark-left sub-header'>26-35</div>
+					<div class='column normal dark-left dark-right sub-header'>36-45</div>
+					<div class='column normal sub-header'>46-55</div>
+					<div class='column normal sub-header'>56 +</div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>HAVE</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have19to25}"></div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.have26to35}"></div>
+					<div class='column normal dark-left dark-right'
+						th:text="${targetMarketingPageModel?.have36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have56Plus}"></div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>WANT</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want19to25}"></div>
+					<div class='column normal dark-left dark-bottom'
+						th:text="${targetMarketingPageModel?.want26to35}"></div>
+					<div class='column normal dark-left dark-right dark-bottom'
+						th:text="${targetMarketingPageModel?.want36to45}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want55Plus}"></div>
+				</div>
+					</div>
+					<div th:case="'Want36to45ToWant46to55'">
+					<!-- Want36to45ToWant46to55 -->
+								<div class='row'>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'>
+							<!-- show left arrow -->
+						<img
+					src="./img/arrow.svg" alt="" class="img-fluid flip" 
+					height="100">
+							</div>
+							<div class='column-right dark-left no-border-right dark-top top-header'>
+								<h2 class="bold-text">Target </h2></div>
+							<div class='column-left column-left dark-right dark-top top-header'><h2 class="bold-text"> 85%</h2></div>
+							<div class='column  no-border'>
+							<!-- show right arrow -->
+									<img
+					src="./img/arrow.svg" alt="" class="img-fluid" 
+					height="100">
+							</div>
+							
+							<!--<div class='column  no-border'></div>  -->
+							
+							
+							
+						</div>
+						
+						
+				<div class='row'>
+					<div class='column no-border'></div>
+					<div class='column normal sub-header'>12-18</div>
+					<div class='column normal sub-header'>19-25</div>
+					<div class='column normal sub-header'>26-35</div>
+					<div class='column normal dark-left sub-header'>36-45</div>
+					<div class='column normal dark-left  dark-right sub-header'>46-55</div>
+					<div class='column normal sub-header'>56 +</div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>HAVE</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have26to35}"></div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.have36to45}"></div>
+					<div class='column normal dark-left dark-right '
+						th:text="${targetMarketingPageModel?.have46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have56Plus}"></div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>WANT</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want26to35}"></div>
+					<div class='column normal dark-left dark-bottom'
+						th:text="${targetMarketingPageModel?.want36to45}"></div>
+					<div class='column normal dark-left dark-right dark-bottom'
+						th:text="${targetMarketingPageModel?.want46to55}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want55Plus}"></div>
+				</div>
+					</div>
+					<div th:case="'Want46to55ToWant55Plus'">
+						<!-- Want46to55ToWant55Plus -->
+						<div class='row'>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'></div>
+							<div class='column no-border'>
+							<!-- show left arrow -->
+								<img src="./img/arrow.svg" alt="" class="img-fluid flip"
+									height="100">
+							</div>
+							<div class='column-right dark-left no-border-right dark-top top-header'>
+								<h2 class="bold-text">Target </h2></div>
+							<div class='column-left column-left dark-right dark-top top-header'><h2 class="bold-text"> 85%</h2></div>
+						</div>
+						
+				<div class='row'>
+					<div class='column no-border'></div>
+					<div class='column normal sub-header'>12-18</div>
+					<div class='column normal sub-header'>19-25</div>
+					<div class='column normal sub-header'>26-35</div>
+					<div class='column normal sub-header'>36-45</div>
+					<div class='column normal dark-left sub-header'>46-55</div>
+					<div class='column normal dark-left dark-right sub-header'>56 +</div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>HAVE</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.have36to45}"></div>
+					<div class='column normal dark-left'
+						th:text="${targetMarketingPageModel?.have46to55}"></div>
+					<div class='column normal dark-left dark-right'
+						th:text="${targetMarketingPageModel?.have56Plus}"></div>
+				</div>
+				<div class='row'>
+					<div class='column  no-border sub-header'>WANT</div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want12to18}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want19to25}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want26to35}"></div>
+					<div class='column normal'
+						th:text="${targetMarketingPageModel?.want36to45}"></div>
+					<div class='column normal dark-left dark-bottom'
+						th:text="${targetMarketingPageModel?.want46to55}"></div>
+					<div class='column normal dark-left dark-bottom dark-right'
+						th:text="${targetMarketingPageModel?.want55Plus}"></div>
+				</div>
+					</div>
+				</th:block>
+
+			</div>
+
+
+
+
+		</div>
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+			
+	    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(7,'down');">Next</button>
+	<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(5,'up');">Previous</button>
+	<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		
+		<div class="w3-row">
+			<div class="CopyRightId w3-col m8"></div>
+			<div class=" w3-col m2"></div>
+			<div align="right" class="w3-col m2">-CONFIDENTIAL- 6</div>
+		</div>
+		
+		
+		
+	</div>
+	<!-- end of if statement -->
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		var householdIncome = /*[[${targetMarketingPageModel.householdIncome}]]*/'householdIncome';
+		var householdIncomeNumber = Number(householdIncome);
+
+		switch (householdIncomeNumber) {
+		case 1:
+			document.getElementById("150Id").checked = true;
+
+			break;
+		case 2:
+			document.getElementById("100149Id").checked = true;
+
+			break;
+		case 3:
+			document.getElementById("5099Id").checked = true;
+			break;
+		case 4:
+			document.getElementById("under50Id").checked = true;
+			break;
+		default:
+			// code block
+		}
+
+		/*]]>*/
+	</script>
+
+
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		console.group("TargetHeaderRow");
+
+		var want12to18 = /*[[${targetMarketingPageModel?.want12to18}]]*/'0';
+		var want19to25 = /*[[${targetMarketingPageModel?.want19to25}]]*/'0';
+		var want26to35 = /*[[${targetMarketingPageModel?.want26to35}]]*/'0';
+		var want36to45 = /*[[${targetMarketingPageModel?.want36to45}]]*/'0';
+		var want46to55 = /*[[${targetMarketingPageModel?.want46to55}]]*/'0';
+		var want55Plus = /*[[${targetMarketingPageModel?.want55Plus}]]*/'0';
+
+		var want19to25_want26to35 = false;
+		var want26to35_want36to45 = false;
+		var want36to45_want46to55 = false;
+		var want46to55_want55Plus = false;
+		var targetHeaderRowNumber = 0;
+		//want12to18 = Number(want12to18);
+		//want19to25 = Number(want19to25);
+
+		console.log("want12to18 [" + want12to18 + "]");
+		console.log("want19to25 [" + want19to25 + "]");
+		console.log("want26to35 [" + want26to35 + "]");
+
+		console.log("want36to45 " + want36to45);
+		console.log("want46to55 " + want46to55);
+		console.log("want55Plus " + want55Plus)
+		if (want19to25 == 10 && want12to18 == 10) {
+			targetHeaderRowNumber = 1;
+			console.log("want12to18_want19to25 ");
+		}
+
+		if (want19to25 == 10 && want26to35 == 10) {
+			targetHeaderRowNumber = 2;
+			console.log("want19to25_want26to35 ");
+		}
+		if (want26to35 == 10 && want36to45 == 10) {
+			targetHeaderRowNumber = 3;
+			console.log("want26to35_want36to45 ");
+		}
+		if (want36to45 == 10 && want46to55 == 10) {
+			targetHeaderRowNumber = 4;
+			console.log("want36to45_want46to55");
+		}
+		if (want46to55 == 10 && want55Plus == 10) {
+			targetHeaderRowNumber = 5;
+			console.log("want46to55_want55Plus");
+		}
+		console.log(" ten [" + 10 + "]");
+		console.log("targetHeaderRowNumber [" + targetHeaderRowNumber + "]");
+
+		// console.log("document.getElementById("want19to25_want26to35").style.display [" + document.getElementById("want19to25_want26to35").style.display + "]");
+		var aa = document.getElementById("want19to25_want26to35");
+		//console.log(" element " + aa);
+		//var test = document.getElementById("want19to25_want26to35").style.display;
+		// console.log(" style [" + test + "]");
+		//document.getElementById("want19to25_want26to35").style.display = 'none';//hide
+		switch (targetHeaderRowNumber) {
+		case 1:
+
+			//document.getElementById("want19to25_want26to35").style.display = 'block';
+			//document.getElementById("want19to25_want26to35").visibility = 'visible';
+
+			break;
+		case 2:
+			// document.getElementById("100149Id").checked = true;
+
+			break;
+		case 3:
+			// document.getElementById("5099Id").checked = true;
+			break;
+		case 4:
+			//document.getElementById("under50Id").checked = true;
+			break;
+		default:
+			// code block
+		}
+
+		console.groupEnd();
+
+		/*]]>*/
+	</script>
+
+
+
+
+</div>
+<!-- end of PresentedTofragment -->

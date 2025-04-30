@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>SCR</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+
+
+<!-- Bootstrap CSS-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/bootstrap/css/bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/font-awesome/css/font-awesome.min.css">
+<!-- Google fonts - Montserrat for headings, Cardo for copy-->
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Montserrat:400,700|Cardo:400,400italic,700">
+<!-- Lightbox-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/lightbox2/css/lightbox.min.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/css/style.default.css"
+	id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet"
+	href="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/css/custom.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Favicon-->
+<link rel="shortcut icon" href="./img/icon.png">
+<!-- Tweaks for older IEs-->
+<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+<style>
+.displayMedium {
+	font-size: 1.125em;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- intro end-->
+	<!-- navbar-->
+	<header class="header">
+		<nav class="navbar navbar-expand-lg">
+			<div class="container">
+				<a href="#intro" class="navbar-brand link-scroll"><img
+					src="./img/system21.png" alt="" class="img-fluid" width="160"
+					height="40"></a>
+				<button type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation"
+					class="navbar-toggler navbar-toggler-right">
+					<i class="fa fa-bars"></i>
+				</button>
+				<div id="navbarSupportedContent" class="collapse navbar-collapse">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a href="index.html"
+							class="nav-link link-scroll">Home</a></li>
+						<li class="nav-item"><a href="wizards"
+							class="nav-link link-scroll">Wizard/SCR</a></li>
+						<li class="nav-item"><a href="about"
+							class="nav-link link-scroll">About</a></li>
+						<li class="nav-item"><a href="logout"
+							class="nav-link link-scroll">Logout</a></li>
+
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+
+
+	<section class="clearfix">
+
+
+
+		<!-- IF CUSTOMER IS ANONYMOUS -->
+
+
+
+		<div class="container" style="background-color: white; color: black;">
+
+
+			<form id="formId" method="post" action="add">
+				<dxa:csrf-token />
+
+
+				<script>
+					function deleteSCR() {
+						console.group("delete");
+
+						var txt = "Are you sure to delete "
+								+ document.getElementById('name').value + "?";
+						if (confirm(txt)) {
+							console.log("remove scr");
+							document.getElementById("formId").action = "delete";
+							document.getElementById('formId').submit();
+							// Do the delete when you click ok
+						} else {
+							return false;
+						}
+						console.groupEnd();
+					}
+
+					function copySCR() {
+						console.group("copy");
+						document.getElementById("formId").action = "copy";
+						document.getElementById('formId').submit();
+						console.groupEnd();
+					}
+
+					//I added in this code first to begin separting the code and giving each button its own ID
+					function updateSCR() {
+						console.group("update");
+						document.getElementById("formId").action = "update";
+						document.getElementByID('formId').submit();
+						console.groupEnd();
+					}
+				</script>
+
+				<style>
+mark {
+	background-color: yellow;
+	color: black;
+}
+</style>
+				<div class="card">
+					<div class="card-header">Renaming the Wizard/SCR Name</div>
+					<div class="card-body">
+
+
+						<div class="form-group">
+							<div class="col-2">
+								<label for="Name" class="displayMedium">Name</label>
+							</div>
+							<div class="col-10">
+								<input placeholder="Enter name for Wizard/SCR"
+									th:value="${wizard.name}" required="required"
+									class="form-control" maxlength="75" type="text" name="name"
+									id="name" /> <input type="hidden" id="wizardId"
+									th:value="${wizard.encrypt}" name="wizardId" />
+							</div>
+						</div>
+
+
+						<p class="card-text">Renaming the existing Wizard/SCR with the
+							new name for the wizard/SCR. Remember that each Wizard/SCR should
+							have a unique and meaningful name. The name distinguishes the
+							wizards that you create.</p>
+						<button onclick="updateSCR()" class="btn btn-primary">Renaming
+							Wizard/SCR</button>
+					</div>
+				</div>
+
+				<div class="row"></div>
+				<div class="card">
+					<div class="card-header">Copying the Wizard/SCR</div>
+					<div class="card-body">
+
+						<p class="card-text">Copying the existing Wizard/SCR will copy
+							all the data from the Wizard/SCR.</p>
+						<button onclick="copySCR()" class="btn btn-primary">Copy
+							Wizard/SCR data.</button>
+					</div>
+				</div>
+				<div class="row"></div>
+
+				<div class="card">
+					<div class="card-header" style="color: red;">Deleting the
+						Wizard/SCR</div>
+					<div class="card-body">
+
+						<p class="card-text">
+							Deleting the existing Wizard/SCR will remove the Wizard/SCR from
+							the system.
+							<mark>You will not be able to recover the Wizard/SCR</mark>
+						</p>
+						<button onclick="return deleteSCR();" class="btn btn-primary">Delete
+							Wizard/SCR</button>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+			</form>
+
+		</div>
+	</section>
+	<div class="container">
+		<footer
+			class="page-footer font-small gray pt-4 border border-dark border-right-0 border-left-0">
+
+			<p>Copyright © 1984-2023 Executive Decision Systems, Inc. and The
+				Guld Resource Group, LLC. The data, formulas, and all other content
+				in these materials are the property of Executive Decision Systems,
+				Inc. and The Guld Resource Group, LLC and are protected by copyright
+				and other intellectual property laws. No part of these materials may
+				be reproduced, distributed, or used in any way without a license
+				agreement or other written consent of The Guld Resource Group, LLC
+				permitting such use. All rights reserved. To report violations,
+				please call (804) 356-7006.</p>
+
+		</footer>
+	</div>
+	<!-- JavaScript files-->
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/popper.js/umd/popper.min.js">
+		
+	</script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery.cookie/jquery.cookie.js">
+		
+	</script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery.cookie/jquery.cookie.js">
+		
+	</script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/lightbox2/js/lightbox.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;amp;sensor=false">
+		
+	</script>
+	<script
+		src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/js/front.js"></script>
+</body>

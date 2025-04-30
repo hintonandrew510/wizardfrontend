@@ -1,0 +1,99 @@
+<!-- begin of TeamCommitmentfragment -->
+<div th:fragment="TeamCommitmentPage"
+	class="grad container pageBreakBefore">
+	<div th:if="${PublishModel.teamCommitmentPage}">
+		<!-- begin if TeamCommitment content -->
+		<div>
+			<a id="TeamCommitmentPage"></a>
+
+			
+
+		</div>
+
+		<div class="whiteGrad">
+			<div class="text-justify">
+				<h1 class="text-center w3-text-black">Team Commitment</h1>
+			</div>
+			<div class="w3-row">
+			    <div class="w3-col m12">
+			         <h2 class="text-center" th:text="'The following proposal will be submitted to ' + ${PresentedToPage?.clientBusinessName}">The following proposal will be submitted to </h2>
+			    </div>
+			    
+				
+			</div>
+			
+			<p>The creation of this Summary of Conclusions and Recommendations is a team 
+			collaboration of media professionals with the goal of exceeding your expectations.  
+			Each of the below is committed to the highest standards of professionalism and are personally available should you 
+			have any questions or concerns throughout this campaign.</p>
+
+
+
+
+
+
+
+
+			<div class="w3-container" style="padding-top: 5%;">
+				
+				<div class="w3-row" style="padding-bottom: 4%;padding-left: 20%;">
+				
+					<div style="padding-left: 2%;"  class="w3-col m5" th:text="${TeamCommitmentPage?.topLevelName}"></div>
+					<div style="padding-left: 2%;" class="w3-col m5" th:text="${TeamCommitmentPage?.topLevelTitle}"></div>
+					
+				</div>
+				
+				
+				<div class="w3-row" style="padding-bottom: 4%;padding-left: 20%;">
+					<div style="padding-left: 2%;" class="w3-col m5"
+						th:text="${TeamCommitmentPage?.secondLevelName}"></div>
+					<div style="padding-left: 2%;" class="w3-col m5"
+						th:text="${TeamCommitmentPage?.secondLevelTitle}"></div>
+					
+				</div>
+				
+				
+				
+				
+				<div class="w3-row" style="padding-bottom: 4%;padding-left: 20%;">
+					<div style="padding-left: 2%;" class="w3-col m5"
+						th:text="${TeamCommitmentPage?.thirdLevelName}"></div>
+					<div style="padding-left: 2%;"  class="w3-col m5"
+						th:text="${TeamCommitmentPage?.thirdLevelTitle}"></div>
+					
+				</div>
+				
+				
+				<div class="w3-row" style="padding-bottom: 4%;padding-left: 20%;">
+					<div style="padding-left: 2%;" class="w3-col m5"
+						th:text="${TeamCommitmentPage?.fourthLevelName}"></div>
+					<div style="padding-left: 2%;"  class="w3-col m5"
+						th:text="${TeamCommitmentPage?.fourthLevelTitle}"></div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="w3-container d-print-none" style="padding-top: 2%;">
+			<button class="w3-btn w3-white" onclick="javascript:printPage();">Share</button>
+		    <button class="w3-btn w3-white" onclick="javascript:gotoAnchor(3,'down');">Next</button>
+			<button class="w3-btn w3-white" onclick="javascript:gotoAnchor(1,'up');">Previous</button>
+		    <button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+	
+		</div>
+		<div class="w3-row">
+		      <div class="CopyRightId w3-col m8"></div>
+		      <div class=" w3-col m2"></div>
+		      <div align="right" class="w3-col m2">
+			-CONFIDENTIAL- 2      
+		      </div>	      
+		</div>
+
+
+	</div>
+	<!-- end of if teamCommitmentPage content -->
+
+
+
+</div>
+<!-- end of TeamCommitmentPageFragment -->
