@@ -1,88 +1,115 @@
 package com.scr.market.configuration;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.scr.market.data.MyUserDetailsService;
 
 
+import static org.springframework.security.config.Customizer.withDefaults;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 //.antMatchers("/css/**", "/js/**", "/img/**").permitAll().anyRequest().permitAll()    
 @Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	
-	  @Autowired
-	    private CustomAuthenticationProvider authProvider;
-    private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        mLog.info("starting configure");
-        http.formLogin()
-        .failureHandler(customAuthenticationFailureHandler());
-	
-        http
-	    .csrf().disable()
-            .authorizeRequests()
-                .antMatchers("/","/index.html","/add").permitAll()
-                .antMatchers("/css/**", "/vendor/**", "/js/**", "/img/**").permitAll().anyRequest().permitAll() 
-                .anyRequest().authenticated()            
-                .and()
-            .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-            .logout()
-                .permitAll();
-    }
+public class WebSecurityConfig {
+	private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());
+	private final MyUserDetailsService myUserDetailService;
+	//@Autowired
+	//private CustomAuthenticationProvider authProvider;
 
-   
-    @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authProvider);
-    }
+	// Constructor injection for MyUserDetailService
+	public WebSecurityConfig(MyUserDetailsService myUserDetailService) {
+		mLog.info("WebSecurityConfig");
+		this.myUserDetailService = myUserDetailService;
+	}
+
+	/**
+	 * Configures the security filter chain.
+	 * 
+	 * @param httpSecurity the HttpSecurity object to configure
+	 * @return the configured SecurityFilterChain
+	 * @throws Exception in case of any configuration error
+	 */
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		mLog.info("securityFilterChain");
+		return httpSecurity.authorizeHttpRequests(authorize -> {
+			// Permit access to static resources and login, home, and error pages
+			authorize.requestMatchers("/css/**", "/js/**", "/images/**").permitAll();
+			authorize.requestMatchers("/login", "/error/**", "/logout", "/", "/index").permitAll();
+			// Restrict access to admin and user pages based on roles
+			authorize.requestMatchers("/admin/**").hasRole("ADMIN");
+			authorize.requestMatchers("/user/**").hasRole("USER");
+			// All other requests require authentication
+			authorize.anyRequest().authenticated();
+		}).formLogin(formLogin -> formLogin.loginPage("/login") // Custom login page
+				.defaultSuccessUrl("/", true) // Redirect to home after successful login
+				 .failureHandler(customAuthenticationFailureHandler())
+				.permitAll()).logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout") // Redirect
+																												// to
+																												// login
+																												// page
+																												// after
+																												// logout
+						.permitAll())
+				.csrf(AbstractHttpConfigurer::disable) // Disable CSRF for simplicity (not recommended for production)
+				.build();
+	}
+
+//	@Bean
+	//public UserDetailsService userDetailService() {
+//		return myUserDetailService;
+//	}
+
+	/**
+	 * Configures the AuthenticationProvider.
+	 * 
+	 * @return the configured AuthenticationProvider
+	 */
+	@Bean
+	public AuthenticationProvider authenticationProvider() {
+		mLog.info("authenticationProvider");
+
+		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+		daoAuthenticationProvider.setUserDetailsService(myUserDetailService);
+		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+		return daoAuthenticationProvider;
+	}
+
+
+
+	@SuppressWarnings("deprecation")
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		mLog.info("passwordEncoder()");
+		return new MyCustomPasswordEncoder();
+	}
 	
-
-
-    
-    /*
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        mLog.info("starting userDetailService");
-        //mUserDetailsService.loadUserByUsername(username)
-        UserDetails user =
-             User.withDefaultPasswordEncoder()
-                .username("a@aol.com")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-    */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-       
-      // web.ignoring().antMatchers("/resources/**");
-    }
 	@Bean
     public AuthenticationFailureHandler customAuthenticationFailureHandler() {
-		//mLog.log("customAuthenticationFailureHandler");
+		
         return new CustomAuthenticationFailureHandler();
     }
+
 }
