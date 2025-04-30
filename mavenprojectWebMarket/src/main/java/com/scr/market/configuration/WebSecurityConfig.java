@@ -34,12 +34,12 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class WebSecurityConfig {
 	private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());
-	private final MyUserDetailsService myUserDetailService;
+	private final MyUserDetailService myUserDetailService;
 	//@Autowired
 	//private CustomAuthenticationProvider authProvider;
 
 	// Constructor injection for MyUserDetailService
-	public WebSecurityConfig(MyUserDetailsService myUserDetailService) {
+	public WebSecurityConfig(MyUserDetailService myUserDetailService) {
 		mLog.info("WebSecurityConfig");
 		this.myUserDetailService = myUserDetailService;
 	}

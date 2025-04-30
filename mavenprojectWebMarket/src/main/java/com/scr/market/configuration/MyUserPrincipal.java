@@ -15,13 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class MyUserPrincipal implements UserDetails {
 	private static final Logger mLog = LoggerFactory.getLogger(MyUserPrincipal.class.getName());
-	public Agent getAgent() {
-		return agent;
-	}
-
-	public void setAgent(Agent agent) {
-		this.agent = agent;
-	}
+	
 
 	public Contact getContact() {
 		return contact;
@@ -31,11 +25,11 @@ public class MyUserPrincipal implements UserDetails {
 		this.contact = contact;
 	}
 
-	private Agent agent;
+
 	private Contact contact;
 
-	public MyUserPrincipal(Agent agent, Contact contact) {
-		this.agent = agent;
+	public MyUserPrincipal(Contact contact) {
+		
 		this.contact = contact;
 		
 	}
@@ -57,14 +51,14 @@ public class MyUserPrincipal implements UserDetails {
 
 	@Override
 	public String getPassword() {
-		String password = agent.getPassword();
+		String password = contact.getPassword();
 		return password;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return agent.getAddress();
+		return contact.getAddress();
 	}
 
 	@Override
