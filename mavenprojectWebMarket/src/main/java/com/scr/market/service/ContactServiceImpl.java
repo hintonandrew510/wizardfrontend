@@ -8,14 +8,20 @@ import com.scr.market.model.Contact;
 import com.scr.market.repository.ContactRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author andrewhinton
  */
-public class ContactServiceImpl implements ContactService{
-  @Autowired
-	    private ContactRepository contactRepository;
+@Service
+public class ContactServiceImpl implements ContactService {
+
+    public ContactServiceImpl() {
+    }
+    @Autowired
+    private ContactRepository contactRepository;
+
     @Override
     public Contact findByEmailaddressAndPassword(String emailaddress, String password) {
         return contactRepository.findByEmailaddressAndPassword(emailaddress, password);
@@ -30,5 +36,5 @@ public class ContactServiceImpl implements ContactService{
     public Optional<Contact> findById(int contactId) {
         return contactRepository.findById(contactId);
     }
-    
+
 }
