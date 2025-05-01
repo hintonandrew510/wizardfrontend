@@ -17,8 +17,9 @@ public class MyCustomPasswordEncoder implements PasswordEncoder {
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         // Your custom matching logic here
-    	mLog.info("matches");
-    	mLog.info(encodedPassword);
-        return true;
+    mLog.info("matches");
+        mLog.info("Raw[" + rawPassword.toString() + "]");
+    	mLog.info("Encode [" + encodedPassword + "]");
+        return rawPassword.toString().equalsIgnoreCase(encodedPassword);
     }
 }

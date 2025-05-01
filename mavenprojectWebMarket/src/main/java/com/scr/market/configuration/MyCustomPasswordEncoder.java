@@ -11,6 +11,7 @@ public class MyCustomPasswordEncoder implements PasswordEncoder {
     @Override
     public String encode(CharSequence rawPassword) {
         // Your custom encoding logic here
+            	mLog.info("encoded_" + rawPassword );
         return "encoded_" + rawPassword; // Example: Prefix with "encoded_"
     }
 
@@ -18,7 +19,9 @@ public class MyCustomPasswordEncoder implements PasswordEncoder {
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
         // Your custom matching logic here
     	mLog.info("matches");
-    	mLog.info(encodedPassword);
-        return true;
+        mLog.info("Raw[" + rawPassword.toString() + "]");
+    	mLog.info("Encode [" + encodedPassword + "]");
+        return rawPassword.toString().equalsIgnoreCase(encodedPassword);
+       
     }
 }
