@@ -1,5 +1,6 @@
 package com.scr.market.configuration;
 
+import com.scr.market.data.MyUserPrincipal;
 import com.scr.market.model.Agent;
 import com.scr.market.model.Contact;
 import com.scr.market.service.AgentServiceImpl;

@@ -1,5 +1,6 @@
 package com.scr.market.configuration;
 
+import com.scr.market.data.MyUserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.scr.market.data.MyUserPrincipal;
+
 import com.scr.market.model.Contact;
 import com.scr.market.repository.ContactRepository;
 import org.slf4j.Logger;

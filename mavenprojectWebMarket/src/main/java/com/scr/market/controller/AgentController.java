@@ -1,20 +1,18 @@
 package com.scr.market.controller;
 
+
+import com.scr.market.data.MyUserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.Authentication;
-import  com.scr.market.data.MyUserPrincipal;
+
 import java.security.Principal;
 import java.sql.SQLException;
 
@@ -105,7 +103,11 @@ public class AgentController {
 	public String getAll(Model model, Principal principal, Authentication authentication) {
 		mLog.info("starting getAll");
 		String principalName = "unKnown";
-		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+                //java.lang.ClassCastException: /
+                //class com.scr.market.configuration.MyUserPrincipal 
+                 //cannot be cast to class com.scr.market.data.MyUserPrincipal (com.scr.market.configuration.MyUserPrincipal and com.scr.market.data.MyUserPrincipal are in unnamed module of loader 'app')
+
+		com.scr.market.data.MyUserPrincipal userDetails = (com.scr.market.data.MyUserPrincipal) authentication.getPrincipal();
 		contact = userDetails.getContact();
 		
 
