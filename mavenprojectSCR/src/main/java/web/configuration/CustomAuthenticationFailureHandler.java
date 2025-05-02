@@ -1,6 +1,22 @@
 package web.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.security.authentication.AccountExpiredException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -49,7 +65,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 			
 		}	
 		
-	
+	        mLog.info("login?error");
 		response.sendRedirect("login");
 		
 	}
@@ -61,6 +77,28 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 			throws IOException, jakarta.servlet.ServletException {
 		
 		mLog.info("onAuthenticationFailure " + exception.getMessage());
+                
+		if (exception instanceof BadCredentialsException) {
+			mLog.info("BadCredentialsException");
+			request.getSession().setAttribute("BadCredentialsException", "BadCredentialsException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			
+		}
+		if (exception instanceof AuthenticationCredentialsNotFoundException) {
+			mLog.info("AuthenticationCredentialsNotFoundException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			request.getSession().setAttribute("AuthenticationCredentialsNotFoundException", "AuthenticationCredentialsNotFoundException");
+			
+		}
+		if (exception instanceof AccountExpiredException) {
+			mLog.info("AccountExpiredException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			request.getSession().setAttribute("AccountExpiredException", "AccountExpiredException");
+			
+		}	
+		
+	        mLog.info("login?error");
+		response.sendRedirect("login");
 		
 		// TODO Auto-generated method stub
 		

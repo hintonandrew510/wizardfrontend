@@ -29,6 +29,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 //.antMatchers("/css/**", "/js/**", "/img/**").permitAll().anyRequest().permitAll()    
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig {
 
     private static final Logger mLog = LoggerFactory.getLogger(WebSecurityConfig.class.getName());

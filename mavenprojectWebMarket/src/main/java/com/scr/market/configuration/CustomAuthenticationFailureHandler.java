@@ -49,7 +49,7 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 			
 		}	
 		
-	
+	        mLog.info("login?error");
 		response.sendRedirect("login");
 		
 	}
@@ -61,6 +61,28 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 			throws IOException, jakarta.servlet.ServletException {
 		
 		mLog.info("onAuthenticationFailure " + exception.getMessage());
+                
+		if (exception instanceof BadCredentialsException) {
+			mLog.info("BadCredentialsException");
+			request.getSession().setAttribute("BadCredentialsException", "BadCredentialsException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			
+		}
+		if (exception instanceof AuthenticationCredentialsNotFoundException) {
+			mLog.info("AuthenticationCredentialsNotFoundException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			request.getSession().setAttribute("AuthenticationCredentialsNotFoundException", "AuthenticationCredentialsNotFoundException");
+			
+		}
+		if (exception instanceof AccountExpiredException) {
+			mLog.info("AccountExpiredException");
+			request.getSession().setAttribute("ExceptionMessage", exception.getMessage());
+			request.getSession().setAttribute("AccountExpiredException", "AccountExpiredException");
+			
+		}	
+		
+	        mLog.info("login?error");
+		response.sendRedirect("login");
 		
 		// TODO Auto-generated method stub
 		
