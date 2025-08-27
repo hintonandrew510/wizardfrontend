@@ -14,12 +14,21 @@ import org.springframework.context.annotation.ComponentScan;
 "com.scr.market","com.scr.market.repository", "com.scr.market.service"})
 public class WebmarketApplication extends SpringBootServletInitializer {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WebmarketApplication.class.getName());
+    @Override
+    // Configuring method has to be overridden    
+    protected SpringApplicationBuilder
+            configure(SpringApplicationBuilder application) {
+        return application.sources(
+                WebmarketApplication.class);
+    }
 
-
+    // Method 2    
+    // Main driver method    
     public static void main(String[] args) {
-        LOGGER.info("main  start");
-        SpringApplication.run(WebmarketApplication.class, args);
+        SpringApplication.run(
+                WebmarketApplication.class,
+                args);
     }
 
 }
+
