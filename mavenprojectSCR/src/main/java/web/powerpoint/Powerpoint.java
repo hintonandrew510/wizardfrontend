@@ -8,6 +8,7 @@ package web.powerpoint;
  *
  * @author andrewhinton
  */
+import com.google.api.services.drive.model.File;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
@@ -16,6 +17,7 @@ import java.io.FileOutputStream;
 import org.springframework.core.io.ClassPathResource;
 import java.io.InputStream;
 import java.io.IOException;
+import org.springframework.util.ResourceUtils;
 
 public class Powerpoint {
 
@@ -23,8 +25,11 @@ public class Powerpoint {
 
         // Create a ClassPathResource object for the specified file
      ClassPathResource resource = new ClassPathResource("/powerpointtemplate/radio.pptx");
-     String fileName = resource.getFilename();
-     System.out.println("fileName " + fileName);
+     
+        java.io.File file = ResourceUtils.getFile("classpath:powerpointtemplate/tv.pptx");
+            InputStream inputStream = new FileInputStream(file);
+     String fileName = file.getCanonicalPath();
+     System.out.println("file " + file.getCanonicalPath());
         String filePath = resource.getPath();
      System.out.println("filePath " + filePath);
         //InputStream inputStream = resource.getInputStream();
@@ -33,8 +38,8 @@ public class Powerpoint {
       //  FileInputStream fis = new FileInputStream("/powerpointtemplate/radio.pptx");
        // XMLSlideShow ppt = new XMLSlideShow(inputStream);
      
-            FileInputStream templateFile = new FileInputStream(fileName);
-        XMLSlideShow ppt = new XMLSlideShow(templateFile);
+          //  FileInputStream templateFile = new FileInputStream(filePath);
+        XMLSlideShow ppt = new XMLSlideShow(inputStream);
             System.out.println("loaded pptx");
         int q = 2;
         //fis.close();
