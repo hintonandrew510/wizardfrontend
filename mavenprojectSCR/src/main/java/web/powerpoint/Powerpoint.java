@@ -57,7 +57,7 @@ public class Powerpoint {
         }
 
         // Save the new presentation
-        FileOutputStream fos = new FileOutputStream("output.pptx");
+        FileOutputStream fos = new FileOutputStream("/opt/wizard/download/output.pptx");
         ppt.write(fos);
         fos.close();
         ppt.close();
