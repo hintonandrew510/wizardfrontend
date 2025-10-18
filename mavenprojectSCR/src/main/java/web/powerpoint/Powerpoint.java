@@ -24,23 +24,22 @@ public class Powerpoint {
     public static void main(String[] args) throws Exception {
 
         // Create a ClassPathResource object for the specified file
-     ClassPathResource resource = new ClassPathResource("/powerpointtemplate/radio.pptx");
-     
+        ClassPathResource resource = new ClassPathResource("/powerpointtemplate/radio.pptx");
+
         java.io.File file = ResourceUtils.getFile("classpath:powerpointtemplate/tv.pptx");
-            InputStream inputStream = new FileInputStream(file);
-     String fileName = file.getCanonicalPath();
-     System.out.println("file " + file.getCanonicalPath());
+        InputStream inputStream = new FileInputStream(file);
+        String fileName = file.getCanonicalPath();
+        System.out.println("file " + file.getCanonicalPath());
         String filePath = resource.getPath();
-     System.out.println("filePath " + filePath);
+        System.out.println("filePath " + filePath);
         //InputStream inputStream = resource.getInputStream();
-        
+
         // Load the template
-      //  FileInputStream fis = new FileInputStream("/powerpointtemplate/radio.pptx");
-       // XMLSlideShow ppt = new XMLSlideShow(inputStream);
-     
-          //  FileInputStream templateFile = new FileInputStream(filePath);
+        //  FileInputStream fis = new FileInputStream("/powerpointtemplate/radio.pptx");
+        // XMLSlideShow ppt = new XMLSlideShow(inputStream);
+        //  FileInputStream templateFile = new FileInputStream(filePath);
         XMLSlideShow ppt = new XMLSlideShow(inputStream);
-            System.out.println("loaded pptx");
+        System.out.println("loaded pptx");
         int q = 2;
         //fis.close();
 //
