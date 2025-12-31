@@ -4,6 +4,7 @@
  */
 package web.powerpoint;
 
+import java.awt.Rectangle;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
@@ -47,6 +48,7 @@ public class PieChartDemoPercentage {
 
         XMLSlideShow pptx = new XMLSlideShow(new FileInputStream(template));
         XSLFSlide slide = pptx.getSlides().get(0);
+      
 
         // find chart in the slide
         XSLFChart chart = null;
@@ -64,12 +66,23 @@ public class PieChartDemoPercentage {
         //add
         chart.setTitleOverlay(false);
 
+        
+       
+        //XSLFChart chart = slide.addChart(ppt.createChart(), rect);
+
         // embedded Excel workbook that holds the chart data
         POIXMLDocumentPart xlsPart = chart.getRelations().get(0);
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet();
 
         CTChart ctChart = chart.getCTChart();
+        Rectangle rectangle = new Rectangle(50, 50, 400, 400);
+        //ctChart.setPlotArea(ctpa);
+
+        // ... inside your chart creation logic
+        XDDFChartData chartData = chart.createData(ChartTypes.PIE3D, null, null);
+        chartData.setVaryColors(true);
+        chart.plot(chartData);
 
         CTPlotArea plotArea = ctChart.getPlotArea();
 
@@ -87,13 +100,11 @@ public class PieChartDemoPercentage {
 
         // Configure the data labels to show specific information:
 // Show the value (the numerical data point)
-       // CTBoolean showVal = dLbls.addNewShowVal();
+        // CTBoolean showVal = dLbls.addNewShowVal();
         //showVal.setVal(true);
-
 // Show the category name (the label for the slice)
-       // CTBoolean showCatName = dLbls.addNewShowCatName();
-        //showCatName.setVal(true);
-
+        // CTBoolean showCatName = dLbls.addNewShowCatName();
+        //ploshowCatName.setVal(true);
 // Show the percentage (useful for pie charts)
         CTBoolean showPercent = dLbls.addNewShowPercent();
         showPercent.setVal(true);

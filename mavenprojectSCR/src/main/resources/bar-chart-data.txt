@@ -1,0 +1,20 @@
+10 languages with most speakers as first language
+countries,speakers,language
+118,378,English1
+31,442,Spanish1
+118,378,English2
+31,442,Spanish2
+118,378,English3
+31,442,Spanish3
+118,378,English4
+31,442,Spanish4
+118,378,English5
+31,442,Spanish5
+118,378,English6
+31,442,Spanish6
+118,378,English7
+31,442,Spanish7
+118,378,English8
+31,442,Spanish8
+118,378,English9
+31,442,Spanish9

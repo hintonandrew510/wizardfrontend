@@ -53,6 +53,7 @@ public class PieChartDemo {
         for (POIXMLDocumentPart part : slide.getRelations()) {
             if (part instanceof XSLFChart) {
                 chart = (XSLFChart) part;
+                //XSSFChart XSLFChart
                 break;
             }
         }
