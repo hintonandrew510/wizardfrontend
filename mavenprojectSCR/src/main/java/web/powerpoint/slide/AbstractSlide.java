@@ -1,0 +1,118 @@
+package web.powerpoint.slide;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
+import org.apache.poi.xslf.usermodel.XSLFShape;
+import org.apache.poi.xslf.usermodel.XSLFSlide;
+import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
+import org.apache.poi.xslf.usermodel.XSLFTextRun;
+import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import web.google.slide.SlideEnum;
+import web.google.slide.SlideReplacementData;
+import web.google.slide.SlidesData;
+
+public abstract class AbstractSlide implements SlideInterface {
+
+    private static final Logger mLog = LoggerFactory.getLogger(AbstractSlide.class.getName());
+
+    public SlidesData getmSlidesData() {
+        return mSlidesData;
+    }
+
+    public void setmSlidesData(SlidesData mSlidesData) {
+        this.mSlidesData = mSlidesData;
+    }
+
+    public String getPageName() {
+        return pageName;
+    }
+
+    public void setPageName(String pageName) {
+        this.pageName = pageName;
+    }
+
+    public SlideEnum getSlideEnum() {
+        return slideEnum;
+    }
+
+    public void setSlideEnum(SlideEnum slideEnum) {
+        this.slideEnum = slideEnum;
+    }
+    private SlidesData mSlidesData;
+    private String pageName;
+    private SlideEnum slideEnum;
+
+    public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum, String pageName) {
+        this.slideEnum = slideEnum;
+        mSlidesData = slidesData;
+        this.pageName = pageName;
+    }
+
+    public String formatStringToCurrency(int currency) {
+        String currencyStr = String.valueOf(currency);
+        currencyStr = formatStringToCurrency(currencyStr);
+        return currencyStr;
+    }
+
+    public String withLargeIntegers(String value) {
+        try {
+            double valuedouble = Double.parseDouble(value);
+            DecimalFormat df = new DecimalFormat("###,###,###");
+            return df.format(valuedouble);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public String formatStringToCurrency(String currency) {
+        try {
+            if (currency == null || currency == "") {
+                return "";
+            }
+            double amount = Double.parseDouble(currency);
+            NumberFormat usdCostFormat = NumberFormat.getCurrencyInstance(Locale.US);
+            usdCostFormat.setMaximumFractionDigits(0);
+            String output = usdCostFormat.format(amount);
+            return output;
+        } catch (Exception ex) {
+
+            return "";
+        }
+    }
+    
+     public void replaceTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide ) {
+         for (SlideReplacementData slideReplacementData : listData) {
+                for (XSLFShape shape : slide.getShapes()) {
+                // Check if the shape is a text shape
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
+
+                    for (XSLFTextParagraph para : paragraphs) {
+                        List<XSLFTextRun> textRuns = para.getTextRuns();
+                        for (XSLFTextRun incomingTextRun : textRuns) {
+                            String text = incomingTextRun.getRawText();
+                            // Perform the replacement using standard Java string methods
+                            if (text.contains(slideReplacementData.getGoogleSlideVariableName())) {
+                                String updatedText = text.replace(slideReplacementData.getGoogleSlideVariableName(), slideReplacementData.getGoogleSlideVariableValue());
+                                // Set the new text in the text run
+                                incomingTextRun.setText(updatedText);
+                            }
+                        }
+                    }
+                }
+            }
+         }
+     }
+    
+
+
+}

@@ -17,6 +17,7 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.*;
 import org.apache.poi.xslf.usermodel.*;
 
 import java.io.*;
+import java.util.List;
 import org.apache.poi.ooxml.POIXMLDocumentPart;
 import org.apache.poi.xddf.usermodel.chart.ChartTypes;
 import org.apache.poi.xddf.usermodel.chart.XDDFChartData;
@@ -41,6 +42,8 @@ public class PieChartDemoPercentage {
 //            return;
 //    
         String template = "/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/pie-chart-template.pptx";
+      
+        //template="/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv.pptx";
         String dataFile = "/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/pie-chart-data.txt";
         BufferedReader modelReader = new BufferedReader(new FileReader(dataFile));
 
@@ -48,6 +51,8 @@ public class PieChartDemoPercentage {
 
         XMLSlideShow pptx = new XMLSlideShow(new FileInputStream(template));
         XSLFSlide slide = pptx.getSlides().get(0);
+        
+        System.out.println("found chart " + slide.getSlideName() );
       
 
         // find chart in the slide
@@ -55,11 +60,17 @@ public class PieChartDemoPercentage {
         for (POIXMLDocumentPart part : slide.getRelations()) {
             if (part instanceof XSLFChart) {
                 chart = (XSLFChart) part;
+                System.out.println("FOUND chart " );
+               // String title = chart.getTitle().getBody().toString();
+                
                 break;
+            } else {
+                 System.out.println("Part " + part );
             }
         }
 
         if (chart == null) {
+            System.out.println("chart NOT found in the template");
             throw new IllegalStateException("chart not found in the template");
         }
 
@@ -71,6 +82,11 @@ public class PieChartDemoPercentage {
         //XSLFChart chart = slide.addChart(ppt.createChart(), rect);
 
         // embedded Excel workbook that holds the chart data
+         List<POIXMLDocumentPart> allparts = chart.getRelations();
+         for (POIXMLDocumentPart indPart : allparts) {
+            System.out.println(" part " +indPart.getClass().getName() );
+         }
+         
         POIXMLDocumentPart xlsPart = chart.getRelations().get(0);
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet();
@@ -168,7 +184,7 @@ public class PieChartDemoPercentage {
         xlsOut.close();
 
         // save the result
-        FileOutputStream out = new FileOutputStream("./pie-chart-demo-outputpre.pptx");
+        FileOutputStream out = new FileOutputStream("./pie3d-chart-demo-outputTV.pptx");
         pptx.write(out);
 
         System.out.println("file created");

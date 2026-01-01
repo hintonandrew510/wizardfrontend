@@ -19,6 +19,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xddf.usermodel.chart.AxisOrientation;
 import org.apache.poi.xddf.usermodel.chart.AxisPosition;
 import org.apache.poi.xddf.usermodel.chart.BarDirection;
+import org.apache.poi.xddf.usermodel.chart.BarGrouping;
 import org.apache.poi.xddf.usermodel.chart.XDDFBarChartData;
 import org.apache.poi.xddf.usermodel.chart.XDDFChartData;
 import org.apache.poi.xddf.usermodel.chart.XDDFDataSource;
@@ -44,7 +45,7 @@ public final class BarChartDemo {
 
     public static void main(String[] args) throws Exception {
        
-
+        String template ="";
         try (FileInputStream argIS = new FileInputStream("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/bar-chart-template.pptx");
             BufferedReader modelReader = Files.newBufferedReader(Paths.get("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/bar-chart-data.txt"), StandardCharsets.UTF_8)) {
 
@@ -72,7 +73,7 @@ public final class BarChartDemo {
             Double[] values2 = listSpeakers.toArray(new Double[0]);
 
             try (XMLSlideShow pptx = new XMLSlideShow(argIS)) {
-                XSLFSlide slide = pptx.getSlides().get(0);
+                XSLFSlide slide = pptx.getSlides().get(1);
                 setBarData(findChart(slide), chartTitle, series, categories, values1, values2);
 
                 XSLFChart chart = findChart(pptx.createSlide().importContent(slide));
@@ -120,11 +121,11 @@ public final class BarChartDemo {
         XDDFBarChartData bar = (XDDFBarChartData) series.get(0);
 
         // in order to transform a bar chart into a column chart, you just need to change the bar direction
-        //bar.setBarDirection(BarDirection.COL);
-         bar.setBarDirection(BarDirection.BAR);
+      bar.setBarDirection(BarDirection.COL);
+         //bar.setBarDirection(BarDirection.BAR);
 
         // looking for "Stacked Bar Chart"? uncomment the following line
-        // bar.setBarGrouping(BarGrouping.STACKED);
+        //bar.setBarGrouping(BarGrouping.STACKED);
 
         // additionally, you can adjust the axes
         bar.getCategoryAxis().setOrientation(AxisOrientation.MAX_MIN);
