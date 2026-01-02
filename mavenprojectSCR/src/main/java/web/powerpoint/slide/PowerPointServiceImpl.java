@@ -184,8 +184,7 @@ public class PowerPointServiceImpl implements PowerPointService {
 							.setConfidentialClientEvaluationOnePageModel(confidentialClientEvaluationOnePageModel);
 					slidesData.getPublish().setConfidentialClientEvaluationOnePage(true);
 					EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new EightConfidentialClientEvaluationOneSlide(
-							pieChart, "ConfidentialClientEvaluationOnePage_Data!A1:B",
-							"ConfidentialClientEvaluationOnePage", SlideEnum.PieChart);
+							slidesData, SlideEnum.PieChart,"ConfidentialClientEvaluationOnePage_Data!A1:B");
 
 					slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
 
@@ -215,8 +214,8 @@ public class PowerPointServiceImpl implements PowerPointService {
 					// slide 9
 					slidesData.getPublish().setConfidentialClientEvaluationProposedPage(true);
 					NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = new NineConfidentialClientEvaluationProposedSlide(
-							pieChartProposed, "ConfidentialClientEvaluationProposedPage_Data!A1:B",
-							"ConfidentialClientEvaluationProposed", SlideEnum.PieChart);
+							slidesData,
+							SlideEnum.PieChart, "ConfidentialClientEvaluationProposedPage_Data!A1:B");
 
 					slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 
@@ -595,7 +594,7 @@ public class PowerPointServiceImpl implements PowerPointService {
 						slidesData.getPageModels().setPlanBMediaPagedataPageModel(planBMediaPagedataPageModel);
 						slidesData.getPublish().setPlanBMediaPage(true);
 						TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
-								mediaChart, "PlanBMediaPage_Data!A1:E", "PlanBMediaPage", SlideEnum.BarChart);
+								slidesData , SlideEnum.BarChart, "PlanBMediaPage" );
 						slidesList.add(twentyThreePlanBMediaSlide);
 						ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
 								"PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlideEnum.PlanBSpreadSheet, slidesData);
