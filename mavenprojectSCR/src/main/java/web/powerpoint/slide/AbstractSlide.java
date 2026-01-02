@@ -39,6 +39,7 @@ public abstract class AbstractSlide implements SlideInterface {
         this.pageName = pageName;
     }
 
+    @Override
     public SlideEnum getSlideEnum() {
         return slideEnum;
     }
