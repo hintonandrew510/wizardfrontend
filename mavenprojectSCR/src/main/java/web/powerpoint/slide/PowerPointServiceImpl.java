@@ -6,10 +6,8 @@ package web.powerpoint.slide;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import web.powerpoint.slide.pages.*;
-import java.util.ArrayList;
+import java.io.InputStream;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFComment;
@@ -21,66 +19,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import web.google.slide.GoogleHelper;
-import web.google.slide.PageModels;
-import web.google.slide.SlideEnum;
-import web.google.slide.SlidesData;
-import web.model.Wizard;
 
 import web.model.WizardData;
-import web.page.ChartBuilder;
-import web.page.JSONManager;
-import web.page.PageNameEnum;
-import static web.page.PageNameEnum.ClientObjectivesOnePage;
-import static web.page.PageNameEnum.ConfidentialClientEvaluationOnePage;
-import static web.page.PageNameEnum.CreateConceptOnePage;
-import static web.page.PageNameEnum.CreateConceptTwoPage;
-import static web.page.PageNameEnum.DigitalMobileSocialStrategiesPage;
-import static web.page.PageNameEnum.MarketPlaceCompetitionPage;
-import static web.page.PageNameEnum.MarketingStrategiesPage;
-import static web.page.PageNameEnum.PlanABEPPage;
-import static web.page.PageNameEnum.PlanADigitalROICalculatorPage;
-import static web.page.PageNameEnum.PlanAExcelPage;
-import static web.page.PageNameEnum.PlanALifetimeValuedPage;
-import static web.page.PageNameEnum.PlanAMediaPage;
-import static web.page.PageNameEnum.PlanAProposedPage;
-import static web.page.PageNameEnum.PlanBBEPPage;
-import static web.page.PageNameEnum.PlanBDigitalROICalculatorPage;
-import static web.page.PageNameEnum.PlanBExcelPage;
-import static web.page.PageNameEnum.PlanBLifetimeValuedPage;
-import static web.page.PageNameEnum.PlanBMediaPage;
-import static web.page.PageNameEnum.PlanBProposedPage;
-import static web.page.PageNameEnum.PresentedToPage;
-import static web.page.PageNameEnum.ProfileOfConsumersPage;
-import static web.page.PageNameEnum.StrategicMarketingPageOne;
-import static web.page.PageNameEnum.StrategicMarketingPageThree;
-import static web.page.PageNameEnum.StrategicMarketingPageTwo;
-import static web.page.PageNameEnum.TargetMarketingPage;
-import static web.page.PageNameEnum.TeamCommitmentPage;
-import web.page.PieChart;
-import web.page.Publish;
-import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
-import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
-import web.page.clientobjectivesonepage.ClientObjectivesPageHelper;
-import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
-import web.page.extra.ExtraPageModel;
-import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
-import web.page.planABEPPage.PlanABEPPageModel;
-import web.page.planBBEPPage.PlanBBEPPageModel;
-import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
-import web.page.planalifetimevaluedpage.PlanALifetimeValuedPageModel;
-import web.page.planamedipage.MediaChart;
-import web.page.planamedipage.MediaChartHelper;
-import web.page.planamedipage.PlanMediaPageModel;
-import web.page.planbLifetimevaluedpage.PlanBLifetimeValuedPageModel;
-import web.page.planproposedpage.PlanProposedPageModel;
-import web.page.presentedtopage.PresentedToPageModel;
-import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
-import web.page.strategicmarketingpagethree.StrategicMarketingHelper;
-import web.page.strategicmarketingpagethree.StrategicMarketingPageThreeModel;
-import web.page.strategicmarketingpagetwo.StrategicMarketingPageTwoModel;
-import web.page.targetmarketingpage.TargetMarketingHeaderRow;
-import web.page.targetmarketingpage.TargetMarketingPageModel;
-import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;
@@ -142,7 +82,9 @@ public class PowerPointServiceImpl implements PowerPointService {
 
         try {
             // wizard.
-            FileInputStream fis = readTemplate();
+            InputStream fis = readTemplate();
+            org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
+
             XMLSlideShow ppt = new XMLSlideShow(fis);
             fis.close();
             for (XSLFSlide slide : ppt.getSlides()) {
@@ -155,10 +97,13 @@ public class PowerPointServiceImpl implements PowerPointService {
                 }
                 //skip if no page def
                 // Filter products with price > 100
-                List<SlideInterface> model = slidesModels.stream()
-                        .filter(slideInterface -> slideInterface.getSlideEnum().name() == slidePageName)
-                        .collect(Collectors.toList());
-                model.get(0).populateSlide(slide);
+                SlideInterface foundmodel = SlideDataHelper.findModelBySlidePageName(slidePageName, slidesModels);
+                if (foundmodel != null) {
+                    foundmodel.populateSlide(slide);
+                } else {
+                 
+                    mLog.error("Error  on slide " + slidePageName);
+                }
 
             }
 
@@ -169,14 +114,12 @@ public class PowerPointServiceImpl implements PowerPointService {
         return "";
     }
 
-  
     @Override
-    public FileInputStream readTemplate() throws IOException {
+    public InputStream readTemplate() throws IOException {
         String fileName = resourceFileTV.getFilename();
         mLog.info(fileName);
-         FileInputStream fileInputStream  = (FileInputStream) resourceFileTV.getInputStream();
-       
-        return fileInputStream;
+        return resourceFileTV.getInputStream();
+
     }
 
 }

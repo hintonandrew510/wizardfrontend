@@ -100,6 +100,20 @@ import web.powerpoint.slide.pages.TwoTeamCommitmentSlide;
 public class SlideDataHelper {
      private static final Logger mLog = LoggerFactory.getLogger(SlideDataHelper.class.getName());
    
+     
+     public static SlideInterface findModelBySlidePageName(String slidePageName,List<SlideInterface> models) {
+         SlideInterface foundSlideInterface = null;
+         for (SlideInterface model : models) {
+             String modelname = model.getSlideEnum().name();
+             if (slidePageName.contains(modelname)) {
+                 foundSlideInterface = model;
+                 break;
+             }
+            
+         }
+         
+          return foundSlideInterface;
+     }
      public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages) {
         mLog.warn("entering getSlidesData");
         List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
@@ -119,11 +133,11 @@ public class SlideDataHelper {
                 continue;
             }
 
-            // exculded
-            if (data.isExcluded()) {
-                mLog.info("PAGE Excluded name = " + pageName);
-                continue;
-            }
+//            // exculded
+//            if (data.isExcluded()) {
+//                mLog.info("PAGE Excluded name = " + pageName);
+//                continue;
+//            }
             switch (pageName) {
 
                 // ConfidentialClientEvaluationOnePage

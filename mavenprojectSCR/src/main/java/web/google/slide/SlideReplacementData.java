@@ -5,7 +5,7 @@ public class SlideReplacementData {
   private String googleSlideVariableValue;
 public SlideReplacementData(String googleSlideVariableName, String googleSlideVariableValue) {
 	super();
-	this.googleSlideVariableName = "{{" + googleSlideVariableName + "}}";
+	this.googleSlideVariableName = googleSlideVariableName;
 	this.googleSlideVariableValue = googleSlideVariableValue;
 }
 public String getGoogleSlideVariableName() {
