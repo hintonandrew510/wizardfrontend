@@ -21,7 +21,7 @@ public class ReadPowerPointSlides {
     public static void main(String[] args) {
         org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
-             String fileName ="/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/WWAY_Wilmington.pptx";
+             String fileName ="/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv.pptx";
        
         try (FileInputStream input = new FileInputStream(fileName);
              XMLSlideShow ppt = new XMLSlideShow(input)) { //

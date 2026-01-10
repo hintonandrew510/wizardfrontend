@@ -4,10 +4,14 @@
  */
 package web.powerpoint.slide;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
 /**
  *
  * @author andrewhinton
  */
 public interface PowerPointService {
     public String buildPowerPointDocument(int id);
+    public FileInputStream readTemplate() throws IOException;
 }

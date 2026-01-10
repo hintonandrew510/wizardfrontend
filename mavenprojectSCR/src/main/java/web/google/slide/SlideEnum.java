@@ -7,6 +7,7 @@ public enum SlideEnum {
       ClientObjectivePROMOTION,
       ClientObjectiveBRAND,
       ClientObjectiveTop,
+      OnePresentedToSlide,
       PieChart, 
       PlanASpreadSheet,
       PlanBSpreadSheet,

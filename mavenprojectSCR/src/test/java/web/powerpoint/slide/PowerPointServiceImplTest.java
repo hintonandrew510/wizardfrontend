@@ -67,8 +67,8 @@ public class PowerPointServiceImplTest {
         System.out.println("getSlidesData");
         Iterable<WizardData> dataPages = null;
         List<SlideInterface> expResult = null;
-        List<SlideInterface> result = PowerPointServiceImpl.getSlidesData(dataPages);
-        assertEquals(expResult, result);
+       // List<SlideInterface> result = PowerPointServiceImpl.getSlidesData(dataPages);
+        //assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
