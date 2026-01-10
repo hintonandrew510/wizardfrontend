@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import web.google.slide.GoogleHelper;
+import web.model.Contact;
 
 import web.model.WizardData;
 
@@ -59,6 +60,9 @@ public class PowerPointServiceImpl implements PowerPointService {
     @Value("classpath:powerpointtemplate/tv.pptx")
     Resource resourceFileTV;
 
+    @Value("classpath:powerpointtemplate/tv.pptx")
+    Resource resourceFileRadio;
+
     private String getSlidePageName(XSLFSlide slide) {
         String pageName = null;
         List<XSLFComment> comments = slide.getComments();
@@ -72,17 +76,17 @@ public class PowerPointServiceImpl implements PowerPointService {
     }
 
     @Override
-    public String buildPowerPointDocument(int id) {
+    public String buildPowerPointDocument(int wizardId, Contact contact) {
         //wizardRepository.
         //Optional<Wizard> wizardOpt = wizardRepository.findById(id);
         //Wizard wizard = wizardOpt.orElse(null);
-        Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(id));
+        Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(wizardId));
         List<String> excludedPagesList = GoogleHelper.getSlidesExcluded(dataPages);
         List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages);
 
         try {
             // wizard.
-            InputStream fis = readTemplate();
+            InputStream fis = readTemplate(contact.getClientType());
             org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
             XMLSlideShow ppt = new XMLSlideShow(fis);
@@ -101,7 +105,7 @@ public class PowerPointServiceImpl implements PowerPointService {
                 if (foundmodel != null) {
                     foundmodel.populateSlide(slide);
                 } else {
-                 
+
                     mLog.error("Error  on slide " + slidePageName);
                 }
 
@@ -115,10 +119,18 @@ public class PowerPointServiceImpl implements PowerPointService {
     }
 
     @Override
-    public InputStream readTemplate() throws IOException {
-        String fileName = resourceFileTV.getFilename();
-        mLog.info(fileName);
-        return resourceFileTV.getInputStream();
+    public InputStream readTemplate(String clientType) throws IOException {
+        if (clientType.equals("TV")) {
+            String fileName = resourceFileTV.getFilename();
+            mLog.info(fileName);
+            return resourceFileTV.getInputStream();
+
+        } else {
+
+            String fileName = resourceFileRadio.getFilename();
+            mLog.info(fileName);
+            return resourceFileRadio.getInputStream();
+        }
 
     }
 

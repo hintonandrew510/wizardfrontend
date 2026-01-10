@@ -6,12 +6,13 @@ package web.powerpoint.slide;
 
 import java.io.IOException;
 import java.io.InputStream;
+import web.model.Contact;
 
 /**
  *
  * @author andrewhinton
  */
 public interface PowerPointService {
-    public String buildPowerPointDocument(int id);
-    public InputStream readTemplate() throws IOException;
+    public String buildPowerPointDocument(int wizardId, Contact contact);
+    public InputStream readTemplate(String clientType) throws IOException;
 }
