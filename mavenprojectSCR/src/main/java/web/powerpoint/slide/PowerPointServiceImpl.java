@@ -9,6 +9,7 @@ import java.io.IOException;
 import web.powerpoint.slide.pages.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -22,6 +23,7 @@ import web.google.slide.GoogleHelper;
 import web.google.slide.PageModels;
 import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
+import web.model.Wizard;
 
 import web.model.WizardData;
 import web.page.ChartBuilder;
@@ -118,11 +120,15 @@ public class PowerPointServiceImpl implements PowerPointService {
     
     @Override
     public String buildPowerPointDocument(int id) {
+        //wizardRepository.
+        Optional<Wizard> wizardOpt = wizardRepository.findById(id);
+	Wizard wizard = wizardOpt.orElse(null);
         Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(id));
         List<String> excludedPagesList = GoogleHelper.getSlidesExcluded(dataPages);
         List<SlideInterface> slidesModels = getSlidesData(dataPages);
         
         try {
+           // wizard.
             FileInputStream fis = (FileInputStream) resourceFileTV.getInputStream();
             XMLSlideShow ppt = new XMLSlideShow(fis);
             fis.close();

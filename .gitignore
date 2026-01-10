@@ -16,3 +16,4 @@ db/license.properties
 db/testdb.log
 db/testdb.properties
 db/testdb.script
+/mavenprojectSCR/nbproject/

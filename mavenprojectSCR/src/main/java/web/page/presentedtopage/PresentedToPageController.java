@@ -38,13 +38,14 @@ public class PresentedToPageController {
 	@RequestMapping(value = "/PresentedToPage", method = RequestMethod.GET)
 	public String detail(Model model, @RequestParam(required = false) String ID, HttpSession session) {
 		mLog.info("starting detail");
-		
-		String decryptID = (String) session.getAttribute("ID");
+		Object obj = session.getAttribute("ID");
+                Integer id = (Integer)obj;
+		//String decryptID = (String) session.getAttribute("ID");
 		
 		// determine if value is in session
 		//if (session.getAttribute("ID") == null) {
 			//decryptID = EncryptionDecryptionManager.decrypt(ID); //value not in session
-			mLog.info("decryptID [" + decryptID + "]");
+			mLog.info("id [" + id + "]");
 		/*} else {
 			decryptID = session.getAttribute("ID").toString(); // value is in session
 			mLog.info("session id [" + decryptID + "]");
@@ -52,7 +53,7 @@ public class PresentedToPageController {
 
 		// get wizard header
 		
-		Optional<Wizard> wizardOpt = wizardRepository.findById(Integer.valueOf(decryptID));
+		Optional<Wizard> wizardOpt = wizardRepository.findById(id);
 		Wizard wizard = wizardOpt.orElse(null);
 		WizardData wizardData = wizardDataRepository
 				.findByPagesequenceAndWizardid(Pages.PRESENTEDTOPAGE.getPageSequence(), wizard.getWizardid());

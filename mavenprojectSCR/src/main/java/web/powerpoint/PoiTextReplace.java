@@ -19,9 +19,11 @@ public class PoiTextReplace {
     public static void replaceTextInPresentation(String filePath, String oldText, String newText) throws IOException {
         FileInputStream fis = new FileInputStream(filePath);
         XMLSlideShow ppt = new XMLSlideShow(fis);
+       
         fis.close();
 
         for (XSLFSlide slide : ppt.getSlides()) {
+           
             // Iterate over all shapes in the slide
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
@@ -55,7 +57,12 @@ public class PoiTextReplace {
     public static void main(String[] args) {
         try {
             // Replace "input.pptx" with your actual file path
-            replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tvbak.pptx", "{{Name}}", "andrew");
+           // replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tvbak.pptx", "{{Name}}", "andrew");
+           ///Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/WWAY_Wilmington.odp
+            
+              replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/WWAY_Wilmington.pptx", "{{Name}}", "andrew");
+          
+            
             System.out.println("Text replacement complete. New file saved as input_updated.pptx");
         } catch (IOException e) {
             e.printStackTrace();
