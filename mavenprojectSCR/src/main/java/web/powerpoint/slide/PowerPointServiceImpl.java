@@ -116,9 +116,9 @@ public class PowerPointServiceImpl implements PowerPointService {
 
             }
             
-            String filepath = "/opt/wizard/download/filename.pptx";
+            String filepath = "/opt/wizard/download/" + contact.getName().trim() + ".pptx";
             
-             File myObj = new File("/opt/wizard/download/filename.pptx");
+             File myObj = new File(filepath);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
