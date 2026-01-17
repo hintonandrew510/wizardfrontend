@@ -4,7 +4,9 @@
  */
 package web.powerpoint.slide;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -62,6 +64,9 @@ public class PowerPointServiceImpl implements PowerPointService {
 
     @Value("classpath:powerpointtemplate/tv.pptx")
     Resource resourceFileRadio;
+    
+     @Value("powerpoint.download.folder")
+    String powerpointdownloadfolderpath;
 
     private String getSlidePageName(XSLFSlide slide) {
         String pageName = null;
@@ -110,6 +115,27 @@ public class PowerPointServiceImpl implements PowerPointService {
                 }
 
             }
+            
+            String filepath = "/opt/wizard/download/filename.pptx";
+            
+             File myObj = new File("/opt/wizard/download/filename.pptx");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+               // Write the changes to a new file
+        FileOutputStream out = new FileOutputStream(filepath.replace(".pptx", "_updated.pptx"));
+        //System.out.println("file path " + powerpointdownloadfolderpath);
+        
+      
+        ppt.write(out);
+        out.close();
+        ppt.close();
+            
+          System.out.println("file path " + filepath);
+         
+            
 
         } catch (IOException ex) {
             mLog.equals(ex);
