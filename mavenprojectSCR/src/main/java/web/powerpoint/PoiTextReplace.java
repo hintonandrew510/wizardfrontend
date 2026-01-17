@@ -17,7 +17,9 @@ import java.util.List;
 public class PoiTextReplace {
 
     public static void replaceTextInPresentation(String filePath, String oldText, String newText) throws IOException {
-        FileInputStream fis = new FileInputStream(filePath);
+       
+        org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
+FileInputStream fis = new FileInputStream(filePath);
         XMLSlideShow ppt = new XMLSlideShow(fis);
        
         fis.close();
@@ -49,6 +51,9 @@ public class PoiTextReplace {
 
         // Write the changes to a new file
         FileOutputStream out = new FileOutputStream(filePath.replace(".pptx", "_updated.pptx"));
+        System.out.println("file path " + filePath);
+        
+      
         ppt.write(out);
         out.close();
         ppt.close();
@@ -60,9 +65,8 @@ public class PoiTextReplace {
            // replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tvbak.pptx", "{{Name}}", "andrew");
            ///Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/WWAY_Wilmington.odp
             
-              replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/WWAY_Wilmington.pptx", "{{Name}}", "andrew");
+              replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv_updated1.pptx", "}}", "");
           
-            
             System.out.println("Text replacement complete. New file saved as input_updated.pptx");
         } catch (IOException e) {
             e.printStackTrace();
