@@ -46,10 +46,13 @@ public class FileUploadController {
             //  Resource resourced = new ClassPathResource("static/" + fileName); // Assuming files are in src/main/resources/static
            // String fileName = createPowerPoint("1");
             //File downloadFile = new File(fileName);
-            Path filePath = (Path) Paths.get(FILE_STORAGE_LOCATION).resolve("WWAY Wilmington_updated.pptx").normalize();
-            Resource resource = new UrlResource(filePath.toUri());
-            MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+            
+              MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
             Contact contact = userDetails.getContact();
+            String downLoadFileName= contact.getName() + "pptx";
+            Path filePath = (Path) Paths.get(FILE_STORAGE_LOCATION).resolve(downLoadFileName).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+          
             //powerPointService.buildPowerPointDocument(id, contact);
 
             // ClassPathResource resource = new ClassPathResource("/powerpointtemplate/tv.pptx");
