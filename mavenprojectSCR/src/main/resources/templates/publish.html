@@ -32,6 +32,8 @@
 
 
 <script>
+    const progressBar = document.getElementById("progress");
+      let currentProgress = 0;
 	function printPage() {
 		document.getElementById("shareForm").submit();
 	}
@@ -52,6 +54,23 @@
 		window.history.back();
 	}
 </script>
+
+<style>
+      .progress-bar {
+        width: 500px;
+        background-color: #f0f0f0;
+        height: 30px;
+        margin-bottom: 10px;
+        border-radius: 15px;
+      }
+
+      .progress {
+        width: 0px;
+        height: 100%;
+        background-color: #4caf50;
+        transition: width 0.3s ease;
+      }
+    </style>
 </head>
 <body>
 <!-- Add where you want your sign-in button to render -->
@@ -69,7 +88,7 @@
 			'packages' : [ 'corechart' ]
 		});
 	</script>
-	<form id="shareForm" method="get" action="google"
+	<form id="shareForm" method="get" action="displaydownload"
 		autocomplete="off">
 		<input type="hidden" id="encryptId" th:value="${encryptId}"
 			name="encryptId" />
@@ -276,6 +295,10 @@
 
 		</div>
 	</div>
+
+   <div class="progress-bar">
+      <div id="progress" class="progress"></div>
+    </div>
 
 	<script>
 		$(document).ready(function() {

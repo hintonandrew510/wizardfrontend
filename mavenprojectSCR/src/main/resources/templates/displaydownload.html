@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <title>Download Powerpoint document </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        #myProgress {
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #myBar {
+            width: 1%;
+            height: 30px;
+            background-color: #04AA6D;
+        }
+    </style>
+    <body>
+        <header class="header">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a href="#intro" class="navbar-brand link-scroll"><img
+                            src="./img/system21.png" alt="" class="img-fluid" width="160"
+                            height="40"></a>
+                    <button type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation"
+                            class="navbar-toggler navbar-toggler-right">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item"><a href="#" class="nav-link link-scroll">Home</a></li>
+                            <li class="nav-item"><a href="privacypolicy.html" class="nav-link link-scroll">Privacy Policy</a></li>
+                            <li class="nav-item"><a href="wizards"
+                                                    class="nav-link link-scroll">Wizard/SCR</a></li>
+                            <li class="nav-item"><a href="about"
+                                                    class="nav-link link-scroll">About</a></li>
+                            <li class="nav-item"><a href="googleprofile"
+                                                    class="nav-link link-scroll">Google Profile</a></li>
+                            <li class="nav-item"><a href="logout"
+                                                    class="nav-link link-scroll">Logout</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container mt-3">
+
+            <h1>Download PowerPoint Document</h1>
+            <ul>
+                <li>Select the Download option from the SCR to begin.</li>
+
+                <li>Wait for your browser to automatically place the document in your system's Download folder.</li>
+                <li>Ensure Microsoft PowerPoint is installed on your device to open and view the file.</li>
+                <li>Navigate to your default Downloads folder to locate the completed transfer.</li>
+                <li>Open Sample.pptx using Microsoft PowerPoint to maintain all original formatting and transitions.</li>
+            </ul>
+       
+          <div id="myProgress">
+            <div id="myBar"></div>
+        </div>
+
+        <br>
+        <button onclick="move()">Download </button> 
+        </div>
+
+      
+
+        <script>
+            
+            var i = 0;
+            function move() {
+                if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBar");
+                    var width = 1;
+                    var id = setInterval(frame, 10);
+                    function frame() {
+                        if (width >= 100) {
+                            clearInterval(id);
+                            i = 0;
+                        } else {
+                            width++;
+                            elem.style.width = width + "%";
+                        }
+                    }
+                }
+                window.location.assign("download");
+            }
+        </script>
+        <!-- JavaScript files-->
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script
+            src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/popper.js/umd/popper.min.js">
+
+        </script>
+        <script
+        src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script
+            src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery.cookie/jquery.cookie.js">
+
+        </script>
+        <script
+            src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/jquery.cookie/jquery.cookie.js">
+
+        </script>
+        <script
+        src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/vendor/lightbox2/js/lightbox.min.js"></script>
+        <script
+            src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;amp;sensor=false">
+
+        </script>
+        <script
+        src="https://d19m59y37dris4.cloudfront.net/blackandwhite/2-0-0/js/front.js"></script>
+
+      
+    </body>
+</html>

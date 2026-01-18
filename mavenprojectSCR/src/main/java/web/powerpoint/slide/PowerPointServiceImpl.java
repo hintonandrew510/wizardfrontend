@@ -64,8 +64,8 @@ public class PowerPointServiceImpl implements PowerPointService {
 
     @Value("classpath:powerpointtemplate/tv.pptx")
     Resource resourceFileRadio;
+    @Value("${powerpoint.download.folder}")
     
-     @Value("powerpoint.download.folder")
     String powerpointdownloadfolderpath;
 
     private String getSlidePageName(XSLFSlide slide) {

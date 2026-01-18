@@ -47,7 +47,7 @@ public class WizardController {
         //jakarta.servlet.http
 
 	@RequestMapping(value = "/PutIdInSession", method = RequestMethod.GET)
-	public String putIdInSession(Model model, @RequestParam String ID, HttpSession session) {
+	public String putIdInSession(Model model, @RequestParam int ID, HttpSession session) {
 		// remove value from session
 		//sessionBean.setId(ID);
 			session.setAttribute("ID", ID);

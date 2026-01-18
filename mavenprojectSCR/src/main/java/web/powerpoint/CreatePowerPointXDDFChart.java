@@ -6,7 +6,7 @@ package web.powerpoint;
 
 // Source - https://stackoverflow.com/q
 // Posted by praavi, modified by community. See post 'Timeline' for change history
-// Retrieved 2025-12-30, License - CC BY-SA 4.0
+// Retrieved 2026-12-30, License - CC BY-SA 4.0
 
 import java.io.FileOutputStream;
 

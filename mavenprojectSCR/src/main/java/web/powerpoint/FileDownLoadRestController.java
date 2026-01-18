@@ -4,6 +4,7 @@
  */
 package web.powerpoint;
 
+import jakarta.servlet.http.HttpSession;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
@@ -17,6 +18,8 @@ import java.nio.file.Paths;
 
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -24,37 +27,44 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
+import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import web.controller.WizardController;
 import web.data.MyUserPrincipal;
 import web.model.Contact;
 import web.powerpoint.slide.PowerPointService;
 
 @RestController
-public class FileUploadController {
+public class FileDownLoadRestController {
+    private static final Logger mLog = LoggerFactory.getLogger(FileDownLoadRestController.class.getName());
+	
 
     private final String FILE_STORAGE_LOCATION = "/opt/wizard/download"; // Configure this path
-        @Autowired
+    @Autowired
     private PowerPointService powerPointService;
-
-    @RequestMapping(value = "/upload/slideshow/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Resource> downloadFile(@PathVariable int id, Authentication authentication) {
+    
+ 
+    @RequestMapping(value = "download", method = RequestMethod.GET)
+    public ResponseEntity<Resource> downloadFile(Authentication authentication, HttpSession session) {
         try {
             // Load the file from the resources folder
             //  Resource resourced = new ClassPathResource("static/" + fileName); // Assuming files are in src/main/resources/static
-           // String fileName = createPowerPoint("1");
+            // String fileName = createPowerPoint("1");
             //File downloadFile = new File(fileName);
-            
-              MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
+            Object obj = session.getAttribute("ID");
+            Integer id = (Integer) obj;
+            MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
             Contact contact = userDetails.getContact();
-            String downLoadFileName= contact.getName() + "pptx";
+            powerPointService.buildPowerPointDocument(id, contact);
+            String downLoadFileName = contact.getName() + "pptx";
             Path filePath = (Path) Paths.get(FILE_STORAGE_LOCATION).resolve(downLoadFileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
-          
-            //powerPointService.buildPowerPointDocument(id, contact);
 
+           
             // ClassPathResource resource = new ClassPathResource("/powerpointtemplate/tv.pptx");
             //   Resource resource = new UrlResource(filePath.toUri());
             if (resource.exists() && resource.isReadable()) {

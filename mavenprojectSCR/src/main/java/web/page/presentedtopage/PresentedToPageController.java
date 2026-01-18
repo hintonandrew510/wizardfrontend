@@ -41,7 +41,7 @@ public class PresentedToPageController {
 		Object obj = session.getAttribute("ID");
                 Integer id = (Integer)obj;
 		//String decryptID = (String) session.getAttribute("ID");
-		
+		//http://localhost:8081/PutIdInSession?ID=129
 		// determine if value is in session
 		//if (session.getAttribute("ID") == null) {
 			//decryptID = EncryptionDecryptionManager.decrypt(ID); //value not in session
