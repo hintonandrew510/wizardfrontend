@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import web.data.MyUserPrincipal;
+import web.model.Contact;
 
 /**
  *
@@ -25,9 +26,10 @@ public class FileDownLoadController {
 		mLog.info("starting about");
 
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
-
+                Contact contact = userDetails.getContact();
+                contact.setName("'" + contact.getName() + ".pptx' ");
 		
-		model.addAttribute("contact", userDetails.getContact());
+		model.addAttribute("contact", contact);
 
 		return "displaydownload";
 
