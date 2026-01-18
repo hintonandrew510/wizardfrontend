@@ -1,13 +1,11 @@
 package web.powerpoint.slide.pages;
 
 
-import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
 import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
-import web.page.PieChart;
 import web.powerpoint.slide.AbstractSlide;
 
 

@@ -7,9 +7,6 @@ import web.google.slide.AbstractSlide;
 import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
-import web.page.PieChart;
-import web.page.planamedipage.MediaChart;
-import web.page.presentedtopage.PresentedToPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 
 public class TwoTeamCommitmentSlide extends AbstractSlide {
