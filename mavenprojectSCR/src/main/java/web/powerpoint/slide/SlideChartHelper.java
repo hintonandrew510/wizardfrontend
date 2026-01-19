@@ -6,8 +6,10 @@ package web.powerpoint.slide;
 
 import java.awt.Rectangle;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.ooxml.POIXMLDocumentPart;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -43,7 +45,7 @@ import org.openxmlformats.schemas.drawingml.x2006.chart.STDLblPos;
  */
 public class SlideChartHelper {
 
-    public static void PieChartFilter(List<PieChart> pieChartList, String total, XSLFSlide slide) throws IOException {
+    public static void PieChartFilter(List<PieChart> pieChartList, XSLFSlide slide) throws IOException {
         // find chart in the slide
         String slideNumber = slide.getSlideName();
 
@@ -151,8 +153,8 @@ public class SlideChartHelper {
             row.createCell(0).setCellValue(pieChartItem.getLabel());
             row.createCell(1).setCellValue(doubleValue);
         }
-        
-          numData.getPtCount().setVal(idx);
+
+        numData.getPtCount().setVal(idx);
         strData.getPtCount().setVal(idx);
 
         String numDataRange = new CellRangeAddress(1, rownum - 1, 1, 1).formatAsString(sheet.getSheetName(), true);
@@ -170,8 +172,15 @@ public class SlideChartHelper {
     }
 
     public static void main(String[] args) throws Exception {
-        String template = "/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/chartDemo.pptx";
+        //String template = "/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/chartDemo.pptx";
+         String template = "/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/pie-chart-template.pptx";
+      
         org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
+        List<PieChart> pieChartList = new ArrayList<PieChart>();
+        PieChart pieChartOne = new PieChart("apple", 1);
+        PieChart pieChartTwo = new PieChart("banna", 2);
+        pieChartList.add(pieChartOne);
+        pieChartList.add(pieChartTwo);
 
         XMLSlideShow pptx = new XMLSlideShow(new FileInputStream(template));
         XSLFSlide slide = pptx.getSlides().get(0);
@@ -183,7 +192,13 @@ public class SlideChartHelper {
             break;
 
         }
-        PieChartFilter(null, null, slide);
+        PieChartFilter(pieChartList, slide);
+          // save the result
+        FileOutputStream out = new FileOutputStream("./pie3d-chart-demo-outputTV.pptx");
+        pptx.write(out);
+
+        System.out.println("file created");
+        out.close();
     }
 
 }

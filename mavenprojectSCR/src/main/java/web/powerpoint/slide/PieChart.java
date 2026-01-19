@@ -1,7 +1,5 @@
 package web.powerpoint.slide;
 
-import web.page.*;
-
 public class PieChart {
 	private String label;
 	private int labelValue;

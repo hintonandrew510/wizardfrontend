@@ -48,7 +48,7 @@ public class CreatePowerPointXDDFChart {
    String valuesDataRange = chart.formatRange(new org.apache.poi.ss.util.CellRangeAddress(1, values.length, 1, 1));
    XDDFNumericalDataSource<Double> valueData = XDDFDataSourcesFactory.fromArray(values, valuesDataRange, 1);
    XDDFBarChartData bar = (XDDFBarChartData) data;
-   bar.setBarDirection(BarDirection.BAR);
+   bar.setBarDirection(BarDirection.COL);
 
    // add series
    XDDFChartData.Series series = data.addSeries(categoryData, valueData);
