@@ -21,8 +21,8 @@ public class PieChart {
     public static void main(String[] args) throws IOException {
 
         Object[][] data = new Object[][]{
-            new Object[]{"A", "B", "C"},
-            new Object[]{5d, 10d, 34d}
+            new Object[]{"Ad", "B1", "C"},
+            new Object[]{51d, 10d, 34d}
         };
 
         try (XSSFWorkbook wb = new XSSFWorkbook()) {
@@ -50,7 +50,7 @@ public class PieChart {
 
             // create chart
             XSSFChart chart = drawing.createChart(anchor);
-            chart.setTitleText("summary");
+            chart.setTitleText("stoday ummary");
             chart.setTitleOverlay(false);
             XDDFChartLegend legend = chart.getOrAddLegend();
             legend.setPosition(LegendPosition.TOP);
