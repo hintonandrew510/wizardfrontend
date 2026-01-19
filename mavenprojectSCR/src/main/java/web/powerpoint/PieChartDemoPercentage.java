@@ -96,7 +96,7 @@ public class PieChartDemoPercentage {
         //ctChart.setPlotArea(ctpa);
 
         // ... inside your chart creation logic
-        XDDFChartData chartData = chart.createData(ChartTypes.PIE3D, null, null);
+        XDDFChartData chartData = chart.createData(ChartTypes.PIE, null, null);
         chartData.setVaryColors(true);
         chart.plot(chartData);
 
