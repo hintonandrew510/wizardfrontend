@@ -36,7 +36,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import web.controller.WizardController;
 import web.data.MyUserPrincipal;
 import web.model.Contact;
-import web.powerpoint.slide.PowerPointService;
+import web.powerpoint.slide.service.PowerPointService;
 
 @RestController
 public class FileDownLoadRestController {

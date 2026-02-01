@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package web.powerpoint.slide;
+package web.powerpoint.slide.service;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,6 +24,8 @@ import web.google.slide.GoogleHelper;
 import web.model.Contact;
 
 import web.model.WizardData;
+import web.powerpoint.slide.SlideDataHelper;
+import web.powerpoint.slide.SlideInterface;
 
 import web.repository.WizardDataRepository;
 import web.repository.WizardRepository;

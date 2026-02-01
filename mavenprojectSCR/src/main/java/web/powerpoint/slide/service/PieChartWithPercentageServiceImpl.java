@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package web.powerpoint.slide;
+package web.powerpoint.slide.service;
 
+import web.powerpoint.slide.service.PieChartWithPercentageService;
 import java.awt.Color;
 import java.io.File;
 import java.text.DecimalFormat;
