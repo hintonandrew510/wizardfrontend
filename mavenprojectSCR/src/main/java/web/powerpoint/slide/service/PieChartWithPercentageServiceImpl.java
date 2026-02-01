@@ -25,6 +25,7 @@ import web.powerpoint.entity.PieEntity;
  *
  * @author andrewhinton
  */
+@Service
 public class PieChartWithPercentageServiceImpl implements PieChartWithPercentageService {
 
     @Override

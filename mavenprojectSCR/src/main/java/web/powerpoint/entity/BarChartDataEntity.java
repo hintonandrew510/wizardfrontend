@@ -8,16 +8,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data; 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import web.page.PieChart;
 /**
  *
  * @author andrewhinton
  */
-@Getter
-@Setter
 @Builder
-@AllArgsConstructor // Generates the constructor needed by @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 //@Data // Generates getters, setters, toString, equals, hashCode, and a required-args constructor
 public class BarChartDataEntity {
     private double doubleValue;
