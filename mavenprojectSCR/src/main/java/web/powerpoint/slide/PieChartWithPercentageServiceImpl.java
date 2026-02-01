@@ -21,15 +21,14 @@ import org.springframework.stereotype.Service;
 import web.powerpoint.entity.PieEntity;
 
 /**
- *Users/andrewhinton/Documents/GitHub/wizardfrontend/
+ *
  * @author andrewhinton
  */
-@Service
 public class PieChartWithPercentageServiceImpl implements PieChartWithPercentageService {
 
     @Override
     public String createPieChart(PieEntity pieEntity) {
-        PieDataset dataset = createDataset(pieEntity.getPieChartList());
+    PieDataset dataset = createDataset(pieEntity.getPieChartList());
         JFreeChart chart = ChartFactory.createPieChart3D(
                 pieEntity.getTitle(), // Chart title
                 dataset, // Data
@@ -70,7 +69,6 @@ public class PieChartWithPercentageServiceImpl implements PieChartWithPercentage
             System.err.println("Could not write chart: " + e.getMessage());
             return null;
         }
-
     }
 
     private PieDataset createDataset(List<web.page.PieChart> pieChartList) {
