@@ -67,7 +67,7 @@ public class PowerPointServiceImpl implements PowerPointService {
     @Value("classpath:powerpointtemplate/tv.pptx")
     Resource resourceFileRadio;
     @Value("${powerpoint.download.folder}")
-    
+
     String powerpointdownloadfolderpath;
 
     private String getSlidePageName(XSLFSlide slide) {
@@ -102,7 +102,7 @@ public class PowerPointServiceImpl implements PowerPointService {
             for (XSLFSlide slide : ppt.getSlides()) {
                 String slidePageName = slide.getSlideName();
                 mLog.info("Slide number " + slidePageName);
-               // String slidePageName = getSlidePageName(slide);
+                // String slidePageName = getSlidePageName(slide);
                 mLog.info("slidePageName " + slidePageName);
 //                if (slidePageName == null || slidePageName.isEmpty()) {
 //                    mLog.info("Slide number skipped - not comment added" + slidePageName);
@@ -114,33 +114,36 @@ public class PowerPointServiceImpl implements PowerPointService {
                 if (foundmodel != null) {
                     foundmodel.populateSlide(slide);
                 } else {
-     
+
                     mLog.info("Error  on slide " + slidePageName);
                     continue;
                 }
 
             }
-            
-            String filepath = "/opt/wizard/download/" + contact.getName().trim() + ".pptx";
-            
-             File myObj = new File(filepath);
+            String contactname = contact.getName();
+           contactname =  contactname.replaceAll("\\s+", "");
+
+            String filepath = "/opt/wizard/download/" + contactname + ".pptx";
+
+            File myObj = new File(filepath);
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
+                mLog.info("File created: " + myObj.getName());
             } else {
-                System.out.println("File already exists.");
+                mLog.info("File already exists.");
             }
-               // Write the changes to a new file
-        FileOutputStream out = new FileOutputStream(filepath.replace(".pptx", "_updated.pptx"));
-        //System.out.println("file path " + powerpointdownloadfolderpath);
-        
-      
-        ppt.write(out);
-        out.close();
-        ppt.close();
+            String finalPath = filepath.replace(".pptx", "_updated.pptx");
+            // Write the changes to a new file
+            FileOutputStream out = new FileOutputStream(finalPath);
+            //System.out.println("file path " + powerpointdownloadfolderpath);
+
+            ppt.write(out);
+            out.close();
             
-          System.out.println("file path " + filepath);
-         
             
+            String downloadFileName = contactname + "_updated.pptx";
+
+            mLog.info("file path " + filepath);
+            return downloadFileName;
 
         } catch (IOException ex) {
             mLog.equals(ex);
@@ -153,7 +156,7 @@ public class PowerPointServiceImpl implements PowerPointService {
     public InputStream readTemplate(String clientType) throws IOException {
         if (clientType.equals("TV")) {
             String fileName = resourceFileTV.getFilename();
-         
+
             mLog.info(fileName);
             return resourceFileTV.getInputStream();
 

@@ -27,7 +27,7 @@ public class FileDownLoadController {
 
 		MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
                 Contact contact = userDetails.getContact();
-                contact.setName("'" + contact.getName() + ".pptx' ");
+               // contact.setName("'" + contact.getName() + ".pptx' ");
 		
 		model.addAttribute("contact", contact);
 

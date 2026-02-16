@@ -59,8 +59,8 @@ public class FileDownLoadRestController {
             Integer id = (Integer) obj;
             MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
             Contact contact = userDetails.getContact();
-            powerPointService.buildPowerPointDocument(id, contact);
-            String downLoadFileName = contact.getName() + "pptx";
+            String downLoadFileName = powerPointService.buildPowerPointDocument(id, contact);
+            //String downLoadFileName = contact.getName() + "pptx";
             Path filePath = (Path) Paths.get(FILE_STORAGE_LOCATION).resolve(downLoadFileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 
