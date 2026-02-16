@@ -6,18 +6,17 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
-import web.page.presentedtopage.PresentedToPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 public class TwoTeamCommitmentSlide extends AbstractSlide {
 
     private static final Logger mLog = LoggerFactory.getLogger(TwoTeamCommitmentSlide.class.getName());
 
-    public TwoTeamCommitmentSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+    public TwoTeamCommitmentSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
         super(sildeData, slideEnum, pageName);
     }
 

@@ -7,16 +7,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyTwoPlanADigitalROICalculatorTextSlide.class.getName());
 
-	public TwentyTwoPlanADigitalROICalculatorTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+	public TwentyTwoPlanADigitalROICalculatorTextSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);
 	}
 

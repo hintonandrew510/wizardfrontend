@@ -5,16 +5,16 @@ import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.targetmarketingpage.TargetMarketingHeaderRow;
 import web.page.targetmarketingpage.TargetMarketingPageModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 public class SixTargetMarketingSlide extends AbstractSlide {
 
-	public SixTargetMarketingSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+	public SixTargetMarketingSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);
 		// TODO Auto-generated constructor stub
 	}

@@ -15,7 +15,25 @@ public enum SlidePageNameEnum {
     FourClientObjectiveSlide("Slide 2"),
     FourClientObjectiveTextSlide("Slide 2"),
     FiveStrategicMarketingPageSlide("Slide 2"),
-    SixTargetMarketingSlide("Weekends are best.");
+    SixTargetMarketingSlide("Weekends are best."),
+    SevenConfidentialClientEvaluationTextSlide(""),
+    EightConfidentialClientEvaluationOneTextSlide(""),
+    NineConfidentialClientEvaluationProposedSlide(""),
+    NineConfidentialClientEvaluationProposedTextSlide(""),
+    EightConfidentialClientEvaluationOneSlide("Weekends are best."),
+    SeventeenPlanAMediaSlide(""),
+    TwentyPlanABEPTextSlide(""),
+    TwentyOnePlanALifetimeValuedTextSlide(""),
+    TwentyTwoPlanADigitalROICalculatorTextSlide(""),
+    TwentyThreePlanBMediaSlide(""),
+    TwentyFivePlanBProposedTextSlide(""),
+    TwentySixPlanBBEPTextSlide(""),
+    TwentySevenPlanBLifetimeValuedTextSlide(""),
+    TwentyEightPlanBDigitalROICalculatorTextSlide(""),
+    TwentyNinePlanASpreadSheetSlide(""),
+    TwentyNinePlanASpreadSheetTextSlide(""),
+    ThirtyPlanBSpreadSheetTextSlide(""),
+    ThirtyPlanBSpreadSheetSlide("");
 
     private final String description;
 

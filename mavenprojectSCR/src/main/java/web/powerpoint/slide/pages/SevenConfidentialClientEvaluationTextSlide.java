@@ -8,16 +8,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 public class SevenConfidentialClientEvaluationTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(SevenConfidentialClientEvaluationTextSlide.class.getName());
 
-	public SevenConfidentialClientEvaluationTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
+	public SevenConfidentialClientEvaluationTextSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);
 	}
 
