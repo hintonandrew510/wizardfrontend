@@ -114,8 +114,9 @@ public class PowerPointServiceImpl implements PowerPointService {
                 if (foundmodel != null) {
                     foundmodel.populateSlide(slide);
                 } else {
-
-                    mLog.error("Error  on slide " + slidePageName);
+     
+                    mLog.info("Error  on slide " + slidePageName);
+                    continue;
                 }
 
             }

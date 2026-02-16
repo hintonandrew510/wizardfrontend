@@ -9,8 +9,8 @@ package web.powerpoint.slide;
  * @author andrewhinton
  */
 public enum SlidePageNameEnum {
-    OnePresentedToSlide("Slide 1"),
-    TwoTeamCommitmentSlide("Slide 2"),
+    OnePresentedToSlide("Slide1"),
+    TwoTeamCommitmentSlide("Slide2"),
     ThreeMarketPlaceCompetitionSlide("Slide 3"),
     FourClientObjectiveSlide("Slide 2"),
     FourClientObjectiveTextSlide("Slide 2"),
