@@ -4,14 +4,14 @@ package web.powerpoint.slide.pages;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 
 public class NineConfidentialClientEvaluationProposedSlide  extends AbstractSlide {
 
-    public NineConfidentialClientEvaluationProposedSlide(SlidesData slidesData, SlideEnum slideEnum, String pageName) {
+    public NineConfidentialClientEvaluationProposedSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
         super(slidesData, slideEnum, pageName);
     }
 

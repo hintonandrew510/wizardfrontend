@@ -40,18 +40,18 @@ public abstract class AbstractSlide implements SlideInterface {
     }
 
     @Override
-    public SlideEnum getSlideEnum() {
+    public SlidePageNameEnum getSlideEnum() {
         return slideEnum;
     }
 
-    public void setSlideEnum(SlideEnum slideEnum) {
+    public void setSlideEnum(SlidePageNameEnum slideEnum) {
         this.slideEnum = slideEnum;
     }
     private SlidesData mSlidesData;
     private String pageName;
-    private SlideEnum slideEnum;
+    private SlidePageNameEnum slideEnum;
 
-    public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum, String pageName) {
+    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
         this.slideEnum = slideEnum;
         mSlidesData = slidesData;
         this.pageName = pageName;

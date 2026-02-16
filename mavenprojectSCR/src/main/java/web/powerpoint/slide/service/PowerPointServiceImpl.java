@@ -72,6 +72,7 @@ public class PowerPointServiceImpl implements PowerPointService {
 
     private String getSlidePageName(XSLFSlide slide) {
         String pageName = null;
+        pageName = slide.getSlideName();
         List<XSLFComment> comments = slide.getComments();
         for (XSLFComment comment : comments) {
             pageName = comment.getText();
@@ -102,7 +103,8 @@ public class PowerPointServiceImpl implements PowerPointService {
                 String slideNumber = slide.getSlideName();
                 mLog.info("Slide number " + slideNumber);
                 String slidePageName = getSlidePageName(slide);
-                if (slidePageName == null) {
+                mLog.info("slidePageName " + slidePageName);
+                if (slidePageName == null || slidePageName.isEmpty()) {
                     mLog.info("Slide number skipped - not comment added" + slideNumber);
                     continue;
                 }
@@ -150,6 +152,7 @@ public class PowerPointServiceImpl implements PowerPointService {
     public InputStream readTemplate(String clientType) throws IOException {
         if (clientType.equals("TV")) {
             String fileName = resourceFileTV.getFilename();
+         
             mLog.info(fileName);
             return resourceFileTV.getInputStream();
 

@@ -7,14 +7,14 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 public class FourClientObjectiveTextSlide extends AbstractSlide {
-	public FourClientObjectiveTextSlide(SlidesData sildeData , SlideEnum slideEnum, String pageName) {
+	public FourClientObjectiveTextSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);
 	}
 	

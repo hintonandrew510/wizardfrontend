@@ -2,14 +2,14 @@ package web.powerpoint.slide.pages;
 
 
 import org.apache.poi.xslf.usermodel.XSLFSlide;
-import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
 
 public class FourClientObjectiveSlide extends AbstractSlide {
 
-    public FourClientObjectiveSlide(String pageName, String strategicMarketing_Data_CONSUMER, SlideEnum slideEnum, SlidesData slidesData) {
+    public FourClientObjectiveSlide(String pageName, String strategicMarketing_Data_CONSUMER, SlidePageNameEnum slideEnum, SlidesData slidesData) {
         super(slidesData, slideEnum, pageName);
     }
 
