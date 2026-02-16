@@ -100,14 +100,14 @@ public class PowerPointServiceImpl implements PowerPointService {
             XMLSlideShow ppt = new XMLSlideShow(fis);
             fis.close();
             for (XSLFSlide slide : ppt.getSlides()) {
-                String slideNumber = slide.getSlideName();
-                mLog.info("Slide number " + slideNumber);
-                String slidePageName = getSlidePageName(slide);
+                String slidePageName = slide.getSlideName();
+                mLog.info("Slide number " + slidePageName);
+               // String slidePageName = getSlidePageName(slide);
                 mLog.info("slidePageName " + slidePageName);
-                if (slidePageName == null || slidePageName.isEmpty()) {
-                    mLog.info("Slide number skipped - not comment added" + slideNumber);
-                    continue;
-                }
+//                if (slidePageName == null || slidePageName.isEmpty()) {
+//                    mLog.info("Slide number skipped - not comment added" + slidePageName);
+//                    continue;
+//                }
                 //skip if no page def
                 // Filter products with price > 100
                 SlideInterface foundmodel = SlideDataHelper.findModelBySlidePageName(slidePageName, slidesModels);

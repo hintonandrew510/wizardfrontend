@@ -104,7 +104,7 @@ public class SlideDataHelper {
      public static SlideInterface findModelBySlidePageName(String slidePageName,List<SlideInterface> models) {
          SlideInterface foundSlideInterface = null;
          for (SlideInterface model : models) {
-             String modelname = model.getSlideEnum().name();
+             String modelname = model.getSlideEnum().getDescription();
              if (slidePageName.contains(modelname)) {
                  foundSlideInterface = model;
                  break;
