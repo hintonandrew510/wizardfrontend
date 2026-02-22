@@ -3,7 +3,8 @@ package web.powerpoint.slide.pages;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
@@ -13,74 +14,117 @@ import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
-	public ThreeMarketPlaceCompetitionSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
-		super(sildeData, slideEnum, pageName);
-	}
-
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
-		StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
-		
-		if (pageModel == null || strategicMarketingPageOneModel == null) {
-			return null;
-		}
-		
-		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-		
-		
-		SlideReplacementData yearsInBusiness = new SlideReplacementData("yearsInBusiness", String.valueOf(strategicMarketingPageOneModel.getYearsInBusiness()));
-		SlideReplacementData numberOfLocations = new SlideReplacementData("numberOfLocations", String.valueOf(strategicMarketingPageOneModel.getNumberOfLocations()));
-		String planToExpandString = strategicMarketingPageOneModel.isPlanToExpand() ? "Yes" : "No";
-		SlideReplacementData planToExpand = new SlideReplacementData("planToExpand", planToExpandString);
-		
-		
-		SlideReplacementData firstTierBusiness = new SlideReplacementData("firstTierBusiness", pageModel.getFirstTierBusiness());
-		SlideReplacementData secondTierBusiness = new SlideReplacementData("secondTierBusiness", pageModel.getSecondTierBusiness());
-		
-		SlideReplacementData thirdTierBusiness = new SlideReplacementData("thirdTierBusiness", pageModel.getThirdTierBusiness());
-		SlideReplacementData fourthTierBusiness = new SlideReplacementData("fourthTierBusiness", pageModel.getFourthTierBusiness());
-	
-		SlideReplacementData competitionA = new SlideReplacementData("competitionA", pageModel.getCompetitionA());
-		SlideReplacementData competitionB = new SlideReplacementData("competitionB", pageModel.getCompetitionB());
-	
-		SlideReplacementData competitionStrengthA = new SlideReplacementData("competitionStrengthA", pageModel.getCompetitionStrengthA());
-		SlideReplacementData competitionStrengthB = new SlideReplacementData("competitionStrengthB", pageModel.getCompetitionStrengthB());
-	
-		SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
-		SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
-	
-		
-		listData.add(yearsInBusiness);
-		listData.add(numberOfLocations);
-		listData.add(planToExpand);
-		listData.add(firstTierBusiness);
-		listData.add(secondTierBusiness);
-		
-		listData.add(thirdTierBusiness);
-		listData.add(fourthTierBusiness);
-		
-		listData.add(competitionA);
-		listData.add(competitionB);
-		
-		listData.add(competitionStrengthA);
-		listData.add(competitionStrengthB);
-		
-		listData.add(competitionWeaknessA);
-		listData.add(competitionWeaknessB);
-		
-		
-		return listData;
+    private static final Logger mLog = LoggerFactory.getLogger(ThreeMarketPlaceCompetitionSlide.class.getName());
 
 
-		
+    public ThreeMarketPlaceCompetitionSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
+        super(sildeData, slideEnum, pageName);
+    }
 
+    public List<SlideReplacementData> composeGoogleSlideData() {
+        MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
+        StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
 
-	}
+        if (pageModel == null || strategicMarketingPageOneModel == null) {
+            return null;
+        }
+
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+
+        SlideReplacementData yearsInBusiness = new SlideReplacementData("yearsInBusiness", String.valueOf(strategicMarketingPageOneModel.getYearsInBusiness()));
+        SlideReplacementData numberOfLocations = new SlideReplacementData("numberOfLocations", String.valueOf(strategicMarketingPageOneModel.getNumberOfLocations()));
+        String planToExpandString = strategicMarketingPageOneModel.isPlanToExpand() ? "Yes" : "No";
+        SlideReplacementData planToExpand = new SlideReplacementData("planToExpand", planToExpandString);
+
+        SlideReplacementData firstTierBusiness = new SlideReplacementData("firstTierBusiness", pageModel.getFirstTierBusiness());
+        SlideReplacementData secondTierBusiness = new SlideReplacementData("secondTierBusiness", pageModel.getSecondTierBusiness());
+
+        SlideReplacementData thirdTierBusiness = new SlideReplacementData("thirdTierBusiness", pageModel.getThirdTierBusiness());
+        SlideReplacementData fourthTierBusiness = new SlideReplacementData("fourthTierBusiness", pageModel.getFourthTierBusiness());
+
+        SlideReplacementData competitionA = new SlideReplacementData("competitionA", pageModel.getCompetitionA());
+        SlideReplacementData competitionB = new SlideReplacementData("competitionB", pageModel.getCompetitionB());
+
+        SlideReplacementData competitionStrengthA = new SlideReplacementData("competitionStrengthA", pageModel.getCompetitionStrengthA());
+        SlideReplacementData competitionStrengthB = new SlideReplacementData("competitionStrengthB", pageModel.getCompetitionStrengthB());
+
+        SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
+        SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
+
+        listData.add(yearsInBusiness);
+        listData.add(numberOfLocations);
+        listData.add(planToExpand);
+        listData.add(firstTierBusiness);
+        listData.add(secondTierBusiness);
+
+        listData.add(thirdTierBusiness);
+        listData.add(fourthTierBusiness);
+
+        listData.add(competitionA);
+        listData.add(competitionB);
+
+        listData.add(competitionStrengthA);
+        listData.add(competitionStrengthB);
+
+        listData.add(competitionWeaknessA);
+        listData.add(competitionWeaknessB);
+
+        return listData;
+
+    }
 
     @Override
     public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
+        StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
+
+        if (pageModel == null || strategicMarketingPageOneModel == null) {
+            return;
+        }
+
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+
+        SlideReplacementData yearsInBusiness = new SlideReplacementData("yearsInBusiness", String.valueOf(strategicMarketingPageOneModel.getYearsInBusiness()));
+        SlideReplacementData numberOfLocations = new SlideReplacementData("numberOfLocations", String.valueOf(strategicMarketingPageOneModel.getNumberOfLocations()));
+        String planToExpandString = strategicMarketingPageOneModel.isPlanToExpand() ? "Yes" : "No";
+        SlideReplacementData planToExpand = new SlideReplacementData("planToExpand", planToExpandString);
+
+        SlideReplacementData firstTierBusiness = new SlideReplacementData("firstTierBusiness", pageModel.getFirstTierBusiness());
+        SlideReplacementData secondTierBusiness = new SlideReplacementData("secondTierBusiness", pageModel.getSecondTierBusiness());
+
+        SlideReplacementData thirdTierBusiness = new SlideReplacementData("thirdTierBusiness", pageModel.getThirdTierBusiness());
+        SlideReplacementData fourthTierBusiness = new SlideReplacementData("fourthTierBusiness", pageModel.getFourthTierBusiness());
+
+        SlideReplacementData competitionA = new SlideReplacementData("competitionA", pageModel.getCompetitionA());
+        SlideReplacementData competitionB = new SlideReplacementData("competitionB", pageModel.getCompetitionB());
+
+        SlideReplacementData competitionStrengthA = new SlideReplacementData("competitionStrengthA", pageModel.getCompetitionStrengthA());
+        SlideReplacementData competitionStrengthB = new SlideReplacementData("competitionStrengthB", pageModel.getCompetitionStrengthB());
+
+        SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
+        SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
+
+        listData.add(yearsInBusiness);
+        listData.add(numberOfLocations);
+        listData.add(planToExpand);
+        listData.add(firstTierBusiness);
+        listData.add(secondTierBusiness);
+
+        listData.add(thirdTierBusiness);
+        listData.add(fourthTierBusiness);
+
+        listData.add(competitionA);
+        listData.add(competitionB);
+
+        listData.add(competitionStrengthA);
+        listData.add(competitionStrengthB);
+
+        listData.add(competitionWeaknessA);
+        listData.add(competitionWeaknessB);
+        replaceTextOnSlide(listData, slide);
+
+        //loop thru add repalce data on slide
+        mLog.trace(listData.toString());
     }
 
-	
 }
