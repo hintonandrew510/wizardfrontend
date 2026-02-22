@@ -89,7 +89,9 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                     }
 
                                 }
-                                if (r.getRawText().contains("Call Attention to Brands")) {
+                                if (r.getRawText().contains("Call:Product")) {
+                                     r.setText("Call Attention to Brands/Private Labels Carried");
+                                    
                                     if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
                                         r.setBold(true);
                                     } else {
@@ -97,7 +99,10 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                     }
 
                                 }
-                                if (r.getRawText().contains("Promote Off-price Items")) {
+                                if (r.getRawText().contains("Promote:Product")) {
+                                    r.setText("Promote Off-price Items/Services");
+                                    
+                                    
                                     if (clientObjectivesOnePageModel.isPromoteOffPriceItemsServices()) {
                                         r.setBold(true);
                                     } else {
@@ -105,7 +110,8 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                     }
 
                                 }
-                                if (r.getRawText().contains("Utilize Co-op")) {
+                                if (r.getRawText().contains("Utilize:Product")) {
+                                      r.setText("Utilize Co-op/Vendor Dollars");
                                     if (clientObjectivesOnePageModel.isUtilizeCoopVendorDollars()) {
                                         r.setBold(true);
                                     } else {
