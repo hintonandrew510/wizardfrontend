@@ -30,7 +30,7 @@ public class GetTextBoxesXSLF {
         FileInputStream fis = new FileInputStream("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv.pptx");
         XMLSlideShow pptxShow = new XMLSlideShow(fis);
         fis.close();
-
+        int tableNumber = 0;
         for (XSLFSlide slide : pptxShow.getSlides()) {
             if (slide.getSlideNumber() == 4) {
                 for (XSLFShape shape : slide.getShapes()) {
@@ -39,6 +39,9 @@ public class GetTextBoxesXSLF {
                     if (shape instanceof XSLFTable) {
                         //System.out.println("Name of table " + shape);
                         XSLFTable table = (XSLFTable) shape;
+                        tableNumber = tableNumber + 1;
+
+                        System.out.println("table one " + tableNumber);
 
                         // Get all rows from the table
                         List<XSLFTableRow> rows = table.getRows();
@@ -53,6 +56,8 @@ public class GetTextBoxesXSLF {
                                 for (XSLFTextParagraph p : cell.getTextParagraphs()) {
                                     //System.out.println(" p.getText() " + p.getText());
                                     for (XSLFTextRun r : p.getTextRuns()) {
+                                        //System.out.println(" parent " + r.getXmlObject().);
+
                                         System.out.println(" r.getRawText() " + r.getRawText());
                                         r.setBold(true);
                                         //content.append(r.getText());
@@ -68,7 +73,7 @@ public class GetTextBoxesXSLF {
                         for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
                             String text = paragraph.getText();
                             if (!text.isEmpty()) {
-                                //System.out.println("TextBox Content: " + text);
+                                // System.out.println("TextBox Content: " + text);
                             }
                         }
                     }
