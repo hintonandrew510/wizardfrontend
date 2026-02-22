@@ -1,37 +1,39 @@
-package web.powerpoint.slide.pages;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package web.powerpoint;
 
-
-import java.util.List;
-import org.apache.poi.xslf.usermodel.XSLFShape;
+/**
+ *
+ * @author andrewhinton
+ */
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
+import org.apache.poi.xslf.usermodel.XSLFShape;
+import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFTable;
 import org.apache.poi.xslf.usermodel.XSLFTableCell;
 import org.apache.poi.xslf.usermodel.XSLFTableRow;
-import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
 import org.apache.poi.xslf.usermodel.XSLFTextRun;
-import org.apache.poi.xslf.usermodel.XSLFTextShape;
-import web.google.slide.SlidesData;
-import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
-import web.page.presentedtopage.PresentedToPageModel;
-import web.powerpoint.slide.AbstractSlide;
-import web.powerpoint.slide.SlidePageNameEnum;
 
+public class GetTextBoxesXSLF {
 
-public class FourClientObjectiveSlide extends AbstractSlide {
-     public FourClientObjectiveSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
-        super(sildeData, slideEnum, pageName);
-    }
+    public static void main(String[] args) throws IOException {
+        org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
-    public FourClientObjectiveSlide(String pageName, String strategicMarketing_Data_CONSUMER, SlidePageNameEnum slideEnum, SlidesData slidesData) {
-        super(slidesData, slideEnum, pageName);
-    }
+        FileInputStream fis = new FileInputStream("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv.pptx");
+        XMLSlideShow pptxShow = new XMLSlideShow(fis);
+        fis.close();
 
-  
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-         ClientObjectivesOnePageModel clientObjectivesOnePageModel = getmSlidesData().getPageModels().getClientObjectivesOnePageModel();
-    for (XSLFShape shape : slide.getShapes()) {
+        for (XSLFSlide slide : pptxShow.getSlides()) {
+            if (slide.getSlideNumber() == 4) {
+                for (XSLFShape shape : slide.getShapes()) {
                     // Check if the shape is a text shape
 
                     if (shape instanceof XSLFTable) {
@@ -71,16 +73,13 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                         }
                     }
                 }
-    
-    
+                break;
+
+            }
+            System.out.println("--- Slide " + slide.getSlideNumber() + " ---");
+            // Iterate through all shapes on the slide
+
+        }
+        pptxShow.close();
     }
-
-	
-	
-
-	
-
-	
-	
-	
 }

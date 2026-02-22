@@ -156,9 +156,22 @@ public class SlideDataHelper {
 
                         slidesData.getPageModels().setOrderList(orderList);
                         slidesData.getPageModels().setClientObjectivesOnePageModel(clientObjectivesOnePageModel);
-                        FourClientObjectiveSlide slideProductService = new FourClientObjectiveSlide(
-                                "StrategicMarketing_Data_CONSUMER!B1:E", "StrategicMarketing_Data_CONSUMER", SlidePageNameEnum.FourClientObjectiveSlide, slidesData);
-                        slidesList.add(slideProductService);
+                        
+                        /*
+                          slidesData.getPageModels().setPresentedToPageModel(presentedToPageModel);
+                        // if (!presentedToPageModel.getClientBusinessName().isEmpty() &&
+                        // !presentedToPageModel.getClientContactName().isEmpty()) {
+                        OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
+                                SlidePageNameEnum.OnePresentedToSlide, "OnePresentedToSlide");
+                        slidesList.add(presentedToSlide);
+                        */
+                        
+                        FourClientObjectiveSlide fourClientObjectiveSlide = 
+                                new FourClientObjectiveSlide(slidesData, SlidePageNameEnum.FourClientObjectiveSlide,"FourClientObjectiveSlide");
+                        slidesList.add(fourClientObjectiveSlide);
+                        
+                        
+                        
                         FourClientObjectiveSlide slideConsumer = new FourClientObjectiveSlide(
                                 "StrategicMarketing_Data_CONSUMER!B1:E", "StrategicMarketing_Data_CONSUMER",
                                 SlidePageNameEnum.FourClientObjectiveSlide, slidesData);
@@ -176,6 +189,12 @@ public class SlideDataHelper {
                                 "Strategic_Marketing_top", SlidePageNameEnum.FourClientObjectiveSlide, slidesData);
                         slidesList.add(slideTop);
 
+                     
+                        
+                        
+                        
+                        
+                        
                         mLog.info("found page ClientObjectivesOnePageTwoModel");
 
                         break;

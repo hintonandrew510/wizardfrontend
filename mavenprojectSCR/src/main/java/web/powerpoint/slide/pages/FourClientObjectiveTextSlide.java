@@ -30,7 +30,13 @@ public class FourClientObjectiveTextSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    	StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
+		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+		SlideReplacementData misconceptions = new SlideReplacementData("misconceptions", strategicMarketingPageOneModel.getMisconceptions());
+		SlideReplacementData sellingAdvantages = new SlideReplacementData("sellingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
+		listData.add(misconceptions);
+		listData.add(sellingAdvantages);
+                replaceTextOnSlide(listData, slide);
     }
 	
 	

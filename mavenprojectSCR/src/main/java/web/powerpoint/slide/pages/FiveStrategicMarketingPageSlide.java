@@ -19,7 +19,7 @@ import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class FiveStrategicMarketingPageSlide extends AbstractSlide {
- private static final Logger mLog = LoggerFactory.getLogger(FiveStrategicMarketingPageSlide.class.getName());
+ private static final Logger mLog = LoggerFactory.getLogger(FiveStrategicMarketingPageSlide .class.getName());
 
     public FiveStrategicMarketingPageSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
         super(slidesData, slideEnum, pageName);

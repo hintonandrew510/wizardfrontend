@@ -12,7 +12,7 @@ public enum SlidePageNameEnum {
     OnePresentedToSlide("Slide1"),
     TwoTeamCommitmentSlide("Slide2"),
     ThreeMarketPlaceCompetitionSlide("Slide3"),
-    FourClientObjectiveSlide("Slide 2"),
+    FourClientObjectiveSlide("Slide4"),
     FourClientObjectiveTextSlide("Slide 2"),
     FiveStrategicMarketingPageSlide("Slide5"),
     SixTargetMarketingSlide("Weekends are best."),

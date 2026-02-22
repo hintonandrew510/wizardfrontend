@@ -25,6 +25,8 @@ public class FourClientObjectiveTextSlide extends AbstractSlide {
 		SlideReplacementData sellingAdvantages = new SlideReplacementData("sellingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
 		listData.add(misconceptions);
 		listData.add(sellingAdvantages);
+                
+                
 		return listData;
 	}
 	
