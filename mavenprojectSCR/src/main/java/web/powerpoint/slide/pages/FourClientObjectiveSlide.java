@@ -81,7 +81,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                 }
                                 if (r.getRawText().contains("Feature:Product")) {
                                     r.setText("Feature Specific Products/Services");
-                                    
+
                                     if (clientObjectivesOnePageModel.isFeatureSpecificProducts()) {
                                         r.setBold(true);
                                     } else {
@@ -90,8 +90,8 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                 }
                                 if (r.getRawText().contains("Call:Product")) {
-                                     r.setText("Call Attention to Brands/Private Labels Carried");
-                                    
+                                    r.setText("Call Attention to Brands/Private Labels Carried");
+
                                     if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
                                         r.setBold(true);
                                     } else {
@@ -101,8 +101,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                 }
                                 if (r.getRawText().contains("Promote:Product")) {
                                     r.setText("Promote Off-price Items/Services");
-                                    
-                                    
+
                                     if (clientObjectivesOnePageModel.isPromoteOffPriceItemsServices()) {
                                         r.setBold(true);
                                     } else {
@@ -111,7 +110,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                 }
                                 if (r.getRawText().contains("Utilize:Product")) {
-                                      r.setText("Utilize Co-op/Vendor Dollars");
+                                    r.setText("Utilize Co-op/Vendor Dollars");
                                     if (clientObjectivesOnePageModel.isUtilizeCoopVendorDollars()) {
                                         r.setBold(true);
                                     } else {
@@ -119,15 +118,39 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                     }
 
                                 }
-                                if (r.getRawText().contains("Maintain Market")) {
-                                    if (clientObjectivesOnePageModel.isMaintainMarketDominance()) {
+                                if (r.getRawText().contains("Retain:Consumer")) {
+                                    r.setText("Retain/Recapture Consumers");
+
+                                    if (clientObjectivesOnePageModel.isRetainCurrentConsumers()) {
                                         r.setBold(true);
                                     } else {
                                         r.setBold(false);
                                     }
 
                                 }
-                                if (r.getRawText().contains("Elevate Business Brand")) {
+                                if (r.getRawText().contains("Increase:Consumer")) {
+                                    r.setText("Increase Frequency of Customer Visits");
+
+                                    if (clientObjectivesOnePageModel.isIncreaseCustomerVisits()) {
+                                        r.setBold(true);
+                                    } else {
+                                        r.setBold(false);
+                                    }
+
+                                }
+                                if (r.getRawText().contains("Grow:Consumer")) {
+                                    r.setText("Grow New Traffic/Lead Calls");
+
+                                    if (clientObjectivesOnePageModel.isIncreaseTrafficLeadCalls()) {
+                                        r.setBold(true);
+                                    } else {
+                                        r.setBold(false);
+                                    }
+
+                                }
+                                if (r.getRawText().contains("Expand:Consumer")) {
+                                    r.setText("Expand Target Consumers (by age, sex, geography)");
+
                                     if (clientObjectivesOnePageModel.isExpandTargetConsumers()) {
                                         r.setBold(true);
                                     } else {
@@ -135,120 +158,119 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                     }
 
                                 }
-                                if (r.getRawText().contains("Improve Reputation and Listing")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                if (r.getRawText().contains("Change:Consumer")) {
+                                    //Change Consumer Attitudes
+                                    r.setText("Change Consumer Attitudes");
+
+                                    if (clientObjectivesOnePageModel.isChangeConsumerAttitudes()) {
                                         r.setBold(true);
                                     } else {
                                         r.setBold(false);
                                     }
 
                                 }
-                                if (r.getRawText().contains("Enhance Website")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                if (r.getRawText().contains("Make:Consumer")) {
+                                    r.setText("Make Promotional Events Stronger");
+
+                                    if (clientObjectivesOnePageModel.isMakePromotionalEventsStronger()) {
                                         r.setBold(true);
                                     } else {
                                         r.setBold(false);
                                     }
 
                                 }
-                                if (r.getRawText().contains("Make Promotional Events Stronger")) {
+
+                                if (r.getRawText().contains("Make:Promotion")) {
+                                    r.setText("Make Promotional Events Stronger");
                                     if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
                                         r.setBold(true);
                                     } else {
                                         r.setBold(false);
                                     }
 
-                                }
-                                if (r.getRawText().contains("Develop Digital/Mobile")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
-                                    }
+                                    if (r.getRawText().contains("Develop:Promotion")) {
+                                        r.setText("Develop Digital/Mobile/Social Strategies");
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Establish a quarterly")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Enhance Website")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Enhance Website")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Develop Database Marketing")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Develop Database Marketing")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Initiate Cause Marketing ")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Initiate Cause Marketing ")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Maintain Market Dominance")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Maintain Market Dominance")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Elevate Business Brand")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Elevate Business Brand")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Improve Reputation")) {
+                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Improve Reputation")) {
-                                    if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
+                                    if (r.getRawText().contains("Enhance Website")) {
+                                        if (clientObjectivesOnePageModel.isMaintainMarketDominance()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
 
-                                }
-                                if (r.getRawText().contains("Enhance Website")) {
-                                    if (clientObjectivesOnePageModel.isMaintainMarketDominance()) {
-                                        r.setBold(true);
-                                    } else {
-                                        r.setBold(false);
                                     }
-
                                 }
                             }
+
                         }
+                    }
+                }
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    // Get text from all paragraphs within the text shape
+                    for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
+                        String text = paragraph.getText();
+                        if (!text.isEmpty()) {
+                            //System.out.println("TextBox Content: " + text);
+                        }
+                    }
+                }
+            }
 
-                    }
-                }
-            }
-            if (shape instanceof XSLFTextShape) {
-                XSLFTextShape textShape = (XSLFTextShape) shape;
-                // Get text from all paragraphs within the text shape
-                for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
-                    String text = paragraph.getText();
-                    if (!text.isEmpty()) {
-                        //System.out.println("TextBox Content: " + text);
-                    }
-                }
-            }
         }
-
     }
-
-}
+    }
