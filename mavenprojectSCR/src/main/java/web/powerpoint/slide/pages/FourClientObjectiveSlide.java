@@ -197,56 +197,85 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                         }
 
                                     }
-                                    if (r.getRawText().contains("Enhance Website")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                    if (r.getRawText().contains("Establish:Promotion")) {
+                                         r.setText("Establish a quarterly spike/seasonal campaign");        
+                                        if (clientObjectivesOnePageModel.isQuarterlySeasonalCampaign()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
                                         }
 
                                     }
-                                    if (r.getRawText().contains("Develop Database Marketing")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                    if (r.getRawText().contains("Develop:Promotion")) {
+                                        r.setText("Develop Database Marketing (Email and Text)");  
+                                        if (clientObjectivesOnePageModel.isDevelopDatabaseMarketing()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
                                         }
 
                                     }
-                                    if (r.getRawText().contains("Initiate Cause Marketing ")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                    if (r.getRawText().contains("Initiate:Promotion")) {
+                                         r.setText("Initiate Cause Marketing Programs");
+                                        if (clientObjectivesOnePageModel.isInitiateCauseMarketingProgram()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
                                         }
 
                                     }
-                                    if (r.getRawText().contains("Maintain Market Dominance")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
+                                    if (r.getRawText().contains("Specially:Promotion")) {
+                                        r.setText("Develop Specially Staged Events");
+                                        if (clientObjectivesOnePageModel.isDevelopSpeciallyStagedEvent()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
                                         }
 
                                     }
-                                    if (r.getRawText().contains("Elevate Business Brand")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                            r.setBold(true);
-                                        } else {
-                                            r.setBold(false);
-                                        }
-
-                                    }
-                                    if (r.getRawText().contains("Improve Reputation")) {
-                                        if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
-                                            r.setBold(true);
-                                        } else {
-                                            r.setBold(false);
-                                        }
-
-                                    }
-                                    if (r.getRawText().contains("Enhance Website")) {
+                                    if (r.getRawText().contains("Maintain:Brand")) {
+                                        r.setText("Maintain Market Dominance");       
                                         if (clientObjectivesOnePageModel.isMaintainMarketDominance()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
+
+                                    }
+                                    if (r.getRawText().contains("Improve:Brand")) {
+                                         r.setText("Improve Reputation and Listing Management");
+                                        if (clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
+
+                                    }
+                                    if (r.getRawText().contains("Enhance:Brand")) {
+                                        
+                                         r.setText("Enhance Website (Mobile, Response, SEO, SEM)");
+                                        if (clientObjectivesOnePageModel.isCreatePentUpDemand()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
+
+                                    }
+                                    
+                                    if (r.getRawText().contains("Increase:Brand")) {
+                                        
+                                         r.setText("Increase Market Share");
+                                        if (clientObjectivesOnePageModel.isIncreaseMarketShare()) {
+                                            r.setBold(true);
+                                        } else {
+                                            r.setBold(false);
+                                        }
+
+                                    }
+                                    if (r.getRawText().contains("Increate:Brand")) {
+                                        
+                                         r.setText(clientObjectivesOnePageModel.getOtherText());
+                                        if (clientObjectivesOnePageModel.isOther()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
@@ -273,4 +302,5 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
         }
     }
-    }
+
+}
