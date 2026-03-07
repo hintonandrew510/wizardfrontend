@@ -150,6 +150,16 @@ public class SlideDataHelper {
                                 .convertFromJson(data.getPagedata(), ClientObjectivesOnePageModel.class);
                         List<ClientObjectivesOnePageTwoModel> orderList = ClientObjectivesPageHelper.getList(true,
                                 clientObjectivesOnePageModel);
+                        
+                         StrategicMarketingPageOneModel strategicMarketingPageOneModel = null;
+
+                        strategicMarketingPageOneModel = (StrategicMarketingPageOneModel) JSONManager
+                                .convertFromJson(data.getPagedata(), StrategicMarketingPageOneModel.class);
+                        // model.addAttribute("StrategicMarketingPageOne",
+                        // strategicMarketingPageOneModel);
+
+                        publish.setStrategicMarketingPageOne(true);
+                        slidesData.getPageModels().setStrategicMarketingPageOneModel(strategicMarketingPageOneModel);
 
                         List<Object> pageData = new ArrayList<Object>();
                         pageData.add(clientObjectivesOnePageModel);

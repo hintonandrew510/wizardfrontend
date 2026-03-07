@@ -1,5 +1,6 @@
 package web.powerpoint.slide.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -11,10 +12,12 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.presentedtopage.PresentedToPageModel;
+import web.page.strategicmarketingpageone.StrategicMarketingPageOneModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -63,8 +66,14 @@ public class FourClientObjectiveSlide extends AbstractSlide {
     @Override
     public void populateSlide(XSLFSlide slide) {
         ClientObjectivesOnePageModel clientObjectivesOnePageModel = getmSlidesData().getPageModels().getClientObjectivesOnePageModel();
+        StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
         
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        SlideReplacementData selllingAdvantages = new SlideReplacementData("selllingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
         
+        listData.add(selllingAdvantages);
+        
+        replaceTextOnSlide(listData, slide);
         
         
         
