@@ -101,6 +101,7 @@ public class SlideDataHelper {
      private static final Logger mLog = LoggerFactory.getLogger(SlideDataHelper.class.getName());
    
      
+    
      public static SlideInterface findModelBySlidePageName(String slidePageName,List<SlideInterface> models) {
          SlideInterface foundSlideInterface = null;
          for (SlideInterface model : models) {
@@ -117,7 +118,7 @@ public class SlideDataHelper {
      public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages) {
         mLog.warn("entering getSlidesData");
         List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
-        SlidesData slidesData = new SlidesData();
+       SlidesData slidesData = new SlidesData();
 
         PageModels pageModels = new PageModels();
         Publish publish = new Publish();

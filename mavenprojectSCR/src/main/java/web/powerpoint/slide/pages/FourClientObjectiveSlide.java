@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.SlidesData;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
+import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
@@ -32,7 +33,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
     /*
 
-
+  
 
 
 
@@ -45,9 +46,29 @@ public class FourClientObjectiveSlide extends AbstractSlide {
  r.getRawText() Tech Recruitment
 
      */
+    private ClientObjectivesOnePageTwoModel getOrder(int orderToFind) {
+        List<ClientObjectivesOnePageTwoModel> orderList = this.getmSlidesData().getPageModels().getOrderList();
+       ClientObjectivesOnePageTwoModel foundClientObjectivesOnePageTwoModel = null;
+       for( ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel : orderList) {
+           int sortorder = clientObjectivesOnePageTwoModel.getSortOrder();
+           if (sortorder == orderToFind) {
+               foundClientObjectivesOnePageTwoModel = clientObjectivesOnePageTwoModel;
+               break; 
+           }
+       }
+       return foundClientObjectivesOnePageTwoModel;
+    }
+    
+    
     @Override
     public void populateSlide(XSLFSlide slide) {
         ClientObjectivesOnePageModel clientObjectivesOnePageModel = getmSlidesData().getPageModels().getClientObjectivesOnePageModel();
+        
+        
+        
+        
+        
+//slidesData.getPageModels().setOrderList(orderList);
         for (XSLFShape shape : slide.getShapes()) {
             // Check if the shape is a text shape
             int tableNumber = 0;
@@ -198,7 +219,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Establish:Promotion")) {
-                                         r.setText("Establish a quarterly spike/seasonal campaign");        
+                                        r.setText("Establish a quarterly spike/seasonal campaign");
                                         if (clientObjectivesOnePageModel.isQuarterlySeasonalCampaign()) {
                                             r.setBold(true);
                                         } else {
@@ -207,7 +228,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Develop:Promotion")) {
-                                        r.setText("Develop Database Marketing (Email and Text)");  
+                                        r.setText("Develop Database Marketing (Email and Text)");
                                         if (clientObjectivesOnePageModel.isDevelopDatabaseMarketing()) {
                                             r.setBold(true);
                                         } else {
@@ -216,7 +237,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Initiate:Promotion")) {
-                                         r.setText("Initiate Cause Marketing Programs");
+                                        r.setText("Initiate Cause Marketing Programs");
                                         if (clientObjectivesOnePageModel.isInitiateCauseMarketingProgram()) {
                                             r.setBold(true);
                                         } else {
@@ -234,7 +255,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Maintain:Brand")) {
-                                        r.setText("Maintain Market Dominance");       
+                                        r.setText("Maintain Market Dominance");
                                         if (clientObjectivesOnePageModel.isMaintainMarketDominance()) {
                                             r.setBold(true);
                                         } else {
@@ -243,7 +264,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Improve:Brand")) {
-                                         r.setText("Improve Reputation and Listing Management");
+                                        r.setText("Improve Reputation and Listing Management");
                                         if (clientObjectivesOnePageModel.isEstablishorReestablishBusinessImage()) {
                                             r.setBold(true);
                                         } else {
@@ -252,8 +273,8 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Enhance:Brand")) {
-                                        
-                                         r.setText("Enhance Website (Mobile, Response, SEO, SEM)");
+
+                                        r.setText("Enhance Website (Mobile, Response, SEO, SEM)");
                                         if (clientObjectivesOnePageModel.isCreatePentUpDemand()) {
                                             r.setBold(true);
                                         } else {
@@ -261,10 +282,10 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                         }
 
                                     }
-                                    
+
                                     if (r.getRawText().contains("Increase:Brand")) {
-                                        
-                                         r.setText("Increase Market Share");
+
+                                        r.setText("Increase Market Share");
                                         if (clientObjectivesOnePageModel.isIncreaseMarketShare()) {
                                             r.setBold(true);
                                         } else {
@@ -273,13 +294,41 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                     }
                                     if (r.getRawText().contains("Increate:Brand")) {
-                                        
-                                         r.setText(clientObjectivesOnePageModel.getOtherText());
+
+                                        r.setText(clientObjectivesOnePageModel.getOtherText());
                                         if (clientObjectivesOnePageModel.isOther()) {
                                             r.setBold(true);
                                         } else {
                                             r.setBold(false);
                                         }
+
+                                    }
+                                    
+                                     if (r.getRawText().contains("order1")) {
+                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(1);
+                                        clientObjectivesOnePageTwoModel.getLabel();
+
+                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                        
+
+                                    }
+                                     
+                                        
+                                     if (r.getRawText().contains("order2")) {
+                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(2);
+                                        clientObjectivesOnePageTwoModel.getLabel();
+
+                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                        
+
+                                    }
+                                        
+                                     if (r.getRawText().contains("order3")) {
+                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(3);
+                                        clientObjectivesOnePageTwoModel.getLabel();
+
+                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                        
 
                                     }
                                 }
