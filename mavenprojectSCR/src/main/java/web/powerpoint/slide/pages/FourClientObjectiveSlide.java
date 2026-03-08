@@ -94,12 +94,14 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                     // Process the row (e.g., get cells from the row)
                     List<XSLFTableCell> cells = row.getCells();
                     for (XSLFTableCell cell : cells) {
-                        //System.out.println(" cell data " + cell.getText());
+                        mLog.info(" cell data " + cell.getText());
 
                         for (XSLFTextParagraph p : cell.getTextParagraphs()) {
                             //System.out.println(" p.getText() " + p.getText());
                             for (XSLFTextRun r : p.getTextRuns()) {
                                 //(" r.getRawText() " + r.getRawText());
+                                String test = r.getRawText();
+                                mLog.info("raw Text "+ test);
                                 if (r.getRawText().contains("Introduce:Product")) {
                                     r.setText("Introduce New Department/Products/Services");
                                     if (clientObjectivesOnePageModel.isIntroduceNewDepartment()) {
