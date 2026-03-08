@@ -1,7 +1,9 @@
 package web.powerpoint.slide.pages;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTable;
@@ -33,50 +35,66 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
     private static final Logger mLog = LoggerFactory.getLogger(web.google.slide.pages.OnePresentedToSlide.class.getName());
 
+    private ClientObjectivesOnePageTwoModel getOrder(int orderToFind,ClientObjectivesOnePageModel clientObjectivesOnePageModel ) {
+        
 
-    /*
+        Map<String, String> labels = new HashMap<>();
+        labels.put("introduceNewDepartment", "Introduce New Department/Products/Services");
+        labels.put("featureSpecificProducts", "Feature Specific Products/Services");
+        labels.put("callAttentiontoBrandsPrivatesCarried", "Call Attention to Brands/Private s Carried");
+        labels.put("promoteOffPriceItemsServices", "Promote Off-price Items/Services");
 
-  
+        labels.put("quarterlySeasonalCampaign", "Establish a quarterly spike/seasonal campaign");
 
+        labels.put("utilizeCoopVendorDollars", "Utilize Co-op/Vendor Dollars");
+        labels.put("retainCurrentConsumers", "Retain/Recapture Consumers");
 
+        labels.put("increaseCustomerVisits", "Increase Frequency of Customer Visits");
+        labels.put("increaseTrafficLeadCalls", "Grow New Traffic/Lead Calls");
+        labels.put("expandTargetConsumers", "Expand Target Consumers (by age, sex, geography)");
+        labels.put("changeConsumerAttitudes", "Change Consumer Attitudes");
+        labels.put("makePromotionalEventsStronger", "Make Promotional Events Stronger");
+        labels.put("increaseDigitalMobileOnlineResponse", "Develop Digital/Mobile/Social Strategies");
+        labels.put("developDatabaseMarketing", "Develop Database Marketing (Email and Text)");
+        labels.put("initiateCauseMarketingProgram", "Initiate Cause Marketing Programs");
+        labels.put("developSpeciallyStagedEvent", "Develop Specially Staged Events");
+        labels.put("maintainMarketDominance", "Maintain Market Dominance");
+        labels.put("improveBusinessNameBrand", "Elevate Business Brand/Image");
+        labels.put("establishorReestablishBusinessImage", "Improve Reputation and Listing Management");
+        labels.put("createPentUpDemand", "Enhance Website (Mobile, Response, SEO, SEM)");
+        labels.put("increaseMarketShare", "Increase Market Share");
 
-
-
-
-
-
- r.getRawText() Increase Market Share
- r.getRawText() Tech Recruitment
-
-     */
-    private ClientObjectivesOnePageTwoModel getOrder(int orderToFind) {
         List<ClientObjectivesOnePageTwoModel> orderList = this.getmSlidesData().getPageModels().getOrderList();
-       ClientObjectivesOnePageTwoModel foundClientObjectivesOnePageTwoModel = null;
-       for( ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel : orderList) {
-           int sortorder = clientObjectivesOnePageTwoModel.getSortOrder();
-           if (sortorder == orderToFind) {
-               foundClientObjectivesOnePageTwoModel = clientObjectivesOnePageTwoModel;
-               break; 
-           }
-       }
-       return foundClientObjectivesOnePageTwoModel;
+        ClientObjectivesOnePageTwoModel foundClientObjectivesOnePageTwoModel = null;
+        for (ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel : orderList) {
+            int sortorder = clientObjectivesOnePageTwoModel.getSortOrder();
+            if (sortorder == orderToFind) {
+                foundClientObjectivesOnePageTwoModel = clientObjectivesOnePageTwoModel;
+                 String description  = labels.get(clientObjectivesOnePageTwoModel.getKey());
+                 if (description == null ) {
+                     description = clientObjectivesOnePageModel.getOtherText();
+                     
+                 }
+                 
+                 clientObjectivesOnePageTwoModel.setLabel(description);
+                break;
+            }
+        }
+        return foundClientObjectivesOnePageTwoModel;
     }
-    
-    
+
     @Override
     public void populateSlide(XSLFSlide slide) {
         ClientObjectivesOnePageModel clientObjectivesOnePageModel = getmSlidesData().getPageModels().getClientObjectivesOnePageModel();
         StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
-        
+
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
         SlideReplacementData selllingAdvantages = new SlideReplacementData("selllingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
-        
+
         listData.add(selllingAdvantages);
-        
+
         replaceTextOnSlide(listData, slide);
-        
-        
-        
+
 //slidesData.getPageModels().setOrderList(orderList);
         for (XSLFShape shape : slide.getShapes()) {
             // Check if the shape is a text shape
@@ -100,8 +118,24 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                             //System.out.println(" p.getText() " + p.getText());
                             for (XSLFTextRun r : p.getTextRuns()) {
                                 //(" r.getRawText() " + r.getRawText());
+                                //order1
                                 String test = r.getRawText();
-                                mLog.info("raw Text "+ test);
+                                mLog.info("raw Text " + test);
+                                if (r.getRawText().contains("order1")) {
+                                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(1,clientObjectivesOnePageModel);
+                                    clientObjectivesOnePageTwoModel.getLabel();
+                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                }
+                                if (r.getRawText().contains("order2")) {
+                                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(2,clientObjectivesOnePageModel);
+                                    clientObjectivesOnePageTwoModel.getLabel();
+                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                }
+                                if (r.getRawText().contains("order3")) {
+                                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(3,clientObjectivesOnePageModel);
+                                    clientObjectivesOnePageTwoModel.getLabel();
+                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                }
                                 if (r.getRawText().contains("Introduce:Product")) {
                                     r.setText("Introduce New Department/Products/Services");
                                     if (clientObjectivesOnePageModel.isIntroduceNewDepartment()) {
@@ -122,7 +156,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
                                 }
                                 if (r.getRawText().contains("Call:Product")) {
-                                    r.setText("Call Attention to Brands/Private Labels Carried");
+                                    r.setText("Call Attention to Brands/Private s Carried");
 
                                     if (clientObjectivesOnePageModel.isCallAttentiontoBrandsPrivateLabelsCarried()) {
                                         r.setBold(true);
@@ -314,34 +348,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                         }
 
                                     }
-                                    
-                                     if (r.getRawText().contains("order1")) {
-                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(1);
-                                        clientObjectivesOnePageTwoModel.getLabel();
 
-                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
-                                        
-
-                                    }
-                                     
-                                        
-                                     if (r.getRawText().contains("order2")) {
-                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(2);
-                                        clientObjectivesOnePageTwoModel.getLabel();
-
-                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
-                                        
-
-                                    }
-                                        
-                                     if (r.getRawText().contains("order3")) {
-                                        ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel =  getOrder(3);
-                                        clientObjectivesOnePageTwoModel.getLabel();
-
-                                        r.setText(clientObjectivesOnePageTwoModel.getLabel());
-                                        
-
-                                    }
                                 }
                             }
 
