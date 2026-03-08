@@ -101,8 +101,12 @@ public abstract class AbstractSlide implements SlideInterface {
                         List<XSLFTextRun> textRuns = para.getTextRuns();
                         for (XSLFTextRun incomingTextRun : textRuns) {
                             String text = incomingTextRun.getRawText();
-                            // Perform the replacement using standard Java string methods
-                            if (text.contains(slideReplacementData.getGoogleSlideVariableName())) {
+                            text = text.trim();
+                            
+                            String label = slideReplacementData.getGoogleSlideVariableName();
+                            label = label.trim();
+// Perform the replacement using standard Java string methods
+                                if (text.contains(label)) {
                                 String updatedText = text.replace(slideReplacementData.getGoogleSlideVariableName(), slideReplacementData.getGoogleSlideVariableValue());
                                 // Set the new text in the text run
                                 incomingTextRun.setText(updatedText);

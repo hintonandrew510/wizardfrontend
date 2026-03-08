@@ -85,11 +85,12 @@ public class FourClientObjectiveSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
+        mLog.info("BEGIN populateSlide ");
         ClientObjectivesOnePageModel clientObjectivesOnePageModel = getmSlidesData().getPageModels().getClientObjectivesOnePageModel();
         StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-        SlideReplacementData selllingAdvantages = new SlideReplacementData("selllingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
+        SlideReplacementData selllingAdvantages = new SlideReplacementData("sellingAdvantages", strategicMarketingPageOneModel.getSellingAdvantages());
 
         listData.add(selllingAdvantages);
 
@@ -366,7 +367,7 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                     }
                 }
             }
-
+mLog.info("END populateSlide ");
         }
     }
 
