@@ -12,7 +12,7 @@ import web.page.targetmarketingpage.TargetMarketingPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
-public class SixTargetMarketingSlide extends AbstractSlide {
+public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide {
 
 	public SixTargetMarketingSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
 		super(sildeData, slideEnum, pageName);

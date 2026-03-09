@@ -21,9 +21,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import web.google.slide.GoogleHelper;
+import web.google.slide.SlidesData;
 import web.model.Contact;
 
 import web.model.WizardData;
+import web.page.targetmarketingpage.TargetMarketingHeaderRow;
 import web.powerpoint.slide.SlideDataHelper;
 import web.powerpoint.slide.SlideInterface;
 
@@ -83,6 +85,55 @@ public class PowerPointServiceImpl implements PowerPointService {
         return pageName;
     }
 
+    private void removeSlides(XMLSlideShow ppt, List<SlideInterface> slidesModels) {
+        SlidesData slidesData = slidesModels.getFirst().getmSlidesData();
+        TargetMarketingHeaderRow targetMarketingHeaderRow = slidesData.getPageModels().getTargetMarketingHeaderRow();
+        String status = targetMarketingHeaderRow.getRowStatus();
+        if (status.equals("Want12to18ToWant19to25")) {
+            ppt.removeSlide(9);
+            ppt.removeSlide(8);
+            ppt.removeSlide(7);
+            ppt.removeSlide(6);
+
+        }
+        if (status.equals("Want19to25ToWant26to35")) {
+            ppt.removeSlide(10);
+            ppt.removeSlide(8);
+            ppt.removeSlide(7);
+            ppt.removeSlide(6);
+
+        }
+        if (status.equals("Want26to35ToWant36to45")) {
+            ppt.removeSlide(10);
+            ppt.removeSlide(8);
+            ppt.removeSlide(7);
+            ppt.removeSlide(9);
+
+        }
+        if (status.equals("Want36to45ToWant46to55")) {
+            ppt.removeSlide(10);
+            ppt.removeSlide(8);
+            ppt.removeSlide(6);
+            ppt.removeSlide(9);
+
+        }
+        if (status.equals("Want46to55ToWant55Plus")) {
+            ppt.removeSlide(10);
+            ppt.removeSlide(7);
+            ppt.removeSlide(6);
+            ppt.removeSlide(9);
+
+        }
+        /*
+           Want12to18ToWant19to25 10
+           Want19to25ToWant26to35 9
+           Want26to35ToWant36to45 6
+           Want36to45ToWant46to55 7
+           Want46to55ToWant55Plus 8
+         */
+
+    }
+
     @Override
     public String buildPowerPointDocument(int wizardId, Contact contact) {
         //wizardRepository.
@@ -99,6 +150,8 @@ public class PowerPointServiceImpl implements PowerPointService {
 
             XMLSlideShow ppt = new XMLSlideShow(fis);
             fis.close();
+            removeSlides(ppt, slidesModels);
+
             for (XSLFSlide slide : ppt.getSlides()) {
                 String slidePageName = slide.getSlideName();
                 mLog.info("Slide number " + slidePageName);
@@ -121,7 +174,7 @@ public class PowerPointServiceImpl implements PowerPointService {
 
             }
             String contactname = contact.getName();
-           contactname =  contactname.replaceAll("\\s+", "");
+            contactname = contactname.replaceAll("\\s+", "");
 
             String filepath = "/opt/wizard/download/" + contactname + ".pptx";
 
@@ -138,8 +191,7 @@ public class PowerPointServiceImpl implements PowerPointService {
 
             ppt.write(out);
             out.close();
-            
-            
+
             String downloadFileName = contactname + "_updated.pptx";
 
             mLog.info("file path " + filepath);

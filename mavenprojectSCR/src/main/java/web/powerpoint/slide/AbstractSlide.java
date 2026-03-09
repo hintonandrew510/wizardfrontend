@@ -22,7 +22,7 @@ import web.google.slide.SlidesData;
 public abstract class AbstractSlide implements SlideInterface {
 
     private static final Logger mLog = LoggerFactory.getLogger(AbstractSlide.class.getName());
-
+ @Override
     public SlidesData getmSlidesData() {
         return mSlidesData;
     }
