@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
@@ -89,11 +91,12 @@ public class PowerPointServiceImpl implements PowerPointService {
         SlidesData slidesData = slidesModels.getFirst().getmSlidesData();
         TargetMarketingHeaderRow targetMarketingHeaderRow = slidesData.getPageModels().getTargetMarketingHeaderRow();
         String status = targetMarketingHeaderRow.getRowStatus();
+        //slide 10 needs to remain
         if (status.equals("Want12to18ToWant19to25")) {
             ppt.removeSlide(9);
-            ppt.removeSlide(8);
-            ppt.removeSlide(7);
-            ppt.removeSlide(6);
+            ppt.removeSlide(9);
+            ppt.removeSlide(9);
+            ppt.removeSlide(9);
 
         }
         if (status.equals("Want19to25ToWant26to35")) {
@@ -103,33 +106,41 @@ public class PowerPointServiceImpl implements PowerPointService {
             ppt.removeSlide(6);
 
         }
+        //Want26to35ToWant36to45 6
         if (status.equals("Want26to35ToWant36to45")) {
-            ppt.removeSlide(10);
-            ppt.removeSlide(8);
-            ppt.removeSlide(7);
-            ppt.removeSlide(9);
+            List<Integer> indicesToRemove = Arrays.asList(7, 8, 9, 10); // Example indices
+            Collections.sort(indicesToRemove, Collections.reverseOrder());
+
+            for (int index : indicesToRemove) {
+                ppt.removeSlide(index);
+            }
 
         }
+        //7  (6,7,8,9,10)
         if (status.equals("Want36to45ToWant46to55")) {
-            ppt.removeSlide(10);
-            ppt.removeSlide(8);
-            ppt.removeSlide(6);
-            ppt.removeSlide(9);
+
+            List<Integer> indicesToRemove = Arrays.asList(6, 8, 9, 10); // Example indices
+            Collections.sort(indicesToRemove, Collections.reverseOrder());
+
+            for (int index : indicesToRemove) {
+                ppt.removeSlide(index);
+            }
+           
 
         }
+        //Want46to55ToWant55Plus 8
         if (status.equals("Want46to55ToWant55Plus")) {
-            ppt.removeSlide(10);
-            ppt.removeSlide(7);
-            ppt.removeSlide(6);
+            ppt.removeSlide(6); //6
+            ppt.removeSlide(6);  //7
             ppt.removeSlide(9);
-
+            ppt.removeSlide(9);
         }
         /*
            Want12to18ToWant19to25 10
            Want19to25ToWant26to35 9
-           Want26to35ToWant36to45 6
+           
            Want36to45ToWant46to55 7
-           Want46to55ToWant55Plus 8
+          
          */
 
     }
