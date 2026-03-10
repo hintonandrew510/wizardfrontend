@@ -1521,10 +1521,7 @@ public class GoogleHelper {
 					slidesData.getPublish().setTargetMarketingPage(true);
 					slidesData.getPageModels().setTargetMarketingPageModel(targetMarketingPageModel);
 					slidesData.getPageModels().setTargetMarketingHeaderRow(targetMarketingHeaderRow);
-					SixTargetMarketingSlide slide = new SixTargetMarketingSlide(slidesData,
-							SlideEnum.TextSlideReplacement, "SixTargetMarketingSlide");
-					slidesList.add(slide);
-
+					
 					mLog.info("found page targetMarketingPageModel");
 
 					break;
