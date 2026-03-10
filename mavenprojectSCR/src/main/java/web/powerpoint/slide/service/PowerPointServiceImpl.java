@@ -91,24 +91,9 @@ public class PowerPointServiceImpl implements PowerPointService {
         SlidesData slidesData = slidesModels.getFirst().getmSlidesData();
         TargetMarketingHeaderRow targetMarketingHeaderRow = slidesData.getPageModels().getTargetMarketingHeaderRow();
         String status = targetMarketingHeaderRow.getRowStatus();
-        //slide 10 needs to remain
-        if (status.equals("Want12to18ToWant19to25")) {
-            ppt.removeSlide(9);
-            ppt.removeSlide(9);
-            ppt.removeSlide(9);
-            ppt.removeSlide(9);
-
-        }
-        if (status.equals("Want19to25ToWant26to35")) {
-            ppt.removeSlide(10);
-            ppt.removeSlide(8);
-            ppt.removeSlide(7);
-            ppt.removeSlide(6);
-
-        }
-        //Want26to35ToWant36to45 6
+        //Want26to35ToWant36to45 5 THIS on
         if (status.equals("Want26to35ToWant36to45")) {
-            List<Integer> indicesToRemove = Arrays.asList(7, 8, 9, 10); // Example indices
+            List<Integer> indicesToRemove = Arrays.asList(6, 7, 8, 9); // Example indices
             Collections.sort(indicesToRemove, Collections.reverseOrder());
 
             for (int index : indicesToRemove) {
@@ -116,25 +101,50 @@ public class PowerPointServiceImpl implements PowerPointService {
             }
 
         }
-        //7  (6,7,8,9,10)
+
+        //6  (6,7,8,9,10)
         if (status.equals("Want36to45ToWant46to55")) {
 
-            List<Integer> indicesToRemove = Arrays.asList(6, 8, 9, 10); // Example indices
+            List<Integer> indicesToRemove = Arrays.asList(5, 7, 8, 9); // Example indices
             Collections.sort(indicesToRemove, Collections.reverseOrder());
 
             for (int index : indicesToRemove) {
                 ppt.removeSlide(index);
             }
-           
 
         }
-        //Want46to55ToWant55Plus 8
+
+        //Want46to55ToWant55Plus 7
         if (status.equals("Want46to55ToWant55Plus")) {
-            ppt.removeSlide(6); //6
-            ppt.removeSlide(6);  //7
-            ppt.removeSlide(9);
-            ppt.removeSlide(9);
+            List<Integer> indicesToRemove = Arrays.asList(5, 6, 8, 9); // Example indices
+            Collections.sort(indicesToRemove, Collections.reverseOrder());
+
+            for (int index : indicesToRemove) {
+                ppt.removeSlide(index);
+            }
         }
+        //8
+        if (status.equals("Want19to25ToWant26to35")) {
+            List<Integer> indicesToRemove = Arrays.asList(5, 6, 7, 9); // Example indices
+            Collections.sort(indicesToRemove, Collections.reverseOrder());
+
+            for (int index : indicesToRemove) {
+                ppt.removeSlide(index);
+            }
+
+        }
+
+        //slide 9 needs to remain
+        if (status.equals("Want12to18ToWant19to25")) {
+            List<Integer> indicesToRemove = Arrays.asList(5, 6, 7, 8); // Example indices
+            Collections.sort(indicesToRemove, Collections.reverseOrder());
+
+            for (int index : indicesToRemove) {
+                ppt.removeSlide(index);
+            }
+
+        }
+
         /*
            Want12to18ToWant19to25 10
            Want19to25ToWant26to35 9
@@ -142,7 +152,6 @@ public class PowerPointServiceImpl implements PowerPointService {
            Want36to45ToWant46to55 7
           
          */
-
     }
 
     @Override
