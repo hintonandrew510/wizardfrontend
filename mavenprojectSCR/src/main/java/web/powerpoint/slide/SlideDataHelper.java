@@ -702,7 +702,12 @@ public class SlideDataHelper {
                         break;
                     }
             }//END OF SWITCH
-            FourClientObjectiveSlide fourClientObjectiveSlide
+            
+
+            // model.addAttribute("PublishModel", publish);
+        }//end of switch
+        
+        FourClientObjectiveSlide fourClientObjectiveSlide
                     = new FourClientObjectiveSlide(slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveSlide");
             slidesList.add(fourClientObjectiveSlide);
 
@@ -813,9 +818,6 @@ public class SlideDataHelper {
                                 SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide");
                         slidesList.add(twentySixPlanBBEPTextSlide);
                         slidesData.getPublish().setPlanBBEPPage(true);
-
-            // model.addAttribute("PublishModel", publish);
-        }//end of switch
 
         // BatchUpdatePresentationRequest update = new BatchUpdatePresentationRequest();
         // update.setRequests(mRequests);
