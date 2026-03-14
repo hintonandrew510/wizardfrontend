@@ -32,7 +32,53 @@ public class GetTextBoxesXSLF {
         fis.close();
         int tableNumber = 0;
         for (XSLFSlide slide : pptxShow.getSlides()) {
-            if (slide.getSlideNumber() == 4) {
+            if (slide.getSlideNumber() == 6) {
+                
+                for (XSLFShape shape : slide.getShapes()) {
+                // Check if the shape is a text shape
+                
+                if (shape instanceof XSLFTable) {
+                    //System.out.println("Name of table " + shape);
+                    XSLFTable table = (XSLFTable) shape;
+                    tableNumber = tableNumber + 1;
+
+                    // Get all rows from the table
+                    List<XSLFTableRow> rows = table.getRows();
+
+                    // You can now iterate through the rows
+                    for (XSLFTableRow row : rows) {
+                        // Process the row (e.g., get cells from the row)
+                        List<XSLFTableCell> cells = row.getCells();
+                        for (XSLFTableCell cell : cells) {
+                             System.out.println("table cell data " + cell.getText());
+
+                            for (XSLFTextParagraph p : cell.getTextParagraphs()) {
+                                //System.out.println(" p.getText() " + p.getText());
+                                for (XSLFTextRun r : p.getTextRuns()) {
+                                    //(" r.getRawText() " + r.getRawText());
+                                    //order1
+                                    String test = r.getRawText();
+                                    System.out.println("raw Text " + test);
+                                    
+
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    // Get text from all paragraphs within the text shape
+                    for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
+                        String text = paragraph.getText();
+                        if (!text.isEmpty()) {
+                            //System.out.println("TextBox Content: " + text);
+                        }
+                    }
+                }
+            }
                 for (XSLFShape shape : slide.getShapes()) {
                     // Check if the shape is a text shape
 
@@ -73,7 +119,7 @@ public class GetTextBoxesXSLF {
                         for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
                             String text = paragraph.getText();
                             if (!text.isEmpty()) {
-                                // System.out.println("TextBox Content: " + text);
+                               System.out.println("TextBox Content: " + text);
                             }
                         }
                     }
