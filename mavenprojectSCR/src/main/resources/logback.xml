@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- Standard Console Appender for general logs -->
+        <Console name="ConsoleAppender" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <!-- Specific File Appender for MySpecificClass -->
+        <File name="SpecificClassFileAppender" fileName="logs/specific-class.log">
+            <PatternLayout pattern="%d %p %C{1.} [%t] %M - %msg%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <!-- Logger for the specific class -->
+        <Logger name="web.powerpoint.slide.pages.SixTargetMarketingSlide" level="info" additivity="false">
+            <AppenderRef ref="SpecificClassFileAppender"/>
+        </Logger>
+
+        <!-- Root Logger for all other classes -->
+        <Root level="error">
+            <AppenderRef ref="ConsoleAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>
+

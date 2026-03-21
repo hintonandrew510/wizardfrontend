@@ -39,7 +39,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
             listData.add(pctMen);
 
             String pctWomenStr = targetMarketingPageModel.getPctWomen() + "%";
-            SlideReplacementData pctWomen = new SlideReplacementData("pctWomen", pctWomenStr);
+            SlideReplacementData pctWomen = new SlideReplacementData("pctWom", pctWomenStr);
             listData.add(pctWomen);
 
             SlideReplacementData describeIdealTargetConsumer = new SlideReplacementData("describeIdealTargetConsumer", targetMarketingPageModel.getDescribeIdealTargetConsumer());
@@ -77,16 +77,16 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                 // code block
             }
 
-            SlideReplacementData dId150 = new SlideReplacementData("150Id", Id150);
+            SlideReplacementData dId150 = new SlideReplacementData("150Kplus", Id150);
             listData.add(dId150);
 
-            SlideReplacementData dId100149 = new SlideReplacementData("100149Id", Id100149);
+            SlideReplacementData dId100149 = new SlideReplacementData("100K149K", Id100149);
             listData.add(dId100149);
 
-            SlideReplacementData dId5099 = new SlideReplacementData("5099Id", Id5099);
+            SlideReplacementData dId5099 = new SlideReplacementData("50K-99K", Id5099);
             listData.add(dId5099);
 
-            SlideReplacementData dIdunder50 = new SlideReplacementData("under50Id", Idunder50);
+            SlideReplacementData dIdunder50 = new SlideReplacementData("Under50K", Idunder50);
             listData.add(dIdunder50);
             replaceTextOnSlide(listData, slide);
 

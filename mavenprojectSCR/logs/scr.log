@@ -1,0 +1,59 @@
+2026-03-21T12:06:43.689-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data 7. What are your:
+2026-03-21T12:06:43.706-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text 7. What are your:
+2026-03-21T12:06:43.706-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data Poorest performing months
+2026-03-21T12:06:43.706-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text Poorest performing months
+2026-03-21T12:06:43.707-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data Best performing months
+2026-03-21T12:06:43.707-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text Best performing months
+2026-03-21T12:06:43.707-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data Best performing days
+2026-03-21T12:06:43.708-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text Best performing days
+2026-03-21T12:06:43.708-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data 
+2026-03-21T12:06:43.709-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data poorestMonths
+2026-03-21T12:06:43.709-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text poorestMonths
+2026-03-21T12:06:43.711-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data bestMonths
+2026-03-21T12:06:43.711-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text bestMonths
+2026-03-21T12:06:43.711-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  :  cell data bestDays
+2026-03-21T12:06:43.711-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : raw Text bestDays
+2026-03-21T12:06:43.712-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.FiveStrategicMarketingPageSlide  : END populateSlide 
+2026-03-21T12:06:43.728-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 
+2026-03-21T12:06:43.729-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 
+2026-03-21T12:06:43.730-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data Target 85%
+2026-03-21T12:06:43.731-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text Target 85%
+2026-03-21T12:06:43.731-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 
+2026-03-21T12:06:43.732-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 
+2026-03-21T12:06:43.732-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 
+2026-03-21T12:06:43.733-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 12-18
+2026-03-21T12:06:43.733-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 12-18
+2026-03-21T12:06:43.734-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 19-25
+2026-03-21T12:06:43.734-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 19-25
+2026-03-21T12:06:43.735-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 26-35
+2026-03-21T12:06:43.735-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 26-35
+2026-03-21T12:06:43.735-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 36-45
+2026-03-21T12:06:43.735-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 36-45
+2026-03-21T12:06:43.736-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 46-55
+2026-03-21T12:06:43.737-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 46-55
+2026-03-21T12:06:43.738-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data 56+
+2026-03-21T12:06:43.738-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text 56+
+2026-03-21T12:06:43.738-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have12to18
+2026-03-21T12:06:43.738-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have12to18
+2026-03-21T12:06:43.738-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have19to25
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have19to25
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have26to35
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have26to35
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have36to45
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have36to45
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have46to55
+2026-03-21T12:06:43.739-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have46to55
+2026-03-21T12:06:43.741-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data have56Plus
+2026-03-21T12:06:43.742-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text have56Plus
+2026-03-21T12:06:43.742-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want19to25
+2026-03-21T12:06:43.743-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want19to25
+2026-03-21T12:06:43.743-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want19to25
+2026-03-21T12:06:43.743-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want19to25
+2026-03-21T12:06:43.743-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want26to35
+2026-03-21T12:06:43.743-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want26to35
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want36to45
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want36to45
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want46to55
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want46to55
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          :  cell data want55Plus
+2026-03-21T12:06:43.744-04:00  INFO 12403 --- [web] [http-nio-8081-exec-1] w.p.s.p.SixTargetMarketingSlide          : raw Text want55Plus
