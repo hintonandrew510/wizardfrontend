@@ -44,33 +44,35 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 
             SlideReplacementData describeIdealTargetConsumer = new SlideReplacementData("describeIdealTargetConsumer", targetMarketingPageModel.getDescribeIdealTargetConsumer());
             listData.add(describeIdealTargetConsumer);
+//\u2610  □ Unchecked: \u2610
 
+//"\u2611 Checked Box");
             String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
             Integer hostIncome = Integer.valueOf(hostIncomeStr);
-            String block = "\u2b1b";
-            String checkMark = "\u2713";
-            String Id150 = block;
-            String Id100149 = block;
-            String Id5099 = block;
-            String Idunder50 = block;
+            String block = "\u2610";
+            String checkMark = " \u2610";
+            String Id150 = block + " $150k Plus";
+            String Id100149 = block + " $100-$149K";
+            String Id5099 = block + " $50-$99K";
+            String Idunder50 = block + " Under $50K";
 
             switch (hostIncome) {
                 case 1:
-                    Id150 = checkMark;
+                    Id150 = checkMark + " $150k Plus";;
 //document.getElementById("150Id").checked = true;
 
                     break;
                 case 2:
-                    Id100149 = checkMark;
+                    Id100149 = checkMark + " $100-$149K";
                     //document.getElementById("100149Id").checked = true;
 
                     break;
                 case 3:
-                    Id5099 = checkMark;
+                    Id5099 = checkMark + " $50-$99K";
                     //document.getElementById("5099Id").checked = true;
                     break;
                 case 4:
-                    Idunder50 = checkMark;
+                    Idunder50 = checkMark + " Under $50K";
                     //document.getElementById("under50Id").checked = true;
                     break;
                 default:
