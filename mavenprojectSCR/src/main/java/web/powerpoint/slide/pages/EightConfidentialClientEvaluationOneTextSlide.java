@@ -1,10 +1,13 @@
 package web.powerpoint.slide.pages;
 
 
+import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
 import web.google.slide.SlidesData;
+import web.page.PieChart;
+import web.page.confidentialclientevaluationnonepage.ConfidentialClientEvaluationOnePageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -15,6 +18,8 @@ public class EightConfidentialClientEvaluationOneTextSlide extends AbstractSlide
 
     @Override
     public void populateSlide(XSLFSlide slide) {
+       List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationOnePage();
+       
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 	

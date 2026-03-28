@@ -16,7 +16,7 @@ public enum SlidePageNameEnum {
     FourClientObjectiveTextSlide("Slide 2"),
     FiveStrategicMarketingPageSlide("Slide5"),
     SixTargetMarketingSlide("Slide6"),
-    SevenConfidentialClientEvaluationTextSlide(""),
+    SevenConfidentialClientEvaluationTextSlide("Slide7"),
     EightConfidentialClientEvaluationOneTextSlide(""),
     NineConfidentialClientEvaluationProposedSlide(""),
     NineConfidentialClientEvaluationProposedTextSlide(""),
