@@ -17,7 +17,7 @@ public enum SlidePageNameEnum {
     FiveStrategicMarketingPageSlide("Slide5"),
     SixTargetMarketingSlide("Slide6"),
     SevenConfidentialClientEvaluationTextSlide("Slide7"),
-    EightConfidentialClientEvaluationOneTextSlide(""),
+    EightConfidentialClientEvaluationOneTextSlide("Slide8"),
     NineConfidentialClientEvaluationProposedSlide(""),
     NineConfidentialClientEvaluationProposedTextSlide(""),
     EightConfidentialClientEvaluationOneSlide("Weekends are best."),

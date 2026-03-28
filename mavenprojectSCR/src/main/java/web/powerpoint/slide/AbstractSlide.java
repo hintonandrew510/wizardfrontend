@@ -34,6 +34,10 @@ public abstract class AbstractSlide implements SlideInterface {
     public String getPageName() {
         return pageName;
     }
+    
+    public String getSlideEnumName() {
+        return slideEnum.name();
+    }
 
     public void setPageName(String pageName) {
         this.pageName = pageName;
