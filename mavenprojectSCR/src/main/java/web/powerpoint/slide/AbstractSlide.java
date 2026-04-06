@@ -1,8 +1,5 @@
 package web.powerpoint.slide;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
@@ -15,7 +12,6 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
@@ -60,11 +56,18 @@ public abstract class AbstractSlide implements SlideInterface {
     private String pageName;
     private SlidePageNameEnum slideEnum;
     private Contact contact;
+    private XMLSlideShow ppt;
 
-    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName,Contact contact) {
+    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName,Contact contact,XMLSlideShow ppt ) {
         this.slideEnum = slideEnum;
         mSlidesData = slidesData;
         this.pageName = pageName;
+        this.contact = contact;
+        this.ppt = ppt;
+    }
+    
+    public XMLSlideShow getPPT(){
+        return this.ppt;
     }
 
     public String formatStringToCurrency(int currency) {

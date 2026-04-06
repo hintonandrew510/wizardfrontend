@@ -2,6 +2,7 @@ package web.powerpoint.slide.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +19,8 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
     private static final Logger mLog = LoggerFactory.getLogger(ThreeMarketPlaceCompetitionSlide.class.getName());
 
 
-    public ThreeMarketPlaceCompetitionSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-		super(sildeData, slideEnum, pageName, contact);
+    public ThreeMarketPlaceCompetitionSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+        super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
     public List<SlideReplacementData> composeGoogleSlideData() {

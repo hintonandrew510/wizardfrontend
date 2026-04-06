@@ -755,26 +755,26 @@ public class SlideDataHelper {
                     SlidePageNameEnum.ThreeMarketPlaceCompetitionSlide, "ThreeMarketPlaceCompetitionSlide", contact);
             slidesList.add(slide);
             TwentyPlanABEPTextSlide twentyPlanABEPTextSlide = new TwentyPlanABEPTextSlide(slidesData,
-                    SlidePageNameEnum.TwentyPlanABEPTextSlide, "TwentyPlanABEPTextSlide");
+                    SlidePageNameEnum.TwentyPlanABEPTextSlide, "TwentyPlanABEPTextSlide", contact);
             slidesList.add(twentyPlanABEPTextSlide);
             TwentyTwoPlanADigitalROICalculatorTextSlide textSlide = new TwentyTwoPlanADigitalROICalculatorTextSlide(
-                    slidesData, SlidePageNameEnum.TwentyTwoPlanADigitalROICalculatorTextSlide, "TwentyTwoPlanADigitalROICalculatorTextSlide");
+                    slidesData, SlidePageNameEnum.TwentyTwoPlanADigitalROICalculatorTextSlide, "TwentyTwoPlanADigitalROICalculatorTextSlide", contact);
             slidesList.add(textSlide);
             NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(
                     slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "NineteenPlanAProposedTextSlide", contact);
             slidesList.add(nineteenPlanAProposedTextSlide);
             TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(
-                    slidesData, SlidePageNameEnum.TwentyFivePlanBProposedTextSlide, "TwentyFivePlanBProposedTextSlide");
+                    slidesData, SlidePageNameEnum.TwentyFivePlanBProposedTextSlide, "TwentyFivePlanBProposedTextSlide", contact);
             slidesList.add(twentyFivePlanAProposedTextSlide);
             TwentyOnePlanALifetimeValuedTextSlide textSlidea = new TwentyOnePlanALifetimeValuedTextSlide(
-                    slidesData, SlidePageNameEnum.TwentyOnePlanALifetimeValuedTextSlide, "TwentyOnePlanALifetimeValuedTextSlide");
+                    slidesData, SlidePageNameEnum.TwentyOnePlanALifetimeValuedTextSlide, "TwentyOnePlanALifetimeValuedTextSlide", contact);
             slidesList.add(textSlidea);
             TwentySevenPlanBLifetimeValuedTextSlide textSlidec = new TwentySevenPlanBLifetimeValuedTextSlide(
-                    slidesData, SlidePageNameEnum.TwentySevenPlanBLifetimeValuedTextSlide, "TwentySevenPlanBLifetimeValuedTextSlide");
+                    slidesData, SlidePageNameEnum.TwentySevenPlanBLifetimeValuedTextSlide, "TwentySevenPlanBLifetimeValuedTextSlide", contact);
             slidesList.add(textSlidec);
 
             TwoTeamCommitmentSlide slidetwoTeam = new TwoTeamCommitmentSlide(slidesData,
-                    SlidePageNameEnum.TwoTeamCommitmentSlide, "TwoTeamCommitmentSlide");
+                    SlidePageNameEnum.TwoTeamCommitmentSlide, "TwoTeamCommitmentSlide", contact);
             slidesList.add(slidetwoTeam);
             SixTargetMarketingSlide slideSixTargetMarketing = new SixTargetMarketingSlide(slidesData,
                     SlidePageNameEnum.SixTargetMarketingSlide, "SixTargetMarketingSlide", contact);
@@ -789,10 +789,10 @@ public class SlideDataHelper {
                     SlidePageNameEnum.OnePresentedToSlide, "OnePresentedToSlide", contact);
             slidesList.add(presentedToSlide);
             TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
-                    slidesData, SlidePageNameEnum.TwentyThreePlanBMediaSlide, "PlanBMediaPage");
+                    slidesData, SlidePageNameEnum.TwentyThreePlanBMediaSlide, "PlanBMediaPage", contact);
             slidesList.add(twentyThreePlanBMediaSlide);
-            ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
-                    "PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, slidesData, contact);
+            ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(slidesData,
+                     SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetSlide", contact);
 
             ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide = new ThirtyPlanBSpreadSheetTextSlide(
                     slidesData, SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetTextSlide",contact);
@@ -803,9 +803,9 @@ public class SlideDataHelper {
                     SlidePageNameEnum.SeventeenPlanAMediaSlide, "", contact);
             slidesList.add(seventeenPlanAMediaSlide);
             TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
-                    "PlanASpreadSheet!A1:P", "PlanASpreadSheet", SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, slidesData);
+                    slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, "TwentyNinePlanASpreadSheetTextSlide",contact);
             TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide = new TwentyNinePlanASpreadSheetTextSlide(
-                    slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetSlide, "TwentyNinePlanASpreadSheetTextSlide");
+                    slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetSlide, "TwentyNinePlanASpreadSheetTextSlide", contact);
 
             slidesList.add(twentyNinePlanASpreadSheetTextSlide);
 
@@ -816,7 +816,7 @@ public class SlideDataHelper {
                     "TwentyEightPlanBDigitalROICalculatorTextSlide", contact);
             slidesList.add(textSlideTwentyEightPlanBDigitalROICalculatorText);
             TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
-                                SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide");
+                                SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide", contact);
                         slidesList.add(twentySixPlanBBEPTextSlide);
                         slidesData.getPublish().setPlanBBEPPage(true);
 

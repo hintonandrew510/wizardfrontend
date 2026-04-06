@@ -10,8 +10,15 @@ import web.powerpoint.slide.SlidePageNameEnum;
 public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
 
     public ThirtyPlanBSpreadSheetSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-		super(sildeData, slideEnum, pageName, contact);
+		super(sildeData, slideEnum, pageName, contact, null);
     }
+    
+    /*
+              ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
+                     SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetSlide", slidesData, contact);
+
+    
+    */
 
 //	public ThirtyPlanBSpreadSheetSlide(String writeRange, String pageName, SlideEnum slideEnum,SlidesData slidesData) {
 //		super(writeRange, pageName, slideEnum, slidesData);

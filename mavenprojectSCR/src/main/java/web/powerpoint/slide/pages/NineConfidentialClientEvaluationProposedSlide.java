@@ -1,6 +1,7 @@
 package web.powerpoint.slide.pages;
 
 
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
@@ -12,8 +13,8 @@ import web.powerpoint.slide.SlidePageNameEnum;
 
 public class NineConfidentialClientEvaluationProposedSlide  extends AbstractSlide {
 
-    public NineConfidentialClientEvaluationProposedSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-		super(sildeData, slideEnum, pageName, contact);
+    public NineConfidentialClientEvaluationProposedSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+        super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
   

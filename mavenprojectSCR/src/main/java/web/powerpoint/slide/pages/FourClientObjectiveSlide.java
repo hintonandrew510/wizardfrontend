@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTable;
@@ -26,12 +27,12 @@ import web.powerpoint.slide.SlidePageNameEnum;
 
 public class FourClientObjectiveSlide extends AbstractSlide {
 
-    public FourClientObjectiveSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-        super(sildeData, slideEnum, pageName, contact);
+    public FourClientObjectiveSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+        super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
     public FourClientObjectiveSlide(String pageName, String strategicMarketing_Data_CONSUMER, SlidePageNameEnum slideEnum, SlidesData slidesData) {
-        super(slidesData, slideEnum, pageName, null);
+        super(slidesData, slideEnum, pageName, null, null);
     }
 
     private static final Logger mLog = LoggerFactory.getLogger(web.google.slide.pages.OnePresentedToSlide.class.getName());

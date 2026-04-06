@@ -2,6 +2,7 @@ package web.powerpoint.slide.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTable;
@@ -25,8 +26,8 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 
     private static final Logger mLog = LoggerFactory.getLogger(web.powerpoint.slide.pages.SixTargetMarketingSlide.class.getName());
 
-    public SixTargetMarketingSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-		super(sildeData, slideEnum, pageName, contact);
+    public SixTargetMarketingSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+        super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
     @Override
