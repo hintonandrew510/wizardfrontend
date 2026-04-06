@@ -161,7 +161,7 @@ public class PowerPointServiceImpl implements PowerPointService {
         //Wizard wizard = wizardOpt.orElse(null);
         Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(wizardId));
         List<String> excludedPagesList = GoogleHelper.getSlidesExcluded(dataPages);
-        List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact);
+      
 
         try {
             // wizard.
@@ -169,6 +169,7 @@ public class PowerPointServiceImpl implements PowerPointService {
             org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
             XMLSlideShow ppt = new XMLSlideShow(fis);
+              List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact, ppt);
             fis.close();
             removeSlides(ppt, slidesModels);
 
