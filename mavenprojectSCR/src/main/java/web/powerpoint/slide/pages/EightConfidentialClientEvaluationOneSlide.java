@@ -4,14 +4,15 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 
 public class EightConfidentialClientEvaluationOneSlide  extends AbstractSlide {
 
-    public EightConfidentialClientEvaluationOneSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
-        super(slidesData, slideEnum, pageName);
+    public EightConfidentialClientEvaluationOneSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+        super(slidesData, slideEnum, pageName, contact);
     }
 
   

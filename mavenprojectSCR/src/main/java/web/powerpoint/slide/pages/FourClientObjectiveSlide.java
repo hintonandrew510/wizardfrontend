@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageModel;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.presentedtopage.PresentedToPageModel;
@@ -25,12 +26,12 @@ import web.powerpoint.slide.SlidePageNameEnum;
 
 public class FourClientObjectiveSlide extends AbstractSlide {
 
-    public FourClientObjectiveSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
-        super(sildeData, slideEnum, pageName);
+    public FourClientObjectiveSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+        super(sildeData, slideEnum, pageName, contact);
     }
 
     public FourClientObjectiveSlide(String pageName, String strategicMarketing_Data_CONSUMER, SlidePageNameEnum slideEnum, SlidesData slidesData) {
-        super(slidesData, slideEnum, pageName);
+        super(slidesData, slideEnum, pageName, null);
     }
 
     private static final Logger mLog = LoggerFactory.getLogger(web.google.slide.pages.OnePresentedToSlide.class.getName());

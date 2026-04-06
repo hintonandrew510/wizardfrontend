@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.planABEPPage.PlanABEPPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
@@ -16,8 +17,8 @@ import web.powerpoint.slide.SlidePageNameEnum;
 public class TwentyPlanABEPTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyPlanABEPTextSlide.class.getName());
 
-	public TwentyPlanABEPTextSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
-		super(sildeData, slideEnum, pageName);
+	public TwentyPlanABEPTextSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
 	}
 
 	

@@ -7,13 +7,14 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.PieChart;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractSlide {
-	public NineConfidentialClientEvaluationProposedTextSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
-		super(sildeData, slideEnum, pageName);
+	public NineConfidentialClientEvaluationProposedTextSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName ,Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
 	}
 	
 	public List<SlideReplacementData> composeGoogleSlideData() {

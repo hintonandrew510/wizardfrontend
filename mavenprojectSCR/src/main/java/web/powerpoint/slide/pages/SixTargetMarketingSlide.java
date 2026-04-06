@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.targetmarketingpage.TargetMarketingHeaderRow;
 import web.page.targetmarketingpage.TargetMarketingPageModel;
 import web.powerpoint.slide.AbstractSlide;
@@ -24,8 +25,8 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 
     private static final Logger mLog = LoggerFactory.getLogger(web.powerpoint.slide.pages.SixTargetMarketingSlide.class.getName());
 
-    public SixTargetMarketingSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
-        super(slidesData, slideEnum, pageName);
+    public SixTargetMarketingSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
     }
 
     @Override

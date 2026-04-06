@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import web.google.slide.PageModels;
 import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.model.WizardData;
 import web.page.ChartBuilder;
 import web.page.JSONManager;
@@ -115,7 +116,7 @@ public class SlideDataHelper {
         return foundSlideInterface;
     }
 
-    public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages) {
+    public static List<SlideInterface> getSlidesData(Iterable<WizardData> dataPages, Contact contact) {
         mLog.warn("entering getSlidesData");
         List<SlideInterface> slidesList = new ArrayList<SlideInterface>();
         SlidesData slidesData = new SlidesData();
@@ -708,7 +709,7 @@ public class SlideDataHelper {
         }//end of switch
         
         FourClientObjectiveSlide fourClientObjectiveSlide
-                    = new FourClientObjectiveSlide(slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveSlide");
+                    = new FourClientObjectiveSlide(slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveSlide", contact);
             slidesList.add(fourClientObjectiveSlide);
 
             FourClientObjectiveSlide slideConsumer = new FourClientObjectiveSlide(
@@ -728,30 +729,30 @@ public class SlideDataHelper {
                     "Strategic_Marketing_top", SlidePageNameEnum.FourClientObjectiveSlide, slidesData);
             slidesList.add(slideTop);
             EightConfidentialClientEvaluationOneSlide slideEightConfidentialClientEvaluationOneSlide = new EightConfidentialClientEvaluationOneSlide(
-                    slidesData, SlidePageNameEnum.EightConfidentialClientEvaluationOneTextSlide, "ConfidentialClientEvaluationOnePage_Data!A1:B");
+                    slidesData, SlidePageNameEnum.EightConfidentialClientEvaluationOneTextSlide, "ConfidentialClientEvaluationOnePage_Data!A1:B", contact);
 
             slidesList.add(slideEightConfidentialClientEvaluationOneSlide);
 
             SevenConfidentialClientEvaluationTextSlide sevenConfidentialClientEvaluationTextSlide = new SevenConfidentialClientEvaluationTextSlide(
-                    slidesData, SlidePageNameEnum.SevenConfidentialClientEvaluationTextSlide, "sevenConfidentialClientEvaluationOnePage");
+                    slidesData, SlidePageNameEnum.SevenConfidentialClientEvaluationTextSlide, "sevenConfidentialClientEvaluationOnePage", contact);
             slidesList.add(sevenConfidentialClientEvaluationTextSlide);
 
             EightConfidentialClientEvaluationOneTextSlide eightConfidentialClientEvaluationOneTextSlide = new EightConfidentialClientEvaluationOneTextSlide(
                     slidesData, SlidePageNameEnum.EightConfidentialClientEvaluationOneTextSlide,
-                    "EightConfidentialClientEvaluationOneTextSlide");
+                    "EightConfidentialClientEvaluationOneTextSlide",contact);
             slidesList.add(eightConfidentialClientEvaluationOneTextSlide);
             NineConfidentialClientEvaluationProposedSlide nineConfidentialClientEvaluationProposedSlide = new NineConfidentialClientEvaluationProposedSlide(
                     slidesData,
-                    SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "ConfidentialClientEvaluationProposedPage_Data!A1:B");
+                    SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "ConfidentialClientEvaluationProposedPage_Data!A1:B", contact);
 
             slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 
             NineConfidentialClientEvaluationProposedTextSlide nineConfidentialClientEvaluation = new NineConfidentialClientEvaluationProposedTextSlide(
                     slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide,
-                    "NineConfidentialClientEvaluationProposedTextSlide");
+                    "NineConfidentialClientEvaluationProposedTextSlide", contact);
             slidesList.add(nineConfidentialClientEvaluation);
             ThreeMarketPlaceCompetitionSlide slide = new ThreeMarketPlaceCompetitionSlide(slidesData,
-                    SlidePageNameEnum.ThreeMarketPlaceCompetitionSlide, "ThreeMarketPlaceCompetitionSlide");
+                    SlidePageNameEnum.ThreeMarketPlaceCompetitionSlide, "ThreeMarketPlaceCompetitionSlide", contact);
             slidesList.add(slide);
             TwentyPlanABEPTextSlide twentyPlanABEPTextSlide = new TwentyPlanABEPTextSlide(slidesData,
                     SlidePageNameEnum.TwentyPlanABEPTextSlide, "TwentyPlanABEPTextSlide");
@@ -760,7 +761,7 @@ public class SlideDataHelper {
                     slidesData, SlidePageNameEnum.TwentyTwoPlanADigitalROICalculatorTextSlide, "TwentyTwoPlanADigitalROICalculatorTextSlide");
             slidesList.add(textSlide);
             NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(
-                    slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "NineteenPlanAProposedTextSlide");
+                    slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "NineteenPlanAProposedTextSlide", contact);
             slidesList.add(nineteenPlanAProposedTextSlide);
             TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(
                     slidesData, SlidePageNameEnum.TwentyFivePlanBProposedTextSlide, "TwentyFivePlanBProposedTextSlide");
@@ -776,30 +777,30 @@ public class SlideDataHelper {
                     SlidePageNameEnum.TwoTeamCommitmentSlide, "TwoTeamCommitmentSlide");
             slidesList.add(slidetwoTeam);
             SixTargetMarketingSlide slideSixTargetMarketing = new SixTargetMarketingSlide(slidesData,
-                    SlidePageNameEnum.SixTargetMarketingSlide, "SixTargetMarketingSlide");
+                    SlidePageNameEnum.SixTargetMarketingSlide, "SixTargetMarketingSlide", contact);
             slidesList.add(slideSixTargetMarketing);
             FiveStrategicMarketingPageSlide fiveStrategicMarketingPageSlide = new FiveStrategicMarketingPageSlide(
-                    slidesData, SlidePageNameEnum.FiveStrategicMarketingPageSlide, "FiveStrategicMarketingPageSlide");
+                    slidesData, SlidePageNameEnum.FiveStrategicMarketingPageSlide, "FiveStrategicMarketingPageSlide", contact);
             slidesList.add(fiveStrategicMarketingPageSlide);
             FourClientObjectiveTextSlide fourClientObjectiveTextSlide = new FourClientObjectiveTextSlide(
-                    slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveTextSlide");
+                    slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveTextSlide", contact);
             slidesList.add(fourClientObjectiveTextSlide);
             OnePresentedToSlide presentedToSlide = new OnePresentedToSlide(slidesData,
-                    SlidePageNameEnum.OnePresentedToSlide, "OnePresentedToSlide");
+                    SlidePageNameEnum.OnePresentedToSlide, "OnePresentedToSlide", contact);
             slidesList.add(presentedToSlide);
             TwentyThreePlanBMediaSlide twentyThreePlanBMediaSlide = new TwentyThreePlanBMediaSlide(
                     slidesData, SlidePageNameEnum.TwentyThreePlanBMediaSlide, "PlanBMediaPage");
             slidesList.add(twentyThreePlanBMediaSlide);
             ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
-                    "PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, slidesData);
+                    "PlanBSpreadSheet!A1:P", "PlanBSpreadSheet", SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, slidesData, contact);
 
             ThirtyPlanBSpreadSheetTextSlide thirtyPlanBSpreadSheetTextSlide = new ThirtyPlanBSpreadSheetTextSlide(
-                    slidesData, SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetTextSlide");
+                    slidesData, SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetTextSlide",contact);
 
             slidesList.add(thirtyPlanBSpreadSheetTextSlide);
             slidesList.add(thirtyPlanBSpreadSheetSlide);
             SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(slidesData,
-                    SlidePageNameEnum.SeventeenPlanAMediaSlide, "");
+                    SlidePageNameEnum.SeventeenPlanAMediaSlide, "", contact);
             slidesList.add(seventeenPlanAMediaSlide);
             TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
                     "PlanASpreadSheet!A1:P", "PlanASpreadSheet", SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, slidesData);
@@ -812,7 +813,7 @@ public class SlideDataHelper {
 
             TwentyEightPlanBDigitalROICalculatorTextSlide textSlideTwentyEightPlanBDigitalROICalculatorText = new TwentyEightPlanBDigitalROICalculatorTextSlide(
                     slidesData, SlidePageNameEnum.TwentyEightPlanBDigitalROICalculatorTextSlide,
-                    "TwentyEightPlanBDigitalROICalculatorTextSlide");
+                    "TwentyEightPlanBDigitalROICalculatorTextSlide", contact);
             slidesList.add(textSlideTwentyEightPlanBDigitalROICalculatorText);
             TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
                                 SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide");

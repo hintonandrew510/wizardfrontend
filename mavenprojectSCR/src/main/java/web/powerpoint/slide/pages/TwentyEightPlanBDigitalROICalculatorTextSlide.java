@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
@@ -16,8 +17,8 @@ import web.powerpoint.slide.SlidePageNameEnum;
 public class TwentyEightPlanBDigitalROICalculatorTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(TwentyEightPlanBDigitalROICalculatorTextSlide.class.getName());
 
-	public TwentyEightPlanBDigitalROICalculatorTextSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
-		super(sildeData, slideEnum, pageName);
+	public TwentyEightPlanBDigitalROICalculatorTextSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
 	}
 
 	public List<SlideReplacementData> composeGoogleSlideData() {

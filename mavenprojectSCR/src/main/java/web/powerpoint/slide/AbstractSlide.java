@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 
 public abstract class AbstractSlide implements SlideInterface {
 
@@ -35,6 +36,10 @@ public abstract class AbstractSlide implements SlideInterface {
         return pageName;
     }
     
+    
+    public Contact getContact() {
+        return contact;
+    }
     public String getSlideEnumName() {
         return slideEnum.name();
     }
@@ -54,8 +59,9 @@ public abstract class AbstractSlide implements SlideInterface {
     private SlidesData mSlidesData;
     private String pageName;
     private SlidePageNameEnum slideEnum;
+    private Contact contact;
 
-    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
+    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName,Contact contact) {
         this.slideEnum = slideEnum;
         mSlidesData = slidesData;
         this.pageName = pageName;

@@ -3,13 +3,14 @@ package web.powerpoint.slide.pages;
 
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
 
-    public ThirtyPlanBSpreadSheetSlide(String pageName, String planBSpreadSheet, SlidePageNameEnum slideEnum, SlidesData slidesData) {
-        super(slidesData, slideEnum, pageName);
+    public ThirtyPlanBSpreadSheetSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
     }
 
 //	public ThirtyPlanBSpreadSheetSlide(String writeRange, String pageName, SlideEnum slideEnum,SlidesData slidesData) {

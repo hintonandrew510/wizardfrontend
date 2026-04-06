@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import web.google.slide.SlideReplacementData;
 
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.JSONManager;
 import web.page.clientobjectivesonepage.ClientObjectivesOnePageTwoModel;
 import web.page.marketplacecompetitionpage.MarketPlaceCompetitionPageModel;
@@ -28,8 +29,8 @@ public class FiveStrategicMarketingPageSlide extends AbstractSlide {
 
     private static final Logger mLog = LoggerFactory.getLogger(FiveStrategicMarketingPageSlide.class.getName());
 
-    public FiveStrategicMarketingPageSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
-        super(slidesData, slideEnum, pageName);
+    public FiveStrategicMarketingPageSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+        super(slidesData, slideEnum, pageName, contact);
     }
 
     @Override

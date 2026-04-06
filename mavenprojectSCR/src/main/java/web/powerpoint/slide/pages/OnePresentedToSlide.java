@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.presentedtopage.PresentedToPageModel;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -14,8 +15,8 @@ public class OnePresentedToSlide extends web.powerpoint.slide.AbstractSlide {
 
     private static final Logger mLog = LoggerFactory.getLogger(OnePresentedToSlide.class.getName());
 
-    public OnePresentedToSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName) {
-        super(sildeData, slideEnum, pageName);
+    public OnePresentedToSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+		super(sildeData, slideEnum, pageName, contact);
     }
 
     @Override

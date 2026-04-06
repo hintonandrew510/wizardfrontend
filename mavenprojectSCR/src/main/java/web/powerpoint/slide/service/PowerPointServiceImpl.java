@@ -161,7 +161,7 @@ public class PowerPointServiceImpl implements PowerPointService {
         //Wizard wizard = wizardOpt.orElse(null);
         Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(wizardId));
         List<String> excludedPagesList = GoogleHelper.getSlidesExcluded(dataPages);
-        List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages);
+        List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact);
 
         try {
             // wizard.
