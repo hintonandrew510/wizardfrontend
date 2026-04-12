@@ -26,9 +26,13 @@ public class SixTargetMarketingSlide extends AbstractSlide {
 
     private static final Logger mLog = LoggerFactory.getLogger(web.powerpoint.slide.pages.SixTargetMarketingSlide.class.getName());
 
-    public SixTargetMarketingSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
-        super(slidesData, slideEnum, pageName);
-    }
+    
+    public SixTargetMarketingSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName) {
+		super(sildeData, slideEnum, pageName);
+	}
+    
+     
+
 
     @Override
     public void populateSlide(XSLFSlide slide) {
