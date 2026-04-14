@@ -10,3 +10,9 @@ webapp/target/test-classes/hello/HelloControllerIT.class
 webapp/target/test-classes/hello/HomeControllerTest.class
 webapp/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 webapp/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+db/license.script
+db/license.log
+db/license.properties
+db/testdb.log
+db/testdb.properties
+db/testdb.script
