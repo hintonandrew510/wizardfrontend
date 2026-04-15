@@ -66,7 +66,7 @@ public class PieChartWithPercentageHelper  {
         // 4. Save the chart as an image file
         try {
             File pieChart = new File(pieEntity.getFileName()+".jpeg");
-            ChartUtils.saveChartAsJPEG(pieChart, chart, 640, 480);
+            ChartUtils.saveChartAsJPEG(pieChart, chart, 800, 600);
             System.out.println("Chart saved to " + pieChart.getAbsolutePath());
             return pieChart.getAbsolutePath();
         } catch (Exception e) {
