@@ -749,7 +749,7 @@ public class SlideDataHelper {
             slidesList.add(nineConfidentialClientEvaluationProposedSlide);
 
             NineConfidentialClientEvaluationProposedTextSlide nineConfidentialClientEvaluation = new NineConfidentialClientEvaluationProposedTextSlide(
-                    slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide,
+                    slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedTextSlide,
                     "NineConfidentialClientEvaluationProposedTextSlide", contact, ppt);
             slidesList.add(nineConfidentialClientEvaluation);
             ThreeMarketPlaceCompetitionSlide slide = new ThreeMarketPlaceCompetitionSlide(slidesData,
