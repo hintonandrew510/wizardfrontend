@@ -15,17 +15,15 @@ import web.page.PieChart;
 import web.powerpoint.entity.PieEntity;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
+import web.powerpoint.slide.helper.PieChartWithPercentageHelper;
+import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
 import web.powerpoint.slide.service.PieChartWithPercentageService;
 import web.powerpoint.slide.service.PowerPointServiceImpl;
 import web.powerpoint.slide.service.ReplaceImageInPlaceholderService;
 
 public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractSlide {
 
-    @Autowired
-    private PieChartWithPercentageService pieChartWithPercentageService;
-    @Autowired
-    ReplaceImageInPlaceholderService replaceImageInPlaceholderService;
-    private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
+     private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
 
     public NineConfidentialClientEvaluationProposedTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
@@ -43,10 +41,10 @@ public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractS
         pieEntity.setTitle("Proposed Year’s Media Allocation");
         String fileaName = this.getContact().getName() + this.getPageName();
         pieEntity.setFileName(fileaName);
-        fileaName = pieChartWithPercentageService.createPieChart(pieEntity);
+        fileaName = PieChartWithPercentageHelper.createPieChart(pieEntity);
 
         try {
-            replaceImageInPlaceholderService.replaceImageInSlide(this.getPPT(), fileaName, slide);
+            ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileaName, slide);
 
             //
         } catch (Exception ex) {
