@@ -88,6 +88,7 @@ import web.powerpoint.slide.pages.TwentyFivePlanBProposedTextSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
+import web.powerpoint.slide.pages.TwentyOnePlanAMediaSlide;
 import web.powerpoint.slide.pages.TwentyPlanABEPTextSlide;
 import web.powerpoint.slide.pages.TwentySevenPlanBLifetimeValuedTextSlide;
 import web.powerpoint.slide.pages.TwentySixPlanBBEPTextSlide;
@@ -708,6 +709,14 @@ public class SlideDataHelper {
 
             // model.addAttribute("PublishModel", publish);
         }//end of switch
+        
+        //TwentyOnePlanAMediaSlide
+        
+            TwentyOnePlanAMediaSlide twentyOnePlanAMediaSlide = new TwentyOnePlanAMediaSlide(
+                    slidesData, SlidePageNameEnum.TwentyOnePlanAMedia,
+                    "TwentyOnePlanAMediaSlide",contact, ppt);
+            slidesList.add(twentyOnePlanAMediaSlide);
+        
         
         FourClientObjectiveSlide fourClientObjectiveSlide
                     = new FourClientObjectiveSlide(slidesData, SlidePageNameEnum.FourClientObjectiveSlide, "FourClientObjectiveSlide", contact, ppt);

@@ -20,6 +20,7 @@ public enum SlidePageNameEnum {
     EightConfidentialClientEvaluationOneTextSlide("Slide8"),
     NineConfidentialClientEvaluationProposedSlide(""),
     NineConfidentialClientEvaluationProposedTextSlide("Slide9"),
+    TwentyOnePlanAMedia("Slide21"),
     EightConfidentialClientEvaluationOneSlide("Weekends are best."),
     SeventeenPlanAMediaSlide(""),
     TwentyPlanABEPTextSlide(""),
