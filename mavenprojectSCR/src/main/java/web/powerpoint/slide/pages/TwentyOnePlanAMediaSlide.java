@@ -13,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.page.PieChart;
+import web.page.planamedipage.MediaChart;
+import web.page.planamedipage.MediaChartHelper;
 import web.page.planamedipage.PlanMediaPageModel;
 import web.powerpoint.entity.BarChartDataEntity;
 import web.powerpoint.entity.BarChartEntity;
@@ -43,6 +45,9 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
         String name = this.getSlideEnumName();
         List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationProposed();
         PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData().getPageModels().getPlanAMediaPagedataPageModel();
+         MediaChart mediaChartA = MediaChartHelper.generate(planAMediaPagedataPageModel);
+        
+        //slidesData.getPageModels().setPlanAMediaPagedataPageModel(planAMediaPagedataPageModel);
         
         List<BarChartDataEntity> barChartDataEntityList = new ArrayList<>();
         BarChartDataEntity barChartDataEntity = BarChartDataEntity.builder()
@@ -52,6 +57,8 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
            BarChartDataEntity barChartDataEntitythree = BarChartDataEntity.builder()
                 .columnKey("mar").rowKey("rowkeyd").doubleValue(30).build();
          barChartDataEntityList.add(barChartDataEntity);
+         
+         
           barChartDataEntityList.add(barChartDataEntitytwo);
            barChartDataEntityList.add(barChartDataEntitythree);
         
