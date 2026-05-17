@@ -20,6 +20,7 @@ import web.powerpoint.entity.BarChartDataEntity;
 import web.powerpoint.entity.BarChartEntity;
 import web.powerpoint.entity.PieEntity;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.BarChartHelper;
 import web.powerpoint.slide.SlidePageNameEnum;
 import web.powerpoint.slide.helper.PieChartWithPercentageHelper;
 import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
@@ -43,24 +44,13 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
     public void populateSlide(XSLFSlide slide) {
         //this.getSlideEnum().EightConfidentialClientEvaluationOneSlide.d
         String name = this.getSlideEnumName();
-        List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationProposed();
+       
         PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData().getPageModels().getPlanAMediaPagedataPageModel();
-         MediaChart mediaChartA = MediaChartHelper.generate(planAMediaPagedataPageModel);
+        List<BarChartDataEntity> barChartDataEntityList = BarChartHelper.convert(planAMediaPagedataPageModel);
         
         //slidesData.getPageModels().setPlanAMediaPagedataPageModel(planAMediaPagedataPageModel);
         
-        List<BarChartDataEntity> barChartDataEntityList = new ArrayList<>();
-        BarChartDataEntity barChartDataEntity = BarChartDataEntity.builder()
-                .columnKey("Jan").rowKey("rowkey").doubleValue(10).build();
-         BarChartDataEntity barChartDataEntitytwo = BarChartDataEntity.builder()
-                .columnKey("feb").rowKey("rowkeyd").doubleValue(20).build();
-           BarChartDataEntity barChartDataEntitythree = BarChartDataEntity.builder()
-                .columnKey("mar").rowKey("rowkeyd").doubleValue(30).build();
-         barChartDataEntityList.add(barChartDataEntity);
-         
-         
-          barChartDataEntityList.add(barChartDataEntitytwo);
-           barChartDataEntityList.add(barChartDataEntitythree);
+
         
       BarChartEntity barChartEntity = BarChartEntity.builder()
               .fileName("aah")
@@ -71,23 +61,18 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
         
         
         
+         try {
+             //Proposed Schedule – Plan A
+             //
+             String fileName = BarChartHelper.createBarChart(barChartEntity);
+             ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileName, slide);
+
+         } catch (Exception ex) {
+             mLog.error(ex.getMessage());
+           
+         }
+
         
-        
-
-        PieEntity pieEntity = new PieEntity();
-        pieEntity.setPieChartList(piechart);
-        pieEntity.setTitle("Proposed Year’s Media Allocation");
-        String fileaName = this.getContact().getName() + this.getPageName();
-        pieEntity.setFileName(fileaName);
-        fileaName = PieChartWithPercentageHelper.createPieChart(pieEntity);
-
-        try {
-            ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileaName, slide);
-
-            //
-        } catch (Exception ex) {
-            mLog.error(ex.getMessage());
-        }
 
     }
 

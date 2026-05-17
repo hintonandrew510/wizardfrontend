@@ -6,13 +6,27 @@ package web.powerpoint.slide;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import java.awt.Color;
+import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
+import org.jfree.chart.ui.TextAnchor;
+import org.jfree.data.category.DefaultCategoryDataset;
 import web.page.ChartBuilder;
 import web.page.planamedipage.MediaRowWeb;
 import web.page.planamedipage.PlanMediaPageModel;
 import web.powerpoint.entity.BarChartDataEntity;
+import web.powerpoint.entity.BarChartEntity;
 
 /**
  *
@@ -96,6 +110,47 @@ public class BarChartHelper {
 
         return barChartDataEntityList;
 
+    }
+    
+    
+    
+    
+     public static String createBarChart(BarChartEntity barChartEntity) throws Exception {
+        DefaultCategoryDataset dataSet = createDataSet(barChartEntity);
+        JFreeChart barChart = ChartFactory.createBarChart(
+                barChartEntity.getTopTitle(),
+                barChartEntity.getFileName(), "Score",
+                dataSet, PlotOrientation.VERTICAL,
+                false, false, false);
+        CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+
+        //renderer.setBaseItemLabelGenerator();
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        //renderer.setBaseItemLabelsVisible(true);
+        renderer.setDefaultItemLabelsVisible(true);
+        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12,
+                TextAnchor.TOP_CENTER);
+        renderer.setDefaultPositiveItemLabelPosition(position);
+
+        barChart.setBackgroundPaint(Color.WHITE);
+        barChart.getPlot().setBackgroundPaint(Color.WHITE);
+        int width = 640;
+        /* Width of the image */
+        int height = 480;
+        /* Height of the image */
+        File BarChart = new File(barChartEntity.getFileName() + ".jpeg");
+        ChartUtils.saveChartAsJPEG(BarChart, barChart, width, height);
+        System.out.println("Chart saved to " + BarChart.getAbsolutePath());
+        return BarChart.getAbsolutePath();
+    }
+
+    private static DefaultCategoryDataset createDataSet(BarChartEntity barChartEntity) {
+        List<BarChartDataEntity> barChartDataEntityList = barChartEntity.getBarChartDataEntityList();
+        DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+        for (BarChartDataEntity barChartDataEntity : barChartDataEntityList) {
+            dataSet.addValue(barChartDataEntity.getDoubleValue(), barChartDataEntity.getRowKey(), barChartDataEntity.getColumnKey());
+        }
+        return dataSet;
     }
 
 }
