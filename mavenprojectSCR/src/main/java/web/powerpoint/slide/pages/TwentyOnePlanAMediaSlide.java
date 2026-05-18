@@ -16,6 +16,7 @@ import web.page.PieChart;
 import web.page.planamedipage.MediaChart;
 import web.page.planamedipage.MediaChartHelper;
 import web.page.planamedipage.PlanMediaPageModel;
+import web.powerpoint.ReadPowerPointSlides;
 import web.powerpoint.entity.BarChartDataEntity;
 import web.powerpoint.entity.BarChartEntity;
 import web.powerpoint.entity.PieEntity;
@@ -32,49 +33,43 @@ import web.powerpoint.slide.service.PowerPointServiceImpl;
  */
 public class TwentyOnePlanAMediaSlide extends AbstractSlide {
 
-     private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
+    private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
 
     public TwentyOnePlanAMediaSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
-  
-
-  @Override
+    @Override
     public void populateSlide(XSLFSlide slide) {
         //this.getSlideEnum().EightConfidentialClientEvaluationOneSlide.d
         String name = this.getSlideEnumName();
-       
+
         PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData().getPageModels().getPlanAMediaPagedataPageModel();
         List<BarChartDataEntity> barChartDataEntityList = BarChartHelper.convert(planAMediaPagedataPageModel);
-        
+
         //slidesData.getPageModels().setPlanAMediaPagedataPageModel(planAMediaPagedataPageModel);
-        
+       
+        String fileaName = this.getContact().getName() + this.getPageName();
 
-        
-      BarChartEntity barChartEntity = BarChartEntity.builder()
-              .fileName("aah")
-              .bottomTitle("bottom")
-              .topTitle("top")
-              .xAxis("xaxis")
-              .yAxis("yaxis").barChartDataEntityList(barChartDataEntityList).build();
-        
-        
-        
-         try {
-             //Proposed Schedule – Plan A
-             //
-             String fileName = BarChartHelper.createBarChart(barChartEntity);
-             ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileName, slide);
+        BarChartEntity barChartEntity = BarChartEntity.builder()
+                .fileName(fileaName)
+                .bottomTitle("bottom")
+                .topTitle("top")
+                .xAxis("xaxis")
+                .yAxis("yaxis").barChartDataEntityList(barChartDataEntityList).build();
 
-         } catch (Exception ex) {
-             mLog.error(ex.getMessage());
-           
-         }
+        try {
+            //Proposed Schedule – Plan A
+            //
+            String fileName = BarChartHelper.createBarChart(barChartEntity);
+            ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileName, slide);
+            ReadPowerPointSlides.display(slide);
 
-        
+        } catch (Exception ex) {
+            mLog.error(ex.getMessage());
+
+        }
 
     }
 
 }
-
