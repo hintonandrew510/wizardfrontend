@@ -21,12 +21,17 @@ public enum SlidePageNameEnum {
     NineConfidentialClientEvaluationProposedSlide(""),
     NineConfidentialClientEvaluationProposedTextSlide("Slide9"),
     TwentyOnePlanAMedia("Slide17"),
+    NineteenPlanAProposedTextSlide("Slide19"),
+    TwentyPlanABEPTextSlide("Slide20"),
+    TwentyOnePlanALifetimeValuedTextSlide("Slide21"),
+    TwentyTwoPlanADigitalROICalculatorTextSlide("Slide22"),
+    TwentyThreePlanBMediaSlide("Slide23"),
     EightConfidentialClientEvaluationOneSlide("Weekends are best."),
     SeventeenPlanAMediaSlide(""),
-    TwentyPlanABEPTextSlide(""),
-    TwentyOnePlanALifetimeValuedTextSlide(""),
-    TwentyTwoPlanADigitalROICalculatorTextSlide(""),
-    TwentyThreePlanBMediaSlide(""),
+   
+    
+    
+    
     TwentyFivePlanBProposedTextSlide(""),
     TwentySixPlanBBEPTextSlide(""),
     TwentySevenPlanBLifetimeValuedTextSlide(""),

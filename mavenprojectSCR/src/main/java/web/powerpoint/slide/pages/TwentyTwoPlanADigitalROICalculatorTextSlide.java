@@ -23,9 +23,9 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 	}
 
 	
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		
-		PlanDigitalROICalculatorPageModel pageModel = getmSlidesData()
+    @Override
+    public void populateSlide(XSLFSlide slide) {
+        	PlanDigitalROICalculatorPageModel pageModel = getmSlidesData()
 				.getPageModels().getPlanADigitalROICalculatorPageModel();
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
@@ -90,22 +90,7 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 		listData.add(planAMonthlyDigitalInvestment);
 		listData.add(planASalesConversionPercentage);
 		listData.add(planAMonthlyConversions);
-		
-		
-		
-		
-		//planAGrossProfitOnSales
-		//
-
-		
-		
-
-		return listData;
-	}
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                replaceTextOnSlide(listData, slide);
     }
 
 }

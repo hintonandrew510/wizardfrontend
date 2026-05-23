@@ -23,8 +23,10 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 	}
 
 
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		PlanALifetimeValuedPageModel planALifetimeValuedPageModel =  getmSlidesData()
+	
+    @Override
+    public void populateSlide(XSLFSlide slide) {
+        	PlanALifetimeValuedPageModel planALifetimeValuedPageModel =  getmSlidesData()
 				.getPageModels().getPlanALifetimeValuedPageModel();
 		
 
@@ -61,19 +63,9 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 		listData.add(yearsOfPatronage);
 		listData.add(lifetimeValuePerCustomer);
 		listData.add(prospectsNeededToBreakEven);
+                replaceTextOnSlide(listData, slide);
 		
 		//planAGrossProfitOnSales
-		//
-
-		
-		
-
-		return listData;
-	}
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

@@ -23,9 +23,11 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
 	}
 
 	
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		
-		PlanProposedPageModel planAProposedPageModel = getmSlidesData()
+	
+
+    @Override
+    public void populateSlide(XSLFSlide slide) {
+        PlanProposedPageModel planAProposedPageModel = getmSlidesData()
 				.getPageModels().getPlanAProposedPageModel();
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
@@ -50,16 +52,8 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
 		listData.add(planADigitalImpressionsMonthly);
 		listData.add(planAMonthly);
 		listData.add(planADaily);
-
-		
-		
-
-		return listData;
-	}
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                replaceTextOnSlide(listData, slide);
+                
     }
 
 }

@@ -18,7 +18,6 @@ import web.powerpoint.entity.BarChartEntity;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
-import web.powerpoint.slide.service.PowerPointServiceImpl;
 
 /**
  *
@@ -26,7 +25,7 @@ import web.powerpoint.slide.service.PowerPointServiceImpl;
  */
 public class TwentyOnePlanAMediaSlide extends AbstractSlide {
 
-    private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
+    private Logger mLog = LoggerFactory.getLogger(TwentyOnePlanAMediaSlide.class.getName());
 
     public TwentyOnePlanAMediaSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
