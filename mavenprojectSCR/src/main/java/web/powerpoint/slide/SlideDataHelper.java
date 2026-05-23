@@ -771,7 +771,7 @@ public class SlideDataHelper {
                     slidesData, SlidePageNameEnum.TwentyTwoPlanADigitalROICalculatorTextSlide, "TwentyTwoPlanADigitalROICalculatorTextSlide", contact, ppt);
             slidesList.add(textSlide);
             NineteenPlanAProposedTextSlide nineteenPlanAProposedTextSlide = new NineteenPlanAProposedTextSlide(
-                    slidesData, SlidePageNameEnum.NineConfidentialClientEvaluationProposedSlide, "NineteenPlanAProposedTextSlide", contact, ppt);
+                    slidesData, SlidePageNameEnum.NineteenPlanAProposedTextSlide, "NineteenPlanAProposedTextSlide", contact, ppt);
             slidesList.add(nineteenPlanAProposedTextSlide);
             TwentyFivePlanBProposedTextSlide twentyFivePlanAProposedTextSlide = new TwentyFivePlanBProposedTextSlide(
                     slidesData, SlidePageNameEnum.TwentyFivePlanBProposedTextSlide, "TwentyFivePlanBProposedTextSlide", contact, ppt);
