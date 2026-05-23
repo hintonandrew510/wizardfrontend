@@ -16,7 +16,7 @@ import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 import web.powerpoint.slide.helper.PieChartWithPercentageHelper;
 import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
-import web.powerpoint.slide.service.PieChartWithPercentageService;
+
 import web.powerpoint.slide.service.PowerPointServiceImpl;
 import web.powerpoint.slide.service.ReplaceImageInPlaceholderService;
 

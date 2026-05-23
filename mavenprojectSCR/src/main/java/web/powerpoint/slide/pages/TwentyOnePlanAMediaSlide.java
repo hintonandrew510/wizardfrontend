@@ -4,7 +4,6 @@
  */
 package web.powerpoint.slide.pages;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -12,18 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.SlidesData;
 import web.model.Contact;
-import web.page.PieChart;
-import web.page.planamedipage.MediaChart;
-import web.page.planamedipage.MediaChartHelper;
 import web.page.planamedipage.PlanMediaPageModel;
 import web.powerpoint.ReadPowerPointSlides;
 import web.powerpoint.entity.BarChartDataEntity;
 import web.powerpoint.entity.BarChartEntity;
-import web.powerpoint.entity.PieEntity;
 import web.powerpoint.slide.AbstractSlide;
-import web.powerpoint.slide.BarChartHelper;
 import web.powerpoint.slide.SlidePageNameEnum;
-import web.powerpoint.slide.helper.PieChartWithPercentageHelper;
 import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
 import web.powerpoint.slide.service.PowerPointServiceImpl;
 
@@ -45,7 +38,7 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
         String name = this.getSlideEnumName();
 
         PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData().getPageModels().getPlanAMediaPagedataPageModel();
-        List<BarChartDataEntity> barChartDataEntityList = BarChartHelper.convert(planAMediaPagedataPageModel);
+        List<BarChartDataEntity> barChartDataEntityList = web.powerpoint.slide.helper.BarChartHelper.convert(planAMediaPagedataPageModel);
 
         //slidesData.getPageModels().setPlanAMediaPagedataPageModel(planAMediaPagedataPageModel);
        
@@ -61,7 +54,7 @@ public class TwentyOnePlanAMediaSlide extends AbstractSlide {
         try {
             //Proposed Schedule – Plan A
             //
-            String fileName = BarChartHelper.createBarChart(barChartEntity);
+            String fileName = web.powerpoint.slide.helper.BarChartHelper.createBarChart(barChartEntity);
             ReplaceImageInPlaceholderHelper.replaceImageInSlide(this.getPPT(), fileName, slide);
             ReadPowerPointSlides.display(slide);
 

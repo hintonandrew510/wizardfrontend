@@ -161,7 +161,6 @@ public class PowerPointServiceImpl implements PowerPointService {
         //Wizard wizard = wizardOpt.orElse(null);
         Iterable<WizardData> dataPages = wizardDataRepository.findByWizardid(Integer.valueOf(wizardId));
         List<String> excludedPagesList = GoogleHelper.getSlidesExcluded(dataPages);
-      
 
         try {
             // wizard.
@@ -169,7 +168,8 @@ public class PowerPointServiceImpl implements PowerPointService {
             org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
             XMLSlideShow ppt = new XMLSlideShow(fis);
-              List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact, ppt);
+            
+            List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact, ppt);
             fis.close();
             removeSlides(ppt, slidesModels);
 
@@ -229,14 +229,16 @@ public class PowerPointServiceImpl implements PowerPointService {
     public InputStream readTemplate(String clientType) throws IOException {
         if (clientType.equals("TV")) {
             String fileName = resourceFileTV.getFilename();
+            String fullPath = resourceFileTV.getFile().getAbsolutePath();
+            
 
-            mLog.info(fileName);
+            mLog.info("TEMPLATE " + fileName + " " +fullPath);
             return resourceFileTV.getInputStream();
 
         } else {
 
             String fileName = resourceFileRadio.getFilename();
-            mLog.info(fileName);
+            mLog.info("TEMPLATE " + fileName);
             return resourceFileRadio.getInputStream();
         }
 

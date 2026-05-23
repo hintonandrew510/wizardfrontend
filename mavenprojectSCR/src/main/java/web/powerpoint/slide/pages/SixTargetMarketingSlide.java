@@ -132,7 +132,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                         // Process the row (e.g., get cells from the row)
                         List<XSLFTableCell> cells = row.getCells();
                         for (XSLFTableCell cell : cells) {
-                            mLog.info(" cell data " + cell.getText());
+                           // mLog.info(" cell data " + cell.getText());
 
                             for (XSLFTextParagraph p : cell.getTextParagraphs()) {
                                 //System.out.println(" p.getText() " + p.getText());
@@ -140,7 +140,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                                     //(" r.getRawText() " + r.getRawText());
                                     //order1
                                     String test = r.getRawText();
-                                    mLog.info("raw Text " + test);
+                                   // mLog.info("raw Text " + test);
                                     if (r.getRawText().contains("have12to18")) {
                                         r.setText(have12to18);
                                     }

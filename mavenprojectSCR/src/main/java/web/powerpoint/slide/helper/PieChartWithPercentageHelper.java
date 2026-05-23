@@ -4,22 +4,15 @@
  */
 package web.powerpoint.slide.helper;
 
-import web.powerpoint.slide.service.*;
-import web.powerpoint.slide.service.PieChartWithPercentageService;
+
 import java.awt.Color;
-import java.io.File;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
+import java.io.*;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.labels.PieSectionLabelGenerator;
-import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
-import org.springframework.stereotype.Service;
+import org.jfree.chart.ChartUtilities;
 import web.powerpoint.entity.PieEntity;
 
 /**
@@ -32,7 +25,7 @@ public class PieChartWithPercentageHelper  {
   
     public static String createPieChart(PieEntity pieEntity) {
         
-    PieDataset dataset = createDataset(pieEntity.getPieChartList());
+    DefaultPieDataset dataset = createDataset(pieEntity.getPieChartList());
         JFreeChart chart = ChartFactory.createPieChart3D(
                 pieEntity.getTitle(), // Chart title
                 dataset, // Data
@@ -51,22 +44,23 @@ public class PieChartWithPercentageHelper  {
         // Define the label format: {0} = key, {1} = value, {2} = percentage
         String labelFormat = "{0} = {2}";
 
-        // Create the label generator with specific number and percentage formats
-        PieSectionLabelGenerator generator = new StandardPieSectionLabelGenerator(
-                labelFormat,
-                NumberFormat.getNumberInstance(),
-                new DecimalFormat("0.00%") // Formats the percentage to two decimal places
-        );
+//        // Create the label generator with specific number and percentage formats
+//        PieSectionLabelGenerator generator = new StandardPieSectionLabelGenerator(
+//                labelFormat,
+//                NumberFormat.getNumberInstance(),
+//                new DecimalFormat("0.00%") // Formats the percentage to two decimal places
+//        );
 
-        plot.setLabelGenerator(generator);
+      
 
         // Optional: Set simple labels for better positioning
-        plot.setSimpleLabels(true);
+      
         
         // 4. Save the chart as an image file
         try {
             File pieChart = new File(pieEntity.getFileName()+".jpeg");
-            ChartUtils.saveChartAsJPEG(pieChart, chart, 800, 600);
+            ChartUtilities.saveChartAsJPEG(pieChart, chart, 800, 600);
+            
             System.out.println("Chart saved to " + pieChart.getAbsolutePath());
             return pieChart.getAbsolutePath();
         } catch (Exception e) {
@@ -75,9 +69,10 @@ public class PieChartWithPercentageHelper  {
         }
     }
 
-    private  static PieDataset createDataset(List<web.page.PieChart> pieChartList) {
+    private  static DefaultPieDataset createDataset(List<web.page.PieChart> pieChartList) {
 
         DefaultPieDataset dataset = new DefaultPieDataset();
+        
         for (web.page.PieChart pieChart : pieChartList) {
             dataset.setValue(pieChart.getLabel(), pieChart.getLabelValue());
         }
