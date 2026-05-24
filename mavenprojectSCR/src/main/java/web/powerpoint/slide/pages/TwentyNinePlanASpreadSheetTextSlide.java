@@ -14,6 +14,7 @@ import web.model.Contact;
 import web.page.planamedipage.PlanMediaPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
+import web.powerpoint.slide.helper.TableHelper;
 
 public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
 	private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
@@ -47,7 +48,20 @@ public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData()
+				.getPageModels().getPlanAMediaPagedataPageModel();
+		PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows(),"TwentyNinePlanASpreadSheetTextSlide",true);
 
+		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+
+		SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
+				planSpreadSheets.getDailyCost());
+		SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
+				planSpreadSheets.getMonthlyAverage());
+		
+		listData.add(dailyCostA);
+		listData.add(monthlyAverageA);
+                
+                TableHelper.buildTable(planSpreadSheets, slide);
+}
 }

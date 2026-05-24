@@ -37,7 +37,7 @@ public enum SlidePageNameEnum {
     TwentySevenPlanBLifetimeValuedTextSlide(""),
     TwentyEightPlanBDigitalROICalculatorTextSlide(""),
     TwentyNinePlanASpreadSheetSlide(""),
-    TwentyNinePlanASpreadSheetTextSlide(""),
+    TwentyNinePlanASpreadSheetTextSlide("Slide30"),
     ThirtyPlanBSpreadSheetTextSlide(""),
     ThirtyPlanBSpreadSheetSlide("");
 
