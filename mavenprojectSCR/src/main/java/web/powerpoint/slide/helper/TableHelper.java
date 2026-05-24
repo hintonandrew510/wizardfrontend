@@ -119,31 +119,44 @@ public class TableHelper {
             XSLFTableRow row = tbl.addRow();
             XSLFTableCell cellDataJan = row.addCell();
             cellDataJan.setText(planSpreadSheet.getJan());
+             cellDataJan.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataFeb = row.addCell();
             cellDataFeb.setText(planSpreadSheet.getFeb());
+            cellDataFeb.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataMar = row.addCell();
             cellDataMar.setText(planSpreadSheet.getMar());
+            cellDataMar.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataApr = row.addCell();
             cellDataApr.setText(planSpreadSheet.getApr());
+            cellDataApr.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataMay = row.addCell();
             cellDataMay.setText(planSpreadSheet.getMay());
+            cellDataMay.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataJun = row.addCell();
             cellDataJun.setText(planSpreadSheet.getJun());
+            cellDataJun.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataJul = row.addCell();
             cellDataJul.setText(planSpreadSheet.getJul());
+            cellDataJul.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataAug = row.addCell();
             cellDataAug.setText(planSpreadSheet.getAug());
+            cellDataAug.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataSep = row.addCell();
             cellDataSep.setText(planSpreadSheet.getSep());
+            cellDataSep.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataOct = row.addCell();
             cellDataOct.setText(planSpreadSheet.getOct());
+            cellDataOct.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataNov = row.addCell();
             cellDataNov.setText(planSpreadSheet.getNov());
+            cellDataNov.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataDec = row.addCell();
             cellDataDec.setText(planSpreadSheet.getDec());
+            cellDataDec.setFillColor(new Color(240, 240, 240));
             XSLFTableCell cellDataTotal
                     = row.addCell();
             cellDataTotal.setText(planSpreadSheet.getRt());
+            cellDataTotal.setFillColor(new Color(240, 240, 240));
 
             //planSpreadSheet.
         }
