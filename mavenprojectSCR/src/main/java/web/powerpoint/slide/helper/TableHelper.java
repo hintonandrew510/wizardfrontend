@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 import java.io.FileOutputStream;
+import java.util.List;
 import org.apache.poi.sl.usermodel.TableCell.BorderEdge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,42 @@ import web.powerpoint.slide.pages.PlanSpreadSheets;
 public class TableHelper {
 
     private static final Logger mLog = LoggerFactory.getLogger(TableHelper.class.getName());
+
+    // Example function to adjust the XSLFTable widths dynamically
+    private static void adjustTableWidthsDynamically(XSLFTable table) {
+        int numColumns = table.getNumberOfColumns();
+        int numRows = table.getNumberOfRows();
+
+        // Track the maximum width required for each column (in points)
+        double[] maxColumnWidths = new double[numColumns];
+
+        // Define a rough point value per character (e.g., ~7 points for a 12pt font)
+        double pointsPerChar = 7.0;
+
+        for (int col = 0; col < numColumns; col++) {
+            // Set a minimum starting width
+            maxColumnWidths[col] = 50.0;
+
+            for (int row = 0; row < numRows; row++) {
+                XSLFTableRow tableRow = table.getRows().get(row);
+                List<XSLFTableCell> cells = tableRow.getCells();
+
+                if (col < cells.size()) {
+                    String cellText = cells.get(col).getText();
+                    if (cellText != null && !cellText.isEmpty()) {
+                        // Calculate estimated width based on character count
+                        double calculatedWidth = (cellText.length() * pointsPerChar) + 20.0; // + padding
+                        if (calculatedWidth > maxColumnWidths[col]) {
+                            maxColumnWidths[col] = calculatedWidth;
+                        }
+                    }
+                }
+            }
+
+            // Apply the newly calculated width to the specific column
+            table.setColumnWidth(col, maxColumnWidths[col]);
+        }
+    }
 
     public static void buildTable(PlanSpreadSheets planSpreadSheets, XSLFSlide slide, XMLSlideShow ppt) {
         try {
@@ -359,18 +396,27 @@ public class TableHelper {
             cellDataBottomTotalRow.getTextParagraphs().get(0).getTextRuns().get(0).setFontSize(fontSize);
 
             double slideWidthtwo = 720.0;
-            slideWidthtwo = 800.0;
+            slideWidthtwo = 400.0;
             double leftMargin = 54.0;   // 0.75 inch margin
             double rightMargin = 54.0;  // 0.75 inch margin
-
+            adjustTableWidthsDynamically(table);
 // Calculate the maximum table width available
             double maxTableWidth = slideWidthtwo - (leftMargin + rightMargin);
+            // Example: Make the table 400 points wide
+//table.setAnchor(new java.awt.geom.Rectangle2D.Double(50.0, 50.0, 400.0, 250.0)); 
+            
             table.setAnchor(new Rectangle2D.Double(startX, startY, maxTableWidth, tableHeight));
             int numCols = table.getNumberOfColumns();
             // 4. Distribute that max width proportionally across all columns
             double columnWidthtwo = tableWidth / numCols;
+            columnWidthtwo=columnWidthtwo-20;
             for (int i = 0; i < numCols; i++) {
                 table.setColumnWidth(i, columnWidthtwo);
+            }
+            for (XSLFTableRow row : table.getRows()) {
+                for (XSLFTableCell cell : row.getCells()) {
+                    cell.setWordWrap(true);
+                }
             }
 
         } catch (Exception ex) {
