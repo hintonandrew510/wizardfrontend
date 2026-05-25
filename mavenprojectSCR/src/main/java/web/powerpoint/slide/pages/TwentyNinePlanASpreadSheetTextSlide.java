@@ -62,6 +62,6 @@ public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
 		listData.add(dailyCostA);
 		listData.add(monthlyAverageA);
                 
-                TableHelper.buildTable(planSpreadSheets, slide);
+                TableHelper.buildTable(planSpreadSheets, slide,this.getPPT());
 }
 }
