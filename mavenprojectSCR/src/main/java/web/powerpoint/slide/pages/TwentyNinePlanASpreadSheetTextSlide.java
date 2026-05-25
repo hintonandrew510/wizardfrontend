@@ -7,61 +7,63 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.page.planamedipage.PlanMediaPageModel;
+import web.page.presentedtopage.PresentedToPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 import web.powerpoint.slide.helper.TableHelper;
 
 public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
-	private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
 
-	public TwentyNinePlanASpreadSheetTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+    private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
+
+    public TwentyNinePlanASpreadSheetTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
-	}
+    }
 
-	
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData()
-				.getPageModels().getPlanAMediaPagedataPageModel();
-		PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows(),"TwentyNinePlanASpreadSheetTextSlide",true);
+    public List<SlideReplacementData> composeGoogleSlideData() {
+        PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData()
+                .getPageModels().getPlanAMediaPagedataPageModel();
+        PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows(), "TwentyNinePlanASpreadSheetTextSlide", true);
 
-		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-		SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
-				planSpreadSheets.getDailyCost());
-		SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
-				planSpreadSheets.getMonthlyAverage());
-		
-		listData.add(dailyCostA);
-		listData.add(monthlyAverageA);
+        SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
+                planSpreadSheets.getDailyCost());
+        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
+                planSpreadSheets.getMonthlyAverage());
 
+        listData.add(dailyCostA);
+        listData.add(monthlyAverageA);
 
-		
-		
-
-		return listData;
-	}
+        return listData;
+    }
 
     @Override
     public void populateSlide(XSLFSlide slide) {
+        PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
         PlanMediaPageModel planAMediaPagedataPageModel = getmSlidesData()
-				.getPageModels().getPlanAMediaPagedataPageModel();
-		PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows(),"TwentyNinePlanASpreadSheetTextSlide",true);
+                .getPageModels().getPlanAMediaPagedataPageModel();
+        PlanSpreadSheets planSpreadSheets = new PlanSpreadSheets(planAMediaPagedataPageModel.getMediaRows(), "TwentyNinePlanASpreadSheetTextSlide", true);
 
-		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-		SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
-				planSpreadSheets.getDailyCost());
-		SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
-				planSpreadSheets.getMonthlyAverage());
-		
-		listData.add(dailyCostA);
-		listData.add(monthlyAverageA);
-                
-                TableHelper.buildTable(planSpreadSheets, slide,this.getPPT());
-}
+        SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
+                planSpreadSheets.getDailyCost());
+        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
+                planSpreadSheets.getMonthlyAverage());
+        SlideReplacementData station = new SlideReplacementData("station", presentedToPageModel.getStation());
+        SlideReplacementData businessname = new SlideReplacementData("businessname", presentedToPageModel.getClientBusinessName());
+
+        listData.add(dailyCostA);
+        listData.add(station);
+        listData.add(monthlyAverageA);
+        listData.add(businessname);
+        replaceTextOnSlide(listData, slide);
+
+        TableHelper.buildTable(planSpreadSheets, slide, this.getPPT());
+    }
 }

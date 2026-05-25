@@ -216,7 +216,7 @@ public class PlanSpreadSheets {
 			return "0";
 		}
 	}
-	private void constructBottomTotals() throws Exception {
+	public void constructBottomTotals() throws Exception {
 		mLog.warn("constructBottomTotals starting");
 	//	NumberFormat nf = NumberFormat.getNumberInstance();
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
@@ -243,7 +243,7 @@ public class PlanSpreadSheets {
 	
 	
 	
-	private void constructTotals() throws Exception {
+	public void constructTotals() throws Exception {
 		mLog.warn("constructTotals starting");
 	//	NumberFormat nf = NumberFormat.getNumberInstance();
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
