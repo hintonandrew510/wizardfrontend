@@ -31,40 +31,40 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
 			
-		SlideReplacementData planAMonthlyDigitalInvestment = new SlideReplacementData("planAMonthlyDigitalInvestment",
+		SlideReplacementData planAMonthlyDigitalInvestment = new SlideReplacementData("planAAverag",
 				pageModel.getPlanAMonthlyDigitalInvestment());
 		
-		SlideReplacementData planACostPerThousand = new SlideReplacementData("planACostPerThousand",
+		SlideReplacementData planACostPerThousand = new SlideReplacementData("planAGross",
 				pageModel.getPlanACostPerThousand());
 		
 		String planAClosingPctNumberStr = pageModel.getPlanAClosingPctNumber();
 		
 		planAClosingPctNumberStr = this.withLargeIntegers(planAClosingPctNumberStr);
 		mLog.info("planAClosingPctNumberStr " + planAClosingPctNumberStr);
-		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("planAClosingPctNumber",
+		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("planAClose",
 				planAClosingPctNumberStr);
-		SlideReplacementData planAClickThroughRate = new SlideReplacementData("planAClickThroughRate",
+		SlideReplacementData planAClickThroughRate = new SlideReplacementData("planAProsp",
 				pageModel.getPlanAClickThroughRate() + "%");
 		
-		SlideReplacementData planAMonthlyClicks = new SlideReplacementData("planAMonthlyClicks",
+		SlideReplacementData planAMonthlyClicks = new SlideReplacementData("planAMontly",
 				pageModel.getPlanAMonthlyClicks());
 		
-		SlideReplacementData planACostPerClicks = new SlideReplacementData("planACostPerClicks",
+		SlideReplacementData planACostPerClicks = new SlideReplacementData("planAProsp",
 				pageModel.getPlanACostPerClicks());
 		
-		SlideReplacementData planASalesConversionPercentage = new SlideReplacementData("planASalesConversionPercentage",
+		SlideReplacementData planASalesConversionPercentage = new SlideReplacementData("planAProspc",
 				pageModel.getPlanASalesConversionPercentage() + "%");
 		
 		
-		SlideReplacementData planAMonthlyConversions = new SlideReplacementData("planAMonthlyConversions",
+		SlideReplacementData planAMonthlyConversions = new SlideReplacementData("planAGrossA",
 				pageModel.getPlanAMonthlyConversions());
 		
 		
 		
-		SlideReplacementData planACostPerConversion = new SlideReplacementData("planACostPerConversion",
+		SlideReplacementData planACostPerConversion = new SlideReplacementData("planAMonN",
 				pageModel.getPlanACostPerConversion());
 		
-		SlideReplacementData planAProjectedGrossProfit = new SlideReplacementData("planAProjectedGrossProfit",
+		SlideReplacementData planAProjectedGrossProfit = new SlideReplacementData("hI",
 				pageModel.getPlanAProjectedGrossProfit());
 		
 		SlideReplacementData planAMonthlyGrossProfit = new SlideReplacementData("planAMonthlyGrossProfit",

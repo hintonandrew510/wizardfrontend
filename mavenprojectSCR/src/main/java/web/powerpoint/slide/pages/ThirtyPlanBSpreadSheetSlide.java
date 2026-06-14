@@ -1,6 +1,5 @@
 package web.powerpoint.slide.pages;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -17,24 +16,23 @@ import web.powerpoint.slide.SlidePageNameEnum;
 import web.powerpoint.slide.helper.TableHelper;
 
 public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
- private static final Logger mLog = LoggerFactory.getLogger(ThirtyPlanBSpreadSheetSlide.class.getName());
 
-    public ThirtyPlanBSpreadSheetSlide(SlidesData sildeData , SlidePageNameEnum slideEnum, String pageName, Contact contact) {
-		super(sildeData, slideEnum, pageName, contact, null);
+    private static final Logger mLog = LoggerFactory.getLogger(ThirtyPlanBSpreadSheetSlide.class.getName());
+
+    public ThirtyPlanBSpreadSheetSlide(SlidesData sildeData, SlidePageNameEnum slideEnum, String pageName, Contact contact) {
+        super(sildeData, slideEnum, pageName, contact, null);
     }
-    
+
     /*
               ThirtyPlanBSpreadSheetSlide thirtyPlanBSpreadSheetSlide = new ThirtyPlanBSpreadSheetSlide(
                      SlidePageNameEnum.ThirtyPlanBSpreadSheetTextSlide, "ThirtyPlanBSpreadSheetSlide", slidesData, contact);
 
     
-    */
-
+     */
 //	public ThirtyPlanBSpreadSheetSlide(String writeRange, String pageName, SlideEnum slideEnum,SlidesData slidesData) {
 //		super(writeRange, pageName, slideEnum, slidesData);
 //		// TODO Auto-generated constructor stub
 //	}
-
     @Override
     public void populateSlide(XSLFSlide slide) {
         PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
@@ -55,38 +53,37 @@ public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
         String firstRow = "";
         String secondRow = "";
         String thirdRow = "";
-        if (orderList != null && !orderList.isEmpty()) {
-            if (orderList.get(0) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(0);
-                firstRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
-            if (orderList.get(1) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(1);
-                secondRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
-            if (orderList.get(2) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(2);
-                thirdRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
+        try {
+            if (orderList != null && !orderList.isEmpty()) {
+                if (orderList.get(0) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(0);
+                    firstRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
+                if (orderList.get(1) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(1);
+                    secondRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
+                if (orderList.get(2) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(2);
+                    thirdRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
 
+            }
+        } catch (Exception ex) {
+            mLog.info("Error " + ex.getMessage());
         }
-        
-        
-         SlideReplacementData firstRowData = new SlideReplacementData("firstRow",
+
+        SlideReplacementData firstRowData = new SlideReplacementData("firstRow",
                 firstRow);
-         SlideReplacementData secondRowData = new SlideReplacementData("secondRow",
+        SlideReplacementData secondRowData = new SlideReplacementData("secondRow",
                 secondRow);
-           SlideReplacementData thirdRowData = new SlideReplacementData("thirdRow",
+        SlideReplacementData thirdRowData = new SlideReplacementData("thirdRow",
                 thirdRow);
-         
+
         listData.add(firstRowData);
         listData.add(secondRowData);
         listData.add(thirdRowData);
-        
-        
-        
-        
-        
+
         listData.add(dailyCostA);
         listData.add(station);
         listData.add(monthlyAverageA);

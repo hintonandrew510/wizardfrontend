@@ -90,7 +90,7 @@ public abstract class AbstractSlide implements SlideInterface {
             DecimalFormat df = new DecimalFormat("###,###,###");
             return df.format(valuedouble);
         } catch (Exception e) {
-            return "";
+            return value;
         }
     }
 

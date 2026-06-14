@@ -26,7 +26,7 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 	
     @Override
     public void populateSlide(XSLFSlide slide) {
-        	PlanALifetimeValuedPageModel planALifetimeValuedPageModel =  getmSlidesData()
+                    PlanALifetimeValuedPageModel planALifetimeValuedPageModel =  getmSlidesData()
 				.getPageModels().getPlanALifetimeValuedPageModel();
 		
 
@@ -53,8 +53,14 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("a_prospectsNeededToBreakEven",
 				planALifetimeValuedPageModel.getProspectsNeededToBreakEven());
 		
+		String planAmonthStr = planALifetimeValuedPageModel.getMonthlyInvestmentAverage();
+                SlideReplacementData planAMonth = new SlideReplacementData("planAMonth",
+				planAmonthStr);
 		
+                
 		listData.add(averageSale);
+                listData.add(planAMonth);
+                listData.add(grossProfitMargin);
 		//grossProfitMargin = grossProfitMargin + "%";
 		listData.add(grossProfitMargin);
 		listData.add(grossProfitPerSale);

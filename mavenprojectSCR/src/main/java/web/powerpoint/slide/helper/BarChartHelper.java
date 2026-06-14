@@ -74,7 +74,7 @@ public class BarChartHelper {
         //renderer.setDefaultPositiveItemLabelPosition(position);
         barChart.setBackgroundPaint(Color.WHITE);
         barChart.getPlot().setBackgroundPaint(Color.WHITE);
-        File barChart3D = new File(barChartEntity.getFileName() + ".png");
+        File barChart3D = new File("/opt/wizard/download/" + barChartEntity.getFileName() + ".png");
         // ChartUtils..saveChartAsJPEG( barChart3D, barChart, width, height);
         ChartUtilities.saveChartAsJPEG(barChart3D, barChart, width, height);
         //  ChartUtils.saveChartAsPNG(barChart3D, barChart, width, height);

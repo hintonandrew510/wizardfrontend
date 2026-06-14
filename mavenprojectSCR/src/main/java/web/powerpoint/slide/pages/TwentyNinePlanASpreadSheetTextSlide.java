@@ -1,6 +1,7 @@
 package web.powerpoint.slide.pages;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -42,26 +43,31 @@ public class TwentyNinePlanASpreadSheetTextSlide extends AbstractSlide {
         SlideReplacementData businessname = new SlideReplacementData("businessname", presentedToPageModel.getClientBusinessName());
 
         List<ClientObjectivesOnePageTwoModel> orderList = getmSlidesData().getPageModels().getOrderList();
+        orderList.sort(Comparator.comparing(ClientObjectivesOnePageTwoModel::getSortOrder).reversed());
         String firstRow = "";
         String secondRow = "";
         String thirdRow = "";
-        if (orderList != null && !orderList.isEmpty()) {
-            if (orderList.get(0) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(0);
-                firstRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
-            if (orderList.get(1) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(1);
-                secondRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
-            if (orderList.get(2) != null) {
-                ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(2);
-                thirdRow = clientObjectivesOnePageTwoModel.getLabel();
-            }
+        
+         try {
+            if (orderList != null && !orderList.isEmpty()) {
+                if (orderList.get(0) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(2);
+                    firstRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
+                if (orderList.get(1) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(1);
+                    secondRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
+                if (orderList.get(2) != null) {
+                    ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = orderList.get(0);
+                    thirdRow = clientObjectivesOnePageTwoModel.getLabel();
+                }
 
+            }
+        } catch (Exception ex) {
+            mLog.info("Error " + ex.getMessage());
         }
-        
-        
+   
          SlideReplacementData firstRowData = new SlideReplacementData("firstRow",
                 firstRow);
          SlideReplacementData secondRowData = new SlideReplacementData("secondRow",

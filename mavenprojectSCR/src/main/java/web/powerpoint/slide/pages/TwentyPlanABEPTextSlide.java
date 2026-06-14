@@ -48,7 +48,7 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
         SlideReplacementData planAGrossProfitOnSales = new SlideReplacementData("planAGrossProfitOnSales",
                 planABEPPageModel.getPlanAGrossProfitOnSales());
 
-        SlideReplacementData planAMonths = new SlideReplacementData("planAMonths",
+        SlideReplacementData planAMonths = new SlideReplacementData("planAMonthy",
                 planABEPPageModel.getPlanAMonths());
 
         SlideReplacementData planAAdditionalGrossSales = new SlideReplacementData("planAAdditionalGrossSales",
