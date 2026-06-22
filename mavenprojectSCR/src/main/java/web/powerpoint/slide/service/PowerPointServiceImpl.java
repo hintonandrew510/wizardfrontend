@@ -65,10 +65,10 @@ public class PowerPointServiceImpl implements PowerPointService {
     @Autowired
     private WizardDataRepository wizardDataRepository;
     private static final Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
-    @Value("classpath:powerpointtemplate/tv.pptx")
+    @Value("classpath:powerpointtemplate/tvTemplate.pptx")
     Resource resourceFileTV;
 
-    @Value("classpath:powerpointtemplate/tv.pptx")
+    @Value("classpath:powerpointtemplate/tvTemplate.pptx")
     Resource resourceFileRadio;
     @Value("${powerpoint.download.folder}")
 
