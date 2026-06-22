@@ -838,7 +838,7 @@ public class SlideDataHelper {
 
         slidesData.getPublish().setPlanBBEPPage(true);
 
-        ///// BatchUpdatePresentationRequest update = new BatchUpdatePresentationRequest();
+        /// BatchUpdatePresentationRequest update = new BatchUpdatePresentationRequest();
         // update.setRequests(mRequests);
         // googleSlides.presentations().batchUpdate(prez.getPresentationId(),
         // update).execute();
