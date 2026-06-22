@@ -825,19 +825,17 @@ public class SlideDataHelper {
         slidesList.add(textSlideTwentyEightPlanBDigitalROICalculatorText);
         TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
                 SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide", contact, ppt);
-        
-            slidesList.add(twentySixPlanBBEPTextSlide);
-        
-           TwentySevenPlanBBEPTextSlide twentySevenPlanBBEPTextSlide = new TwentySevenPlanBBEPTextSlide(slidesData,
+
+        slidesList.add(twentySixPlanBBEPTextSlide);
+
+        TwentySevenPlanBBEPTextSlide twentySevenPlanBBEPTextSlide = new TwentySevenPlanBBEPTextSlide(slidesData,
                 SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySevenPlanBBEPTextSlide", contact, ppt);
-            slidesList.add(twentySevenPlanBBEPTextSlide);
-            
-            
-                TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
+        slidesList.add(twentySevenPlanBBEPTextSlide);
+
+        TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
                 SlidePageNameEnum.TwentyEightPlanBLifetimeValuedTextSlide, "TwentyEightPlanBLifetimeValuedTextSlide", contact, ppt);
-            slidesList.add(twentyEightPlanBLifetimeValuedTextSlide);
-        
-    
+        slidesList.add(twentyEightPlanBLifetimeValuedTextSlide);
+
         slidesData.getPublish().setPlanBBEPPage(true);
 
         // BatchUpdatePresentationRequest update = new BatchUpdatePresentationRequest();
