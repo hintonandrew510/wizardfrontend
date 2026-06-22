@@ -168,7 +168,7 @@ public class PowerPointServiceImpl implements PowerPointService {
             org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
             XMLSlideShow ppt = new XMLSlideShow(fis);
-            
+
             List<SlideInterface> slidesModels = SlideDataHelper.getSlidesData(dataPages, contact, ppt);
             fis.close();
             removeSlides(ppt, slidesModels);
@@ -184,12 +184,17 @@ public class PowerPointServiceImpl implements PowerPointService {
 //                }
                 //skip if no page def
                 if (slidePageName.equals("Slide23")) {
-                       mLog.info("slidePageName " + slidePageName);
+                    mLog.info("slidePageName " + slidePageName);
                 }
                 // Filter products with price > 100
                 SlideInterface foundmodel = SlideDataHelper.findModelBySlidePageName(slidePageName, slidesModels);
                 if (foundmodel != null) {
-                    foundmodel.populateSlide(slide);
+                    mLog.info("Class name " + foundmodel.getClass().getName() + " pageName " + slidePageName);
+                    try {
+                        foundmodel.populateSlide(slide);
+                    } catch (Exception ex) {
+                        mLog.info("Error  on slide " + slidePageName);
+                    }
                 } else {
 
                     mLog.info("Error  on slide " + slidePageName);
@@ -233,9 +238,8 @@ public class PowerPointServiceImpl implements PowerPointService {
         if (clientType.equals("TV")) {
             String fileName = resourceFileTV.getFilename();
             String fullPath = resourceFileTV.getFile().getAbsolutePath();
-            
 
-            mLog.info("TEMPLATE " + fileName + " " +fullPath);
+            mLog.info("TEMPLATE " + fileName + " " + fullPath);
             return resourceFileTV.getInputStream();
 
         } else {
