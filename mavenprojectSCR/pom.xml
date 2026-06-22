@@ -13,7 +13,7 @@
     <groupId>web</groupId>
     <artifactId>web</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>web</name>
+    <name>webtoday</name>
     <description>SCR</description>
     <url />
     <licenses>
