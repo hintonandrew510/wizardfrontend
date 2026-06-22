@@ -25,16 +25,20 @@ public enum SlidePageNameEnum {
     TwentyPlanABEPTextSlide("Slide20"),
     TwentyOnePlanALifetimeValuedTextSlide("Slide21"),
     TwentyTwoPlanADigitalROICalculatorTextSlide("Slide22"),
-    TwentyThreePlanBMediaSlide("Slide23"),
+    TwentyThreePlanBMediaSlide("Slide23"),//TwentyThreePlanBMediaSlide
     EightConfidentialClientEvaluationOneSlide("Weekends are best."),
     SeventeenPlanAMediaSlide(""),
    
     
-    
+    //planBBEPPage  planBAverageSale TwentySixPlanBBEPTextSlide 
     
     TwentyFivePlanBProposedTextSlide(""),
-    TwentySixPlanBBEPTextSlide("Slide26"),
-    TwentySevenPlanBLifetimeValuedTextSlide(""),
+  //TwentySixPlanBBEPTextSlide 
+  //TwentySixPlanBBEPTextSlide
+    TwentySixPlanBBEPTextSlide("Slide26"), //TwentySixPlanBBEPTextSlide
+    TwentySevenPlanBBEPTextSlide("Slide27"),
+    TwentyEightPlanBLifetimeValuedTextSlide("Slide28"),
+    TwentySevenPlanBLifetimeValuedTextSlide("Slide27ddd"), //TwentyEightPlanBLifetimeValuedTextSlide
     TwentyEightPlanBDigitalROICalculatorTextSlide(""),
     TwentyNinePlanASpreadSheetSlide(""),
     TwentyNinePlanASpreadSheetTextSlide("Slide30"),
