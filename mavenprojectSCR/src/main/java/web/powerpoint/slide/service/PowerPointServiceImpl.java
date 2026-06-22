@@ -183,6 +183,9 @@ public class PowerPointServiceImpl implements PowerPointService {
 //                    continue;
 //                }
                 //skip if no page def
+                if (slidePageName.equals("Slide23")) {
+                       mLog.info("slidePageName " + slidePageName);
+                }
                 // Filter products with price > 100
                 SlideInterface foundmodel = SlideDataHelper.findModelBySlidePageName(slidePageName, slidesModels);
                 if (foundmodel != null) {
