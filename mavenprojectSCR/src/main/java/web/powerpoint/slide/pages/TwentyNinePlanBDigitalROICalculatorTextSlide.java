@@ -15,16 +15,18 @@ import web.page.planDigitalroicalculatorpage.PlanDigitalROICalculatorPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
-public class TwentyEightPlanBDigitalROICalculatorTextSlide extends AbstractSlide {
-	private static final Logger mLog = LoggerFactory.getLogger(TwentyEightPlanBDigitalROICalculatorTextSlide.class.getName());
+public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide {
+	private static final Logger mLog = LoggerFactory.getLogger(TwentyNinePlanBDigitalROICalculatorTextSlide.class.getName());
 
-	public TwentyEightPlanBDigitalROICalculatorTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+	public TwentyNinePlanBDigitalROICalculatorTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
 	}
 
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		
-		PlanDigitalROICalculatorPageModel pageModel = getmSlidesData()
+	
+
+    @Override
+    public void populateSlide(XSLFSlide slide) {
+        PlanDigitalROICalculatorPageModel pageModel = getmSlidesData()
 				.getPageModels().getPlanBDigitalROICalculatorPageModel();
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
@@ -87,22 +89,8 @@ public class TwentyEightPlanBDigitalROICalculatorTextSlide extends AbstractSlide
 		listData.add(planBMonthlyDigitalInvestment);
 		listData.add(planBSalesConversionPercentage);
 		listData.add(planBMonthlyConversions);
-		
-		
-		
-		
-		//planAGrossProfitOnSales
-		//
+     replaceTextOnSlide(listData, slide);
 
-		
-		
-
-		return listData;
-	}
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

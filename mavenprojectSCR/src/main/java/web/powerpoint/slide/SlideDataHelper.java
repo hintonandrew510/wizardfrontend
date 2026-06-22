@@ -83,7 +83,7 @@ import web.powerpoint.slide.pages.SixTargetMarketingSlide;
 import web.powerpoint.slide.pages.ThirtyPlanBSpreadSheetSlide;
 import web.powerpoint.slide.pages.ThirtyPlanBSpreadSheetTextSlide;
 import web.powerpoint.slide.pages.ThreeMarketPlaceCompetitionSlide;
-import web.powerpoint.slide.pages.TwentyEightPlanBDigitalROICalculatorTextSlide;
+import web.powerpoint.slide.pages.TwentyNinePlanBDigitalROICalculatorTextSlide;
 import web.powerpoint.slide.pages.TwentyFivePlanBProposedTextSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
@@ -819,7 +819,7 @@ public class SlideDataHelper {
 
         slidesList.add(twentyNinePlanASpreadSheetSlide);
 
-        TwentyEightPlanBDigitalROICalculatorTextSlide textSlideTwentyEightPlanBDigitalROICalculatorText = new TwentyEightPlanBDigitalROICalculatorTextSlide(
+        TwentyNinePlanBDigitalROICalculatorTextSlide textSlideTwentyEightPlanBDigitalROICalculatorText = new TwentyNinePlanBDigitalROICalculatorTextSlide(
                 slidesData, SlidePageNameEnum.TwentyEightPlanBDigitalROICalculatorTextSlide,
                 "TwentyEightPlanBDigitalROICalculatorTextSlide", contact, ppt);
         slidesList.add(textSlideTwentyEightPlanBDigitalROICalculatorText);
@@ -835,6 +835,15 @@ public class SlideDataHelper {
         TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
                 SlidePageNameEnum.TwentyEightPlanBLifetimeValuedTextSlide, "TwentyEightPlanBLifetimeValuedTextSlide", contact, ppt);
         slidesList.add(twentyEightPlanBLifetimeValuedTextSlide);
+        
+        
+    
+        TwentyNinePlanBDigitalROICalculatorTextSlide twentyNinePlanBDigitalROICalculatorTextSlide = new TwentyNinePlanBDigitalROICalculatorTextSlide(slidesData,
+                SlidePageNameEnum.TwentyNinePlanBDigitalROICalculatorTextSlide, "TwentyNinePlanBDigitalROICalculatorTextSlide", contact, ppt);
+        slidesList.add(twentyNinePlanBDigitalROICalculatorTextSlide);
+        
+        
+    
 
         slidesData.getPublish().setPlanBBEPPage(true);
 

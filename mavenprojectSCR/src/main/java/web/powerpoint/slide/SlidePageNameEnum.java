@@ -38,6 +38,7 @@ public enum SlidePageNameEnum {
     TwentySixPlanBBEPTextSlide("Slide26"), //TwentySixPlanBBEPTextSlide
     TwentySevenPlanBBEPTextSlide("Slide27"),
     TwentyEightPlanBLifetimeValuedTextSlide("Slide28"),
+    TwentyNinePlanBDigitalROICalculatorTextSlide("Slide29"),
     TwentySevenPlanBLifetimeValuedTextSlide("Slide27ddd"), //TwentyEightPlanBLifetimeValuedTextSlide
     TwentyEightPlanBDigitalROICalculatorTextSlide(""),
     TwentyNinePlanASpreadSheetSlide(""),

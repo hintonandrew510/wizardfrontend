@@ -1132,3 +1132,47 @@
 2026-05-17T19:56:45.619-04:00  INFO 5974 --- [web] [http-nio-8081-exec-7] w.p.s.p.SixTargetMarketingSlide          : raw Text want46to55
 2026-05-17T19:56:45.619-04:00  INFO 5974 --- [web] [http-nio-8081-exec-7] w.p.s.p.SixTargetMarketingSlide          :  cell data want55Plus
 2026-05-17T19:56:45.619-04:00  INFO 5974 --- [web] [http-nio-8081-exec-7] w.p.s.p.SixTargetMarketingSlide          : raw Text want55Plus
+2026-06-21T21:36:00.140-04:00  INFO 10640 --- [web] [main] w.WebApplication                         : Starting WebApplication using Java 24.0.2 with PID 10640 (/Users/andrewhinton/Documents/GitHub/wizardclean/mavenprojectSCR/target/classes started by andrewhinton in /Users/andrewhinton/Documents/GitHub/wizardclean/mavenprojectSCR)
+2026-06-21T21:36:00.150-04:00  INFO 10640 --- [web] [main] w.WebApplication                         : No active profile set, falling back to 1 default profile: "default"
+2026-06-21T21:36:01.616-04:00  INFO 10640 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-21T21:36:01.878-04:00  INFO 10640 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 247 ms. Found 7 JPA repository interfaces.
+2026-06-21T21:36:02.909-04:00  INFO 10640 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port 8081 (http)
+2026-06-21T21:36:02.937-04:00  INFO 10640 --- [web] [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2026-06-21T21:36:02.938-04:00  INFO 10640 --- [web] [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2026-06-21T21:36:02.994-04:00  INFO 10640 --- [web] [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2026-06-21T21:36:02.995-04:00  INFO 10640 --- [web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2759 ms
+2026-06-21T21:36:03.379-04:00  INFO 10640 --- [web] [main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-06-21T21:36:03.484-04:00  INFO 10640 --- [web] [main] o.h.Version                              : HHH000412: Hibernate ORM core version 6.6.26.Final
+2026-06-21T21:36:03.536-04:00  INFO 10640 --- [web] [main] o.h.c.i.RegionFactoryInitiator           : HHH000026: Second-level cache disabled
+2026-06-21T21:36:03.837-04:00  INFO 10640 --- [web] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-21T21:36:03.860-04:00  INFO 10640 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2026-06-21T21:36:04.398-04:00  INFO 10640 --- [web] [main] c.z.h.p.PoolBase                         : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2026-06-21T21:36:04.401-04:00  INFO 10640 --- [web] [main] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@d512c1
+2026-06-21T21:36:04.403-04:00  INFO 10640 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2026-06-21T21:36:04.468-04:00  INFO 10640 --- [web] [main] o.h.o.c.pooling                          : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.7.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-21T21:36:05.621-04:00  INFO 10640 --- [web] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-21T21:36:05.636-04:00  INFO 10640 --- [web] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-21T21:36:06.121-04:00  INFO 10640 --- [web] [main] w.s.MyUserDetailService                  : MyUserDetailService
+2026-06-21T21:36:06.176-04:00  INFO 10640 --- [web] [main] w.c.WebSecurityConfig                    : WebSecurityConfig
+2026-06-21T21:36:06.180-04:00  INFO 10640 --- [web] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: private static final org.slf4j.Logger web.controller.AgentController.mLog
+2026-06-21T21:36:06.446-04:00  WARN 10640 --- [web] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-06-21T21:36:06.489-04:00  INFO 10640 --- [web] [main] w.c.WebSecurityConfig                    : authenticationProvider
+2026-06-21T21:36:06.532-04:00  INFO 10640 --- [web] [main] w.c.WebSecurityConfig                    : passwordEncoder()
+2026-06-21T21:36:06.539-04:00  INFO 10640 --- [web] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-06-21T21:36:06.541-04:00  WARN 10640 --- [web] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-06-21T21:36:06.577-04:00  INFO 10640 --- [web] [main] w.c.WebSecurityConfig                    : securityFilterChain
+2026-06-21T21:36:06.611-04:00  INFO 10640 --- [web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-06-21T21:36:07.304-04:00  INFO 10640 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port 8081 (http) with context path '/'
+2026-06-21T21:36:07.322-04:00  INFO 10640 --- [web] [main] w.WebApplication                         : Started WebApplication in 8.045 seconds (process running for 9.02)
+2026-06-21T21:36:52.612-04:00  INFO 10640 --- [web] [SpringApplicationShutdownHook] o.s.b.w.e.t.GracefulShutdown             : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-21T21:36:52.626-04:00  INFO 10640 --- [web] [tomcat-shutdown] o.s.b.w.e.t.GracefulShutdown             : Graceful shutdown complete
+2026-06-21T21:36:52.636-04:00  INFO 10640 --- [web] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-21T21:36:52.641-04:00  INFO 10640 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2026-06-21T21:36:52.648-04:00  INFO 10640 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
