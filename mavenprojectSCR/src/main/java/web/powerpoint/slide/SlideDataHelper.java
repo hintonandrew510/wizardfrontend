@@ -90,7 +90,8 @@ import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanAMediaSlide;
 import web.powerpoint.slide.pages.TwentyPlanABEPTextSlide;
-import web.powerpoint.slide.pages.TwentySevenPlanBLifetimeValuedTextSlide;
+import web.powerpoint.slide.pages.TwentySevenPlanBBEPTextSlide;
+import web.powerpoint.slide.pages.TwentyEightPlanBLifetimeValuedTextSlide;
 import web.powerpoint.slide.pages.TwentySixPlanBBEPTextSlide;
 import web.powerpoint.slide.pages.TwentyThreePlanBMediaSlide;
 import web.powerpoint.slide.pages.TwentyTwoPlanADigitalROICalculatorTextSlide;
@@ -776,7 +777,7 @@ public class SlideDataHelper {
         TwentyOnePlanALifetimeValuedTextSlide textSlidea = new TwentyOnePlanALifetimeValuedTextSlide(
                 slidesData, SlidePageNameEnum.TwentyOnePlanALifetimeValuedTextSlide, "TwentyOnePlanALifetimeValuedTextSlide", contact, ppt);
         slidesList.add(textSlidea);
-        TwentySevenPlanBLifetimeValuedTextSlide textSlidec = new TwentySevenPlanBLifetimeValuedTextSlide(
+        TwentyEightPlanBLifetimeValuedTextSlide textSlidec = new TwentyEightPlanBLifetimeValuedTextSlide(
                 slidesData, SlidePageNameEnum.TwentySevenPlanBLifetimeValuedTextSlide, "TwentySevenPlanBLifetimeValuedTextSlide", contact, ppt);
         slidesList.add(textSlidec);
 
@@ -824,7 +825,19 @@ public class SlideDataHelper {
         slidesList.add(textSlideTwentyEightPlanBDigitalROICalculatorText);
         TwentySixPlanBBEPTextSlide twentySixPlanBBEPTextSlide = new TwentySixPlanBBEPTextSlide(slidesData,
                 SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySixPlanBBEPTextSlide", contact, ppt);
-        slidesList.add(twentySixPlanBBEPTextSlide);
+        
+            slidesList.add(twentySixPlanBBEPTextSlide);
+        
+           TwentySevenPlanBBEPTextSlide twentySevenPlanBBEPTextSlide = new TwentySevenPlanBBEPTextSlide(slidesData,
+                SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySevenPlanBBEPTextSlide", contact, ppt);
+            slidesList.add(twentySevenPlanBBEPTextSlide);
+            
+            
+                TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
+                SlidePageNameEnum.TwentyEightPlanBLifetimeValuedTextSlide, "TwentyEightPlanBLifetimeValuedTextSlide", contact, ppt);
+            slidesList.add(twentyEightPlanBLifetimeValuedTextSlide);
+        
+    
         slidesData.getPublish().setPlanBBEPPage(true);
 
         // BatchUpdatePresentationRequest update = new BatchUpdatePresentationRequest();
