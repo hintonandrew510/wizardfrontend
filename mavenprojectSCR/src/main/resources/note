@@ -1,0 +1,13 @@
+	a {PlanABEPPageModel?.planAAverageSale}"
+	b ${PlanABEPPageModel?.planAGrossMargin} + '%'"
+c ${PlanABEPPageModel?.planAClosingPct} + '%'"
+d ${PlanABEPPageModel?.planAProspectValue}"
+
+e ${PlanAProposedPageModel?.planAMonthly}"
+f ${PlanABEPPageModel?.planAProspectsNeeded}"
+g	${PlanABEPPageModel?.planAProspectSalesNeeded}
+h	"${PlanABEPPageModel?.planAGrossProfitOnSales}"
+		I "${PlanABEPPageModel?.planAMonths}"
+		
+J "${PlanABEPPageModel?.planAAdditionalGrossSales}"
+			

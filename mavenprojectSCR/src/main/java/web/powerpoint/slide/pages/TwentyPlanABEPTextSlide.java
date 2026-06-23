@@ -24,35 +24,62 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
+        
+        /*
+        	a {PlanABEPPageModel?.planAAverageSale}"
+        
+	b ${PlanABEPPageModel?.planAGrossMargin} + '%'"
+c ${PlanABEPPageModel?.planAClosingPct} + '%'"
+d ${PlanABEPPageModel?.planAProspectValue}"
+
+e ${PlanAProposedPageModel?.planAMonthly}"'
+        
+f ${PlanABEPPageModel?.planAProspectsNeeded}"
+g	${PlanABEPPageModel?.planAProspectSalesNeeded}
+h	"${PlanABEPPageModel?.planAGrossProfitOnSales}"
+		I "${PlanABEPPageModel?.planAMonths}"
+		
+J "${PlanABEPPageModel?.planAAdditionalGrossSales}"
+        */
 
         PlanABEPPageModel planABEPPageModel = getmSlidesData()
                 .getPageModels().getPlanABEPPageModel();
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-        SlideReplacementData planAAverageSale = new SlideReplacementData("planAAverageSale",
+        SlideReplacementData planAAverageSale = new SlideReplacementData("AAver",
                 planABEPPageModel.getPlanAAverageSale());
-        SlideReplacementData planAGrossMargin = new SlideReplacementData("planAGrossMargin",
+        
+        SlideReplacementData planAGrossMargin = new SlideReplacementData("BGross",
                 planABEPPageModel.getPlanAGrossMargin() + "%");
-        SlideReplacementData planAClosingPct = new SlideReplacementData("planAClosingPct",
+        
+        SlideReplacementData planAClosingPct = new SlideReplacementData("CClose",
                 planABEPPageModel.getPlanAClosingPct() + "%");
-        SlideReplacementData planAProspectValue = new SlideReplacementData("planAProspectValue",
-                planABEPPageModel.getPlanAProspectValue());
+        
+        SlideReplacementData planAProspectValue = new SlideReplacementData("DProj",
+                planABEPPageModel.getPlanAProspectValue()); //AProspectValue
 
-        SlideReplacementData planAProspectsNeeded = new SlideReplacementData("planAProspectsNeeded",
-                planABEPPageModel.getPlanAProspectsNeeded());
-
-        SlideReplacementData planAProspectSalesNeeded = new SlideReplacementData("planAProspectSalesNeeded",
-                planABEPPageModel.getPlanAProspectSalesNeeded());
-
-        SlideReplacementData planAGrossProfitOnSales = new SlideReplacementData("planAGrossProfitOnSales",
-                planABEPPageModel.getPlanAGrossProfitOnSales());
-
-        SlideReplacementData planAMonths = new SlideReplacementData("planAMonthy",
+        SlideReplacementData planAProspectsNeeded = new SlideReplacementData("EClient",
                 planABEPPageModel.getPlanAMonths());
 
-        SlideReplacementData planAAdditionalGrossSales = new SlideReplacementData("planAAdditionalGrossSales",
-                planABEPPageModel.getPlanAAdditionalGrossSales());
+        SlideReplacementData planAProspectSalesNeeded = new SlideReplacementData("FMonth",
+                planABEPPageModel.getPlanAProspectsNeeded());
+//planAProspectsNeeded planAProspectsNeeded
+        
+        SlideReplacementData planAGrossProfitOnSales = new SlideReplacementData("GMonth",
+                planABEPPageModel.getPlanAProspectSalesNeeded());
+                       //planAProspectSalesNeeded
+
+        SlideReplacementData planAMonths = new SlideReplacementData("HGross",
+                planABEPPageModel.getPlanAGrossProfitOnSales());
+        
+        //planAGrossProfitOnSales
+
+        SlideReplacementData planAAdditionalGrossSales = new SlideReplacementData("INumb",
+                planABEPPageModel.getPlanAMonths());
+        SlideReplacementData planAAdditionalGrossSalesB = new SlideReplacementData("JAdd",
+                planABEPPageModel.getPlanAGrossProfitOnSales());
+        //planAAdditionalGrossSales
 
         listData.add(planAAverageSale);
         listData.add(planAGrossMargin);
@@ -63,6 +90,7 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
         listData.add(planAGrossProfitOnSales);
         listData.add(planAMonths);
         listData.add(planAAdditionalGrossSales);
+        listData.add(planAAdditionalGrossSalesB);
         replaceTextOnSlide(listData, slide);
     }
 
