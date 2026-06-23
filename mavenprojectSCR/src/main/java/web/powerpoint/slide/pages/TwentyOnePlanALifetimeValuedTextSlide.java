@@ -28,33 +28,43 @@ public class TwentyOnePlanALifetimeValuedTextSlide extends AbstractSlide {
     public void populateSlide(XSLFSlide slide) {
                     PlanALifetimeValuedPageModel planALifetimeValuedPageModel =  getmSlidesData()
 				.getPageModels().getPlanALifetimeValuedPageModel();
-		
+		/*
+                    AAver
+                    BTime
+                    CEqual
+                    DTime
+                    EEqual  
+                    FTime
+                    GEqual
+                    HSo
+                    IThen
+                    */
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-		SlideReplacementData averageSale = new SlideReplacementData("a_averageSale",
+		SlideReplacementData averageSale = new SlideReplacementData("AAver",
 				planALifetimeValuedPageModel.getAverageSale());
-		SlideReplacementData grossProfitMargin = new SlideReplacementData("a_grossProfitMargin",
+		SlideReplacementData grossProfitMargin = new SlideReplacementData("BTime",
 				planALifetimeValuedPageModel.getGrossProfitMargin() + "%" );
-		SlideReplacementData grossProfitPerSale = new SlideReplacementData("a_grossProfitPerSale",
+		SlideReplacementData grossProfitPerSale = new SlideReplacementData("CEqual",
 				planALifetimeValuedPageModel.getGrossProfitPerSale() );
-		SlideReplacementData averageRepeatSales = new SlideReplacementData("a_averageRepeatSales",
+		SlideReplacementData averageRepeatSales = new SlideReplacementData("DTime",
 				planALifetimeValuedPageModel.getAverageRepeatSales());
 		
-		SlideReplacementData averageCustomerValue = new SlideReplacementData("a_averageCustomerValue",
+		SlideReplacementData averageCustomerValue = new SlideReplacementData("EEqual",
 				planALifetimeValuedPageModel.getAverageCustomerValue());
 		
-		SlideReplacementData yearsOfPatronage = new SlideReplacementData("a_yearsOfPatronage",
+		SlideReplacementData yearsOfPatronage = new SlideReplacementData("FTime",
 				planALifetimeValuedPageModel.getYearsOfPatronage());
 		
-		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("a_lifetimeValuePerCustomer",
+		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("GEqual",
 				planALifetimeValuedPageModel.getLifetimeValuePerCustomer());
 		
-		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("a_prospectsNeededToBreakEven",
+		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("HSo",
 				planALifetimeValuedPageModel.getProspectsNeededToBreakEven());
 		
 		String planAmonthStr = planALifetimeValuedPageModel.getMonthlyInvestmentAverage();
-                SlideReplacementData planAMonth = new SlideReplacementData("planAMonth",
+                SlideReplacementData planAMonth = new SlideReplacementData("IThen",
 				planAmonthStr);
 		
                 
