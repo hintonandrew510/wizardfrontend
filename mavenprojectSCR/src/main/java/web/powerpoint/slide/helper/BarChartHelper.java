@@ -78,7 +78,7 @@ public class BarChartHelper {
         // ChartUtils..saveChartAsJPEG( barChart3D, barChart, width, height);
         ChartUtilities.saveChartAsJPEG(barChart3D, barChart, width, height);
         //  ChartUtils.saveChartAsPNG(barChart3D, barChart, width, height);
-        System.out.println("Path " + barChart3D.getAbsolutePath());
+        //System.out.println("Path " + barChart3D.getAbsolutePath());
         return barChart3D.getAbsolutePath();
     }
 

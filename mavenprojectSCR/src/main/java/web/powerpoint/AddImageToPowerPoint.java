@@ -52,7 +52,7 @@ public class AddImageToPowerPoint {
             out.close();
             ppt.close();
 
-            System.out.println("Image successfully added to presentation_with_image.pptx");
+            //System.out.println("Image successfully added to presentation_with_image.pptx");
 
         } catch (IOException e) {
             e.printStackTrace();

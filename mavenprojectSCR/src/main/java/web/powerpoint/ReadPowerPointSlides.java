@@ -25,13 +25,13 @@ public class ReadPowerPointSlides {
     public static void display(XSLFSlide slide) {
         org.apache.poi.openxml4j.util.ZipSecureFile.setMinInflateRatio(0.001); // or a different value as needed
 
-        System.out.println("name " + slide.getSlideName());
-        System.out.println("name " + slide.getTitle());
-        System.out.println("number " + slide.getSlideNumber());
+        //System.out.println("name " + slide.getSlideName());
+        //System.out.println("name " + slide.getTitle());
+        ///System.out.println("number " + slide.getSlideNumber());
         //  System.out.println("name " + slide.
         List<XSLFComment> comments = slide.getComments();
         for (XSLFComment comment : comments) {
-            System.out.println("comment " + comment.getText());
+            //System.out.println("comment " + comment.getText());
 
         }
 
@@ -39,7 +39,7 @@ public class ReadPowerPointSlides {
             if (shape instanceof XSLFGraphicFrame) {
                 XSLFGraphicFrame xslFGraphicFrame = (XSLFGraphicFrame) shape;
                 String shapeName = xslFGraphicFrame.getShapeName();
-                System.out.println(shapeName);
+               // System.out.println(shapeName);
                 break;
 
                 // Check if it's a placeholder you want to replace (can use shape name or type)
@@ -63,7 +63,7 @@ public class ReadPowerPointSlides {
                     for (XSLFTextRun incomingTextRun : textRuns) {
                         String text = incomingTextRun.getRawText();
                         text = text.trim();
-                        System.out.println("text " + text);
+                       // System.out.println("text " + text);
                     }
                 }
             }
@@ -81,13 +81,13 @@ public class ReadPowerPointSlides {
             List<XSLFSlide> slides = ppt.getSlides();
 
             for (XSLFSlide slide : ppt.getSlides()) {
-                System.out.println("name " + slide.getSlideName());
-                System.out.println("name " + slide.getTitle());
-                System.out.println("number " + slide.getSlideNumber());
+                //System.out.println("name " + slide.getSlideName());
+                //System.out.println("name " + slide.getTitle());
+                //System.out.println("number " + slide.getSlideNumber());
                 //  System.out.println("name " + slide.
                 List<XSLFComment> comments = slide.getComments();
                 for (XSLFComment comment : comments) {
-                    System.out.println("comment " + comment.getText());
+                    //System.out.println("comment " + comment.getText());
 
                 }
             }

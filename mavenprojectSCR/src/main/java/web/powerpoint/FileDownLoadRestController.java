@@ -94,9 +94,9 @@ public class FileDownLoadRestController {
         java.io.File file = ResourceUtils.getFile("classpath:powerpointtemplate/tv.pptx");
         InputStream inputStream = new FileInputStream(file);
         String fileName = file.getCanonicalPath();
-        System.out.println("file " + file.getCanonicalPath());
+       // System.out.println("file " + file.getCanonicalPath());
         String filePath = resource.getPath();
-        System.out.println("filePath " + filePath);
+        //System.out.println("filePath " + filePath);
         //InputStream inputStream = resource.getInputStream();
 
         // Load the template
@@ -104,7 +104,7 @@ public class FileDownLoadRestController {
         // XMLSlideShow ppt = new XMLSlideShow(inputStream);
         //  FileInputStream templateFile = new FileInputStream(filePath);
         XMLSlideShow ppt = new XMLSlideShow(inputStream);
-        System.out.println("loaded pptx");
+       // System.out.println("loaded pptx");
         int q = 2;
         //fis.close();
 //

@@ -60,17 +60,17 @@ public class PieChartDemoPercentage {
         for (POIXMLDocumentPart part : slide.getRelations()) {
             if (part instanceof XSLFChart) {
                 chart = (XSLFChart) part;
-                System.out.println("FOUND chart " );
+               // System.out.println("FOUND chart " );
                // String title = chart.getTitle().getBody().toString();
                 
                 break;
             } else {
-                 System.out.println("Part " + part );
+                 //System.out.println("Part " + part );
             }
         }
 
         if (chart == null) {
-            System.out.println("chart NOT found in the template");
+            //System.out.println("chart NOT found in the template");
             throw new IllegalStateException("chart not found in the template");
         }
 
@@ -84,7 +84,7 @@ public class PieChartDemoPercentage {
         // embedded Excel workbook that holds the chart data
          List<POIXMLDocumentPart> allparts = chart.getRelations();
          for (POIXMLDocumentPart indPart : allparts) {
-            System.out.println(" part " +indPart.getClass().getName() );
+            //System.out.println(" part " +indPart.getClass().getName() );
          }
          
         POIXMLDocumentPart xlsPart = chart.getRelations().get(0);
@@ -187,7 +187,7 @@ public class PieChartDemoPercentage {
         FileOutputStream out = new FileOutputStream("./pie3d-chart-demo-outputTV.pptx");
         pptx.write(out);
 
-        System.out.println("file created");
+        //System.out.println("file created");
         out.close();
     }
 }

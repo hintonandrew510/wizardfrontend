@@ -50,7 +50,7 @@ public class GetTextBoxesXSLF {
                         // Process the row (e.g., get cells from the row)
                         List<XSLFTableCell> cells = row.getCells();
                         for (XSLFTableCell cell : cells) {
-                             System.out.println("table cell data " + cell.getText());
+                            // System.out.println("table cell data " + cell.getText());
 
                             for (XSLFTextParagraph p : cell.getTextParagraphs()) {
                                 //System.out.println(" p.getText() " + p.getText());
@@ -58,7 +58,7 @@ public class GetTextBoxesXSLF {
                                     //(" r.getRawText() " + r.getRawText());
                                     //order1
                                     String test = r.getRawText();
-                                    System.out.println("raw Text " + test);
+                                  //  System.out.println("raw Text " + test);
                                     
 
 
@@ -87,7 +87,7 @@ public class GetTextBoxesXSLF {
                         XSLFTable table = (XSLFTable) shape;
                         tableNumber = tableNumber + 1;
 
-                        System.out.println("table one " + tableNumber);
+                       // System.out.println("table one " + tableNumber);
 
                         // Get all rows from the table
                         List<XSLFTableRow> rows = table.getRows();
@@ -104,7 +104,7 @@ public class GetTextBoxesXSLF {
                                     for (XSLFTextRun r : p.getTextRuns()) {
                                         //System.out.println(" parent " + r.getXmlObject().);
 
-                                        System.out.println(" r.getRawText() " + r.getRawText());
+                                       // System.out.println(" r.getRawText() " + r.getRawText());
                                         r.setBold(true);
                                         //content.append(r.getText());
                                     }
@@ -119,7 +119,7 @@ public class GetTextBoxesXSLF {
                         for (XSLFTextParagraph paragraph : textShape.getTextParagraphs()) {
                             String text = paragraph.getText();
                             if (!text.isEmpty()) {
-                               System.out.println("TextBox Content: " + text);
+                              // System.out.println("TextBox Content: " + text);
                             }
                         }
                     }
@@ -127,7 +127,7 @@ public class GetTextBoxesXSLF {
                 break;
 
             }
-            System.out.println("--- Slide " + slide.getSlideNumber() + " ---");
+            //System.out.println("--- Slide " + slide.getSlideNumber() + " ---");
             // Iterate through all shapes on the slide
 
         }

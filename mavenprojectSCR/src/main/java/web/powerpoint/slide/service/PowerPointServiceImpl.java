@@ -5,14 +5,12 @@
 package web.powerpoint.slide.service;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFComment;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -189,15 +187,15 @@ public class PowerPointServiceImpl implements PowerPointService {
                 // Filter products with price > 100
                 SlideInterface foundmodel = SlideDataHelper.findModelBySlidePageName(slidePageName, slidesModels);
                 if (foundmodel != null) {
-                    mLog.info("Class name " + foundmodel.getClass().getName() + " pageName " + slidePageName);
+                    mLog.warn("Class name " + foundmodel.getClass().getName() + " pageName " + slidePageName);
                     try {
                         foundmodel.populateSlide(slide);
                     } catch (Exception ex) {
-                        mLog.info("Error  on slide " + slidePageName);
+                        mLog.error("ERROR  on slide " + ex.getMessage()  +foundmodel.getClass().getName() + " " +  slidePageName);
                     }
                 } else {
 
-                    mLog.info("Error  on slide " + slidePageName);
+                    mLog.info("Can not find any class for Error  on slide " + slidePageName);
                     continue;
                 }
 

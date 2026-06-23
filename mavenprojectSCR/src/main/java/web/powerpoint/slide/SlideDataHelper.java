@@ -88,7 +88,7 @@ import web.powerpoint.slide.pages.TwentyFivePlanBProposedTextSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
-import web.powerpoint.slide.pages.TwentyOnePlanAMediaSlide;
+import web.powerpoint.slide.pages.SeventeenPlanAMediaSlide;
 import web.powerpoint.slide.pages.TwentyPlanABEPTextSlide;
 import web.powerpoint.slide.pages.TwentySevenPlanBBEPTextSlide;
 import web.powerpoint.slide.pages.TwentyEightPlanBLifetimeValuedTextSlide;
@@ -711,7 +711,7 @@ public class SlideDataHelper {
         }//end of switch
 
         //TwentyOnePlanAMediaSlide
-        TwentyOnePlanAMediaSlide twentyOnePlanAMediaSlide = new TwentyOnePlanAMediaSlide(
+        SeventeenPlanAMediaSlide twentyOnePlanAMediaSlide = new SeventeenPlanAMediaSlide(
                 slidesData, SlidePageNameEnum.TwentyOnePlanAMedia,
                 "TwentyOnePlanAMediaSlide", contact, ppt);
         slidesList.add(twentyOnePlanAMediaSlide);

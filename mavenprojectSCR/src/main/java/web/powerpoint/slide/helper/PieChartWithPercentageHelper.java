@@ -61,7 +61,7 @@ public class PieChartWithPercentageHelper  {
             File pieChart = new File( "/opt/wizard/download/" + pieEntity.getFileName()+".jpeg");
             ChartUtilities.saveChartAsJPEG(pieChart, chart, 800, 600);
             
-            System.out.println("Chart saved to " + pieChart.getAbsolutePath());
+           // System.out.println("Chart saved to " + pieChart.getAbsolutePath());
             return pieChart.getAbsolutePath();
         } catch (Exception e) {
             System.err.println("Could not write chart: " + e.getMessage());

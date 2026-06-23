@@ -19,11 +19,9 @@
         </Logger>
 
         <!-- Root Logger  info debug offfor all other classes -->
-        <Root level="ERROR">
+        <Root level="INFO">
             <AppenderRef ref="ConsoleAppender"/>
         </Root>
     </Loggers>
 </Configuration>
-
-
 

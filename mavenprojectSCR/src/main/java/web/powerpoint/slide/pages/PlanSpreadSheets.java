@@ -316,7 +316,7 @@ public class PlanSpreadSheets {
 			mLog.info("rtTotal " + rtTotal);
 			
 			
-			mLog.warn("constructTotals ending");
+			mLog.info("constructTotals ending");
 			
 		}//end of for
 	
@@ -332,7 +332,7 @@ String ammount= nf.format(value);
 	public PlanSpreadSheets(String json, String  source, boolean justBottomTotal) {
 		this.source = source;
 		try {
-			mLog.warn("starting PlanSpreadSheets bottom for " + this.source);
+			mLog.info("starting PlanSpreadSheets bottom for " + this.source);
 			planSpreadSheets = new Gson().fromJson(json, new TypeToken<List<PlanSpreadSheet>>() {
 			}.getType());
 			this.constructBottomTotals();

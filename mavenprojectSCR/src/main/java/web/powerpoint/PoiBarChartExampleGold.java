@@ -77,7 +77,7 @@ public class PoiBarChartExampleGold {
             try (FileOutputStream fileOut = new FileOutputStream("./PoiBarChart.xlsx")) {
                 wb.write(fileOut);
             }
-            System.out.println("Chart created successfully: PoiBarChart.xlsx");
+            //System.out.println("Chart created successfully: PoiBarChart.xlsx");
         }
     }
 }
