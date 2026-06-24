@@ -29,50 +29,64 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
 				.getPageModels().getPlanADigitalROICalculatorPageModel();
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+/*
+                
+                
+                
 
+
+
+GSales​
+
+
+
+
+LMonth​
+MMonth
+                */
 			
-		SlideReplacementData planAMonthlyDigitalInvestment = new SlideReplacementData("planAAverag",
+		SlideReplacementData planAMonthlyDigitalInvestment = new SlideReplacementData("AMonth",
 				pageModel.getPlanAMonthlyDigitalInvestment());
 		
-		SlideReplacementData planACostPerThousand = new SlideReplacementData("planAGross",
+		SlideReplacementData planACostPerThousand = new SlideReplacementData("BCost",
 				pageModel.getPlanACostPerThousand());
 		
 		String planAClosingPctNumberStr = pageModel.getPlanAClosingPctNumber();
 		
 		planAClosingPctNumberStr = this.withLargeIntegers(planAClosingPctNumberStr);
 		mLog.info("planAClosingPctNumberStr " + planAClosingPctNumberStr);
-		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("planAClose",
+		SlideReplacementData planAClosingPctNumber = new SlideReplacementData("CMonth​",
 				planAClosingPctNumberStr);
-		SlideReplacementData planAClickThroughRate = new SlideReplacementData("planAProsp",
+		SlideReplacementData planAClickThroughRate = new SlideReplacementData("DClick​",
 				pageModel.getPlanAClickThroughRate() + "%");
 		
-		SlideReplacementData planAMonthlyClicks = new SlideReplacementData("planAMontly",
+		SlideReplacementData planAMonthlyClicks = new SlideReplacementData("EMonth​",
 				pageModel.getPlanAMonthlyClicks());
 		
-		SlideReplacementData planACostPerClicks = new SlideReplacementData("planAProsp",
+		SlideReplacementData planACostPerClicks = new SlideReplacementData("FCost​",
 				pageModel.getPlanACostPerClicks());
 		
-		SlideReplacementData planASalesConversionPercentage = new SlideReplacementData("planAProspc",
+		SlideReplacementData planASalesConversionPercentage = new SlideReplacementData("GSales​",
 				pageModel.getPlanASalesConversionPercentage() + "%");
 		
 		
-		SlideReplacementData planAMonthlyConversions = new SlideReplacementData("planAGrossA",
+		SlideReplacementData planAMonthlyConversions = new SlideReplacementData("HMonth​",
 				pageModel.getPlanAMonthlyConversions());
 		
 		
 		
-		SlideReplacementData planACostPerConversion = new SlideReplacementData("planAMonN",
+		SlideReplacementData planACostPerConversion = new SlideReplacementData("ICost​",
 				pageModel.getPlanACostPerConversion());
 		
 		SlideReplacementData planAProjectedGrossProfit = new SlideReplacementData("hI",
 				pageModel.getPlanAProjectedGrossProfit());
 		
-		SlideReplacementData planAMonthlyGrossProfit = new SlideReplacementData("planAMonthlyGrossProfit",
+		SlideReplacementData planAMonthlyGrossProfit = new SlideReplacementData("JProj​",
 				pageModel.getPlanAMonthlyGrossProfit());
 		
-		SlideReplacementData planAMonthlyROID = new SlideReplacementData("planAMonthlyROID",
+		SlideReplacementData planAMonthlyROID = new SlideReplacementData("KMonth​",
 				pageModel.getPlanAMonthlyROID());
-		SlideReplacementData planAMonthlyROIP = new SlideReplacementData("planAMonthlyROIP",
+		SlideReplacementData planAMonthlyROIP = new SlideReplacementData("MMonth",
 				pageModel.getPlanAMonthlyROIP() + "%");
 		
 		
