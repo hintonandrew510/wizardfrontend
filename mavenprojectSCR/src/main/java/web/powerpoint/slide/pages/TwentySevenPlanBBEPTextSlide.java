@@ -24,7 +24,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
-
+//planBMonthly
         PlanBBEPPageModel planBBEPPageModel = getmSlidesData()
                 .getPageModels().getPlanBBEPPageModel();
 
@@ -51,7 +51,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
         SlideReplacementData planBGrossProfitOnSales = new SlideReplacementData("planBGrossProfitOnSales",
                 planBBEPPageModel.getPlanBGrossProfitOnSales());
 
-        SlideReplacementData planBMonths = new SlideReplacementData("planBMonths",
+        SlideReplacementData planBMonths = new SlideReplacementData("planBMonthly",
                 planBBEPPageModel.getPlanBMonths());
 
         SlideReplacementData planBAdditionalGrossSales = new SlideReplacementData("planBAdditionalGrossSales",
