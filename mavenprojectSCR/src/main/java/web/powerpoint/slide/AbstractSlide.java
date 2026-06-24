@@ -110,6 +110,31 @@ public abstract class AbstractSlide implements SlideInterface {
         }
     }
 
+    public void replaceTextOnSlidePrint(List<SlideReplacementData> listData, XSLFSlide slide) {
+       // for (SlideReplacementData slideReplacementData : listData) {
+            for (XSLFShape shape : slide.getShapes()) {
+                // Check if the shape is a text shape
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
+
+                    for (XSLFTextParagraph para : paragraphs) {
+                        List<XSLFTextRun> textRuns = para.getTextRuns();
+                        for (XSLFTextRun incomingTextRun : textRuns) {
+                            String text = incomingTextRun.getRawText();
+                            text = text.trim();
+//[CMonth​][CMonth] 
+                            mLog.warn("text[" + text + "] " );
+// Perform the replacement using standard Java string methods
+                           
+                       // }
+                    }
+                }
+            }
+        }
+    }
+    
+    
     public void replaceTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide) {
         for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
