@@ -829,7 +829,7 @@ public class SlideDataHelper {
         slidesList.add(twentySixPlanBBEPTextSlide);
 
         TwentySevenPlanBBEPTextSlide twentySevenPlanBBEPTextSlide = new TwentySevenPlanBBEPTextSlide(slidesData,
-                SlidePageNameEnum.TwentySixPlanBBEPTextSlide, "TwentySevenPlanBBEPTextSlide", contact, ppt);
+                SlidePageNameEnum.TwentySevenPlanBBEPTextSlide, "TwentySevenPlanBBEPTextSlide", contact, ppt);
         slidesList.add(twentySevenPlanBBEPTextSlide);
 
         TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
