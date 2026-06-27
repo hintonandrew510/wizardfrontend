@@ -51,7 +51,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
         SlideReplacementData planBGrossProfitOnSales = new SlideReplacementData("planBGrossProfitOnSales",
                 planBBEPPageModel.getPlanBGrossProfitOnSales());
 
-        SlideReplacementData planBMonths = new SlideReplacementData("planBMonthly",
+        SlideReplacementData planBMonths = new SlideReplacementData("planBMonths",
                 planBBEPPageModel.getPlanBMonths());
 
         SlideReplacementData planBAdditionalGrossSales = new SlideReplacementData("planBAdditionalGrossSales",
@@ -69,6 +69,8 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
 
         listData.add(planBMonths);
         replaceTextOnSlide(listData, slide);
+        mLog.warn("CLASS"+ TwentySevenPlanBBEPTextSlide.class.getName());
+        this.replaceTextOnSlidePrint(listData, slide);
 
     }
 

@@ -92,7 +92,7 @@ public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide 
 		
 		SlideReplacementData planBMonthlyROID = new SlideReplacementData("LMonth​",
 				pageModel.getPlanAMonthlyROID());
-		SlideReplacementData planBMonthlyROIP = new SlideReplacementData("LMonth",
+		SlideReplacementData planBMonthlyROIP = new SlideReplacementData("MMonth",
 				pageModel.getPlanAMonthlyROIP() + "%");
 		
                 
@@ -113,6 +113,10 @@ public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide 
 		listData.add(planBMonthlyConversions);
                 replaceTextOnSlidePrint(listData, slide);
      replaceTextOnSlide(listData, slide);
+               mLog.warn("CLASS"+ TwentyNinePlanBDigitalROICalculatorTextSlide.class.getName());
+        this.replaceTextOnSlidePrint(listData, slide);
+		
+	
 
     }
 

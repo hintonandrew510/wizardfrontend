@@ -53,7 +53,7 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData yearsOfPatronage = new SlideReplacementData("b_yearsOfPatronage",
 				planBLifetimeValuedPageModel.getYearsOfPatronage() + "");
 		
-		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("b_lifetimeValuePerCustomer",
+		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("planBMonthly",
 				planBLifetimeValuedPageModel.getLifetimeValuePerCustomer());
 		
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("b_prospectsNeededToBreakEven",
@@ -69,6 +69,8 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		listData.add(lifetimeValuePerCustomer);
 		listData.add(prospectsNeededToBreakEven);
                  replaceTextOnSlide(listData, slide);
+                 mLog.warn("CLASS"+ TwentyEightPlanBLifetimeValuedTextSlide.class.getName());
+        this.replaceTextOnSlidePrint(listData, slide);
 		
 		//planAGrossProfitOnSales
 		//
