@@ -151,7 +151,7 @@ public abstract class AbstractSlide implements SlideInterface {
 
                             String label = slideReplacementData.getGoogleSlideVariableName();
                             label = label.trim();
-                            String convertParagraph = ParagraphHelper.wrapText(label, 30);
+                            String convertParagraph = ParagraphHelper.wrapText(slideReplacementData.getGoogleSlideVariableValue(), 30);
 
                             String[] lines = convertParagraph.split("\\r?\\n");
 
