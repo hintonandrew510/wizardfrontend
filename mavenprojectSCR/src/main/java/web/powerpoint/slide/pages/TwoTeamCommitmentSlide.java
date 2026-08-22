@@ -23,39 +23,12 @@ public class TwoTeamCommitmentSlide extends AbstractSlide {
         super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
-    public List<SlideReplacementData> composeGoogleSlideData() {
-        TeamCommitmentPageModel model = getmSlidesData().getPageModels().getTeamCommitmentPageModel();
-          PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
-
-        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-
-        SlideReplacementData topLevelName = new SlideReplacementData("topLevelName", model.getTopLevelName());
-        SlideReplacementData topLevelTitle = new SlideReplacementData("topLevelTitle", model.getTopLevelTitle());
-        SlideReplacementData secondLevelName = new SlideReplacementData("secondLevelName", model.getSecondLevelName());
-        SlideReplacementData secondLevelTitle = new SlideReplacementData("secondLevelTitle", model.getSecondLevelTitle());
-        SlideReplacementData thirdLevelName = new SlideReplacementData("thirdLevelName", model.getThirdLevelName());
-        SlideReplacementData thirdLevelTitle = new SlideReplacementData("thirdLevelTitle", model.getThirdLevelTitle());
-        SlideReplacementData fourthLevelName = new SlideReplacementData("fourthLevelName", model.getFourthLevelName());
-        SlideReplacementData fourthLevelTitle = new SlideReplacementData("fourthLevelTitle", model.getFourthLevelTitle());
-  SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
-       listData.add(clientBusinessName);
-        listData.add(topLevelName);
-        listData.add(topLevelTitle);
-        listData.add(secondLevelName);
-        listData.add(secondLevelTitle);
-        listData.add(thirdLevelName);
-        listData.add(thirdLevelTitle);
-        listData.add(thirdLevelName);
-        listData.add(thirdLevelTitle);
-        listData.add(fourthLevelName);
-        listData.add(fourthLevelTitle);
-        return listData;
-
-    }
+   
 
     @Override
     public void populateSlide(XSLFSlide slide) {
         TeamCommitmentPageModel model = getmSlidesData().getPageModels().getTeamCommitmentPageModel();
+        PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
@@ -67,7 +40,8 @@ public class TwoTeamCommitmentSlide extends AbstractSlide {
         SlideReplacementData thirdLevelTitle = new SlideReplacementData("thirdLevelTitle", model.getThirdLevelTitle());
         SlideReplacementData fourthLevelName = new SlideReplacementData("fourthLevelName", model.getFourthLevelName());
         SlideReplacementData fourthLevelTitle = new SlideReplacementData("fourthLevelTitle", model.getFourthLevelTitle());
-
+        SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
+        listData.add(clientBusinessName);
         listData.add(topLevelName);
         listData.add(topLevelTitle);
         listData.add(secondLevelName);
