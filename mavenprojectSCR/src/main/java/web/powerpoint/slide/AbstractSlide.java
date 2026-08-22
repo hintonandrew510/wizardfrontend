@@ -1,8 +1,5 @@
 package web.powerpoint.slide;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
@@ -15,14 +12,15 @@ import org.apache.poi.xslf.usermodel.XSLFTextRun;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 
 public abstract class AbstractSlide implements SlideInterface {
 
     private static final Logger mLog = LoggerFactory.getLogger(AbstractSlide.class.getName());
 
+    @Override
     public SlidesData getmSlidesData() {
         return mSlidesData;
     }
@@ -35,26 +33,49 @@ public abstract class AbstractSlide implements SlideInterface {
         return pageName;
     }
 
+    public Contact getContact() {
+        return contact;
+    }
+
+    public String getSlideEnumName() {
+        return slideEnum.name();
+    }
+
     public void setPageName(String pageName) {
         this.pageName = pageName;
     }
 
     @Override
-    public SlideEnum getSlideEnum() {
+    public SlidePageNameEnum getSlideEnum() {
         return slideEnum;
     }
 
-    public void setSlideEnum(SlideEnum slideEnum) {
+    public void setSlideEnum(SlidePageNameEnum slideEnum) {
         this.slideEnum = slideEnum;
     }
     private SlidesData mSlidesData;
     private String pageName;
-    private SlideEnum slideEnum;
+    private SlidePageNameEnum slideEnum;
+    private Contact contact;
+    private XMLSlideShow ppt;
 
-    public AbstractSlide(SlidesData slidesData, SlideEnum slideEnum, String pageName) {
+    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         this.slideEnum = slideEnum;
         mSlidesData = slidesData;
         this.pageName = pageName;
+        this.contact = contact;
+        this.ppt = ppt;
+    }
+
+    public AbstractSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName) {
+        this.slideEnum = slideEnum;
+        mSlidesData = slidesData;
+        this.pageName = pageName;
+
+    }
+
+    public XMLSlideShow getPPT() {
+        return this.ppt;
     }
 
     public String formatStringToCurrency(int currency) {
@@ -69,7 +90,7 @@ public abstract class AbstractSlide implements SlideInterface {
             DecimalFormat df = new DecimalFormat("###,###,###");
             return df.format(valuedouble);
         } catch (Exception e) {
-            return "";
+            return value;
         }
     }
 
@@ -88,10 +109,10 @@ public abstract class AbstractSlide implements SlideInterface {
             return "";
         }
     }
-    
-     public void replaceTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide ) {
-         for (SlideReplacementData slideReplacementData : listData) {
-                for (XSLFShape shape : slide.getShapes()) {
+
+    public void replaceTextOnSlidePrint(List<SlideReplacementData> listData, XSLFSlide slide) {
+       // for (SlideReplacementData slideReplacementData : listData) {
+            for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
@@ -101,8 +122,37 @@ public abstract class AbstractSlide implements SlideInterface {
                         List<XSLFTextRun> textRuns = para.getTextRuns();
                         for (XSLFTextRun incomingTextRun : textRuns) {
                             String text = incomingTextRun.getRawText();
-                            // Perform the replacement using standard Java string methods
-                            if (text.contains(slideReplacementData.getGoogleSlideVariableName())) {
+                            text = text.trim();
+//[CMonth​][CMonth] 
+                            mLog.warn("text[" + text + "] " );
+// Perform the replacement using standard Java string methods
+                           
+                       // }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public void replaceTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide) {
+        for (SlideReplacementData slideReplacementData : listData) {
+            for (XSLFShape shape : slide.getShapes()) {
+                // Check if the shape is a text shape
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
+
+                    for (XSLFTextParagraph para : paragraphs) {
+                        List<XSLFTextRun> textRuns = para.getTextRuns();
+                        for (XSLFTextRun incomingTextRun : textRuns) {
+                            String text = incomingTextRun.getRawText();
+                            text = text.trim();
+
+                            String label = slideReplacementData.getGoogleSlideVariableName();
+                            label = label.trim();
+// Perform the replacement using standard Java string methods
+                            if (text.contains(label)) {
                                 String updatedText = text.replace(slideReplacementData.getGoogleSlideVariableName(), slideReplacementData.getGoogleSlideVariableValue());
                                 // Set the new text in the text run
                                 incomingTextRun.setText(updatedText);
@@ -111,9 +161,7 @@ public abstract class AbstractSlide implements SlideInterface {
                     }
                 }
             }
-         }
-     }
-    
-
+        }
+    }
 
 }

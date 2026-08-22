@@ -1,0 +1,91 @@
+2026-03-21T11:55:51.114-04:00  INFO 12121 --- [web] [main] w.WebApplication                         : Starting WebApplication using Java 24.0.2 with PID 12121 (/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/target/classes started by andrewhinton in /Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR)
+2026-03-21T11:55:51.123-04:00  INFO 12121 --- [web] [main] w.WebApplication                         : No active profile set, falling back to 1 default profile: "default"
+2026-03-21T11:55:52.702-04:00  INFO 12121 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-21T11:55:52.977-04:00  INFO 12121 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 254 ms. Found 7 JPA repository interfaces.
+2026-03-21T11:55:53.994-04:00  INFO 12121 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port 8081 (http)
+2026-03-21T11:55:54.034-04:00  INFO 12121 --- [web] [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2026-03-21T11:55:54.035-04:00  INFO 12121 --- [web] [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2026-03-21T11:55:54.102-04:00  INFO 12121 --- [web] [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2026-03-21T11:55:54.102-04:00  INFO 12121 --- [web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2911 ms
+2026-03-21T11:55:54.508-04:00  INFO 12121 --- [web] [main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-21T11:55:54.615-04:00  INFO 12121 --- [web] [main] o.h.Version                              : HHH000412: Hibernate ORM core version 6.6.26.Final
+2026-03-21T11:55:54.672-04:00  INFO 12121 --- [web] [main] o.h.c.i.RegionFactoryInitiator           : HHH000026: Second-level cache disabled
+2026-03-21T11:55:54.977-04:00  INFO 12121 --- [web] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-21T11:55:55.008-04:00  INFO 12121 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2026-03-21T11:55:55.590-04:00  INFO 12121 --- [web] [main] c.z.h.p.PoolBase                         : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2026-03-21T11:55:55.591-04:00  INFO 12121 --- [web] [main] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@48ee3c2d
+2026-03-21T11:55:55.593-04:00  INFO 12121 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2026-03-21T11:55:55.658-04:00  INFO 12121 --- [web] [main] o.h.o.c.pooling                          : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.7.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-21T11:55:56.856-04:00  INFO 12121 --- [web] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-21T11:55:56.871-04:00  INFO 12121 --- [web] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-21T11:55:57.360-04:00  INFO 12121 --- [web] [main] w.s.MyUserDetailService                  : MyUserDetailService
+2026-03-21T11:55:57.411-04:00  INFO 12121 --- [web] [main] w.c.WebSecurityConfig                    : WebSecurityConfig
+2026-03-21T11:55:57.415-04:00  INFO 12121 --- [web] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: private static final org.slf4j.Logger web.controller.AgentController.mLog
+2026-03-21T11:55:57.735-04:00  WARN 12121 --- [web] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-21T11:55:57.794-04:00  INFO 12121 --- [web] [main] w.c.WebSecurityConfig                    : authenticationProvider
+2026-03-21T11:55:57.837-04:00  INFO 12121 --- [web] [main] w.c.WebSecurityConfig                    : passwordEncoder()
+2026-03-21T11:55:57.843-04:00  INFO 12121 --- [web] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-21T11:55:57.844-04:00  WARN 12121 --- [web] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-21T11:55:57.881-04:00  INFO 12121 --- [web] [main] w.c.WebSecurityConfig                    : securityFilterChain
+2026-03-21T11:55:57.920-04:00  INFO 12121 --- [web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-03-21T11:55:58.566-04:00  INFO 12121 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port 8081 (http) with context path '/'
+2026-03-21T11:55:58.579-04:00  INFO 12121 --- [web] [main] w.WebApplication                         : Started WebApplication in 8.336 seconds (process running for 9.317)
+2026-03-21T11:56:12.596-04:00  INFO 12121 --- [web] [http-nio-8081-exec-1] o.a.c.c.C.[.[.[/]                        : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-03-21T11:56:12.597-04:00  INFO 12121 --- [web] [http-nio-8081-exec-1] o.s.w.s.DispatcherServlet                : Initializing Servlet 'dispatcherServlet'
+2026-03-21T11:56:12.602-04:00  INFO 12121 --- [web] [http-nio-8081-exec-1] o.s.w.s.DispatcherServlet                : Completed initialization in 5 ms
+2026-03-21T12:01:06.598-04:00  INFO 12121 --- [web] [SpringApplicationShutdownHook] o.s.b.w.e.t.GracefulShutdown             : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-21T12:01:06.616-04:00  INFO 12121 --- [web] [tomcat-shutdown] o.s.b.w.e.t.GracefulShutdown             : Graceful shutdown complete
+2026-03-21T12:01:06.627-04:00  INFO 12121 --- [web] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-21T12:01:06.634-04:00  INFO 12121 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2026-03-21T12:01:06.651-04:00  INFO 12121 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.
+2026-03-21T12:01:25.910-04:00  INFO 12282 --- [web] [main] w.WebApplication                         : Starting WebApplication using Java 24.0.2 with PID 12282 (/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/target/classes started by andrewhinton in /Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR)
+2026-03-21T12:01:25.919-04:00  INFO 12282 --- [web] [main] w.WebApplication                         : No active profile set, falling back to 1 default profile: "default"
+2026-03-21T12:01:27.453-04:00  INFO 12282 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-03-21T12:01:27.629-04:00  INFO 12282 --- [web] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 156 ms. Found 7 JPA repository interfaces.
+2026-03-21T12:01:28.649-04:00  INFO 12282 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat initialized with port 8081 (http)
+2026-03-21T12:01:28.667-04:00  INFO 12282 --- [web] [main] o.a.c.c.StandardService                  : Starting service [Tomcat]
+2026-03-21T12:01:28.668-04:00  INFO 12282 --- [web] [main] o.a.c.c.StandardEngine                   : Starting Servlet engine: [Apache Tomcat/10.1.44]
+2026-03-21T12:01:28.712-04:00  INFO 12282 --- [web] [main] o.a.c.c.C.[.[.[/]                        : Initializing Spring embedded WebApplicationContext
+2026-03-21T12:01:28.713-04:00  INFO 12282 --- [web] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2702 ms
+2026-03-21T12:01:29.040-04:00  INFO 12282 --- [web] [main] o.h.j.i.u.LogHelper                      : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-03-21T12:01:29.137-04:00  INFO 12282 --- [web] [main] o.h.Version                              : HHH000412: Hibernate ORM core version 6.6.26.Final
+2026-03-21T12:01:29.185-04:00  INFO 12282 --- [web] [main] o.h.c.i.RegionFactoryInitiator           : HHH000026: Second-level cache disabled
+2026-03-21T12:01:29.486-04:00  INFO 12282 --- [web] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-03-21T12:01:29.509-04:00  INFO 12282 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Starting...
+2026-03-21T12:01:30.041-04:00  INFO 12282 --- [web] [main] c.z.h.p.PoolBase                         : HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2026-03-21T12:01:30.043-04:00  INFO 12282 --- [web] [main] c.z.h.p.HikariPool                       : HikariPool-1 - Added connection org.hsqldb.jdbc.JDBCConnection@77ea960f
+2026-03-21T12:01:30.044-04:00  INFO 12282 --- [web] [main] c.z.h.HikariDataSource                   : HikariPool-1 - Start completed.
+2026-03-21T12:01:30.103-04:00  INFO 12282 --- [web] [main] o.h.o.c.pooling                          : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.7.4
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-03-21T12:01:31.294-04:00  INFO 12282 --- [web] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-03-21T12:01:31.307-04:00  INFO 12282 --- [web] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-03-21T12:01:31.785-04:00  INFO 12282 --- [web] [main] w.s.MyUserDetailService                  : MyUserDetailService
+2026-03-21T12:01:31.832-04:00  INFO 12282 --- [web] [main] w.c.WebSecurityConfig                    : WebSecurityConfig
+2026-03-21T12:01:31.836-04:00  INFO 12282 --- [web] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: private static final org.slf4j.Logger web.controller.AgentController.mLog
+2026-03-21T12:01:32.099-04:00  WARN 12282 --- [web] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-03-21T12:01:32.142-04:00  INFO 12282 --- [web] [main] w.c.WebSecurityConfig                    : authenticationProvider
+2026-03-21T12:01:32.185-04:00  INFO 12282 --- [web] [main] w.c.WebSecurityConfig                    : passwordEncoder()
+2026-03-21T12:01:32.193-04:00  INFO 12282 --- [web] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-03-21T12:01:32.195-04:00  WARN 12282 --- [web] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-03-21T12:01:32.227-04:00  INFO 12282 --- [web] [main] w.c.WebSecurityConfig                    : securityFilterChain
+2026-03-21T12:01:32.267-04:00  INFO 12282 --- [web] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-03-21T12:01:33.406-04:00  INFO 12282 --- [web] [main] o.s.b.w.e.t.TomcatWebServer              : Tomcat started on port 8081 (http) with context path '/'
+2026-03-21T12:01:33.435-04:00  INFO 12282 --- [web] [main] w.WebApplication                         : Started WebApplication in 8.337 seconds (process running for 9.268)
+2026-03-21T12:02:46.126-04:00  INFO 12282 --- [web] [SpringApplicationShutdownHook] o.s.b.w.e.t.GracefulShutdown             : Commencing graceful shutdown. Waiting for active requests to complete
+2026-03-21T12:02:46.160-04:00  INFO 12282 --- [web] [tomcat-shutdown] o.s.b.w.e.t.GracefulShutdown             : Graceful shutdown complete
+2026-03-21T12:02:46.176-04:00  INFO 12282 --- [web] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-03-21T12:02:46.192-04:00  INFO 12282 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown initiated...
+2026-03-21T12:02:46.204-04:00  INFO 12282 --- [web] [SpringApplicationShutdownHook] c.z.h.HikariDataSource                   : HikariPool-1 - Shutdown completed.

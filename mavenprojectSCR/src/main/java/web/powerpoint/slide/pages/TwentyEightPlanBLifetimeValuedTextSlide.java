@@ -2,27 +2,32 @@ package web.powerpoint.slide.pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import web.google.slide.SlideEnum;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
+import web.model.Contact;
 import web.page.planbLifetimevaluedpage.PlanBLifetimeValuedPageModel;
 import web.powerpoint.slide.AbstractSlide;
+import web.powerpoint.slide.SlidePageNameEnum;
 
-public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
-	private static final Logger mLog = LoggerFactory.getLogger(TwentySevenPlanBLifetimeValuedTextSlide.class.getName());
+public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
+	private static final Logger mLog = LoggerFactory.getLogger(TwentyEightPlanBLifetimeValuedTextSlide.class.getName());
 
-	public TwentySevenPlanBLifetimeValuedTextSlide(SlidesData sildeData, SlideEnum slideEnum, String pageName) {
-		super(sildeData, slideEnum, pageName);
+	public TwentyEightPlanBLifetimeValuedTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+        super(slidesData, slideEnum, pageName, contact, ppt);
 	}
 
 
-	public List<SlideReplacementData> composeGoogleSlideData() {
-		PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel =  getmSlidesData()
+
+
+    @Override
+    public void populateSlide(XSLFSlide slide) {
+        PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel =  getmSlidesData()
 				.getPageModels().getPlanBLifetimeValuedPageModel();
 		
 
@@ -48,7 +53,7 @@ public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData yearsOfPatronage = new SlideReplacementData("b_yearsOfPatronage",
 				planBLifetimeValuedPageModel.getYearsOfPatronage() + "");
 		
-		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("b_lifetimeValuePerCustomer",
+		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("planBMonthly",
 				planBLifetimeValuedPageModel.getLifetimeValuePerCustomer());
 		
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("b_prospectsNeededToBreakEven",
@@ -63,19 +68,12 @@ public class TwentySevenPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		listData.add(yearsOfPatronage);
 		listData.add(lifetimeValuePerCustomer);
 		listData.add(prospectsNeededToBreakEven);
+                 replaceTextOnSlide(listData, slide);
+                 mLog.warn("CLASS"+ TwentyEightPlanBLifetimeValuedTextSlide.class.getName());
+        this.replaceTextOnSlidePrint(listData, slide);
 		
 		//planAGrossProfitOnSales
 		//
 
-		
-		
-
-		return listData;
-	}
-
-    @Override
-    public void populateSlide(XSLFSlide slide) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
 }

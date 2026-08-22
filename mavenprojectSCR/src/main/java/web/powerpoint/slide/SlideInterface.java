@@ -5,7 +5,9 @@
 package web.powerpoint.slide;
 
 import org.apache.poi.xslf.usermodel.XSLFSlide;
-import web.google.slide.SlideEnum;
+import web.google.slide.SlidesData;
+import web.model.Contact;
+
 
 /**
  *
@@ -13,6 +15,8 @@ import web.google.slide.SlideEnum;
  */
 public interface SlideInterface {
     public void populateSlide(XSLFSlide slide);
-    public SlideEnum getSlideEnum();
+    public SlidesData getmSlidesData();
+    public SlidePageNameEnum getSlideEnum();
+    public Contact getContact();
     
 }

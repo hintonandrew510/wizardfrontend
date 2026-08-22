@@ -216,7 +216,7 @@ public class PlanSpreadSheets {
 			return "0";
 		}
 	}
-	private void constructBottomTotals() throws Exception {
+	public void constructBottomTotals() throws Exception {
 		mLog.warn("constructBottomTotals starting");
 	//	NumberFormat nf = NumberFormat.getNumberInstance();
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
@@ -243,7 +243,7 @@ public class PlanSpreadSheets {
 	
 	
 	
-	private void constructTotals() throws Exception {
+	public void constructTotals() throws Exception {
 		mLog.warn("constructTotals starting");
 	//	NumberFormat nf = NumberFormat.getNumberInstance();
 		NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
@@ -316,7 +316,7 @@ public class PlanSpreadSheets {
 			mLog.info("rtTotal " + rtTotal);
 			
 			
-			mLog.warn("constructTotals ending");
+			mLog.info("constructTotals ending");
 			
 		}//end of for
 	
@@ -332,7 +332,7 @@ String ammount= nf.format(value);
 	public PlanSpreadSheets(String json, String  source, boolean justBottomTotal) {
 		this.source = source;
 		try {
-			mLog.warn("starting PlanSpreadSheets bottom for " + this.source);
+			mLog.info("starting PlanSpreadSheets bottom for " + this.source);
 			planSpreadSheets = new Gson().fromJson(json, new TypeToken<List<PlanSpreadSheet>>() {
 			}.getType());
 			this.constructBottomTotals();

@@ -51,7 +51,7 @@ FileInputStream fis = new FileInputStream(filePath);
 
         // Write the changes to a new file
         FileOutputStream out = new FileOutputStream(filePath.replace(".pptx", "_updated.pptx"));
-        System.out.println("file path " + filePath);
+        //System.out.println("file path " + filePath);
         
       
         ppt.write(out);
@@ -67,7 +67,7 @@ FileInputStream fis = new FileInputStream(filePath);
             
               replaceTextInPresentation("/Users/andrewhinton/Documents/GitHub/wizardfrontend/mavenprojectSCR/src/main/resources/powerpointtemplate/tv_updated1.pptx", "}}", "");
           
-            System.out.println("Text replacement complete. New file saved as input_updated.pptx");
+           // System.out.println("Text replacement complete. New file saved as input_updated.pptx");
         } catch (IOException e) {
             e.printStackTrace();
         }

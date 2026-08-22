@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import web.controller.WizardController;
 import web.data.MyUserPrincipal;
 import web.model.Contact;
-import web.powerpoint.slide.PowerPointService;
+import web.powerpoint.slide.service.PowerPointService;
 
 @RestController
 public class FileDownLoadRestController {
@@ -60,8 +60,8 @@ public class FileDownLoadRestController {
             Integer id = (Integer) obj;
             MyUserPrincipal userDetails = (MyUserPrincipal) authentication.getPrincipal();
             Contact contact = userDetails.getContact();
-            powerPointService.buildPowerPointDocument(id, contact);
-            String downLoadFileName = contact.getName() + "pptx";
+            String downLoadFileName = powerPointService.buildPowerPointDocument(id, contact);
+            //String downLoadFileName = contact.getName() + "pptx";
             Path filePath = (Path) Paths.get(FILE_STORAGE_LOCATION).resolve(downLoadFileName).normalize();
             Resource resource = new UrlResource(filePath.toUri());
 
@@ -95,9 +95,9 @@ public class FileDownLoadRestController {
         java.io.File file = ResourceUtils.getFile("classpath:powerpointtemplate/tv.pptx");
         InputStream inputStream = new FileInputStream(file);
         String fileName = file.getCanonicalPath();
-        System.out.println("file " + file.getCanonicalPath());
+       // System.out.println("file " + file.getCanonicalPath());
         String filePath = resource.getPath();
-        System.out.println("filePath " + filePath);
+        //System.out.println("filePath " + filePath);
         //InputStream inputStream = resource.getInputStream();
 
         // Load the template
@@ -105,7 +105,7 @@ public class FileDownLoadRestController {
         // XMLSlideShow ppt = new XMLSlideShow(inputStream);
         //  FileInputStream templateFile = new FileInputStream(filePath);
         XMLSlideShow ppt = new XMLSlideShow(inputStream);
-        System.out.println("loaded pptx");
+       // System.out.println("loaded pptx");
         int q = 2;
         //fis.close();
 //

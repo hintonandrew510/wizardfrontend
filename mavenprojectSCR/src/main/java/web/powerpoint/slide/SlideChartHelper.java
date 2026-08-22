@@ -58,19 +58,19 @@ public class SlideChartHelper {
 
         }
 
-        System.out.println(pageName);
+        //System.out.println(pageName);
 
-        System.out.println(slideNumber);
+       // System.out.println(slideNumber);
         XSLFChart chart = null;
         for (POIXMLDocumentPart part : slide.getRelations()) {
             if (part instanceof XSLFChart) {
                 chart = (XSLFChart) part;
-                System.out.println("FOUND chart ");
+                //System.out.println("FOUND chart ");
                 // String title = chart.getTitle().getBody().toString();
 
                 break;
             } else {
-                System.out.println("Part " + part);
+                //System.out.println("Part " + part);
             }
         }
 

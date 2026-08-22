@@ -43,7 +43,7 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
 		String planADigitalImpressionsMonthlyStr = withLargeIntegers(planAProposedPageModel.getPlanADigitalImpressionsMonthly());
 		SlideReplacementData planADigitalImpressionsMonthly = new SlideReplacementData("planADigitalImpressionsMonthly",
 				planADigitalImpressionsMonthlyStr);
-		SlideReplacementData planAMonthly = new SlideReplacementData("planAMonthly",
+		SlideReplacementData planAMonthly = new SlideReplacementData("planAMonth",
 				planAProposedPageModel.getPlanAMonthly());
 		SlideReplacementData planADaily = new SlideReplacementData("planADaily",
 				planAProposedPageModel.getPlanADaily());
