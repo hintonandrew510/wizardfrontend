@@ -111,11 +111,36 @@ public abstract class AbstractSlide implements SlideInterface {
     }
 
     public void replaceTextOnSlidePrint(List<SlideReplacementData> listData, XSLFSlide slide) {
-       // for (SlideReplacementData slideReplacementData : listData) {
+        // for (SlideReplacementData slideReplacementData : listData) {
+        for (XSLFShape shape : slide.getShapes()) {
+            // Check if the shape is a text shape
+            if (shape instanceof XSLFTextShape) {
+                XSLFTextShape textShape = (XSLFTextShape) shape;
+                List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
+
+                for (XSLFTextParagraph para : paragraphs) {
+                    List<XSLFTextRun> textRuns = para.getTextRuns();
+                    for (XSLFTextRun incomingTextRun : textRuns) {
+                        String text = incomingTextRun.getRawText();
+                        text = text.trim();
+//[CMonth​][CMonth] 
+                        mLog.warn("text[" + text + "] ");
+// Perform the replacement using standard Java string methods
+
+                        // }
+                    }
+                }
+            }
+        }
+    }
+
+    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide) {
+        for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
+
                     List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
 
                     for (XSLFTextParagraph para : paragraphs) {
@@ -123,24 +148,46 @@ public abstract class AbstractSlide implements SlideInterface {
                         for (XSLFTextRun incomingTextRun : textRuns) {
                             String text = incomingTextRun.getRawText();
                             text = text.trim();
-//[CMonth​][CMonth] 
-                            mLog.warn("text[" + text + "] " );
+
+                            String label = slideReplacementData.getGoogleSlideVariableName();
+                            label = label.trim();
+                            String convertParagraph = ParagraphHelper.wrapText(label, 30);
+
+                            String[] lines = convertParagraph.split("\\r?\\n");
+
 // Perform the replacement using standard Java string methods
-                           
-                       // }
+                            if (text.contains(label)) {
+                                for (String line : lines) {
+                                    // 3. Generate a distinct paragraph layout framework for each chunk
+                                    XSLFTextParagraph paragraph = textShape.addNewTextParagraph();
+                                    // 4. Bind a formatted text run inside the parent line structural loop
+                                    XSLFTextRun run = paragraph.addNewTextRun();
+                                    run.setText(line);
+
+                                    // Optional global typography properties
+                                    run.setFontSize(14.0);
+
+                                }//end of for
+
+                            }
+                        }
                     }
                 }
             }
         }
     }
-    
-    
+
     public void replaceTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide) {
         for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
+                    String nameOfTextShape = textShape.getShapeName();
+                    if (nameOfTextShape.contains("85;p15")) {
+                        int a = 1;
+                        a = a + 2;
+                    }
                     List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
 
                     for (XSLFTextParagraph para : paragraphs) {

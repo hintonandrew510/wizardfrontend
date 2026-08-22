@@ -70,7 +70,7 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		listData.add(prospectsNeededToBreakEven);
                  replaceTextOnSlide(listData, slide);
                  mLog.warn("CLASS"+ TwentyEightPlanBLifetimeValuedTextSlide.class.getName());
-        this.replaceTextOnSlidePrint(listData, slide);
+      //  this.replaceTextOnSlidePrint(listData, slide);
 		
 		//planAGrossProfitOnSales
 		//

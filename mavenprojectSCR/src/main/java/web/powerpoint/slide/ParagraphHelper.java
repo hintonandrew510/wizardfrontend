@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package web;
+package web.powerpoint.slide;
 
 /**
  *
  * @author andrewhinton
  */
+import web.*;
 import java.text.BreakIterator;
 
 // MavenprojectSCR {
 import java.text.BreakIterator;
 
-public class MavenprojectSCR {
+public class ParagraphHelper {
     public static String wrapText(String text, int lineLength) {
         if (text == null || text.length() <= lineLength) {
             return text;

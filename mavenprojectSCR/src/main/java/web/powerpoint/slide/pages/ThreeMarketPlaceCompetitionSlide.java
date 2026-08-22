@@ -16,76 +16,25 @@ import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
-    private static final Logger mLog = LoggerFactory.getLogger(ThreeMarketPlaceCompetitionSlide.class.getName());
 
+    private static final Logger mLog = LoggerFactory.getLogger(ThreeMarketPlaceCompetitionSlide.class.getName());
 
     public ThreeMarketPlaceCompetitionSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
-    }
-
-    public List<SlideReplacementData> composeGoogleSlideData() {
-        MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
-        StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
-
-        if (pageModel == null || strategicMarketingPageOneModel == null) {
-            return null;
-        }
-
-        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-
-        SlideReplacementData yearsInBusiness = new SlideReplacementData("yearsInBusiness", String.valueOf(strategicMarketingPageOneModel.getYearsInBusiness()));
-        SlideReplacementData numberOfLocations = new SlideReplacementData("numberOfLocations", String.valueOf(strategicMarketingPageOneModel.getNumberOfLocations()));
-        String planToExpandString = strategicMarketingPageOneModel.isPlanToExpand() ? "Yes" : "No";
-        SlideReplacementData planToExpand = new SlideReplacementData("planToExpand", planToExpandString);
-
-        SlideReplacementData firstTierBusiness = new SlideReplacementData("firstTierBusiness", pageModel.getFirstTierBusiness());
-        SlideReplacementData secondTierBusiness = new SlideReplacementData("secondTierBusiness", pageModel.getSecondTierBusiness());
-
-        SlideReplacementData thirdTierBusiness = new SlideReplacementData("thirdTierBusiness", pageModel.getThirdTierBusiness());
-        SlideReplacementData fourthTierBusiness = new SlideReplacementData("fourthTierBusiness", pageModel.getFourthTierBusiness());
-
-        SlideReplacementData competitionA = new SlideReplacementData("competitionA", pageModel.getCompetitionA());
-        SlideReplacementData competitionB = new SlideReplacementData("competitionB", pageModel.getCompetitionB());
-
-        SlideReplacementData competitionStrengthA = new SlideReplacementData("competitionStrengthA", pageModel.getCompetitionStrengthA());
-        SlideReplacementData competitionStrengthB = new SlideReplacementData("competitionStrengthB", pageModel.getCompetitionStrengthB());
-
-        SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
-        SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
-
-        listData.add(yearsInBusiness);
-        listData.add(numberOfLocations);
-        listData.add(planToExpand);
-        listData.add(firstTierBusiness);
-        listData.add(secondTierBusiness);
-
-        listData.add(thirdTierBusiness);
-        listData.add(fourthTierBusiness);
-
-        listData.add(competitionA);
-        listData.add(competitionB);
-
-        listData.add(competitionStrengthA);
-        listData.add(competitionStrengthB);
-
-        listData.add(competitionWeaknessA);
-        listData.add(competitionWeaknessB);
-
-        return listData;
-
     }
 
     @Override
     public void populateSlide(XSLFSlide slide) {
         MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
         StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
-
+        SlideReplacementData misconceptions = new SlideReplacementData("misconceptions", strategicMarketingPageOneModel.getMisconceptions());
+        //   misconceptions misconceptions
         if (pageModel == null || strategicMarketingPageOneModel == null) {
             return;
         }
 
-        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-
+        List<SlideReplacementData> listData = new ArrayList<>();
+        List<SlideReplacementData> listLargeData = new ArrayList<>();
         SlideReplacementData yearsInBusiness = new SlideReplacementData("yearsInBusiness", String.valueOf(strategicMarketingPageOneModel.getYearsInBusiness()));
         SlideReplacementData numberOfLocations = new SlideReplacementData("numberOfLocations", String.valueOf(strategicMarketingPageOneModel.getNumberOfLocations()));
         String planToExpandString = strategicMarketingPageOneModel.isPlanToExpand() ? "Yes" : "No";
@@ -105,7 +54,7 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
 
         SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
         SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
-
+        listLargeData.add(misconceptions);
         listData.add(yearsInBusiness);
         listData.add(numberOfLocations);
         listData.add(planToExpand);
@@ -123,10 +72,17 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
 
         listData.add(competitionWeaknessA);
         listData.add(competitionWeaknessB);
-        replaceTextOnSlide(listData, slide);
 
+        mLog.warn("++++++++++++++++++++++++ ");
+
+        mLog.warn(" Start CLASS TODAY " + ThreeMarketPlaceCompetitionSlide.class.getName());
+        // this
+        //this.replaceTextOnSlidePrint(listData, slide);
         //loop thru add repalce data on slide
         mLog.trace(listData.toString());
+        mLog.warn(" END CLASS TODAY " + ThreeMarketPlaceCompetitionSlide.class.getName());
+        replaceTextOnSlide(listData, slide);
+        replaceLargeTextOnSlide(listLargeData, slide);
     }
 
 }

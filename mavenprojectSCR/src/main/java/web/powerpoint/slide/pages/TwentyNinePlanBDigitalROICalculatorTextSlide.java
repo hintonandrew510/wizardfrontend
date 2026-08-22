@@ -111,10 +111,10 @@ public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide 
 		listData.add(planBMonthlyDigitalInvestment);
 		listData.add(planBSalesConversionPercentage);
 		listData.add(planBMonthlyConversions);
-                replaceTextOnSlidePrint(listData, slide);
+               // replaceTextOnSlidePrint(listData, slide);
      replaceTextOnSlide(listData, slide);
                mLog.warn("CLASS"+ TwentyNinePlanBDigitalROICalculatorTextSlide.class.getName());
-        this.replaceTextOnSlidePrint(listData, slide);
+       // this.replaceTextOnSlidePrint(listData, slide);
 		
 	
 

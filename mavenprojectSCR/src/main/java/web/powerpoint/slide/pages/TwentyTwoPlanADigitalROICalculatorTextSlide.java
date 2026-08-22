@@ -106,7 +106,7 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
         listData.add(planAMonthlyDigitalInvestment);
         listData.add(planASalesConversionPercentage);
         listData.add(planAMonthlyConversions);
-        replaceTextOnSlidePrint(listData, slide);
+       // replaceTextOnSlidePrint(listData, slide);
         replaceTextOnSlide(listData, slide);
     }
 

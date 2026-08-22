@@ -70,7 +70,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
         listData.add(planBMonths);
         replaceTextOnSlide(listData, slide);
         mLog.warn("CLASS"+ TwentySevenPlanBBEPTextSlide.class.getName());
-        this.replaceTextOnSlidePrint(listData, slide);
+        //this.replaceTextOnSlidePrint(listData, slide);
 
     }
 
