@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
+import web.page.presentedtopage.PresentedToPageModel;
 import web.page.teamcommitmentpage.TeamCommitmentPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
@@ -24,6 +25,7 @@ public class TwoTeamCommitmentSlide extends AbstractSlide {
 
     public List<SlideReplacementData> composeGoogleSlideData() {
         TeamCommitmentPageModel model = getmSlidesData().getPageModels().getTeamCommitmentPageModel();
+          PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
@@ -35,7 +37,8 @@ public class TwoTeamCommitmentSlide extends AbstractSlide {
         SlideReplacementData thirdLevelTitle = new SlideReplacementData("thirdLevelTitle", model.getThirdLevelTitle());
         SlideReplacementData fourthLevelName = new SlideReplacementData("fourthLevelName", model.getFourthLevelName());
         SlideReplacementData fourthLevelTitle = new SlideReplacementData("fourthLevelTitle", model.getFourthLevelTitle());
-
+  SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
+       listData.add(clientBusinessName);
         listData.add(topLevelName);
         listData.add(topLevelTitle);
         listData.add(secondLevelName);

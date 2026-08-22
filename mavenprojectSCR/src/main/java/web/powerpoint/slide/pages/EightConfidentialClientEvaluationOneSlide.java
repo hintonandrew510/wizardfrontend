@@ -40,7 +40,7 @@ public class EightConfidentialClientEvaluationOneSlide  extends AbstractSlide {
         List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationOnePage();
         PieEntity pieEntity = new PieEntity();
         pieEntity.setPieChartList(piechart);
-        pieEntity.setTitle("Previous Year’s Media Allocation");
+        pieEntity.setTitle("");
         String fileaName = this.getContact().getName() + this.getPageName();
         pieEntity.setFileName(fileaName);
         fileaName = PieChartWithPercentageHelper.createPieChart(pieEntity);

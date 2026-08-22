@@ -37,7 +37,7 @@ public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractS
         List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationProposed();
         PieEntity pieEntity = new PieEntity();
         pieEntity.setPieChartList(piechart);
-        pieEntity.setTitle("Proposed Year’s Media Allocation");
+        pieEntity.setTitle("");
         String fileaName = this.getContact().getName() + this.getPageName();
         pieEntity.setFileName(fileaName);
         fileaName = PieChartWithPercentageHelper.createPieChart(pieEntity);
