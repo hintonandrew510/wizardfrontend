@@ -116,6 +116,8 @@ public abstract class AbstractSlide implements SlideInterface {
             // Check if the shape is a text shape
             if (shape instanceof XSLFTextShape) {
                 XSLFTextShape textShape = (XSLFTextShape) shape;
+                String shapeName = textShape.getShapeName();
+                int shapeId = textShape.getShapeId();
                 List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
 
                 for (XSLFTextParagraph para : paragraphs) {
@@ -125,6 +127,10 @@ public abstract class AbstractSlide implements SlideInterface {
                         text = text.trim();
 //[CMonth​][CMonth] 
                         mLog.warn("text[" + text + "] ");
+                        mLog.warn("shapeId[" + shapeId + "] ");
+                        mLog.warn("shapeName[" + shapeName + "] ");
+                        
+                                
 // Perform the replacement using standard Java string methods
 
                         // }
@@ -134,44 +140,34 @@ public abstract class AbstractSlide implements SlideInterface {
         }
     }
 
-    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData, XSLFSlide slide) {
+    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData
+            , XSLFSlide slide, int lengthOfLine
+            , int shapeId) {
         for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
+                    int idTextShape = textShape.getShapeId();
+                    if (idTextShape == shapeId) {
+                        String convertParagraph = ParagraphHelper.wrapText(slideReplacementData.getGoogleSlideVariableValue(), lengthOfLine);
+                        String[] lines = convertParagraph.split("\\r?\\n");
+                        for (String line : lines) {
+                            // 3. Generate a distinct paragraph layout framework for each chunk
+                            XSLFTextParagraph paragraph = textShape.addNewTextParagraph();
+                            paragraph.setBullet(false);
+                            // 4. Bind a formatted text run inside the parent line structural loop
+                            XSLFTextRun run = paragraph.addNewTextRun();
+                            run.setText(line);
 
-                    List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
+                            // Optional global typography properties
+                            run.setFontSize(12.0);
 
-                    for (XSLFTextParagraph para : paragraphs) {
-                        List<XSLFTextRun> textRuns = para.getTextRuns();
-                        for (XSLFTextRun incomingTextRun : textRuns) {
-                            String text = incomingTextRun.getRawText();
-                            text = text.trim();
-
-                            String label = slideReplacementData.getGoogleSlideVariableName();
-                            label = label.trim();
-                            String convertParagraph = ParagraphHelper.wrapText(slideReplacementData.getGoogleSlideVariableValue(), 30);
-
-                            String[] lines = convertParagraph.split("\\r?\\n");
-
-// Perform the replacement using standard Java string methods
-                            if (text.contains(label)) {
-                                for (String line : lines) {
-                                    // 3. Generate a distinct paragraph layout framework for each chunk
-                                    XSLFTextParagraph paragraph = textShape.addNewTextParagraph();
-                                    // 4. Bind a formatted text run inside the parent line structural loop
-                                    XSLFTextRun run = paragraph.addNewTextRun();
-                                    run.setText(line);
-
-                                    // Optional global typography properties
-                                    run.setFontSize(14.0);
-
-                                }//end of for
-
-                            }
-                        }
+                        }//end of for
+                        return;
                     }
+
+                
                 }
             }
         }

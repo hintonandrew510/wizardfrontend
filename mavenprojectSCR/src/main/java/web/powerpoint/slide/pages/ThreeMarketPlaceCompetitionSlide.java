@@ -28,7 +28,10 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
         MarketPlaceCompetitionPageModel pageModel = getmSlidesData().getPageModels().getMarketPlaceCompetitionPageModel();
         StrategicMarketingPageOneModel strategicMarketingPageOneModel = getmSlidesData().getPageModels().getStrategicMarketingPageOneModel();
         SlideReplacementData misconceptions = new SlideReplacementData("misconceptions", strategicMarketingPageOneModel.getMisconceptions());
-        //   misconceptions misconceptions
+      //  SlideReplacementData misconceptionsBlank = new SlideReplacementData("misconceptions", "");
+       
+        
+//   misconceptions misconceptions
         if (pageModel == null || strategicMarketingPageOneModel == null) {
             return;
         }
@@ -55,6 +58,8 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
         SlideReplacementData competitionWeaknessA = new SlideReplacementData("competitionWeaknessA", pageModel.getCompetitionWeaknessA());
         SlideReplacementData competitionWeaknessB = new SlideReplacementData("competitionWeaknessB", pageModel.getCompetitionWeaknessB());
         listLargeData.add(misconceptions);
+       // listData.add(misconceptionsBlank);
+        
         listData.add(yearsInBusiness);
         listData.add(numberOfLocations);
         listData.add(planToExpand);
@@ -77,12 +82,13 @@ public class ThreeMarketPlaceCompetitionSlide extends AbstractSlide {
 
         mLog.warn(" Start CLASS TODAY " + ThreeMarketPlaceCompetitionSlide.class.getName());
         // this
-        //this.replaceTextOnSlidePrint(listData, slide);
+      this.replaceTextOnSlidePrint(listData, slide);
         //loop thru add repalce data on slide
         mLog.trace(listData.toString());
         mLog.warn(" END CLASS TODAY " + ThreeMarketPlaceCompetitionSlide.class.getName());
+         replaceLargeTextOnSlide(listLargeData, slide, 90,107);
         replaceTextOnSlide(listData, slide);
-        replaceLargeTextOnSlide(listLargeData, slide);
+       
     }
 
 }

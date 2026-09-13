@@ -127,17 +127,17 @@ public class FourClientObjectiveSlide extends AbstractSlide {
                                 if (r.getRawText().contains("order1")) {
                                     ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(1,clientObjectivesOnePageModel);
                                     clientObjectivesOnePageTwoModel.getLabel();
-                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                    r.setText("1. " + clientObjectivesOnePageTwoModel.getLabel());
                                 }
                                 if (r.getRawText().contains("order2")) {
                                     ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(2,clientObjectivesOnePageModel);
                                     clientObjectivesOnePageTwoModel.getLabel();
-                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                    r.setText("2. " + clientObjectivesOnePageTwoModel.getLabel());
                                 }
                                 if (r.getRawText().contains("order3")) {
                                     ClientObjectivesOnePageTwoModel clientObjectivesOnePageTwoModel = getOrder(3,clientObjectivesOnePageModel);
                                     clientObjectivesOnePageTwoModel.getLabel();
-                                    r.setText(clientObjectivesOnePageTwoModel.getLabel());
+                                    r.setText("3. " + clientObjectivesOnePageTwoModel.getLabel());
                                 }
                                 if (r.getRawText().contains("Introduce:Product")) {
                                     r.setText("Introduce New Department/Products/Services");
