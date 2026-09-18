@@ -51,13 +51,16 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 //"\u2611 Checked Box");
             String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
             Integer hostIncome = Integer.valueOf(hostIncomeStr);
-            String block = "\u2610";
-            String checkMark = " \u2610";
-            String Id150 = block + " $150k Plus";
-            String Id100149 = block + " $100-$149K";
-            String Id5099 = block + " $50-$99K";
-            String Idunder50 = block + " Under $50K";
-
+            String uncheckblock = "\u2610";
+            String checkMark = " \u2611";
+            String Id150 = uncheckblock + " $150k Plus";
+            String Id100149 = uncheckblock + " $100-$149K";
+            String Id5099 = uncheckblock + " $50-$99K";
+            String Idunder50 = uncheckblock + " Under $50K";
+/*
+            Unchecked Box: ☐ (\u2610)Checked Box: ☑ (\u2611)
+            org.apache.poi
+            */
             switch (hostIncome) {
                 case 1:
                     Id150 = checkMark + " $150k Plus";;
