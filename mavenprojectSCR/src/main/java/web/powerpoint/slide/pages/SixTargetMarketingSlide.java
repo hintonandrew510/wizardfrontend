@@ -49,7 +49,8 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 //\u2610  □ Unchecked: \u2610
 
 //"\u2611 Checked Box");
-            String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
+          //  String status = targetMarketingHeaderRow.getRowStatus();
+                String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
             Integer hostIncome = Integer.valueOf(hostIncomeStr);
             String uncheckblock = "\u2610";
             String checkMark = " \u2611";
@@ -57,13 +58,15 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
             String Id100149 = uncheckblock + " $100-$149K";
             String Id5099 = uncheckblock + " $50-$99K";
             String Idunder50 = uncheckblock + " Under $50K";
-/*
+            /*
             Unchecked Box: ☐ (\u2610)Checked Box: ☑ (\u2611)
             org.apache.poi
-            */
+             */
+           
             switch (hostIncome) {
                 case 1:
-                    Id150 = checkMark + " $150k Plus";;
+                    Id150 = checkMark + " $150k Plus";
+                    ;
 //document.getElementById("150Id").checked = true;
 
                     break;
@@ -135,7 +138,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                         // Process the row (e.g., get cells from the row)
                         List<XSLFTableCell> cells = row.getCells();
                         for (XSLFTableCell cell : cells) {
-                           // mLog.info(" cell data " + cell.getText());
+                            // mLog.info(" cell data " + cell.getText());
 
                             for (XSLFTextParagraph p : cell.getTextParagraphs()) {
                                 //System.out.println(" p.getText() " + p.getText());
@@ -143,7 +146,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                                     //(" r.getRawText() " + r.getRawText());
                                     //order1
                                     String test = r.getRawText();
-                                   // mLog.info("raw Text " + test);
+                                    // mLog.info("raw Text " + test);
                                     if (r.getRawText().contains("have12to18")) {
                                         r.setText(have12to18);
                                     }

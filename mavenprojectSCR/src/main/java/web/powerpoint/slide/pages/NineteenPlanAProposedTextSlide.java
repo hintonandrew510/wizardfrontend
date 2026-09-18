@@ -12,6 +12,7 @@ import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.page.planproposedpage.PlanProposedPageModel;
+import web.page.presentedtopage.PresentedToPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -29,9 +30,12 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
     public void populateSlide(XSLFSlide slide) {
         PlanProposedPageModel planAProposedPageModel = getmSlidesData()
 				.getPageModels().getPlanAProposedPageModel();
+         PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
+      
 
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
-
+ SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
+      
 		String planAReachStr = withLargeIntegers(planAProposedPageModel.getPlanAReach());
 		SlideReplacementData planACity = new SlideReplacementData("planACity",
 				planAProposedPageModel.getPlanACity());
@@ -46,6 +50,7 @@ public class NineteenPlanAProposedTextSlide extends AbstractSlide {
 				planAProposedPageModel.getPlanAMonthly());
 		SlideReplacementData planADaily = new SlideReplacementData("planADaily",
 				planAProposedPageModel.getPlanADaily());
+                listData.add(clientBusinessName);
 		listData.add(planACity);
 		listData.add(planAReach);
 		listData.add(planAFrequency);
