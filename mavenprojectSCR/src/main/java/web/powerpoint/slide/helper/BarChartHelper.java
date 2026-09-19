@@ -63,7 +63,10 @@ public class BarChartHelper {
         int height = 480;
         /* Height of the image */
 
-         CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        renderer.setSeriesPaint(0, Color.RED);
+        renderer.setSeriesPaint(1, Color.BLUE);
+        renderer.setSeriesPaint(2, Color.GREEN);
 
         //renderer.setBaseItemLabelGenerator();
 //        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
@@ -224,7 +227,7 @@ public class BarChartHelper {
                 barChartDataEntityList.add(barChartDataEntityNov);
                 dec = dec + ChartBuilder.parse(mediaRow.getDec());
                 BarChartDataEntity barChartDataEntityDec = BarChartDataEntity.builder()
-                        .columnKey("Dev").rowKey(mediaChart.getDecColor()).doubleValue(dec).build();
+                        .columnKey("Dec").rowKey(mediaChart.getDecColor()).doubleValue(dec).build();
                 barChartDataEntityList.add(barChartDataEntityDec);
             } catch (ParseException e) {
                 // TODO Auto-generated catch block
