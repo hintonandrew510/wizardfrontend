@@ -7,7 +7,6 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
@@ -17,48 +16,45 @@ import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
 public class NineteenPlanAProposedTextSlide extends AbstractSlide {
-	private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
 
-	public NineteenPlanAProposedTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
+    private static final Logger mLog = LoggerFactory.getLogger(NineteenPlanAProposedTextSlide.class.getName());
+
+    public NineteenPlanAProposedTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
-	}
-
-	
-	
+    }
 
     @Override
     public void populateSlide(XSLFSlide slide) {
         PlanProposedPageModel planAProposedPageModel = getmSlidesData()
-				.getPageModels().getPlanAProposedPageModel();
-         PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
-      
+                .getPageModels().getPlanAProposedPageModel();
+        PresentedToPageModel presentedToPageModel = getmSlidesData().getPageModels().getPresentedToPageModel();
 
-		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
- SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
-      
-		String planAReachStr = withLargeIntegers(planAProposedPageModel.getPlanAReach());
-		SlideReplacementData planACity = new SlideReplacementData("planACity",
-				planAProposedPageModel.getPlanACity());
-		SlideReplacementData planAReach = new SlideReplacementData("planAReach",
-				planAReachStr);
-		SlideReplacementData planAFrequency = new SlideReplacementData("planAFrequency",
-				planAProposedPageModel.getPlanAFrequency());
-		String planADigitalImpressionsMonthlyStr = withLargeIntegers(planAProposedPageModel.getPlanADigitalImpressionsMonthly());
-		SlideReplacementData planADigitalImpressionsMonthly = new SlideReplacementData("planADigitalImpressionsMonthly",
-				planADigitalImpressionsMonthlyStr);
-		SlideReplacementData planAMonthly = new SlideReplacementData("planAMonth",
-				planAProposedPageModel.getPlanAMonthly());
-		SlideReplacementData planADaily = new SlideReplacementData("planADaily",
-				planAProposedPageModel.getPlanADaily());
-                listData.add(clientBusinessName);
-		listData.add(planACity);
-		listData.add(planAReach);
-		listData.add(planAFrequency);
-		listData.add(planADigitalImpressionsMonthly);
-		listData.add(planAMonthly);
-		listData.add(planADaily);
-                replaceTextOnSlide(listData, slide);
-                
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        SlideReplacementData clientBusinessName = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
+
+        String planAReachStr = withLargeIntegers(planAProposedPageModel.getPlanAReach());
+        SlideReplacementData planACity = new SlideReplacementData("planACity",
+                planAProposedPageModel.getPlanACity());
+        SlideReplacementData planAReach = new SlideReplacementData("planAReach",
+                planAReachStr);
+        SlideReplacementData planAFrequency = new SlideReplacementData("planAFrequency",
+                planAProposedPageModel.getPlanAFrequency());
+        String planADigitalImpressionsMonthlyStr = withLargeIntegers(planAProposedPageModel.getPlanADigitalImpressionsMonthly());
+        SlideReplacementData planADigitalImpressionsMonthly = new SlideReplacementData("planADigitalImpressionsMonthly",
+                planADigitalImpressionsMonthlyStr);
+        SlideReplacementData planAMonthly = new SlideReplacementData("planAMonth",
+                planAProposedPageModel.getPlanAMonthly());
+        SlideReplacementData planADaily = new SlideReplacementData("planADaily",
+                planAProposedPageModel.getPlanADaily());
+        listData.add(clientBusinessName);
+        listData.add(planACity);
+        listData.add(planAReach);
+        listData.add(planAFrequency);
+        listData.add(planADigitalImpressionsMonthly);
+        listData.add(planAMonthly);
+        listData.add(planADaily);
+        replaceTextOnSlide(listData, slide);
+
     }
 
 }

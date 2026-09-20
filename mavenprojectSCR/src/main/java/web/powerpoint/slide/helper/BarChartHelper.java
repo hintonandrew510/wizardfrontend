@@ -25,11 +25,16 @@ import java.text.ParseException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
 import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer3D;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.TextAnchor;
 import web.page.ChartBuilder;
 import web.page.planamedipage.MediaChart;
 import web.page.planamedipage.MediaRowWeb;
@@ -58,24 +63,47 @@ public class BarChartHelper {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        int width = 640;
+        int width = 800;
+        //int width = 640;
         /* Width of the image */
-        int height = 480;
+        int height = 600;
+        //int height = 480;
         /* Height of the image */
 
-        CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        //  CategoryItemRenderer renderer = ((CategoryPlot) barChart.getPlot()).getRenderer();
+        // 3. Get the plot and configure the renderer to show numeric values
+        // CategoryPlot plot = barChart.getCategoryPlot();
+        CategoryPlot plot = (CategoryPlot) barChart.getPlot();
+        // 3. Get the CategoryAxis (X-Axis)
+        CategoryAxis domainAxis = plot.getDomainAxis();
+        // 4. Decrease margins to make bars wider
+// Lowering the category margin reduces space between different categories (Default is 0.20 or 20%)
+        domainAxis.setCategoryMargin(0.05); // Set to 5% space
+        BarRenderer3D renderer = (BarRenderer3D) plot.getRenderer();
+        // Position the label vertically (-90 degrees) just above the top of the bar
+        ItemLabelPosition position = new ItemLabelPosition(
+                ItemLabelAnchor.OUTSIDE12, // Anchor point relative to the bar
+                TextAnchor.CENTER_LEFT, // Text alignment relative to the anchor
+                TextAnchor.CENTER_LEFT,
+                -Math.PI / 2.0 // Rotation angle in radians (-90 degrees)
+        );
+
+        renderer.setBasePositiveItemLabelPosition(position);
+        //CategoryItemRenderer renderer = plot.getRenderer();
+
+// Set color for series index 0
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesPaint(1, Color.BLUE);
         renderer.setSeriesPaint(2, Color.GREEN);
 
-        //renderer.setBaseItemLabelGenerator();
-//        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-//        //renderer.setBaseItemLabelsVisible(true);
-//        renderer.setDefaultItemLabelsVisible(true);
-//        ItemLabelPosition position = new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12,
-//                TextAnchor.TOP_CENTER);
-        //renderer.setDefaultPositiveItemLabelPosition(position);
-        barChart.setBackgroundPaint(Color.WHITE);
+        // Enable labels and set generator
+        renderer.setBaseItemLabelsVisible(true);
+        renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        //CategoryItemRenderer rendererPlot = plot.getRenderer();
+
+        // 3. Define dimensions and export the chart as a JPEG image
+        // int width = 640;  // Width of the image
+        //barChart.setBackgroundPaint(Color.WHITE);
         barChart.getPlot().setBackgroundPaint(Color.WHITE);
         File barChart3D = new File("/opt/wizard/download/" + barChartEntity.getFileName() + ".png");
         // ChartUtils..saveChartAsJPEG( barChart3D, barChart, width, height);
