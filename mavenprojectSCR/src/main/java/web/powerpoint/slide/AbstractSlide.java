@@ -1,5 +1,6 @@
 package web.powerpoint.slide;
 
+import java.awt.Color;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
@@ -177,10 +178,10 @@ public abstract class AbstractSlide implements SlideInterface {
                 if (shape instanceof XSLFTextShape) {
                     XSLFTextShape textShape = (XSLFTextShape) shape;
                     String nameOfTextShape = textShape.getShapeName();
-                    if (nameOfTextShape.contains("85;p15")) {
-                        int a = 1;
-                        a = a + 2;
-                    }
+//                    if (nameOfTextShape.contains("85;p15")) {
+//                        int a = 1;
+//                        a = a + 2;
+//                    }
                     List<XSLFTextParagraph> paragraphs = textShape.getTextParagraphs();
 
                     for (XSLFTextParagraph para : paragraphs) {
@@ -190,15 +191,20 @@ public abstract class AbstractSlide implements SlideInterface {
                             text = text.trim();
 
                             String label = slideReplacementData.getGoogleSlideVariableName();
-                            if (label.contains("LMonth") && text.contains("LMonth")) {
-                                int a = 1;
-                                a = a + 2;
-                            }
+//                            if (label.contains("LMonth") && text.contains("LMonth")) {
+//                                int a = 1;
+//                                a = a + 2;
+//                            }
                             label = label.trim();
 // Perform the replacement using standard Java string methods
                             if (text.contains(label)) {
                                 String updatedText = text.replace(slideReplacementData.getGoogleSlideVariableName(), slideReplacementData.getGoogleSlideVariableValue());
                                 // Set the new text in the text run
+                                //get color
+                                Color color = slideReplacementData.getColor();
+                                if (color != null) {
+                                    incomingTextRun.setFontColor(color);
+                                }
                                 incomingTextRun.setText(updatedText);
                             }
                         }

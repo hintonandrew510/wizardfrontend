@@ -1,8 +1,19 @@
 package web.google.slide;
 
+import java.awt.Color;
+
 public class SlideReplacementData {
   public String googleSlideVariableName;
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
   private String googleSlideVariableValue;
+  private Color color;
 public SlideReplacementData(String googleSlideVariableName, String googleSlideVariableValue) {
 	super();
 	this.googleSlideVariableName = googleSlideVariableName;

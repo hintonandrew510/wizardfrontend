@@ -51,7 +51,7 @@ public class RedCheckboxCreator {
             try (FileOutputStream out = new FileOutputStream("red_checkbox.pptx")) {
                 ppt.write(out);
             }
-            System.out.println("Presentation created successfully.");
+            System.out.println("Presentation created successfully." );
         } catch (Exception e) {
             e.printStackTrace();
         }

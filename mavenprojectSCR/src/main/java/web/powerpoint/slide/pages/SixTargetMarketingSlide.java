@@ -1,12 +1,13 @@
 package web.powerpoint.slide.pages;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFShape;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTable;
-    import org.apache.poi.xslf.usermodel.XSLFTableCell;
+import org.apache.poi.xslf.usermodel.XSLFTableCell;
 import org.apache.poi.xslf.usermodel.XSLFTableRow;
 import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
 import org.apache.poi.xslf.usermodel.XSLFTextRun;
@@ -49,8 +50,8 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
 //\u2610  □ Unchecked: \u2610
 
 //"\u2611 Checked Box");
-          //  String status = targetMarketingHeaderRow.getRowStatus();
-                String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
+            //  String status = targetMarketingHeaderRow.getRowStatus();
+            String hostIncomeStr = targetMarketingPageModel.getHouseholdIncome();
             Integer hostIncome = Integer.valueOf(hostIncomeStr);
             String uncheckblock = "\u2610";
             String checkMark = " \u2611";
@@ -62,41 +63,46 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
             Unchecked Box: ☐ (\u2610)Checked Box: ☑ (\u2611)
             org.apache.poi
              */
-           
-            switch (hostIncome) {
-                case 1:
-                    Id150 = checkMark + " $150k Plus";
-                    ;
-//document.getElementById("150Id").checked = true;
-
-                    break;
-                case 2:
-                    Id100149 = checkMark + " $100-$149K";
-                    //document.getElementById("100149Id").checked = true;
-
-                    break;
-                case 3:
-                    Id5099 = checkMark + " $50-$99K";
-                    //document.getElementById("5099Id").checked = true;
-                    break;
-                case 4:
-                    Idunder50 = checkMark + " Under $50K";
-                    //document.getElementById("under50Id").checked = true;
-                    break;
-                default:
-                // code block
-            }
-
             SlideReplacementData dId150 = new SlideReplacementData("150Kplus", Id150);
-            listData.add(dId150);
-
             SlideReplacementData dId100149 = new SlideReplacementData("100K149K", Id100149);
-            listData.add(dId100149);
-
             SlideReplacementData dId5099 = new SlideReplacementData("50K-99K", Id5099);
-            listData.add(dId5099);
-
             SlideReplacementData dIdunder50 = new SlideReplacementData("Under50K", Idunder50);
+            switch (hostIncome) {
+                case 1 -> {
+                    Id150 = checkMark + " $150k Plus";
+                    dId150.setGoogleSlideVariableValue(Id150);
+                    dId150.setColor(Color.red);
+
+                }
+                case 2 -> {
+                    Id100149 = checkMark + " $100-$149K";
+                    dId100149.setGoogleSlideVariableValue(Id100149);
+                    dId100149.setColor(Color.red);
+
+                    //document.getElementById("100149Id").checked = true;
+                }
+                case 3 -> {
+                    Id5099 = checkMark + " $50-$99K";
+                    dId5099.setGoogleSlideVariableValue(Id5099);
+                    dId5099.setColor(Color.red);
+
+                    //document.getElementById("5099Id").checked = true;
+                }
+                case 4 -> {
+                    Idunder50 = checkMark + " Under $50K";
+                    dIdunder50.setGoogleSlideVariableValue(Idunder50);
+                    dIdunder50.setColor(Color.red);
+
+                    //document.getElementById("under50Id").checked = true;
+                }
+                default -> {
+                }
+            }
+            // code block
+
+            listData.add(dId150);
+            listData.add(dId100149);
+            listData.add(dId5099);
             listData.add(dIdunder50);
             replaceTextOnSlide(listData, slide);
 
@@ -149,6 +155,7 @@ public class SixTargetMarketingSlide extends web.powerpoint.slide.AbstractSlide 
                                     // mLog.info("raw Text " + test);
                                     if (r.getRawText().contains("have12to18")) {
                                         r.setText(have12to18);
+
                                     }
                                     if (r.getRawText().contains("have19to25")) {
                                         r.setText(have19to25);
