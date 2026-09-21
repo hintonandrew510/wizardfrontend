@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.PageModels;
 import web.google.slide.SlidesData;
+import web.google.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.model.Contact;
 import web.model.WizardData;
 import web.page.ChartBuilder;
@@ -83,7 +84,7 @@ import web.powerpoint.slide.pages.ThirtyPlanBSpreadSheetTextSlide;
 import web.powerpoint.slide.pages.ThreeMarketPlaceCompetitionSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanBDigitalROICalculatorTextSlide;
 import web.powerpoint.slide.pages.TwentyFivePlanBProposedTextSlide;
-import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
+//import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
 import web.powerpoint.slide.pages.SeventeenPlanAMediaSlide;
@@ -810,8 +811,8 @@ public class SlideDataHelper {
         SeventeenPlanAMediaSlide seventeenPlanAMediaSlide = new SeventeenPlanAMediaSlide(slidesData,
                 SlidePageNameEnum.SeventeenPlanAMediaSlide, "", contact, ppt);
         slidesList.add(seventeenPlanAMediaSlide);
-        TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
-                slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, "TwentyNinePlanASpreadSheetTextSlide", contact, ppt);
+//        TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
+//                slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, "TwentyNinePlanASpreadSheetTextSlide", contact, ppt);
 
         ThirtyOnePlanAgreementtSlide thirtyOnePlanAgreementtSlide = new ThirtyOnePlanAgreementtSlide(
                 slidesData, SlidePageNameEnum.ThirtyOnePlanAAgreementSlide, "ThirtyOnePlanAgreementSlide", contact, ppt);
@@ -827,7 +828,7 @@ public class SlideDataHelper {
 
         slidesList.add(twentyNinePlanASpreadSheetTextSlide);
 
-        slidesList.add(twentyNinePlanASpreadSheetSlide);
+       // slidesList.add(twentyNinePlanASpreadSheetSlide);
 
         TwentyNinePlanBDigitalROICalculatorTextSlide textSlideTwentyEightPlanBDigitalROICalculatorText = new TwentyNinePlanBDigitalROICalculatorTextSlide(
                 slidesData, SlidePageNameEnum.TwentyEightPlanBDigitalROICalculatorTextSlide,

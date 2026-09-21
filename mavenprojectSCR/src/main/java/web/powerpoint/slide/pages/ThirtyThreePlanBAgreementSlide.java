@@ -41,7 +41,7 @@ public class ThirtyThreePlanBAgreementSlide extends AbstractSlide {
 
         SlideReplacementData dailyCostA = new SlideReplacementData("dailyAver",
                 planSpreadSheets.getDailyCost());
-        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlAver",
+        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthAver",
                 planSpreadSheets.getMonthlyAverage());
         SlideReplacementData station = new SlideReplacementData("station", presentedToPageModel.getStation());
         SlideReplacementData businessname = new SlideReplacementData("businessname", presentedToPageModel.getClientBusinessName());
