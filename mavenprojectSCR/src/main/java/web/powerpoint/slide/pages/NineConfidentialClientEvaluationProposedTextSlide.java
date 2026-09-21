@@ -22,21 +22,24 @@ import web.powerpoint.slide.service.ReplaceImageInPlaceholderService;
 
 public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractSlide {
 
-     private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
+    private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
 
     public NineConfidentialClientEvaluationProposedTextSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
-  
-
-  @Override
+    @Override
     public void populateSlide(XSLFSlide slide) {
         //this.getSlideEnum().EightConfidentialClientEvaluationOneSlide.d
         String name = this.getSlideEnumName();
-        List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationProposed();
+        List<PieChart> pieChartData = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationProposed();
+        int total = 0;
+        for (PieChart pieChart : pieChartData) {
+            total = pieChart.getLabelValue() + total;
+        }
+
         PieEntity pieEntity = new PieEntity();
-        pieEntity.setPieChartList(piechart);
+        pieEntity.setPieChartList(pieChartData);
         pieEntity.setTitle("");
         String fileaName = this.getContact().getName() + this.getPageName();
         pieEntity.setFileName(fileaName);
@@ -49,6 +52,11 @@ public class NineConfidentialClientEvaluationProposedTextSlide extends AbstractS
         } catch (Exception ex) {
             mLog.error(ex.getMessage());
         }
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        String formaTotal = this.formatStringToCurrency(total);
+        SlideReplacementData totalAdvertisingInvestmentConfidentialClientEvaluationOnePage = new SlideReplacementData("totalAdvertisingInvestment", formaTotal);
+        listData.add(totalAdvertisingInvestmentConfidentialClientEvaluationOnePage);
+        replaceTextOnSlide(listData, slide);
 
     }
 

@@ -1,12 +1,13 @@
 package web.powerpoint.slide.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import web.google.slide.SlideReplacementData;
 
 import web.google.slide.SlidesData;
 import web.model.Contact;
@@ -20,26 +21,26 @@ import web.powerpoint.slide.helper.ReplaceImageInPlaceholderHelper;
 import web.powerpoint.slide.service.PowerPointServiceImpl;
 import web.powerpoint.slide.service.ReplaceImageInPlaceholderService;
 
+public class EightConfidentialClientEvaluationOneSlide extends AbstractSlide {
 
-public class EightConfidentialClientEvaluationOneSlide  extends AbstractSlide {
-  
-      private  Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
+    private Logger mLog = LoggerFactory.getLogger(PowerPointServiceImpl.class.getName());
 
     public EightConfidentialClientEvaluationOneSlide(SlidesData slidesData, SlidePageNameEnum slideEnum, String pageName, Contact contact, XMLSlideShow ppt) {
         super(slidesData, slideEnum, pageName, contact, ppt);
     }
 
-  
-
-  
-
     @Override
     public void populateSlide(XSLFSlide slide) {
         //this.getSlideEnum().EightConfidentialClientEvaluationOneSlide.d
         String name = this.getSlideEnumName();
-        List<PieChart> piechart = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationOnePage();
+        List<PieChart> pieChartData = getmSlidesData().getPageModels().getPieChartConfidentialClientEvaluationOnePage();
+        int total = 0;
+        for (PieChart pieChart : pieChartData) {
+            total = pieChart.getLabelValue() + total;
+        }
+
         PieEntity pieEntity = new PieEntity();
-        pieEntity.setPieChartList(piechart);
+        pieEntity.setPieChartList(pieChartData);
         pieEntity.setTitle("");
         String fileaName = this.getContact().getName() + this.getPageName();
         pieEntity.setFileName(fileaName);
@@ -52,24 +53,12 @@ public class EightConfidentialClientEvaluationOneSlide  extends AbstractSlide {
         } catch (Exception ex) {
             mLog.error(ex.getMessage());
         }
+        List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        String formaTotal = this.formatStringToCurrency(total);
+        SlideReplacementData totalAdvertisingInvestmentConfidentialClientEvaluationOnePage = new SlideReplacementData("totalAdvertisingInvestment", formaTotal);
+        listData.add(totalAdvertisingInvestmentConfidentialClientEvaluationOnePage);
+        replaceTextOnSlide(listData, slide);
 
     }
-
-
-	
-	
-
-
-
-
-
-
-
-	
-	
-	
-
-
-
 
 }

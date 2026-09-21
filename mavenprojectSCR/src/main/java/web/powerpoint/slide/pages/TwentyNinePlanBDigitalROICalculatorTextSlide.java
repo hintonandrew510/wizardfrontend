@@ -33,21 +33,19 @@ public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide 
                 
 
 
-
-
-      : text[] 
-2026-06-24T14:29:53.339-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.340-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.340-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.340-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.340-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.340-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.341-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.341-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[ICost] 
-2026-06-24T14:29:53.341-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[JProj] 
-2026-06-24T14:29:53.341-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.341-04:00  WARN 6629 --- [web] [nio-8081-exec-5] w.p.s.AbstractSlide                      : text[] 
-2026-06-24T14:29:53.341-04:00  CMonth                      : text[MMonth] 
+AMonth
+BCost
+CMonth
+DClick
+EMonth
+FCost
+GSales
+HMonth
+ICost
+JProj
+KMonth
+$333
+MMonth
 
 
          */
@@ -90,21 +88,21 @@ public class TwentyNinePlanBDigitalROICalculatorTextSlide extends AbstractSlide 
         SlideReplacementData planBMonthlyROIP = new SlideReplacementData("MMonth",
                 pageModel.getPlanAMonthlyROIP() + "%");
 
-//        listData.add(planBMonthlyDigitalInvestment);
-//        listData.add(planBCostPerThousand);
-//        listData.add(planBClosingPctNumber);
-//        listData.add(planBClickThroughRate);
-//        listData.add(planBMonthlyClicks);
-//        listData.add(planBCostPerClicks);
-//        listData.add(planBCostPerConversion);
-//        listData.add(planBProjectedGrossProfit);
-//        listData.add(planBMonthlyGrossProfit);
+        listData.add(planBMonthlyDigitalInvestment);
+        listData.add(planBCostPerThousand);
+        listData.add(planBClosingPctNumber);
+        listData.add(planBClickThroughRate);
+        listData.add(planBMonthlyClicks);
+        listData.add(planBCostPerClicks);
+        listData.add(planBCostPerConversion);
+        listData.add(planBProjectedGrossProfit);
+        listData.add(planBMonthlyGrossProfit);
         listData.add(planBMonthlyROID);
-//        listData.add(planBMonthlyROIP);
-//        listData.add(planBMonthlyDigitalInvestment);
-//        listData.add(planBSalesConversionPercentage);
-//        listData.add(planBMonthlyConversions);
-        // replaceTextOnSlidePrint(listData, slide);
+        listData.add(planBMonthlyROIP);
+        listData.add(planBMonthlyDigitalInvestment);
+        listData.add(planBSalesConversionPercentage);
+        listData.add(planBMonthlyConversions);
+         replaceTextOnSlidePrint(listData, slide);
         //this.replaceTextOnSlidePrint(listData, slide);
         replaceTextOnSlide(listData, slide);
         mLog.warn("CLASS" + TwentyNinePlanBDigitalROICalculatorTextSlide.class.getName());
