@@ -42,12 +42,12 @@ public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
-        SlideReplacementData dailyCostA = new SlideReplacementData("dailyCostA",
+        SlideReplacementData dailyCostA = new SlideReplacementData("dailyAver",
                 planSpreadSheets.getDailyCost());
-        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAverageA",
+        SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAver",
                 planSpreadSheets.getMonthlyAverage());
         SlideReplacementData station = new SlideReplacementData("station", presentedToPageModel.getStation());
-        SlideReplacementData businessname = new SlideReplacementData("businessname", presentedToPageModel.getClientBusinessName());
+        SlideReplacementData businessname = new SlideReplacementData("clientBusinessname", presentedToPageModel.getClientBusinessName());
 
         List<ClientObjectivesOnePageTwoModel> orderList = getmSlidesData().getPageModels().getOrderList();
         String firstRow = "";

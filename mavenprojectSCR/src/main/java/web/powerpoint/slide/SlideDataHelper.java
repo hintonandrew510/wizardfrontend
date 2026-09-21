@@ -10,7 +10,6 @@ import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.PageModels;
-import web.google.slide.SlideEnum;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.model.WizardData;
@@ -78,7 +77,6 @@ import web.powerpoint.slide.pages.NineConfidentialClientEvaluationProposedTextSl
 import web.powerpoint.slide.pages.NineteenPlanAProposedTextSlide;
 import web.powerpoint.slide.pages.OnePresentedToSlide;
 import web.powerpoint.slide.pages.SevenConfidentialClientEvaluationTextSlide;
-import web.powerpoint.slide.pages.SeventeenPlanAMediaSlide;
 import web.powerpoint.slide.pages.SixTargetMarketingSlide;
 import web.powerpoint.slide.pages.ThirtyPlanBSpreadSheetSlide;
 import web.powerpoint.slide.pages.ThirtyPlanBSpreadSheetTextSlide;
@@ -89,6 +87,8 @@ import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetSlide;
 import web.powerpoint.slide.pages.TwentyNinePlanASpreadSheetTextSlide;
 import web.powerpoint.slide.pages.TwentyOnePlanALifetimeValuedTextSlide;
 import web.powerpoint.slide.pages.SeventeenPlanAMediaSlide;
+import web.powerpoint.slide.pages.ThirtyOnePlanAgreementtSlide;
+import web.powerpoint.slide.pages.ThirtyThreePlanBAgreementSlide;
 import web.powerpoint.slide.pages.TwentyPlanABEPTextSlide;
 import web.powerpoint.slide.pages.TwentySevenPlanBBEPTextSlide;
 import web.powerpoint.slide.pages.TwentyEightPlanBLifetimeValuedTextSlide;
@@ -812,6 +812,16 @@ public class SlideDataHelper {
         slidesList.add(seventeenPlanAMediaSlide);
         TwentyNinePlanASpreadSheetSlide twentyNinePlanASpreadSheetSlide = new TwentyNinePlanASpreadSheetSlide(
                 slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, "TwentyNinePlanASpreadSheetTextSlide", contact, ppt);
+
+        ThirtyOnePlanAgreementtSlide thirtyOnePlanAgreementtSlide = new ThirtyOnePlanAgreementtSlide(
+                slidesData, SlidePageNameEnum.ThirtyOnePlanAAgreementSlide, "ThirtyOnePlanAgreementSlide", contact, ppt);
+        slidesList.add(thirtyOnePlanAgreementtSlide);
+
+        ThirtyThreePlanBAgreementSlide thirtyThreePlanBAgreementSlide = new ThirtyThreePlanBAgreementSlide(
+                slidesData, SlidePageNameEnum.ThirtyThreePlanBAgreementSlide, "ThirtyThreePlanBAgreementSlide", contact, ppt);
+        slidesList.add(thirtyThreePlanBAgreementSlide);
+
+        //ThirtyThreePlanBAgreementSlide
         TwentyNinePlanASpreadSheetTextSlide twentyNinePlanASpreadSheetTextSlide = new TwentyNinePlanASpreadSheetTextSlide(
                 slidesData, SlidePageNameEnum.TwentyNinePlanASpreadSheetTextSlide, "TwentyNinePlanASpreadSheetTextSlide", contact, ppt);
 
@@ -835,15 +845,10 @@ public class SlideDataHelper {
         TwentyEightPlanBLifetimeValuedTextSlide twentyEightPlanBLifetimeValuedTextSlide = new TwentyEightPlanBLifetimeValuedTextSlide(slidesData,
                 SlidePageNameEnum.TwentyEightPlanBLifetimeValuedTextSlide, "TwentyEightPlanBLifetimeValuedTextSlide", contact, ppt);
         slidesList.add(twentyEightPlanBLifetimeValuedTextSlide);
-        
-        
-    
+
         TwentyNinePlanBDigitalROICalculatorTextSlide twentyNinePlanBDigitalROICalculatorTextSlide = new TwentyNinePlanBDigitalROICalculatorTextSlide(slidesData,
                 SlidePageNameEnum.TwentyNinePlanBDigitalROICalculatorTextSlide, "TwentyNinePlanBDigitalROICalculatorTextSlide", contact, ppt);
         slidesList.add(twentyNinePlanBDigitalROICalculatorTextSlide);
-        
-        
-    
 
         slidesData.getPublish().setPlanBBEPPage(true);
 
