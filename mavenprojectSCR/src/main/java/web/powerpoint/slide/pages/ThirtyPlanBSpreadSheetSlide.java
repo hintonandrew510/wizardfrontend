@@ -47,7 +47,7 @@ public class ThirtyPlanBSpreadSheetSlide extends AbstractSlide {
         SlideReplacementData monthlyAverageA = new SlideReplacementData("monthlyAver",
                 planSpreadSheets.getMonthlyAverage());
         SlideReplacementData station = new SlideReplacementData("station", presentedToPageModel.getStation());
-        SlideReplacementData businessname = new SlideReplacementData("clientBusinessName", presentedToPageModel.getClientBusinessName());
+        SlideReplacementData businessname = new SlideReplacementData("businessname", presentedToPageModel.getClientBusinessName());
 
         List<ClientObjectivesOnePageTwoModel> orderList = getmSlidesData().getPageModels().getOrderList();
         String firstRow = "";
