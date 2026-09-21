@@ -85,11 +85,19 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
                 pageModel.getPlanAProjectedGrossProfit());
 
         SlideReplacementData planAMonthlyGrossProfit = new SlideReplacementData("JProj",
-                pageModel.getPlanAMonthlyGrossProfit());
+                pageModel.getPlanAMonthlyROID());
 
         SlideReplacementData planAMonthlyROID = new SlideReplacementData("KMonth",
-                pageModel.getPlanAMonthlyROID());
+                pageModel.getPlanAMonthlyGrossProfit());
+        
+        
+            //old SlideReplacementData planAMonthlyROID = new SlideReplacementData("KMonth",
+               // pageModel.getPlanAMonthlyROID());
+        
         SlideReplacementData planAMonthlyROIP = new SlideReplacementData("LMonth",
+                pageModel.getPlanAMonthlyROID());
+        
+        SlideReplacementData mMonthly = new SlideReplacementData("MMonth",
                 pageModel.getPlanAMonthlyROIP() + "%");
 
         listData.add(planAMonthlyDigitalInvestment);
@@ -106,6 +114,7 @@ public class TwentyTwoPlanADigitalROICalculatorTextSlide extends AbstractSlide {
         listData.add(planAMonthlyDigitalInvestment);
         listData.add(planASalesConversionPercentage);
         listData.add(planAMonthlyConversions);
+        listData.add(mMonthly);
        // replaceTextOnSlidePrint(listData, slide);
         replaceTextOnSlide(listData, slide);
     }

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -63,7 +64,7 @@ public class BarChartHelper {
                 PlotOrientation.VERTICAL,
                 true, true, false);
 
-        int width = 800;
+        int width = 700;
         //int width = 640;
         /* Width of the image */
         int height = 600;
@@ -90,8 +91,12 @@ public class BarChartHelper {
 
         renderer.setBasePositiveItemLabelPosition(position);
         //CategoryItemRenderer renderer = plot.getRenderer();
-
-// Set color for series index 0
+        DecimalFormat decimalFormat = new DecimalFormat("0.##");
+// Formats numbers with commas, or you can tailor a format for thousands/millions
+//        renderer.setBaseItemLabelGenerator(
+//                new StandardCategoryItemLabelGenerator("{2}", decimalFormat)
+//        );
+//// Set color for series index 0
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesPaint(1, Color.BLUE);
         renderer.setSeriesPaint(2, Color.GREEN);

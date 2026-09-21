@@ -11,6 +11,7 @@ import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.page.planABEPPage.PlanABEPPageModel;
+import web.page.planproposedpage.PlanProposedPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -26,6 +27,8 @@ public class TwentyPlanABEPTextSlide extends AbstractSlide {
     public void populateSlide(XSLFSlide slide) {
         
         /*
+        
+        PlanAProposedPageModel?.planAMonthly
         	a {PlanABEPPageModel?.planAAverageSale}"
         
 	b ${PlanABEPPageModel?.planAGrossMargin} + '%'"
@@ -44,6 +47,7 @@ J "${PlanABEPPageModel?.planAAdditionalGrossSales}"
 
         PlanABEPPageModel planABEPPageModel = getmSlidesData()
                 .getPageModels().getPlanABEPPageModel();
+   PlanProposedPageModel planAProposedPageModel =getmSlidesData().getPageModels().getPlanAProposedPageModel();
 
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
@@ -58,9 +62,9 @@ J "${PlanABEPPageModel?.planAAdditionalGrossSales}"
         
         SlideReplacementData planAProspectValue = new SlideReplacementData("DProj",
                 planABEPPageModel.getPlanAProspectValue()); //AProspectValue
-
+//planABEPPageModel.
         SlideReplacementData planAProspectsNeeded = new SlideReplacementData("EClient",
-                planABEPPageModel.getPlanAMonths());
+                planAProposedPageModel.getPlanAMonthly());
 
         SlideReplacementData planAProspectSalesNeeded = new SlideReplacementData("FMonth",
                 planABEPPageModel.getPlanAProspectsNeeded());
