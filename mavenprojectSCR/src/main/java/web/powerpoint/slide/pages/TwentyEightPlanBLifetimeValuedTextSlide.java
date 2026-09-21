@@ -84,7 +84,7 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("b_lifetimeValuePerCustomer",
 				planBLifetimeValuedPageModel.getLifetimeValuePerCustomer());
                 
-                SlideReplacementData planAMonthly = new SlideReplacementData("planAMonthly",
+                SlideReplacementData planAMonthly = new SlideReplacementData("planBMonthly",
 				planProposedPageModel.getPlanAMonthly());
 		
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("b_prospectsNeededToBreakEven",

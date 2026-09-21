@@ -129,10 +129,8 @@ public abstract class AbstractSlide implements SlideInterface {
                         mLog.warn("text[" + text + "] ");
                         mLog.warn("shapeId[" + shapeId + "] ");
                         mLog.warn("shapeName[" + shapeName + "] ");
-                        
-                                
-// Perform the replacement using standard Java string methods
 
+// Perform the replacement using standard Java string methods
                         // }
                     }
                 }
@@ -140,9 +138,9 @@ public abstract class AbstractSlide implements SlideInterface {
         }
     }
 
-    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData
-            , XSLFSlide slide, int lengthOfLine
-            , int shapeId) {
+    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData,
+             XSLFSlide slide, int lengthOfLine,
+             int shapeId) {
         for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
@@ -167,7 +165,6 @@ public abstract class AbstractSlide implements SlideInterface {
                         return;
                     }
 
-                
                 }
             }
         }
@@ -193,6 +190,10 @@ public abstract class AbstractSlide implements SlideInterface {
                             text = text.trim();
 
                             String label = slideReplacementData.getGoogleSlideVariableName();
+                            if (label.contains("LMonth") && text.contains("LMonth")) {
+                                int a = 1;
+                                a = a + 2;
+                            }
                             label = label.trim();
 // Perform the replacement using standard Java string methods
                             if (text.contains(label)) {
