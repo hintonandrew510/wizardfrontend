@@ -12,6 +12,7 @@ import web.google.slide.SlideReplacementData;
 import web.google.slide.SlidesData;
 import web.model.Contact;
 import web.page.planbLifetimevaluedpage.PlanBLifetimeValuedPageModel;
+import web.page.planproposedpage.PlanProposedPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -29,15 +30,42 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
     public void populateSlide(XSLFSlide slide) {
         PlanBLifetimeValuedPageModel planBLifetimeValuedPageModel =  getmSlidesData()
 				.getPageModels().getPlanBLifetimeValuedPageModel();
-		
+	PlanProposedPageModel planProposedPageModel =	getmSlidesData().getPageModels().getPlanBProposedPageModel();
+/*
+         a  = PlanBLifetimeValuedPageModel?.averageSale
+         b = PlanBLifetimeValuedPageModel?.grossProfitMargin
+         c = PlanBLifetimeValuedPageModel?.grossProfitPerSale
+         d = PlanBLifetimeValuedPageModel?.averageRepeatSales
+         e = PlanBLifetimeValuedPageModel?.averageCustomerValue
+         f = PlanBLifetimeValuedPageModel?.yearsOfPatronage
+         g = PlanBLifetimeValuedPageModel?.lifetimeValuePerCustomer
+         h = PlanBProposedPageModel?.planAMonthly
+         i = PlanBLifetimeValuedPageModel?.prospectsNeededToBreakEven
+         
+        
+        a = b_averageSale
+        b = b_grossProfitMargin
+        c= b_grossProfitPerSale
+        d = b_averageRepeatSales
+        e = b_averageCustomerValue
+        f =b_yearsOfPatronage
+        g = b_lifetimeValuePerCustomer
+        h = planBMonthly
+        i = b_prospectsNeededToBreakEven
 
+        
+        
+        
+        
+        */
 		List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
 
 		SlideReplacementData averageSale = new SlideReplacementData("b_averageSale",
 				planBLifetimeValuedPageModel.getAverageSale());
+                
 		SlideReplacementData grossProfitMargin = new SlideReplacementData("b_grossProfitMargin",planBLifetimeValuedPageModel.getGrossProfitMargin() + "%");
 		SlideReplacementData grossProfitPerSale = new SlideReplacementData("b_grossProfitPerSale",
-				planBLifetimeValuedPageModel.getGrossProfitPerSale()  );
+				planBLifetimeValuedPageModel.getGrossProfitPerSale());
 		
 		//String averageRepeatSalesStr = this.formatStringToCurrency(planBLifetimeValuedPageModel.getAverageRepeatSales());
 		String averageRepeatSalesStr = String.valueOf(planBLifetimeValuedPageModel.getAverageRepeatSales());
@@ -53,14 +81,18 @@ public class TwentyEightPlanBLifetimeValuedTextSlide extends AbstractSlide {
 		SlideReplacementData yearsOfPatronage = new SlideReplacementData("b_yearsOfPatronage",
 				planBLifetimeValuedPageModel.getYearsOfPatronage() + "");
 		
-		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("planBMonthly",
+		SlideReplacementData lifetimeValuePerCustomer = new SlideReplacementData("b_lifetimeValuePerCustomer",
 				planBLifetimeValuedPageModel.getLifetimeValuePerCustomer());
+                
+                SlideReplacementData planAMonthly = new SlideReplacementData("planAMonthly",
+				planProposedPageModel.getPlanAMonthly());
 		
 		SlideReplacementData prospectsNeededToBreakEven = new SlideReplacementData("b_prospectsNeededToBreakEven",
 				planBLifetimeValuedPageModel.getProspectsNeededToBreakEven());
 		
 		
 		listData.add(averageSale);
+                listData.add(planAMonthly);
 		listData.add(grossProfitMargin);
 		listData.add(grossProfitPerSale);
 		listData.add(averageRepeatSales);

@@ -11,6 +11,7 @@ import web.google.slide.SlidesData;
 import web.model.Contact;
 
 import web.page.planBBEPPage.PlanBBEPPageModel;
+import web.page.planproposedpage.PlanProposedPageModel;
 import web.powerpoint.slide.AbstractSlide;
 import web.powerpoint.slide.SlidePageNameEnum;
 
@@ -24,11 +25,30 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
 
     @Override
     public void populateSlide(XSLFSlide slide) {
+        /*
+        A- planBAverageSale
+        B- planBGrossMargin
+        C - planBClosingPct
+        D - planBProspectValue
+        E -     planBMonthly $4,000  PlanBProposedPageModel?.planAMonthly
+        F - planBProspectsNeeded
+        G- planBProspectSalesNeeded
+        H - planBGrossProfitOnSales
+        I planBMonths
+        J planBAdditionalGrossSales
+
+         */
 //planBMonthly
         PlanBBEPPageModel planBBEPPageModel = getmSlidesData()
                 .getPageModels().getPlanBBEPPageModel();
 
+        PlanProposedPageModel proposedPageModel = getmSlidesData().getPageModels().getPlanBProposedPageModel();
+        //String planAMonthly = proposedPageModel.getPlanAMonthly();
+
         List<SlideReplacementData> listData = new ArrayList<SlideReplacementData>();
+        
+         SlideReplacementData planAMonthly = new SlideReplacementData("planBMonthly",
+                proposedPageModel.getPlanAMonthly());
 
         SlideReplacementData planBAverageSale = new SlideReplacementData("planBAverageSale",
                 planBBEPPageModel.getPlanBAverageSale());
@@ -58,6 +78,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
                 planBBEPPageModel.getPlanBAdditionalGrossSales());
 
         listData.add(planBAverageSale);
+         listData.add(planAMonthly);
         listData.add(planBGrossMargin);
         listData.add(planBClosingPct);
         listData.add(planBProspectValue);
@@ -69,7 +90,7 @@ public class TwentySevenPlanBBEPTextSlide extends AbstractSlide {
 
         listData.add(planBMonths);
         replaceTextOnSlide(listData, slide);
-        mLog.warn("CLASS"+ TwentySevenPlanBBEPTextSlide.class.getName());
+        mLog.warn("CLASS" + TwentySevenPlanBBEPTextSlide.class.getName());
         //this.replaceTextOnSlidePrint(listData, slide);
 
     }
