@@ -11,6 +11,7 @@ import org.apache.poi.xslf.usermodel.XSLFSlide;
 import org.apache.poi.xslf.usermodel.XSLFTextParagraph;
 import org.apache.poi.xslf.usermodel.XSLFTextRun;
 import org.apache.poi.xslf.usermodel.XSLFTextShape;
+import org.apache.poi.sl.usermodel.VerticalAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import web.google.slide.SlideReplacementData;
@@ -139,9 +140,9 @@ public abstract class AbstractSlide implements SlideInterface {
         }
     }
 
-    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData,
-             XSLFSlide slide, int lengthOfLine,
-             int shapeId) {
+    public void replaceLargeTextOnSlidebak(List<SlideReplacementData> listData,
+            XSLFSlide slide, int lengthOfLine,
+            int shapeId) {
         for (SlideReplacementData slideReplacementData : listData) {
             for (XSLFShape shape : slide.getShapes()) {
                 // Check if the shape is a text shape
@@ -158,6 +159,58 @@ public abstract class AbstractSlide implements SlideInterface {
                             // 4. Bind a formatted text run inside the parent line structural loop
                             XSLFTextRun run = paragraph.addNewTextRun();
                             run.setText(line);
+
+                            // Optional global typography properties
+                            run.setFontSize(12.0);
+
+                        }//end of for
+                        return;
+                    }
+
+                }
+            }
+        }
+    }
+
+    public void replaceLargeTextOnSlide(List<SlideReplacementData> listData,
+            XSLFSlide slide, int lengthOfLine,
+            int shapeId) {
+        for (SlideReplacementData slideReplacementData : listData) {
+            for (XSLFShape shape : slide.getShapes()) {
+                // Check if the shape is a text shape
+                if (shape instanceof XSLFTextShape) {
+                    XSLFTextShape textShape = (XSLFTextShape) shape;
+                    int idTextShape = textShape.getShapeId();
+                    if (idTextShape == shapeId) {
+                        String convertParagraph = ParagraphHelper.wrapText(slideReplacementData.getGoogleSlideVariableValue(), lengthOfLine);
+                        String[] lines = convertParagraph.split("\\r?\\n");
+                        textShape.setVerticalAlignment(VerticalAlignment.TOP);
+                        // 2. Optional: Remove top margin/padding to snap the paragraph to the absolute top edge
+                        textShape.setLeftInset(0.0);
+                        textShape.setRightInset(0.0);
+                        textShape.setTopInset(0.0);
+                        textShape.setBottomInset(0.0);
+                        XSLFTextParagraph paragraph = null;
+                        // Check if the shape already has a default paragraph
+                        if (!textShape.getTextParagraphs().isEmpty()) {
+                            paragraph = textShape.getTextParagraphs().get(0);
+                        } else {
+                            paragraph = textShape.addNewTextParagraph();
+                        }
+
+                       
+                        // Remove the top margin (space before the paragraph)
+                        paragraph.setSpaceBefore(0.0);
+
+                        for (String line : lines) {
+                            // 3. Generate a distinct paragraph layout framework for each chunk
+
+                            // paragraph.setBullet(false);
+                            // 4. Bind a formatted text run inside the parent line structural loop
+                            XSLFTextRun run = paragraph.addNewTextRun();
+
+                            run.setText(line);
+                            paragraph.addLineBreak();
 
                             // Optional global typography properties
                             run.setFontSize(12.0);
