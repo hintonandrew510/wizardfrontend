@@ -67,16 +67,33 @@ public class TableHelper {
             // 2. Get the slide width (standard is 720 points)
             Dimension slideSize = ppt.getPageSize();
             double slideWidth = slideSize.getWidth();
+            double slideHeight = slideSize.getHeight();
             // 3. Define desired table percentage (e.g., 80%)
             double tablePercentage = 1.20;
             double tableWidth = slideWidth * tablePercentage;
             int tableWidthInt = (int) tableWidth;
             mLog.info("width " + tableWidthInt);
             // 2. Get the slide width (standard is 720 points)
-
+            int rows = planSpreadSheets.getPlanSpreadSheets().size() + 2;
             // 2. Create and position the table
+            //XSLFTable table = slide.createTable(numRows, numCols);
             XSLFTable table = slide.createTable();
-            int columnWidth = 20;
+            double x = 0;
+            double y = 100; // Adjust the top position as needed
+            // 3. Stretch the table to full width and height (X, Y, Width, Height)
+            table.setAnchor(new Rectangle2D.Double(x, y, tableWidthInt, slideHeight));
+
+            // 3. Remove cell margins (padding) and spacing
+            for (XSLFTableRow row : table.getRows()) {
+                for (XSLFTableCell cell : row.getCells()) {
+                    cell.setLeftInset(0.0);
+                    cell.setRightInset(0.0);
+                    cell.setTopInset(0.0);
+                    cell.setBottomInset(0.0);
+                }
+            }
+
+            // int columnWidth = 20;
             double fontSize = 8.0;
             int rowHeaderHeight = 10;
             int startX = 50;
@@ -404,12 +421,12 @@ public class TableHelper {
             double maxTableWidth = slideWidthtwo - (leftMargin + rightMargin);
             // Example: Make the table 400 points wide
 //table.setAnchor(new java.awt.geom.Rectangle2D.Double(50.0, 50.0, 400.0, 250.0)); 
-            
+
             table.setAnchor(new Rectangle2D.Double(startX, startY, maxTableWidth, tableHeight));
             int numCols = table.getNumberOfColumns();
             // 4. Distribute that max width proportionally across all columns
             double columnWidthtwo = tableWidth / numCols;
-            columnWidthtwo=columnWidthtwo-20;
+            columnWidthtwo = columnWidthtwo - 20;
             for (int i = 0; i < numCols; i++) {
                 table.setColumnWidth(i, columnWidthtwo);
             }
