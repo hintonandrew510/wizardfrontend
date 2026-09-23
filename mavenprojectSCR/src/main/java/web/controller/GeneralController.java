@@ -33,6 +33,13 @@ public class GeneralController {
 		mLog.info("starting googleprofile");
 		return "index";
 	}
+        @RequestMapping(value = "/about")
+	public String showAbout() 
+	{
+		mLog.info("starting about");
+		return "about";
+	}
+        //
 	
 	
 
