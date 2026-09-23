@@ -1,399 +1,404 @@
 <!-- begin of ClientObjectivesPageModelfragment -->
 <div th:fragment="ClientObjectivesPage"
-	class="grad w3-container pageBreakInside">
-	<div th:if="${PublishModel.clientObjectivesPage}" class="container"
-		style="padding-top: 1%;">
+     class="grad w3-container pageBreakInside">
+    <div th:if="${PublishModel.clientObjectivesPage}" class="container"
+         style="padding-top: 1%;">
 
-		<div>
-			<a id="ClientObjectivesPage"></a>
+        <div>
+            <a id="ClientObjectivesPage"></a>
 
 
 
 
-		</div>
+        </div>
 
-		<!-- content-->
-		<div class="whiteGrad  grid-container">
-			<div class="text-justify">
-				<h1 class="text-center w3-text-black">Strategic Marketing I</h1>
-			</div>
+        <!-- content-->
+        <div class="whiteGrad  grid-container">
+            <div class="text-justify">
+                <h1 class="text-center w3-text-black">Strategic Marketing I</h1>
+            </div>
 
 
 
-			<div>
-				<p class="bold-text">If you had the power to improve three
-					things in your marketing, what would they be in order of their
-					priority?</p>
-			</div>
-			<div>
-				<ol>
-					<li th:each="selectedModel : ${ClientObjectivesPageModel}"
-						th:if="${selectedModel.sortOrder} != 0"><span> <script
-								th:inline="javascript">
-							/*<![CDATA[*/
-							console.group("translate label to text");
-							var label = /*[[${selectedModel?.label}]]*/'default';
-							console.log("label " + label);
-							//message = "'" + message + "'";
-							var text = getLabelText(label);
-							console.log("text	 " + text);
-							document.write(text);
-							console.groupEnd();
-							/*]]>*/
-						</script>
+            <div>
+                <p class="bold-text">If you had the power to improve three
+                    things in your marketing, what would they be in order of their
+                    priority?</p>
+            </div>
+            <div>
+                <ol>
+                    <li th:each="selectedModel : ${ClientObjectivesPageModel}"
+                    th:if="${selectedModel.sortOrder} != 0"><span> <script
+                                th:inline="javascript">
+                                    /*<![CDATA[*/
+                                    console.group("translate label to text");
+                                    var label = /*[[${selectedModel?.label}]]*/'default';
+                                    console.log("label " + label);
+                                    //message = "'" + message + "'";
+                                    var text = getLabelText(label);
+                                    console.log("text	 " + text);
+                                    document.write(text);
+                                    console.groupEnd();
+                                    /*]]>*/
+                            </script>
 
-					</span></li>
+                        </span></li>
 
 
 
-				</ol>
+                </ol>
 
-			</div>
+            </div>
 
 
 
 
-			<fieldset>
-				<legend class="bold-text"> Client Objectives </legend>
+            <div class="row text-center bold-text" style="padding-bottom: 2%;">
+                <h1>Client Objectives</h1>
 
-				<fieldset>
-					<legend class="bold-text">PRODUCT / SERVICE</legend>
-					<div class="grid-item">
+            </div>
 
-						<div>
-							<label> <span id="introduceNewDepartmentLabel"> <script>
-								addLabel("introduceNewDepartmentLabel");
-							</script>
 
-							</span>
-							</label>
-						</div>
 
-					</div>
-					<div class="grid-item">
 
-						<div>
-							<label> <span id="featureSpecificProductsLabel"> <script>
-								addLabel("featureSpecificProductsLabel");
-							</script>
+            <div class="grid-item">
+                <h2 class="bold-text text-center" style="padding-bottom: 2%;">
+                    PRODUCT / SERVICE
+                </h2>
+                <div class="row">
+                    <label> <span id="introduceNewDepartmentLabel"> <script>
+                        addLabel("introduceNewDepartmentLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span>
+                    </label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span
-								id="callAttentiontoBrandsPrivateLabelsCarriedLabel"> <script>
-									addLabel("callAttentiontoBrandsPrivateLabelsCarriedLabel");
-								</script>
+                <div class="row">
+                    <label> <span id="featureSpecificProductsLabel"> <script>
+                        addLabel("featureSpecificProductsLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="promoteOffPriceItemsServicesLabel">
-									<script>
-										addLabel("promoteOffPriceItemsServicesLabel");
-									</script>
+               <div class="row">
+                    <label> <span
+                        id="callAttentiontoBrandsPrivateLabelsCarriedLabel"> <script>
+                            addLabel("callAttentiontoBrandsPrivateLabelsCarriedLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="utilizeCoopVendorDollarsLabel">
-									<script>
-										addLabel("utilizeCoopVendorDollarsLabel");
-									</script>
+               <div class="row">
+                    <label> <span id="promoteOffPriceItemsServicesLabel">
+                            <script>
+                                addLabel("promoteOffPriceItemsServicesLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
+            </div>
+            <div class="grid-item">
 
-				</fieldset>
+               <div class="row">
+                    <label> <span id="utilizeCoopVendorDollarsLabel">
+                            <script>
+                                addLabel("utilizeCoopVendorDollarsLabel");
+                            </script>
 
-				<fieldset>
-					<legend class="bold-text">CONSUMER</legend>
-					<div class="grid-item">
+                        </span></label>
+                </div>
 
-						<div>
-							<label> <span id="retainCurrentConsumersLabel"> <script>
-								addLabel("retainCurrentConsumersLabel");
-							</script>
+            </div>
 
-							</span></label>
-						</div>
 
-					</div>
-					<div class="grid-item">
 
-						<div>
-							<label> <span id="increaseCustomerVisitsLabel"> <script>
-								addLabel("increaseCustomerVisitsLabel");
-							</script>
 
-							</span></label>
-						</div>
 
-					</div>
-					<div class="grid-item">
+            <div class="grid-item">
+                CONSUMER
+               <div class="row">
+                    <label> <span id="retainCurrentConsumersLabel"> <script>
+                        addLabel("retainCurrentConsumersLabel");
+                            </script>
 
-						<div>
-							<label> <span id="increaseTrafficLeadCallsLabel">
-									<script>
-										addLabel("increaseTrafficLeadCallsLabel");
-									</script>
+                        </span></label>
+                </div>
 
-							</span></label>
-						</div>
+            </div>
+            <div class="grid-item">
 
-					</div>
-					<div class="grid-item">
+                <div class="row">
+                    <label> <span id="increaseCustomerVisitsLabel"> <script>
+                        addLabel("increaseCustomerVisitsLabel");
+                            </script>
 
-						<div>
-							<label> <span id="expandTargetConsumersLabel"> <script>
-								addLabel("expandTargetConsumersLabel");
-							</script>
+                        </span></label>
+                </div>
 
-							</span></label>
-						</div>
+            </div>
+            <div class="grid-item">
 
-					</div>
-					<div class="grid-item">
+                <div class="row">
+                    <label> <span id="increaseTrafficLeadCallsLabel">
+                            <script>
+                                addLabel("increaseTrafficLeadCallsLabel");
+                            </script>
 
-						<div>
-							<label> <span id="changeConsumerAttitudesLabel"> <script>
-								addLabel("changeConsumerAttitudesLabel");
-							</script>
+                        </span></label>
+                </div>
 
-							</span></label>
-						</div>
+            </div>
+            <div class="grid-item">
 
-					</div>
+                <div class="row">
+                    <label> <span id="expandTargetConsumersLabel"> <script>
+                        addLabel("expandTargetConsumersLabel");
+                            </script>
 
-				</fieldset>
+                        </span></label>
+                </div>
 
-				<fieldset>
-					<legend class="bold-text">PROMOTION</legend>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="makePromotionalEventsStrongerLabel">
-									<script>
-										addLabel("makePromotionalEventsStrongerLabel");
-									</script>
+                <div class="row">
+                    <label> <span id="changeConsumerAttitudesLabel"> <script>
+                        addLabel("changeConsumerAttitudesLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
 
-						<div>
-							<label> <span
-								id="increaseDigitalMobileOnlineResponseLabel"> <script>
-									addLabel("increaseDigitalMobileOnlineResponseLabel");
-								</script>
 
-							</span></label>
-						</div>
 
-					</div>
 
-					<div class="grid-item">
+            <legend class="bold-text">PROMOTION</legend>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="quarterlySeasonalCampaignLabel">
-									<script>
-										addLabel("quarterlySeasonalCampaignLabel");
-									</script>
+                <div class="row">
+                    <label> <span id="makePromotionalEventsStrongerLabel">
+                            <script>
+                                addLabel("makePromotionalEventsStrongerLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="developDatabaseMarketingLabel">
-									<script>
-										addLabel("developDatabaseMarketingLabel");
-									</script>
+                <div class="row">
+                    <label> <span
+                        id="increaseDigitalMobileOnlineResponseLabel"> <script>
+                            addLabel("increaseDigitalMobileOnlineResponseLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
 
-						<div>
-							<label> <span id="initiateCauseMarketingProgramLabel">
-									<script>
-										addLabel("initiateCauseMarketingProgramLabel");
-									</script>
+            <div class="grid-item">
 
-							</span></label>
-						</div>
+                <div class="row">
+                    <label> <span id="quarterlySeasonalCampaignLabel">
+                            <script>
+                                addLabel("quarterlySeasonalCampaignLabel");
+                            </script>
 
-					</div>
-					<div class="grid-item">
+                        </span></label>
+                </div>
 
-						<div>
-							<label> <span id="developSpeciallyStagedEventLabel">
-									<script>
-										addLabel("developSpeciallyStagedEventLabel");
-									</script>
+            </div>
+            <div class="grid-item">
 
-							</span></label>
-						</div>
+               <div class="row">
+                    <label> <span id="developDatabaseMarketingLabel">
+                            <script>
+                                addLabel("developDatabaseMarketingLabel");
+                            </script>
 
-					</div>
+                        </span></label>
+                </div>
 
-				</fieldset>
+            </div>
+            <div class="grid-item">
 
-				<fieldset>
-					<legend class="bold-text">BRAND</legend>
-					<div class="grid-item">
+                <div class="row">
+                    <label> <span id="initiateCauseMarketingProgramLabel">
+                            <script>
+                                addLabel("initiateCauseMarketingProgramLabel");
+                            </script>
 
-						<div>
-							<label> <span id="maintainMarketDominanceLabel"> <script>
-								addLabel("maintainMarketDominanceLabel");
-							</script>
+                        </span></label>
+                </div>
 
-							</span></label>
-						</div>
+            </div>
+            <div class="grid-item">
 
-					</div>
-					<div class="grid-item">
+                <div class="row">
+                    <label> <span id="developSpeciallyStagedEventLabel">
+                            <script>
+                                addLabel("developSpeciallyStagedEventLabel");
+                            </script>
 
-						<div>
-							<label> <span id="improveBusinessNameBrandLabel">
-									<script>
-										addLabel("improveBusinessNameBrandLabel");
-									</script>
+                        </span></label>
+                </div>
 
-							</span></label>
-						</div>
+            </div>
 
-					</div>
-					<div class="grid-item">
 
-						<div>
-							<label> <span
-								id="establishorReestablishBusinessImageLabel"> <script>
-									addLabel("establishorReestablishBusinessImageLabel");
-								</script>
 
-							</span></label>
-						</div>
 
-					</div>
-					<div class="grid-item">
+            <legend class="bold-text">BRAND</legend>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="createPentUpDemandLabel"> <script>
-								addLabel("createPentUpDemandLabel");
-							</script>
+               <div class="row">
+                    <label> <span id="maintainMarketDominanceLabel"> <script>
+                        addLabel("maintainMarketDominanceLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="increaseMarketShareLabel"> <script>
-								addLabel("increaseMarketShareLabel");
-							</script>
+                <div class="row">
+                    <label> <span id="improveBusinessNameBrandLabel">
+                            <script>
+                                addLabel("improveBusinessNameBrandLabel");
+                            </script>
 
-							</span></label>
-						</div>
+                        </span></label>
+                </div>
 
-					</div>
-					<div class="grid-item">
+            </div>
+            <div class="grid-item">
 
-						<div>
-							<label> <span id="otherLabel"> <!-- set other text -->
-									<script th:inline="javascript">
-										/*<![CDATA[*/
+              <div class="row">
+                    <label> <span
+                        id="establishorReestablishBusinessImageLabel"> <script>
+                            addLabel("establishorReestablishBusinessImageLabel");
+                            </script>
 
-										console.group("other text");
+                        </span></label>
+                </div>
 
-										var label = /*[[${ClientObjectivesPage?.otherText}]]*/'label';
-										if (label != "") {
-											addOtherText(label);
-										}
+            </div>
+            <div class="grid-item">
 
-										console.groupEnd();
+               <div class="row">
+                    <label> <span id="createPentUpDemandLabel"> <script>
+                        addLabel("createPentUpDemandLabel");
+                            </script>
 
-										/*]]>*/
-									</script>
+                        </span></label>
+                </div>
 
+            </div>
+            <div class="grid-item">
 
+               <div class="row">
+                    <label> <span id="increaseMarketShareLabel"> <script>
+                        addLabel("increaseMarketShareLabel");
+                            </script>
 
+                        </span></label>
+                </div>
 
-							</span>
-							</label>
-						</div>
+            </div>
+            <div class="grid-item">
 
-					</div>
+                <div class="row">
+                    <label> <span id="otherLabel"> <!-- set other text -->
+                            <script th:inline="javascript">
+                                /*<![CDATA[*/
 
-				</fieldset>
+                                console.group("other text");
 
-			</fieldset>
-			<div>
+                                var label = /*[[${ClientObjectivesPage?.otherText}]]*/'label';
+                                if (label != "") {
+                                    addOtherText(label);
+                                }
 
-				<p class="bold-text">What are the biggest misconceptions
-					consumers have about the business?</p>
-				<p style="padding-left: 5%; margin-top: -10px;"
-					th:text="${StrategicMarketingPageOne?.misconceptions}"></p>
+                                console.groupEnd();
 
-				<p class="bold-text">What are the clients most distinctive
-					selling advantages?</p>
-				<p style="padding-left: 5%; margin-top: -10px;"
-					th:text="${StrategicMarketingPageOne?.sellingAdvantages}"></p>
+                                /*]]>*/
+                            </script>
 
-			</div>
-		</div>
-		<div class="w3-container d-print-none" style="padding-top: 2%;">
-			<button class="w3-btn w3-white" onclick="javascript:printPage();">Download</button>
 
-			<button class="w3-btn w3-white"
-				onclick="javascript:gotoAnchor(5,'down');">Next</button>
-			<button class="w3-btn w3-white"
-				onclick="javascript:gotoAnchor(3,'up');">Previous</button>
-		<button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
-	
-		</div>
-		<div class="w3-row">
-			<div class="CopyRightId w3-col m8"></div>
-			<div class=" w3-col m2"></div>
-			<div align="right" class="w3-col m2">-CONFIDENTIAL- 4</div>
-		</div>
-		<!-- select items -->
-		<script th:each="selectedModel : ${ClientObjectivesPageModel}"
-			th:inline="javascript">
-			/*<![CDATA[*/
-			var label = /*[[${selectedModel?.label}]]*/'default';
-			var key = /*[[${selectedModel?.key}]]*/'key';
-			if (key == "other") {
-				label = 'otherLabel';
-			}
-			addSelection(label);
-			/*]]>*/
-		</script>
 
-	</div>
 
-	<!-- JavaScript files-->
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+
+
+
+
+          <div class="row">
+
+                <p class="bold-text">What are the biggest misconceptions
+                    consumers have about the business?</p>
+                <p style="padding-left: 5%; margin-top: -10px;"
+                   th:text="${StrategicMarketingPageOne?.misconceptions}"></p>
+
+                <p class="bold-text">What are the clients most distinctive
+                    selling advantages?</p>
+                <p style="padding-left: 5%; margin-top: -10px;"
+                   th:text="${StrategicMarketingPageOne?.sellingAdvantages}"></p>
+
+            </div>
+        </div>
+        <div class="w3-container d-print-none" style="padding-top: 2%;">
+            <button class="w3-btn w3-white" onclick="javascript:printPage();">Download</button>
+
+            <button class="w3-btn w3-white"
+                    onclick="javascript:gotoAnchor(5, 'down');">Next</button>
+            <button class="w3-btn w3-white"
+                    onclick="javascript:gotoAnchor(3, 'up');">Previous</button>
+            <button class="w3-btn w3-white" onclick="history.back()">Go Back</button>
+
+        </div>
+        <div class="w3-row">
+            <div class="CopyRightId w3-col m8"></div>
+            <div class=" w3-col m2"></div>
+            <div align="right" class="w3-col m2">-CONFIDENTIAL- 4</div>
+        </div>
+        <!-- select items -->
+        <script th:each="selectedModel : ${ClientObjectivesPageModel}"
+                th:inline="javascript">
+                    /*<![CDATA[*/
+                    var label = /*[[${selectedModel?.label}]]*/'default';
+                    var key = /*[[${selectedModel?.key}]]*/'key';
+                    if (key == "other") {
+                        label = 'otherLabel';
+                    }
+                    addSelection(label);
+                    /*]]>*/
+        </script>
+
+    </div>
+
+    <!-- JavaScript files-->
 
 
 </div>

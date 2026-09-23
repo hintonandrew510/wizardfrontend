@@ -1,0 +1,7 @@
+cd /Users/andrewhinton/Documents/GitHub/wizardfrontendToday/mavenprojectSCR
+
+export  "JAVA_HOME=/Applications/Apache NetBeans.app/Contents/Home"
+
+"/Applications/Apache NetBeans.app/Contents/Resources/netbeans/java/maven/bin/mvn" -DskipTests=true --no-transfer-progress install
+
+chmod +x upload.sh

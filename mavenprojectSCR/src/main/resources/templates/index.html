@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="utf-8">
+            <title>Wizard</title>
+            <meta name="description" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <meta name="robots" content="all,follow">
+                        <!-- Bootstrap CSS-->
+                        <!-- Thymeleaf Reference -->
+                        <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+                        <link rel="stylesheet" type="text/css" th:href="@{/css/font-awesome.min.css}" />
+                        <link rel="stylesheet" type="text/css" th:href="@{/css/w3c.css}" />
+                        <link rel="stylesheet" type="text/css" th:href="@{/css/style.default.css}" />
+                        <link rel="shortcut icon"  th:href="@{/img/icon.png}" />
+
+
+
+                        </head>
+                        <body>
+
+                            <!-- intro end-->
+                            <!-- navbar-->
+                            <header class="header">
+                                <nav class="navbar navbar-expand-lg">
+                                    <div class="container">
+                                        <a href="#intro" class="navbar-brand link-scroll"><img
+                                                src="./img/system21.png" alt="" class="img-fluid" width="160"
+                                                height="40"></a>
+                                        <button type="button" data-toggle="collapse"
+                                                data-target="#navbarSupportedContent"
+                                                aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                aria-label="Toggle navigation"
+                                                class="navbar-toggler navbar-toggler-right">
+                                            <i class="fa fa-bars"></i>
+                                        </button>
+                                        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                                            <ul class="navbar-nav ml-auto">
+                                                <li class="nav-item"><a href="#" class="nav-link link-scroll">Home</a></li>
+                                                <li class="nav-item"><a href="privacypolicy.html" class="nav-link link-scroll">Privacy Policy</a></li>
+                                                <li class="nav-item"><a href="wizards"
+                                                                        class="nav-link link-scroll">Wizard/SCR</a></li>
+                                                <li class="nav-item"><a href="about"
+                                                                        class="nav-link link-scroll">About</a></li>
+                                                <li class="nav-item"><a href="googleprofile"
+                                                                        class="nav-link link-scroll">Google Profile</a></li>
+                                                <li class="nav-item"><a href="logout"
+                                                                        class="nav-link link-scroll">Logout</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </nav>
+                            </header>
+                            <!-- about-->
+                            <section id="about" class="text">
+
+
+                                <div class="container-fluid" style="padding-top: 1%;">
+                                    <div class="row" style="margin: auto; max-width: 80%;">
+                                        <h3>Welcome to the System 21 Wizard/SCR release version +
+                                            777.7777</h3>
+                                    </div> 
+                                    <div class="row" style="margin: auto; max-width: 80%;">
+                                        <p>This Wizard is designed to help you create a Summary, Conclusions and
+                                            Recommendations (SCR). Follow the prompts on the pages.</p>
+                                    </div>
+                                    <div class="row" style="margin: auto; max-width: 80%;">
+                                        <div class="col-sm-6 border border-white">
+                                            <a href="add.html">
+                                                <i class="fa fa-file-o fa-10x w3-teal"
+                                                   style="font-size: 40px; padding: 35px; height: 200px;"> <span
+                                                        style="font-size: 30px;"> Create New Summary, Conclusions and
+                                                        Recommendations (SCR)</span>
+                                                </i>
+                                            </a>
+                                        </div>
+
+                                        <div class="col-sm-6 border border-white">
+                                            <a href="wizards">
+                                                <i class="fa fa-edit fa-10x w3-teal"
+                                                   style="font-size: 40px; padding: 35px; height: 200px;"> <span
+                                                        style="font-size: 30px;"> Open Existing Summary, Conclusions and
+                                                        Recommendations (SCR)</span>
+                                                </i>
+                                            </a>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </section>
+                            <!-- about end-->
+
+
+
+
+
+
+                            <!-- JavaScript files-->
+
+                            <!-- This will include your footer fragment -->
+                            <div th:replace="~{fragments/footer :: footer-fragment}"></div>
+                        </body>
+
+
+
+
+                        </html>
