@@ -39,6 +39,13 @@ public class GeneralController {
 		mLog.info("starting about");
 		return "about";
 	}
+        
+            @RequestMapping(value = "/privacypolicy")
+	public String showPrivacypolicy() 
+	{
+		mLog.info("starting about");
+		return "privacypolicy";
+	}
         //
 	
 	
