@@ -1002,3 +1002,18 @@ input[type="checkbox"]:checked:after {
 	padding-left: 6%;
 	
 }
+.no-bullets {
+  list-style-type: none; /* Removes the dots */
+  padding: 0;            /* Optional: Removes default indentation */
+  margin: 0;             /* Optional: Removes default spacing */
+}
+
+/* Option 1: Sets border width to 0 */
+fieldset {
+  border: 0;
+}
+
+/* Option 2: Removes the border completely */
+fieldset {
+  border: none;
+}
