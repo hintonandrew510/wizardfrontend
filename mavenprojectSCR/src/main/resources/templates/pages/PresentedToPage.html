@@ -24,6 +24,7 @@
 
 	 <div th:replace="fragments/navForPages :: navForPages"></div>
 
+
 	<div class="container" style="padding-top: 1%;">
 
 		<div>
@@ -106,9 +107,8 @@
 			</form>
                     
                     
-                    <<div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
-                        
-                    </div>
+                   <div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
+                   
 			<div class="container" style="padding-top: 2%;">
 
 				<div class="progress">
@@ -127,7 +127,17 @@
 
 
 	
-	
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		$(function() {
+			// Store
+            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
+			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
+			
+			
+		});
+		/*]]>*/
+	</script>
 
 </body>
 </html>
