@@ -638,8 +638,8 @@
 							value="Previous" type="submit" class="btn btn-primary"
 							style="background-color: #C0B879;" />
 			</fieldset>
-		</form><div id="wizardCopyRightId"></div>
-		<div id="wizardCopyRightId"></div>
+		</form><div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
+		<div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
 		<div class="container" style="padding-top: 2%;">
 
 			<div class="progress">
@@ -668,16 +668,7 @@
 
 	<script src="js/currency.js "></script>
 	<script src="js/ConfidentialClientEvaluationOnePage.js"></script>
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-		$(function() {
-			// Store
-            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
-			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
-			
-		});
-		/*]]>*/
-	</script>
+	
 	
 
 

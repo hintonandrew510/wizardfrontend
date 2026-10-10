@@ -55,7 +55,7 @@
 	<!-- Begin page content -->
 	<!--- start header container -->
 
-	<div id="headerId"></div>
+	<div th:replace="fragments/navForPages :: navForPages"></div>  
 
 	<div class="container" style="padding-top: 1%;">
 
@@ -120,8 +120,8 @@
 					value="Previous" type="submit" class="btn btn-primary"
 					style="background-color: #C0B879;" />
 					</fieldset>
-			</form><div id="wizardCopyRightId"></div>
-			<div id="wizardCopyRightId"></div>
+			</form><div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
+			<div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
 			
 			<div class="container" style="padding-top:2%;">
 
@@ -155,16 +155,7 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
 <script src="js/extrapage.js"></script>
-	<script th:inline="javascript">
-		/*<![CDATA[*/
-		$(function() {
-			// Store
-            sessionStorage.setItem("ID", /*[[${wizard.encrypt}]]*/);
-			$("#headerId").load("header.html"); $("#wizardCopyRightId").load("wizardcopyright.html");
-			
-		});
-		/*]]>*/
-	</script>
+	
 
 </body>
 </html>

@@ -133,7 +133,7 @@
 					<input type="hidden" id="wizardId" th:value="${wizard.encrypt}"
 						name="wizardId" /> <input type="hidden" id="wizarddataid"
 						th:value="${wizardData?.wizarddataid}" name="wizarddataid" />
-				</form><div id="wizardCopyRightId"></div>
+				</form><div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
 
 				<form id="myForm">
 					<fieldset>
@@ -285,7 +285,7 @@
 
 					</fieldset>
 
-				</form><div id="wizardCopyRightId"></div>
+				</form><div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
 			</div>
 			<div class="container" style="padding-top: 2%;">
 				<form method="post" action="savePlanBMediaPage">
@@ -490,7 +490,7 @@
 							value="Previous" type="submit" class="btn btn-primary"
 							style="background-color: #C0B879;" />
 					</fieldset>
-				</form><div id="wizardCopyRightId"></div>
+				</form><div th:replace="fragments/wizardcopyright :: wizardcopyright"></div>
 
 			</div>
 			<div class="container" style="padding-top: 2%;">
